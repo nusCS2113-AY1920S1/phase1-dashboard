@@ -1,1 +1,3255 @@
-[]
+[
+  {
+    "path": "src/main/java/Deadline.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private Date by;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public Deadline(String description, Date by) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static void checkInputError(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] userInputArray \u003d Duke.userInputStringToArray(myString);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        if(userInputArray.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"The description of deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } else if(!myString.contains(\"/by\")) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Deadline invalid date\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static String getTaskName(String myString) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String taskName \u003d myString;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskName \u003d Duke.removeFirstWordFromString(taskName);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskName \u003d taskName.split(\"/by\")[0];     // gets user entered task (before /by)"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return taskName;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static Date getTaskDate(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            String deadlineDateString \u003d myString.split(\"/by\")[1];     // gets user entered date (after /by)"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            Date deadlineDate \u003d dateFormat.parse(deadlineDateString);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            return deadlineDate;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch(ParseException errorMessage) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Deadline invalid date\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + dateFormat.format(by) + \")\";"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 50
+    }
+  },
+  {
+    "path": "src/main/java/Done.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class Done {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static void checkInputError(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] userInputArray \u003d Duke.userInputStringToArray(myString);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        if(userInputArray.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Done must be followed by a number from the list.\");"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static int getDoneNumber(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String userInput \u003d myString;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        userInput \u003d Duke.removeFirstWordFromString(userInput);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        int userInputNumber \u003d Integer.parseInt(userInput.split(\" \")[0]);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return userInputNumber;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 17
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.Scanner;  // Import the Scanner class"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.ArrayList; // import the ArrayList class"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private static void printWelcomeMessage() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        //System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(logo);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(\"What can I do for you?\\n\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static String removeFirstWordFromString(String userInput) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String finalString \u003d userInput;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] stringArray \u003d userInput.split(\" \");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        if (stringArray.length \u003e 1) {       // ensure that string has more than 1 word, if not will get out of bound error"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            finalString \u003d userInput.split(\" \", 2)[1];"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return finalString;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static String[] userInputStringToArray(String userInput) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] userInputArray \u003d userInput.split(\" \");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return userInputArray;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static void main(String[] args) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        printWelcomeMessage();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        Scanner input \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String userInput \u003d input.nextLine();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] userInputArray \u003d userInputStringToArray(userInput);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String userInputFirstWord \u003d userInputArray[0];   // get first word from userInput"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        // restore taskList from previous session"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        Save save \u003d new Save(\"/data/duke.txt\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskList \u003d save.restoreTaskList(taskList);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        while (true) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                if (userInputFirstWord.equals(\"todo\")) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    String taskName \u003d Todo.getTaskName(userInput);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Todo userTodo \u003d new Todo(taskName);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    taskList \u003d TaskList.addTaskToList(taskList, userTodo);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    save.saveTaskList(taskList);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else if (userInputFirstWord.equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Deadline.checkInputError(userInput);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    String deadlineTask \u003d Deadline.getTaskName(userInput);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Date deadlineDate \u003d Deadline.getTaskDate(userInput);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Deadline userDeadline \u003d new Deadline(deadlineTask, deadlineDate);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    taskList \u003d TaskList.addTaskToList(taskList, userDeadline);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    save.saveTaskList(taskList);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else if (userInputFirstWord.equals(\"event\")) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Event.checkInputError(userInput);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    String eventTask \u003d Event.getTaskName(userInput);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Date eventDateFrom \u003d Event.getEventDateFrom(userInput);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Date eventDateTo \u003d Event.getEventDateTo(userInput);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Event userEvent \u003d new Event(eventTask, eventDateFrom, eventDateTo);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    taskList \u003d TaskList.addTaskToList(taskList, userEvent);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    save.saveTaskList(taskList);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else if (userInputFirstWord.equals(\"done\")) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    Done.checkInputError(userInput);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    int userInputNumber \u003d Done.getDoneNumber(userInput);    // get the number that user entered"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    taskList \u003d TaskList.setTaskDone(taskList, userInputNumber);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    save.saveTaskList(taskList);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else if (userInputFirstWord.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    TaskList.printTaskList(taskList);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else if (userInputFirstWord.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.exit(0);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            } catch(DukeException errorMessage) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                if(errorMessage.getMessage().equals(\"Deadline invalid date\")) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"Incorrect format. Please try:\");"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"deadline \u003ctask\u003e /by \u003cdd/MM/yyyy HHmm\u003e\");"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"E.g. deadline Celebrate birthday /by 12/11/2019 1800\");"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                } else if (errorMessage.getMessage().equals(\"Event invalid date\")) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"Incorrect format. Please try:\");"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"event \u003ctask\u003e /at \u003cdd/MM/yyyy HHmm\u003e - \u003cdd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"E.g. event Celebrate birthday /at 12/11/2019 1800 - 12/11/2019 2200\");"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.err.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(\"\\n\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            userInput \u003d input.nextLine();"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            userInputArray \u003d userInputStringToArray(userInput);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            userInputFirstWord \u003d userInputArray[0];    // get the first word of user input"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 105,
+      "-": 8
+    }
+  },
+  {
+    "path": "src/main/java/DukeException.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class DukeException extends Exception{"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private String errorMessage;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public DukeException(String errorMessage){"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        super(errorMessage);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.errorMessage \u003d errorMessage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String toString(){"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return \"\\u2639 OOPS!!! \" + this.errorMessage;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 11
+    }
+  },
+  {
+    "path": "src/main/java/Event.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private Date fromDate;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private Date toDate;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public Event(String description, Date fromDate, Date toDate) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.fromDate \u003d fromDate;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.toDate \u003d toDate;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static void checkInputError(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] userInputArray \u003d Duke.userInputStringToArray(myString);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        if(userInputArray.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"The description of event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } else if(!myString.contains(\"-\") || !myString.contains(\"/at\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Event invalid date\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static String getTaskName(String myString) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String taskName \u003d myString;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        Duke.removeFirstWordFromString(taskName);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskName \u003d taskName.split(\"/at\")[0];     // gets user entered task (before /by)"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return taskName;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static Date getEventDateFrom(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            String taskName \u003d myString.split(\"/at\")[1];"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            String eventDateString \u003d taskName.split(\"-\")[0];   // gets user input date in string form"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            Date eventDate \u003d dateFormat.parse(eventDateString);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            return eventDate;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch(ParseException errorMessage) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Event invalid date\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static Date getEventDateTo(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            String taskName \u003d myString.split(\"/at\")[1];"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            String eventDateString \u003d taskName.split(\"-\")[1];   // gets user input date in string form"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            Date eventDate \u003d dateFormat.parse(eventDateString);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            return eventDate;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch(ParseException errorMessage) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Event invalid date\");"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        DateFormat dateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + dateFormat.format(fromDate) + \" - \" + dateFormat.format(toDate) + \")\";"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 67
+    }
+  },
+  {
+    "path": "src/main/java/Save.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.ArrayList; // import the ArrayList class"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.FileInputStream;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.FileOutputStream;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.ObjectInputStream;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.ObjectOutputStream;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class Save {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private String path;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private String directory;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private String filename;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private String projectDirectory;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public Save(String path) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.path \u003d System.getProperty(\"user.dir\") + path;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        filename \u003d path.substring(path.lastIndexOf(\"/\") + 1);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        directory \u003d path.substring(0, path.lastIndexOf(\"/\"));"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String getFileName(){"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return filename;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String getDirectoryName(){"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return directory;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public void saveTaskList(ArrayList\u003cTask\u003e arrayList) throws IOException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskList \u003d arrayList;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        int tryAgain \u003d 0;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        while(tryAgain \u003c 2) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                FileOutputStream file \u003d new FileOutputStream(new File(path));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                ObjectOutputStream object \u003d new ObjectOutputStream(file);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                object.writeObject(taskList);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                object.close();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                file.close();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                tryAgain \u003d 2;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            } catch(FileNotFoundException errorMessage) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                tryAgain++ ;"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                File file \u003d new File(path);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                file.getParentFile().mkdirs();          // create directory. This function will not create if already exist."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                if(!file.createNewFile()) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(\"Unable to create file \" + path + \"...\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                    System.out.println(errorMessage);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            } catch (IOException errorMessage) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                tryAgain \u003d 2;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                System.out.println(\"Error saving to \" + path);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                System.out.println(errorMessage);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public ArrayList\u003cTask\u003e readTaskList() throws IOException, DukeException {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            FileInputStream file \u003d new FileInputStream(new File(path));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            ObjectInputStream object \u003d new ObjectInputStream(file);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            taskList \u003d (ArrayList\u003cTask\u003e)object.readObject();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            object.close();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            file.close();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            return taskList;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch(FileNotFoundException errorMessage) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            File file \u003d new File(path);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            file.getParentFile().mkdirs();          // create directory. This function will not create if already exist."
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            if(!file.createNewFile()) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                System.out.println(\"Unable to create file \" + path + \"...\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                System.out.println(errorMessage);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                throw new DukeException(\"Error creating save file.\");"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch (IOException errorMessage) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(\"Error reading file from \" + path);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(errorMessage);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Error reading save file.\");"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch (ClassNotFoundException errorMessage) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(errorMessage);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public ArrayList\u003cTask\u003e restoreTaskList(ArrayList\u003cTask\u003e arrayList) throws IOException, DukeException {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            ArrayList\u003cTask\u003e taskList \u003d readTaskList();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            return taskList;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        } catch (IOException errorMessage){"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(errorMessage);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"Error restoring from save file. Please delete /data/duke.txt and relaunch.\");"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 102
+    }
+  },
+  {
+    "path": "src/main/java/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.io.Serializable;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class Task implements Serializable {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    private boolean isDone;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public Task(String description) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return (this.description);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return (isDone ? \"[\\u2713]\" : \"[\\u2718]\"); //return tick or X symbols"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public void setIsDone(boolean isDone) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        this.isDone \u003d isDone;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return getStatusIcon() + \" \" + this.description;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 27
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static ArrayList\u003cTask\u003e addTaskToList(ArrayList\u003cTask\u003e arrayList, Task task) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskList \u003d arrayList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        Task userTask \u003d task;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskList.add(userTask);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(userTask.toString());"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static ArrayList\u003cTask\u003e setTaskDone(ArrayList\u003cTask\u003e arrayList, int number) throws DukeException {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        taskList \u003d arrayList;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            if(number \u003e taskList.size() || number \u003c 1) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "                throw new DukeException(\"The selected task does not exist.\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            taskList.get(number-1).setIsDone(true);          // set the task as done"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(taskList.get(number-1).toString());"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            return taskList;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        catch(DukeException errorMessage) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.err.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static void printTaskList(ArrayList\u003cTask\u003e arrayList) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        for (int i \u003d 0; i \u003c arrayList.size(); i++) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            int index \u003d i + 1;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            System.out.println(index + \".\" + arrayList.get(i).toString());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 41
+    }
+  },
+  {
+    "path": "src/main/java/Todo.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "public class Todo extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public Todo(String description) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static void checkInputError(String myString) throws DukeException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String[] userInputArray \u003d Duke.userInputStringToArray(myString);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        if(userInputArray.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "            throw new DukeException(\"The description of todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public static String getTaskName(String myString) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        String taskName \u003d myString;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        Duke.removeFirstWordFromString(taskName);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return taskName;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Terence Tan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Terence Tan": 25
+    }
+  }
+]
