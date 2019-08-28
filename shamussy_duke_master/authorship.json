@@ -1,0 +1,3777 @@
+[
+  {
+    "path": "src/main/java/Deadline.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private String by;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    Deadline(String description, String by) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + by + \")\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String export() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String doneStatus \u003d \"\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(super.isDone()) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            doneStatus \u003d \"1\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            doneStatus \u003d \"0\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"D | \" + doneStatus + \" | \" + super.getDescription().length()"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                + \" | \" + super.getDescription() + \" | \" + this.by.length() + \" | \" + this.by;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 26
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "class Duke {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskLists \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private ArrayList\u003cString\u003e stringTaskList \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private Storage storage \u003d new Storage(\"data/tasks.txt\");;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private int taskCounter \u003d 0;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    Duke() { //constructor"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        greet();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            stringTaskList \u003d storage.readFile();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            importTask();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            //ignore"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private void importTask() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        for(String line : stringTaskList) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String taskType \u003d line.substring(0,1);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String taskStatus \u003d line.substring(4,5);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String[] lineSplit \u003d line.split(\"\\\\|\",-1);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            int descriptionLength \u003d Integer.parseInt(lineSplit[2].trim());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            int descriptionLengthIndex \u003d line.indexOf(\" | \", line.indexOf(\" \") + 1);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String description \u003d line.substring(descriptionLengthIndex+7,"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    descriptionLengthIndex+7+descriptionLength);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            switch (taskType) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                case \"T\":"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    Todo todo \u003d new Todo(description);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    if(\"1\".equals(taskStatus)) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                        todo.setStatus();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    taskLists.add(todo);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                case \"D\":"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    int dateIndex \u003d descriptionLengthIndex+7+descriptionLength;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    String leftover \u003d line.substring(dateIndex+3,line.length());"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    String[] dateSplit \u003d leftover.split(\"\\\\|\",-1);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    String dateLength \u003d dateSplit[0].trim();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    String date \u003d line.substring(dateIndex+3+dateLength.length()+3,"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                            dateIndex+3+dateLength.length()+3+Integer.parseInt(dateLength));"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    Deadline deadline \u003d new Deadline(description, date);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    if(\"1\".equals(taskStatus)) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                        deadline.setStatus();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    taskLists.add(deadline);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                case \"E\":"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    dateIndex \u003d descriptionLengthIndex+7+descriptionLength;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    leftover \u003d line.substring(dateIndex+3,line.length());"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    dateSplit \u003d leftover.split(\"\\\\|\",-1);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    dateLength \u003d dateSplit[0].trim();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    date \u003d line.substring(dateIndex+3+dateLength.length()+3,"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                            dateIndex+3+dateLength.length()+3+Integer.parseInt(dateLength));"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    Event event \u003d new Event(description, date);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    if(\"1\".equals(taskStatus)) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                        event.setStatus();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        taskCounter \u003d taskLists.size();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        for(int i \u003d 0; i \u003c taskLists.size(); i++) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            System.out.println(i+1 + \": \" + taskLists.get(i).toString());"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private void greet() {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke \\nWhat can I do for you?\");"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseAction(String input) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String[] inputSplit \u003d input.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return inputSplit[0];"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseTaskNumber(String input) throws DukeException{"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(\"done\".equals(input)) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"Task number cannot be empty, use \u003clist\u003e to see task number\");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String[] inputSplit \u003d input.split(\" \");"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if (inputSplit.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"Task number cannot be empty, use \u003clist\u003e to see task number\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            else if (inputSplit.length \u003e 2) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"Only the task number should be specified\");"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            else if(inputSplit[1].isBlank()){"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The task number cannot be a space bar\");"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            else if(!inputSplit[1].matches(\"^[0-9]+$\")) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The task number should be numeric only\");"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            return inputSplit[1];"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseDeadlineTime(String input) throws DukeException, ParseException {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        int index \u003d input.lastIndexOf(\" /by \");"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String date \u003d input.substring(index+5,input.length()); //+3 because of _/by_"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(date.isBlank())"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The time cannot be empty or space bar\");"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String dateRegex \u003d  \"(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\\\d\\\\d)\";"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String timeRegex \u003d \"^(0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$\";"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String[] dateTime \u003d date.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(dateTime.length !\u003d 2) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The format is wrong, please try in DD/MM/YYYY HHMM format\");"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String dateOnly \u003d dateTime[0].trim();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String timeOnly \u003d dateTime[1].trim();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!dateOnly.matches(dateRegex)) {"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The date format is wrong, please try in DD/MM/YYYY format\");"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!timeOnly.matches(timeRegex)) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The time format is wrong, please try again in HHMM format\");"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        Date date1\u003dnew SimpleDateFormat(\"dd/MM/yyyy HHmm\").parse(dateOnly + \" \" + timeOnly);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        SimpleDateFormat date2 \u003d new SimpleDateFormat(\"EEEE dd MMMM yyyy hh:mm a\");"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return date2.format(date1);"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseEventTime(String input) throws DukeException, ParseException {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        int index \u003d input.lastIndexOf(\" /at \");"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String date \u003d input.substring(index+5,input.length()); //+3 because of _/at_"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(date.isBlank())"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The time cannot be empty or space bar\");"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String dateRegex \u003d  \"(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[012])/((19|20)\\\\d\\\\d)\";"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String timeRegex \u003d \"^(0[0-9]|1[0-9]|2[0-3])[0-5][0-9]$\";"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String[] dateTime \u003d date.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(dateTime.length !\u003d 2) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The format is wrong, please try in DD/MM/YYYY HHMM format\");"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String dateOnly \u003d dateTime[0].trim();"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String timeOnly \u003d dateTime[1].trim();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!dateOnly.matches(dateRegex)) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The date format is wrong, please try in DD/MM/YYYY format\");"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!timeOnly.matches(timeRegex)) {"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The time format is wrong, please try again in HHMM format\");"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        Date date1\u003dnew SimpleDateFormat(\"dd/MM/yyyy HHmm\").parse(dateOnly + \" \" + timeOnly);"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        SimpleDateFormat date2 \u003d new SimpleDateFormat(\"EEEE dd MMMM yyyy hh:mm a\");"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return date2.format(date1);"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseToDoDesc(String action, String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(\"todo\".equals(input)) {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String[] inputSplit \u003d input.split(\" \");"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if(inputSplit.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The description of a todo cannot be empty\");"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            else if(inputSplit[1].isBlank()){"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The description of a todo cannot be a space bar\");"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return input.substring(action.length()+1, input.length()); //+1 because of the space bar"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseDeadlineDesc(String action, String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(\"deadline\".equals(input)) {"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else if(!input.contains(\"/by\")){"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The deadline requires an end date/time using /by\");"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String[] splitInput \u003d input.split(\" /by \");"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if(input.startsWith(\"deadline /by\")) {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if(splitInput.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The deadline requires an end date/time after specifying /by\" +"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                        \"\\nMake sure to use \u003cspace\u003e/by\u003cspace\u003e\u003cdate\u003e\");"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        int index \u003d input.lastIndexOf(\" /by \");"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String description \u003d input.substring(action.length()+1,index);//+1 because of the space bar_"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(description.isBlank()) {"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The description of a deadline cannot be \" +"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    \"empty or space even when /by is correct\");"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String parseEventDesc(String action, String input) throws DukeException{"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(\"event\".equals(input)) {"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The description of a event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else if(!input.contains(\"/at\")){"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The event requires a start date/time\");"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String[] splitInput \u003d input.split(\" /at \");"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if(input.startsWith(\"event /at\")) {"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if(splitInput.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The event requires a start date/time after specifying /at\" +"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                        \"\\nMake sure to use \u003cspace\u003e/at\u003cspace\u003e\u003cdate\u003e\");"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        int index \u003d input.lastIndexOf(\" /at \");"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String description \u003d input.substring(action.length()+1,index);//+1 because of the space bar_"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(description.isBlank()) {"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The description of a deadline cannot be \" +"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    \"empty or space even when /by is correct\");"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    void listTask(String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!\"list\".equals(input)) {"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The list command should not have trailing arguments\");"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(taskLists.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The list is empty\");"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        for(int i \u003d 0; i \u003c taskLists.size(); i++) {"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            System.out.println(i+1 + \": \" + taskLists.get(i).toString());"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    void addTask(Task newTask) throws IOException {"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        taskLists.add(newTask);"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        taskCounter++;"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String output \u003d String.format(\"Got it. I\u0027ve added this task: \\n\" + newTask.toString()"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                + \"\\n\" + \"Now you have \" + taskCounter + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        System.out.println(output);"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            stringTaskList \u003d storage.objectArrayToStringArray(taskLists);"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            storage.writeFile(stringTaskList);"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        catch (IOException FileNotFoundException){"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            storage.writeFile(stringTaskList);"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    void setTask(int taskNumber) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(taskNumber \u003e\u003d 1 \u0026\u0026 taskNumber \u003c\u003d taskCounter) {"
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if(!taskLists.get(taskNumber-1).isDone()) {"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                taskLists.get(taskNumber-1).setStatus();"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                System.out.println(\"Nice! I\u0027ve marked this task as done\");"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                System.out.println(taskLists.get(taskNumber-1).toString());"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    stringTaskList \u003d storage.objectArrayToStringArray(taskLists);"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    storage.writeFile(stringTaskList);"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (IOException FileNotFoundException){"
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    storage.writeFile(stringTaskList);"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"Task is already done\");"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"Invalid task number\");"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    void exit(String input) throws DukeException, IOException {"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!\"bye\".equals(input)) {"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The bye command should not have trailing arguments\");"
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            stringTaskList \u003d storage.objectArrayToStringArray(taskLists);"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            storage.writeFile(stringTaskList);"
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        catch (IOException FileNotFoundException){"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            storage.writeFile(stringTaskList);"
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 289,
+      "-": 1
+    }
+  },
+  {
+    "path": "src/main/java/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class DukeException extends Exception{"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private String message;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    DukeException(String message) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.message \u003d message;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"☹ OOPS!!! \" + this.message;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 12
+    }
+  },
+  {
+    "path": "src/main/java/Event.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private String at;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    Event(String description, String at) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.at \u003d at;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + at + \")\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String export() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String doneStatus \u003d \"\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(super.isDone()) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            doneStatus \u003d \"1\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            doneStatus \u003d \"0\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"E | \" + doneStatus + \" | \" + super.getDescription().length()"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                + \" | \" + super.getDescription() + \" | \" + this.at.length() + \" | \" + this.at;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 26
+    }
+  },
+  {
+    "path": "src/main/java/Main.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class Main {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public static void main(String[] args) throws DukeException{"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        Duke duke \u003d new Duke();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        Scanner scanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        while (scanner.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String input \u003d scanner.nextLine();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String action \u003d duke.parseAction(input);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            String description \u003d \"\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            switch (action) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    description \u003d duke.parseToDoDesc(action, input);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    Todo todo \u003d new Todo(description);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    duke.addTask(todo);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (DukeException | IOException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    System.out.println(exceptionMessage.toString());"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    description \u003d duke.parseDeadlineDesc(action, input);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    String by \u003d duke.parseDeadlineTime(input);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    Deadline deadline \u003d new Deadline(description, by);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    duke.addTask(deadline);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (DukeException | IOException | ParseException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    System.out.println(exceptionMessage.toString());"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    description \u003d duke.parseEventDesc(action, input);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    String at \u003d duke.parseEventTime(input);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    Event event \u003d new Event(description, at);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    duke.addTask(event);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (DukeException | IOException | ParseException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    System.out.println(exceptionMessage.toString());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    int taskNumber \u003d Integer.parseInt(duke.parseTaskNumber(input));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    duke.setTask(taskNumber);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (DukeException | IOException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    System.out.println(exceptionMessage.toString());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    duke.listTask(input);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (DukeException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    System.out.println(exceptionMessage.toString());"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    duke.exit(input);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    return; //no break since it exits program"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                catch (DukeException | IOException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    System.out.println(exceptionMessage.toString());"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                System.out.println(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 79
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.FileWriter;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private final String path;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public Storage(String path) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.path \u003d path;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public ArrayList\u003cString\u003e readFile() throws FileNotFoundException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        ArrayList\u003cString\u003e out \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        File f \u003d new File(path);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        Scanner sc \u003d new Scanner(f);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        while (sc.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            out.add(sc.nextLine());"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return out;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public void writeFile(ArrayList\u003cString\u003e lines) throws IOException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        new File(\"data/\").mkdirs(); //creates directory if it does not exist"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        FileWriter writer \u003d new FileWriter(path);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        for (String line: lines) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            writer.write(line + \"\\n\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        writer.close();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public ArrayList\u003cString\u003e objectArrayToStringArray(ArrayList\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        ArrayList\u003cString\u003e stringTaskList \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        for (Task task : taskList) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            stringTaskList.add(task.export());"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return stringTaskList;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 41
+    }
+  },
+  {
+    "path": "src/main/java/Task.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private boolean isDone;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    Task(String description) { //constructor"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); //return tick or X symbols using ternary operators"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    boolean isDone() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return this.isDone;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    String getDescription() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return this.description;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    void setStatus() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"[\" + this.getStatusIcon() + \"] \" + this.getDescription();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String export() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 33
+    }
+  },
+  {
+    "path": "src/main/java/Todo.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class Todo extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    Todo(String description) {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public String export() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String doneStatus \u003d \"\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(super.isDone()) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            doneStatus \u003d \"1\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            doneStatus \u003d \"0\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return \"T | \" + doneStatus + \" | \" + super.getDescription().length()"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                + \" | \" + super.getDescription();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 23
+    }
+  }
+]
