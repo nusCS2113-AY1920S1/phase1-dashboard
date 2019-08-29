@@ -289,80 +289,325 @@
     }
   },
   {
-    "path": "src/main/java/Deadline.java",
+    "path": "src/main/java/DateTimeParser.java",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "public class Deadline extends Request {"
+        "content": "import java.time.DayOfWeek;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    private String ddate;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public Deadline(String description, String ddate) {"
+        "content": "import java.time.LocalTime;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        super(description);"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        this.ddate \u003d ddate;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "import java.time.format.DateTimeParseException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    @Override"
+        "content": "import java.time.temporal.TemporalAccessor;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public String print_req() {"
+        "content": "import java.time.temporal.TemporalAdjusters;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        return \"[D]\" + result() + \" \" + getName() + \" (by: \" + ddate + \")\";"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "enum TimePatternType {"
       },
       {
         "lineNumber": 11,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    DAY_OF_WEEK, DATE_TIME, DATE, TIME"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "public class DateTimeParser {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    LocalDateTime parseStringToDate(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        String[] patterns \u003d {\"[\u0027next \u0027][\u0027this \u0027]E\", \"[\u0027this \u0027][\u0027next \u0027]EEEE\", \"dd/MM/yyyy HHmm\","
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                \"d/MM/yyyy HHmm\", \"dd/MM/yy HHmm\", \"HHmm\","
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                \"dd/MM/yy\", \"yyyy-MM-dd\u0027T\u0027HH:mm[:ss.n]\"};"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        TimePatternType[] types \u003d {TimePatternType.DAY_OF_WEEK, TimePatternType.DAY_OF_WEEK,"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                TimePatternType.DATE_TIME, TimePatternType.DATE_TIME, TimePatternType.DATE_TIME, TimePatternType.TIME, TimePatternType.DATE,"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                TimePatternType.DATE_TIME};"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        int i \u003d 0;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        while (i \u003c patterns.length) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                TemporalAccessor ac \u003d DateTimeFormatter.ofPattern(patterns[i]).parse(line);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                switch (types[i]) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    case DAY_OF_WEEK:"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        LocalDateTime localDateTime \u003d LocalDateTime.now();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        return localDateTime.with(TemporalAdjusters.nextOrSame(DayOfWeek.from(ac)));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    case DATE_TIME:"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        return LocalDateTime.from(ac);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    case TIME:"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        LocalDate localDate \u003d LocalDate.now();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        return localDate.atTime(LocalTime.from(ac));"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    case DATE:"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        LocalTime localTime \u003d LocalTime.now();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                        return localTime.atDate(LocalDate.from(ac));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    default:"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            } catch (DateTimeParseException e) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                i++;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        throw new DukeException(\"The format is invalid! Please try writing in a better format\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
         "author": {
           "gitId": "Hotspur1997"
         },
@@ -370,7 +615,169 @@
       }
     ],
     "authorContributionMap": {
-      "Hotspur1997": 11
+      "Hotspur1997": 46
+    }
+  },
+  {
+    "path": "src/main/java/Deadline.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "public class Deadline extends Request {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    private LocalDateTime ddate;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    private String localDate;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public Deadline(String description, LocalDateTime ddate) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        this.ddate \u003d ddate;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public Deadline(String description, String localDate) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        this.localDate \u003d localDate;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public String print_req() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return \"[D]\" + result() + \" \" + getName() + \" (by: \" + (ddate \u003d\u003d null ? localDate : ddate.toString()) + \")\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public String file_format() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return \"D | \" + index() + \" | \" + getName() + \" | \" + (ddate \u003d\u003d null ? localDate : ddate.toString());"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Hotspur1997": 22
     }
   },
   {
@@ -400,9 +807,9 @@
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "Hotspur1997"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "    public static void main(String[] args) throws DukeException {"
       },
       {
         "lineNumber": 5,
@@ -416,7 +823,7 @@
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": ""
+        "content": "        FileParse fileManager \u003d new FileParse();"
       },
       {
         "lineNumber": 7,
@@ -472,227 +879,276 @@
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        while (true) { //keep checking until we encounter the \"bye\" command"
+        "content": "        fileManager.load_file(schedule);"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            Scanner input \u003d new Scanner(System.in);"
+        "content": "        while (true) { //keep checking until we encounter the \"bye\" command"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            String command \u003d input.nextLine();"
+        "content": "            Scanner input \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            if (!command.equals(\"bye\")) {"
+        "content": "            String command \u003d input.nextLine();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                if (command.equals(\"list\")) {"
+        "content": "            if (!command.equals(\"bye\")) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                    schedule.print_list();"
+        "content": "                if (command.equals(\"list\")) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                } else {"
+        "content": "                    schedule.print_list();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                    String[] token \u003d command.split(\" \"); //consider the \"done 2\" case"
+        "content": "                } else {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                    if (token[0].equals(\"done\")) {"
+        "content": "                    String[] token \u003d command.split(\" \"); //consider the \"done 2\" case"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                        schedule.update_list(token[1]);"
+        "content": "                    if (token[0].equals(\"done\")) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                    } else {"
+        "content": "                        schedule.update_list(token[1]);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                        Parser parser \u003d new Parser(command);"
+        "content": "                    } else {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                        String result \u003d parser.Type();"
+        "content": "                        Parser parser \u003d new Parser(command);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                        switch(result) {"
+        "content": "                        String result \u003d parser.Type();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                            case \"todo\":"
+        "content": "                        switch(result) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                                schedule.add(parser.createToDo());"
+        "content": "                            case \"todo\":"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                                break;"
+        "content": "                                schedule.add(parser.createToDo());"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                            case \"event\":"
+        "content": "                                break;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                                schedule.add(parser.createEvent());"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                                break;"
+        "content": "                            case \"event\":"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                            case \"deadline\":"
+        "content": "                                schedule.add(parser.createEvent());"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                                schedule.add(parser.createDeadline());"
+        "content": "                                break;"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                                break;"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                        }"
+        "content": "                            case \"deadline\":"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                    }"
+        "content": "                                schedule.add(parser.createDeadline());"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                }"
+        "content": "                                break;"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            } else {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                System.out.println(\"Bye. Hope to see you again soon!\");"
+        "content": "                            default:"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "                break;"
+        "content": "                                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            }"
+        "content": "                        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        }"
+        "content": "                    }"
       },
       {
         "lineNumber": 45,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                fileManager.save_file(schedule.retrieve_list());"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
@@ -700,8 +1156,51 @@
       }
     ],
     "authorContributionMap": {
-      "Hotspur1997": 36,
-      "-": 10
+      "Hotspur1997": 44,
+      "-": 9
+    }
+  },
+  {
+    "path": "src/main/java/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "public class DukeException extends Exception {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public DukeException(String message) {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Hotspur1997": 5
     }
   },
   {
@@ -712,73 +1211,157 @@
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "public class Event extends Request {"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    private String dtime;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public Event(String description, String dtime) {"
+        "content": "public class Event extends Request {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        super(description);"
+        "content": "    private LocalDateTime dtime;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        this.dtime \u003d dtime;"
+        "content": "    private String dt_string;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "    public Event(String description, LocalDateTime dtime) {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    @Override"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public String print_req() {"
+        "content": "        this.dtime \u003d dtime;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        return \"[E]\" + result() + \" \" + getName() + \" (at: \" + dtime + \")\";"
+        "content": "    }"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "    public Event(String description, String dt_string) {"
       },
       {
         "lineNumber": 11,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        this.dt_string \u003d dt_string;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public String print_req() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return \"[E]\" + result() + \" \" + getName() + \" (at: \" + (dtime \u003d\u003d null ? dt_string: dtime.toString()) + \")\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public String file_format() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return \"E | \" + index() + \" | \" + getName() + \" | \" + (dtime \u003d\u003d null ? dt_string: dtime.toString());"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
         "author": {
           "gitId": "Hotspur1997"
         },
@@ -786,7 +1369,477 @@
       }
     ],
     "authorContributionMap": {
-      "Hotspur1997": 11
+      "Hotspur1997": 23
+    }
+  },
+  {
+    "path": "src/main/java/FileParse.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "import java.io.FileWriter;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "public class FileParse {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    private DateTimeParser dt_parser \u003d new DateTimeParser();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    private String filePath \u003d \"./src/main/Data/duke.txt\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public void save_file(ArrayList\u003cRequest\u003e list) throws DukeException {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        File f \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            FileWriter fileWriter \u003d new FileWriter(f);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            for (Request t: list) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                String line \u003d null;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                if (t instanceof Deadline) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    line \u003d ((Deadline)t).file_format();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                } else if (t instanceof Event) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    line \u003d ((Event)t).file_format();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                } else if (t instanceof ToDo) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                    line \u003d ((ToDo)t).file_format();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                fileWriter.write(line + \"\\n\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            fileWriter.close();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            throw new DukeException(\"File error is: \" + e.getMessage());"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public void line_parse(Task schedule, String line) throws DukeException{"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "         String[] token \u003d line.split(\"\\\\|\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "         try {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             String type \u003d token[0].strip();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             String status \u003d token[1].strip();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             String description \u003d token[2].strip();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             ArrayList\u003cRequest\u003e to_do \u003d schedule.retrieve_list();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             if (type.equals(\"D\")) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 try {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                     to_do.add(new Deadline(description, dt_parser.parseStringToDate(token[3].strip())));"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                     to_do.add(new Deadline(description, token[3].strip()));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             } else if (type.equals(\"E\")) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 try {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                     to_do.add(new Event(description, dt_parser.parseStringToDate(token[3].strip())));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                     to_do.add(new Event(description, token[3].strip()));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             } else if (type.equals(\"T\")) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "                 to_do.add(new ToDo(description));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             if (status.equals(\"1\")) to_do.get(to_do.size() - 1).markAsDone();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "         } catch(Exception e) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "             throw new DukeException (e.getMessage());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "         }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public void load_file(Task schedule) throws DukeException {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            File f \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            Scanner fileReader \u003d new Scanner(f);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            while (fileReader.hasNext()) line_parse(schedule, fileReader.nextLine());"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            throw new DukeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Hotspur1997": 66
     }
   },
   {
@@ -804,143 +1857,311 @@
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    String command;"
+        "content": "    private String command;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public Parser(String command) {"
+        "content": "    private DateTimeParser dt_parser \u003d new DateTimeParser();"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        this.command \u003d command;"
+        "content": "    public Parser(String command) {"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "        this.command \u003d command;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public String Type() {"
+        "content": "    }"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        String[] token \u003d command.split(\" \");"
+        "content": "    public String Type() {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "       return token[0];"
+        "content": "        String[] token \u003d command.split(\" \");"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "       return token[0];"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public Deadline createDeadline() {"
+        "content": "    }"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        String[] token \u003d command.substring(\"deadline\".length()).strip().split(\"/by\");"
+        "content": "    public Deadline createDeadline() throws DukeException{"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        return new Deadline(token[0].strip(), token[1].strip());"
+        "content": "        String[] token \u003d command.substring(\"deadline\".length()).strip().split(\"/by\");"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "        if (token.length !\u003d 2 || token[1] \u003d\u003d null) {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public Event createEvent() {"
+        "content": "            throw new DukeException(\" ☹ OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        String[] token \u003d command.substring(\"event\".length()).strip().split(\"/at\");"
+        "content": "        }"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        return new Event(token[0].strip(), token[1].strip());"
+        "content": "        if (token[0].strip().isEmpty()) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\" ☹ OOPS!!!  The deadline description must be formatted correctly.\");"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public ToDo createToDo() {"
+        "content": "        }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        String token \u003d command.substring(\"todo\".length()).strip();"
+        "content": "        try {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        return new ToDo(token);"
+        "content": "            return new Deadline(token[0].strip(), dt_parser.parseStringToDate(token[1].strip()));"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            return new Deadline(token[0].strip(),token[1].strip());"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public Event createEvent() throws DukeException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        String[] token \u003d command.substring(\"event\".length()).strip().split(\"/at\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        if (token.length !\u003d 2 || token[1] \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            throw new DukeException(\" ☹ OOPS!!! The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        if (token[0].strip().isEmpty()) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            throw new DukeException(\" ☹ OOPS!!!  The deadline description must be formatted correctly.\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            return new Event(token[0].strip(), dt_parser.parseStringToDate(token[1].strip()));"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            return new Event(token[0].strip(),token[1].strip());"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public ToDo createToDo() throws DukeException {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        String token \u003d command.substring(\"todo\".length()).strip();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        if (token.strip().isEmpty()) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            throw new DukeException(\" ☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return new ToDo(token);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
         "author": {
           "gitId": "Hotspur1997"
         },
@@ -948,7 +2169,7 @@
       }
     ],
     "authorContributionMap": {
-      "Hotspur1997": 22
+      "Hotspur1997": 46
     }
   },
   {
@@ -1141,262 +2362,332 @@
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "}"
+        "content": "    public int index() {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": ""
+        "content": "        return (completed ? 1 : 0);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "class Task { //this is the controller of the entire to-do list"
+        "content": "    }"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    private ArrayList\u003cRequest\u003e to_do;"
+        "content": "    public String file_format() {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": ""
+        "content": "        return \"\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public Task() {"
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        to_do \u003d new ArrayList\u003c\u003e();"
+        "content": "}"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": ""
+        "content": "class Task { //this is the controller of the entire to-do list"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    //adds item inside to-do list"
+        "content": "    private ArrayList\u003cRequest\u003e to_do;"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public void add(Request d) {"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        to_do.add(d);"
+        "content": "    public Task() {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \");"
+        "content": "        to_do \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        System.out.println(d.print_req());"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        System.out.println(\"Now you have \" + to_do.size() + \" tasks in the list.\");"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "    //adds item inside to-do list"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": ""
+        "content": "    public void add(Request d) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    //marks the queried item as done"
+        "content": "        to_do.add(d);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public void update_list(String request) throws IndexOutOfBoundsException {"
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        int index \u003d Integer.parseInt(request);"
+        "content": "        System.out.println(d.print_req());"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        index--;"
+        "content": "        System.out.println(\"Now you have \" + to_do.size() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            to_do.get(index).markAsDone();"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            System.out.println(\"Nice! I\u0027ve marked this task as done\");"
+        "content": "    //marks the queried item as done"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            System.out.println(\"[✓] \" + to_do.get(index).getName());"
+        "content": "    public void update_list(String request) throws IndexOutOfBoundsException {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": "        int index \u003d Integer.parseInt(request);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            throw new IndexOutOfBoundsException(\"There are not that many tasks in the list please try again\");"
+        "content": "        index--;"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "            to_do.get(index).markAsDone();"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": ""
+        "content": "            System.out.println(\"Nice! I\u0027ve marked this task as done\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    //prints the entire list"
+        "content": "            System.out.println(\"[✓] \" + to_do.get(index).getName());"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    public void print_list() {"
+        "content": "        } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+        "content": "            throw new IndexOutOfBoundsException(\"There are not that many tasks in the list please try again\");"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        for (int i \u003d 0; i \u003c to_do.size(); i++) {"
+        "content": "        }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "            System.out.println((i + 1) + \".\" + to_do.get(i).print_req());"
+        "content": "    }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Hotspur1997"
         },
-        "content": "    }"
+        "content": "    //prints the entire list"
       },
       {
         "lineNumber": 64,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public void print_list() {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        for (int i \u003d 0; i \u003c to_do.size(); i++) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "            System.out.println((i + 1) + \".\" + to_do.get(i).print_req());"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public ArrayList\u003cRequest\u003e retrieve_list() {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return to_do;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
         "author": {
           "gitId": "Hotspur1997"
         },
@@ -1404,7 +2695,7 @@
       }
     ],
     "authorContributionMap": {
-      "Hotspur1997": 64
+      "Hotspur1997": 74
     }
   },
   {
@@ -1471,11 +2762,39 @@
         "author": {
           "gitId": "Hotspur1997"
         },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    public String file_format() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "        return \"T | \" + index() + \" | \" + getName();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Hotspur1997"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "Hotspur1997": 9
+      "Hotspur1997": 13
     }
   }
 ]

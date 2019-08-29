@@ -371,7 +371,7 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            throw new DukeException(\"The format of deadline should be DESCRIPTION /by D/M/Y\\n\");"
+        "content": "            throw new DukeException(\"The format of deadline should be DESCRIPTION /by dd/MM/yyyy\\n\");"
       },
       {
         "lineNumber": 54,
@@ -385,105 +385,105 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            return new Deadlines(splitString[0], splitString[1]);"
+        "content": "            Deadlines D \u003d new Deadlines(splitString[0], splitString[1]);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        }"
+        "content": "            D.setParsedby(Parser.parseDate(splitString[1]));"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "            return D;"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public Events validateEvent(String str) throws DukeException {"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        String[] splitString \u003d str.split(\" /at \", 2);"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        if (splitString.length \u003d\u003d 1) {"
+        "content": "    public Events validateEvent(String str) throws DukeException {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            throw new DukeException(\"The format of event should be DESCRIPTION /by D/M/Y\\n\");"
+        "content": "        String[] splitString \u003d str.split(\" /at \", 2);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        } else {"
+        "content": "        if (splitString.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            return new Events(splitString[0], splitString[1]);"
+        "content": "            throw new DukeException(\"The format of event should be DESCRIPTION /by dd/MM/yyyy\\n\");"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "            Events E \u003d new Events(splitString[0], splitString[1]);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "            E.setParsedAt(Parser.parseDate(splitString[1]));"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public boolean isExit() {"
+        "content": "            return E;"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        return false;"
+        "content": "        }"
       },
       {
         "lineNumber": 70,
@@ -497,11 +497,39 @@
         "author": {
           "gitId": "chekjun"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "chekjun"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "chekjun": 71
+      "chekjun": 75
     }
   },
   {
@@ -619,115 +647,227 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "public class Deadlines extends Task {"
+        "content": "class Deadlines extends Task {"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    private String by; // complete deadline by this time"
+        "content": "    private String by;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    private String parsedby;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public Deadlines(String description, String by) {"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        super(description);"
+        "content": "    public Deadlines(String description, String by) {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        this.by \u003d by;"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "        this.by \u003d by;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "        this.parsedby \u003d by;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public String getBy() {"
+        "content": "    }"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        return by;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "    public String getBy() {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "        return by;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        return \" [D]\" + super.toString() + \" (by: \" + by + \")\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "     * @return the parsedby"
       },
       {
         "lineNumber": 17,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public String getParsedby() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        return parsedby;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "     * @param parsedby the parsedby to set"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public void setParsedby(String parsedby) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        this.parsedby \u003d parsedby;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        return \" [D]\" + super.toString() + \" (by: \" + parsedby + \")\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "chekjun"
         },
@@ -735,7 +875,7 @@
       }
     ],
     "authorContributionMap": {
-      "chekjun": 17
+      "chekjun": 33
     }
   },
   {
@@ -1778,7 +1918,7 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                    throw new DukeException(\"Command successfully executed but writeTpFo;e failed\");"
+        "content": "                    throw new DukeException(\"Command successfully executed but writeToFile failed\");"
       },
       {
         "lineNumber": 39,
@@ -1942,101 +2082,213 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "    private String parsedAt;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public Events(String description, String at) {"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        super(description);"
+        "content": "    public Events(String description, String at) {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        this.at \u003d at;"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "        this.at \u003d at;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "        this.parsedAt \u003d at;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public String getAt() {"
+        "content": "    }"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        return at;"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "    public String getAt() {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "        return at;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        return \" [E]\" + super.toString() + \" (at: \" + at + \")\";"
+        "content": "    /**"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "     * @return the parsedAt"
       },
       {
         "lineNumber": 17,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public String getParsedAt() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        return parsedAt;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "     * @param parsedAt the parsedAt to set"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public void setParsedAt(String parsedAt) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        this.parsedAt \u003d parsedAt;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        return \" [E]\" + super.toString() + \" (at: \" + parsedAt + \")\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "chekjun"
         },
@@ -2044,7 +2296,7 @@
       }
     ],
     "authorContributionMap": {
-      "chekjun": 17
+      "chekjun": 33
     }
   },
   {
@@ -2379,7 +2631,7 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\");"
       },
       {
         "lineNumber": 22,
@@ -2477,7 +2729,7 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\");"
       },
       {
         "lineNumber": 36,
@@ -2701,11 +2953,725 @@
         "author": {
           "gitId": "chekjun"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public static boolean isInteger(String string, int radix) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        if (string.isEmpty()) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        for (int i \u003d 0; i \u003c string.length(); i++) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            if (i \u003d\u003d 0 \u0026\u0026 string.charAt(i) \u003d\u003d \u0027-\u0027) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                if (string.length() \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    return false;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    continue;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            if (Character.digit(string.charAt(i),radix) \u003c 0) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                return false;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    public static String parseDate(String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String output;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String[] splitString \u003d input.split(\"/\", 3);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String dd \u003d splitString[0];"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String MM \u003d splitString[1];"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            splitString \u003d splitString[2].split(\" \", 2);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String yyyy \u003d splitString[0];"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String TTtt \u003d splitString[1];"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            if (!isInteger(dd, 10)"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                || !isInteger(MM, 10)"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                || !isInteger(yyyy, 10)"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                || !isInteger(TTtt, 10)) {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                throw new DukeException(\"Date Time format invalid. Use dd/MM/yyyy TTtt.\\n\");"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            output \u003d dd;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            switch(dd) {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"1\":"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"21\":"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"31\":"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"st of \";"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"2\":"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"22\":"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"nd of \";"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"3\":"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"23\":"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"rd of \";"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                default:"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"th of \";"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            switch(MM) {"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"1\":"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"January \";"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"2\":"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"February \";"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"3\":"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"March \";"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"4\":"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"April \";"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"5\":"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"May \";"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"6\":"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"June \";"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"7\":"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"July \";"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"8\":"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"August \";"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"9\":"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"September \";"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"10\":"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"October\";"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"11\":"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"November\";"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                case \"12\":"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    output +\u003d \"December\";"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                default:"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "                    throw new DukeException(\"Only 1 - 12 applicable for Month.\\n\");"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            output +\u003d yyyy + \", \";"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            int hr \u003d Integer.parseInt(TTtt.substring(0, 2));"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            String min \u003d TTtt.substring(2, 4);"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            output +\u003d (hr \u003d hr\u003e12 ? hr%12 : hr) + \":\" + min + \" \" + ((hr\u003e\u003d12) ? \"PM\" : \"AM\");"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            return output;"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "            throw new DukeException(\"Date Time format invalid. Use dd/MM/yyyy TTtt.\\n\");"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "chekjun"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "chekjun"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "chekjun": 67
+      "chekjun": 169
     }
   },
   {

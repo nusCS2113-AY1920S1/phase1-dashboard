@@ -7,122 +7,269 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "public class Deadline extends Task {"
+        "content": "import java.text.DateFormat;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected String by;"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public Deadline(String description, String by) {"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        super(description);"
+        "content": "import java.time.ZoneId;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.by \u003d by;"
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "public class Deadline extends Task {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    @Override"
+        "content": "    protected String by;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String toString() {"
+        "content": "    protected Date date;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return \"[D]\" + super.toString() + \"(by: \" + by + \")\";"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "    public Deadline(String description, String by) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "        super(description);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    @Override"
+        "content": "        this.by \u003d by;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String printInFile() {"
+        "content": "        this.date \u003d getDate(by);"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return this.isDone ? \"D|1|\" + this.getDescription() + \"|\" + this.by : \"D|0|\" + this.getDescription() + \"|\" + this.by;"
+        "content": "    }"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return (getDate(by) \u003d\u003d null) ? \"[D]\" + super.toString() + \"(by: \" + by + \")\" : \"[D]\" + super.toString() + \"(by: \" + getDateString(date) + \")\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Date getDate() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return date;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private String getDateString(Date date) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if (date \u003d\u003d null)"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            return by;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        LocalDate localDate \u003d date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        String pattern \u003d by.length() \u003e 11 ? \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy, ha \" : \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(pattern);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return formatter.format(date);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String printInFile() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return this.isDone ? \"D|1|\" + this.getDescription() + \"|\" + this.getDateString(date) : \"D|0|\" + this.getDescription() + \"|\" + this.getDateString(date);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
         "author": {
           "gitId": "saradj"
         },
@@ -130,7 +277,7 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 18
+      "saradj": 39
     }
   },
   {
@@ -673,7 +820,7 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                        fileContent.set(taskNb, tasks.get(taskNb - 1).printInFile()); // changing the file content"
+        "content": "                                        fileContent.set(taskNb - 1, tasks.get(taskNb - 1).printInFile()); // changing the file content"
       },
       {
         "lineNumber": 78,
@@ -1138,115 +1285,220 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "public class Event extends Task {"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected String at;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "import java.time.ZoneId;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public Event(String description, String at) {"
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        super(description);"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.at \u003d at;"
+        "content": "public class Event extends Task {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "    protected String at;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "    protected Date date;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String toString() {"
+        "content": "    public Event(String description, String at) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return \"[E]\" + super.toString() + \"(at: \" + at + \")\";"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        this.at \u003d at;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "        this.date\u003dgetDate(at);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String printInFile() {"
+        "content": "    }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return this.isDone ? \"E|1|\" + this.getDescription() + \"|\" + this.at : \"E|0|\" + this.getDescription() + \"|\" + this.at;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return \"[E]\" + super.toString() + \"(at: \" + getDateString(date) + \")\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String printInFile() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return this.isDone ? \"E|1|\" + getDescription()+ \"|\" + this.getDateString(date)  : \"E|0|\" + this.getDescription() + \"|\" + getDateString(date);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private String getDateString(Date date) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if(date\u003d\u003dnull)"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            return at;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        LocalDate localDate \u003d date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        String pattern \u003d at.length() \u003e 11 ? \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy, ha \" : \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy\";"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(pattern);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return formatter.format(date);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "saradj"
         },
@@ -1254,7 +1506,7 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 17
+      "saradj": 32
     }
   },
   {
@@ -1265,56 +1517,56 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "public class Task {"
+        "content": "import java.text.DateFormat;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected String description;"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected boolean isDone;"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public Task(String description) {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.description \u003d description;"
+        "content": "public class Task {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.isDone \u003d false;"
+        "content": "    protected String description;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "    protected boolean isDone;"
       },
       {
         "lineNumber": 9,
@@ -1328,105 +1580,105 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String getStatusIcon() {"
+        "content": "    public Task(String description) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); //return tick or X symbols"
+        "content": "        this.description \u003d description;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        this.isDone \u003d false;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String getDescription() {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return description;"
+        "content": "    public String getStatusIcon() {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); //return tick or X symbols"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public void markAsDone() {"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        isDone \u003d true;"
+        "content": "    public String getDescription() {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        return description;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String toString() {"
+        "content": "    public void markAsDone() {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return \"[\" + getStatusIcon() + \"] \" + getDescription();"
+        "content": "        isDone \u003d true;"
       },
       {
         "lineNumber": 25,
@@ -1447,24 +1699,241 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String printInFile() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return \"\";"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        return \"[\" + getStatusIcon() + \"] \" + getDescription();"
       },
       {
         "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String printInFile() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    static String getDaySuffix(int n) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if (n \u003e\u003d 11 \u0026\u0026 n \u003c\u003d 13) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            return \"th\";"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        switch (n % 10) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case 1:"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return \"st\";"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case 2:"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return \"nd\";"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case 3:"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return \"rd\";"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return \"th\";"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    static Date getDate(String date) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        DateFormat dateFormat \u003d (date.length() \u003e 11) ? new SimpleDateFormat(\"dd/MM/yyyy hhmm\") : new SimpleDateFormat(\"dd/MM/yyyy\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            Date d \u003d dateFormat.parse(date);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            return d;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            //case the date was not valid!"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
         "author": {
           "gitId": "saradj"
         },
@@ -1472,7 +1941,7 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 30
+      "saradj": 61
     }
   },
   {

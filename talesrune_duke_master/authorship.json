@@ -310,21 +310,21 @@
         "author": {
           "gitId": "talesrune"
         },
-        "content": "public class Deadline extends Task {"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "talesrune"
         },
-        "content": ""
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    protected String by;"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 4,
@@ -338,28 +338,28 @@
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    public Deadline(String description, String by) {"
+        "content": "public class Deadline extends Task {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        super(description);"
+        "content": "    protected Date by;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        this.by \u003d by;"
+        "content": "    protected String[] suf \u003d { \"st\", \"nd\", \"rd\", \"th\" };"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    }"
+        "content": "    protected SimpleDateFormat datetimeFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 9,
@@ -373,66 +373,339 @@
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    @Override"
+        "content": "    /**Hi.*/"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    public String toString() {"
+        "content": "    public Deadline(String description, String by) throws ParseException {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        return \"[D]\" + super.toString() + \" (by: \" + by + \")\";"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    }"
+        "content": "        Date dateTime \u003d null;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "talesrune"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    @Override"
+        "content": "            dateTime \u003d datetimeFormat.parse(by);"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    public String toFile() {"
+        "content": "            this.by \u003d dateTime;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        return \"D|\" + super.toFile() + \"|\" + by;"
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    }"
+        "content": "            System.out.println(\"Error reading date/time, please use this format \\\"d/MM/yyyy HHmm\\\"\");"
       },
       {
         "lineNumber": 19,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        SimpleDateFormat datetimeFormat2 \u003d new SimpleDateFormat(\"MMMMM yyyy, h:mm a\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        SimpleDateFormat datetimeFormat3 \u003d new SimpleDateFormat(\"MMMMM yyyy, ha\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        String displayDT \u003d \"\";"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        int day \u003d Integer.parseInt(new SimpleDateFormat(\"d\").format(by));"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        int min \u003d Integer.parseInt(new SimpleDateFormat(\"m\").format(by));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        if (min \u003e 0) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            displayDT \u003d datetimeFormat2.format(by);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            displayDT \u003d datetimeFormat3.format(by);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        int sufIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        if (day \u003d\u003d 1 || day \u003d\u003d 21 || day \u003d\u003d 31) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 0;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else if (day \u003d\u003d 2 || day \u003d\u003d 22) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 1;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else if (day \u003d\u003d 3 || day \u003d\u003d 23) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 2;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else if (day \u003e 3 \u0026\u0026 day \u003c 31) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 3;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        String suffixStr \u003d day + suf[sufIndex];"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        displayDT \u003d suffixStr + \" of \" + displayDT;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + displayDT + \")\";"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    public String toFile() {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        String datetimeStr \u003d datetimeFormat.format(by);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        return \"D|\" + super.toFile() + \"|\" + datetimeStr;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
         "author": {
           "gitId": "talesrune"
         },
@@ -440,7 +713,7 @@
       }
     ],
     "authorContributionMap": {
-      "talesrune": 19
+      "talesrune": 58
     }
   },
   {
@@ -1826,21 +2099,21 @@
         "author": {
           "gitId": "talesrune"
         },
-        "content": "public class Event extends Task {"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "talesrune"
         },
-        "content": ""
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    protected String at;"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 4,
@@ -1854,63 +2127,63 @@
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    public Event(String description, String at) {"
+        "content": "public class Event extends Task {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        super(description);"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        this.at \u003d at;"
+        "content": "    protected Date at;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    }"
+        "content": "    protected String[] suf \u003d { \"st\", \"nd\", \"rd\", \"th\" };"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "talesrune"
         },
-        "content": ""
+        "content": "    protected SimpleDateFormat datetimeFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    public String toString() {"
+        "content": "    /**Hi.*/"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        return \"[E]\" + super.toString() + \" (at: \" + at + \")\";"
+        "content": "    public Event(String description, String at) throws ParseException {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    }"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 14,
@@ -1924,31 +2197,318 @@
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    @Override"
+        "content": "        Date dateTime \u003d null;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    public String toFile() {"
+        "content": "        try {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "        return \"E|\" + super.toFile() + \"|\" + at;"
+        "content": "            dateTime \u003d datetimeFormat.parse(at);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "talesrune"
         },
-        "content": "    }"
+        "content": "            this.at \u003d dateTime;"
       },
       {
         "lineNumber": 19,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            System.out.println(\"Error reading date/time, please use this format \\\"d/MM/yyyy HHmm\\\"\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        SimpleDateFormat datetimeFormat2 \u003d new SimpleDateFormat(\"MMMMM yyyy, h:mm a\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        SimpleDateFormat datetimeFormat3 \u003d new SimpleDateFormat(\"MMMMM yyyy, ha\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        String displayDT \u003d \"\";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        int day \u003d Integer.parseInt(new SimpleDateFormat(\"d\").format(at));"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        int min \u003d Integer.parseInt(new SimpleDateFormat(\"m\").format(at));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        if (min \u003e 0) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            displayDT \u003d datetimeFormat2.format(at);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            displayDT \u003d datetimeFormat3.format(at);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        int sufIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        if (day \u003d\u003d 1 || day \u003d\u003d 21 || day \u003d\u003d 31) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 0;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else if (day \u003d\u003d 2 || day \u003d\u003d 22) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 1;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else if (day \u003d\u003d 3 || day \u003d\u003d 23) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 2;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        } else if (day \u003e 3 \u0026\u0026 day \u003c 31) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "            sufIndex \u003d 3;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        String suffixStr \u003d day + suf[sufIndex];"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        displayDT \u003d suffixStr + \" of \" + displayDT;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + displayDT + \")\";"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    public String toFile() {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        String datetimeStr \u003d datetimeFormat.format(at);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "        return \"E|\" + super.toFile() + \"|\" + datetimeStr;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "talesrune"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
         "author": {
           "gitId": "talesrune"
         },
@@ -1956,7 +2516,7 @@
       }
     ],
     "authorContributionMap": {
-      "talesrune": 19
+      "talesrune": 60
     }
   },
   {
