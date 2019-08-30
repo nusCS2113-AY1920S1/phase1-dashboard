@@ -1,13 +1,13 @@
 [
   {
-    "path": "src/main/java/Duke.java",
+    "path": "src/main/java/DateTime.java",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import task.*;"
+        "content": "import exception.NotADateException;"
       },
       {
         "lineNumber": 2,
@@ -19,553 +19,2654 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "import java.time.LocalTime;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "public class Duke {"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static String horizontalLine \u003d \"    ____________________________________________________________\";"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static ArrayList\u003cTask\u003e taskHistory \u003d new ArrayList\u003c\u003e();"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "//        String logo \u003d \" ____        _        \\n\""
+        "content": "public class DateTime {"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "//                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "    private LocalDateTime time;"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "//                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "    private String format \u003d \"dd/MM/yyyy\";"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "//                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "    private int year \u003d -1;"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "//                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "    private String month \u003d \"\";"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "//        System.out.println(\"Hello from\\n\" + logo);"
+        "content": "    private int day \u003d -1;"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        greet();"
+        "content": "    private String weekday \u003d \"\";"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        Scanner stdin \u003d new Scanner(System.in);"
+        "content": "    private int hour \u003d -1;"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        for (String text \u003d stdin.nextLine(); !text.equals(\"bye\"); text \u003d stdin.nextLine()) {"
+        "content": "    private int minute \u003d -1;"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "            if (text.equals(\"list\")) {"
+        "content": "    private int second \u003d -1;"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "                listHistory();"
+        "content": "    private String ampm \u003d \"\";"
       },
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            else if (text.substring(0, 4).equals(\"done\")) {"
+        "content": "    public DateTime(String dateTime) throws NotADateException {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                markTaskAsDone(Integer.parseInt(text.substring(5)) - 1);"
+        "content": "        if (dateTime.contains(\"am\")) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "            if (dateTime.contains(\"pm\")) {"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "            else {"
+        "content": "                throw new NotADateException();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                if (addTaskToHistory(text)) {"
+        "content": "            }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                    talkSuccessTaskAdding();"
+        "content": "            ampm \u003d \"am\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 30,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "        else if (dateTime.contains(\"pm\")) {"
       },
       {
         "lineNumber": 31,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            ampm \u003d \"pm\";"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        goodbye();"
+        "content": "        }"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        String[] dateInfos \u003d dateTime.replace(\"am\", \"\").replace(\"pm\", \"\").trim().split(\" */ *| *- *\");"
       },
       {
         "lineNumber": 34,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        if (dateInfos.length \u003e 4) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static void talkSuccessTaskAdding() {"
+        "content": "            throw new NotADateException();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        int nofTasks \u003d taskHistory.size();"
+        "content": "        }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talk(\"Got it. I\u0027ve added this task:\" +"
+        "content": "        if (dateInfos.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                \"\\n       \" + taskHistory.get(nofTasks - 1) +"
+        "content": "            try {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                \"\\n     Now you have \" + nofTasks + \" tasks in the list.\");"
+        "content": "                int tmp \u003d Integer.parseInt(dateInfos[0]);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                if (!this.ampm.equals(\"\")) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "                    if (tmp \u003e 12) {"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static void greet() {"
+        "content": "                        throw new NotADateException();"
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        talk(\"Hello! I\u0027m Duke\\n     What can I do for you?\");"
+        "content": "                    }"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                    this.time \u003d LocalDateTime.now();"
       },
       {
         "lineNumber": 45,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "                    String currHour \u003d DateTime.getTimeAMPM(this.time.getHour(), 0, 0);"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static void goodbye() {"
+        "content": "                    int currHourValue \u003d Integer.parseInt(currHour.substring(0, currHour.length() - 2));"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        talk(\"Bye. Hope to see you again soon!\");"
+        "content": "                    if (currHourValue \u003e\u003d tmp \u0026\u0026 !(currHour.substring(currHour.length() - 2).equals(\"am\") \u0026\u0026 this.ampm.equals(\"pm\"))) {"
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                        this.time \u003d this.time.plusDays(1);"
       },
       {
         "lineNumber": 49,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "                    }"
       },
       {
         "lineNumber": 50,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static void talk(String text) {"
+        "content": "                    this.updateTime();"
       },
       {
         "lineNumber": 51,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        talkOptional(text, true);"
+        "content": "                    this.minute \u003d 0;"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                    this.second \u003d 0;"
       },
       {
         "lineNumber": 53,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "                    if (this.ampm.equals(\"am\")) {"
       },
       {
         "lineNumber": 54,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static void talkNoLine(String text) {"
+        "content": "                        this.hour \u003d tmp;"
       },
       {
         "lineNumber": 55,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        talkOptional(text, false);"
+        "content": "                    }"
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                    else if (this.hour \u003d\u003d 12) {"
       },
       {
         "lineNumber": 57,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "                        this.hour \u003d 0;"
       },
       {
         "lineNumber": 58,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static void talkOptional(String text, boolean line) {"
+        "content": "                    }"
       },
       {
         "lineNumber": 59,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        if (line) {"
+        "content": "                    else {"
       },
       {
         "lineNumber": 60,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "            System.out.println(horizontalLine);"
+        "content": "                        this.hour \u003d tmp + 12;"
       },
       {
         "lineNumber": 61,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "                    }"
       },
       {
         "lineNumber": 62,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        System.out.println(\"     \" + text);"
+        "content": "                }"
       },
       {
         "lineNumber": 63,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        if (line) {"
+        "content": "                else if (0 \u003c tmp \u0026\u0026 tmp \u003c 32) {"
       },
       {
         "lineNumber": 64,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "            System.out.println(horizontalLine);"
+        "content": "                    this.time \u003d LocalDateTime.now();"
       },
       {
         "lineNumber": 65,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "                    if (this.time.getDayOfMonth() \u003e tmp) {"
       },
       {
         "lineNumber": 66,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                        this.time \u003d this.time.plusMonths(1);"
       },
       {
         "lineNumber": 67,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "                    }"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static boolean addTaskToHistory(String text) {"
+        "content": "                    this.updateTime();"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (text.startsWith(\"todo \")) {"
+        "content": "                    this.day \u003d tmp;"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            taskHistory.add(new ToDos(text.substring(5)));"
+        "content": "                }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "                else {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        else if (text.startsWith(\"deadline \")) {"
+        "content": "                    this.year \u003d tmp;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            String taskInfo \u003d text.substring(9);"
+        "content": "                }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            int separator \u003d taskInfo.indexOf(\" /by \");"
+        "content": "            }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            taskHistory.add(new Deadlines(taskInfo.substring(0, separator), taskInfo.substring(separator + 5)));"
+        "content": "            catch (NumberFormatException ex) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "                dateInfos \u003d dateTime.replace(\"am\", \"\").replace(\"pm\", \"\").trim().split(\" *: *\");"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        else if (text.startsWith(\"event \")) {"
+        "content": "                if (dateInfos.length \u003c 2 || dateInfos.length \u003e 3) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            String taskInfo \u003d text.substring(6);"
+        "content": "                    throw new NotADateException();"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            int separator \u003d taskInfo.indexOf(\" /at \");"
+        "content": "                }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            taskHistory.add(new Events(taskInfo.substring(0, separator), taskInfo.substring(separator + 5)));"
+        "content": "                try {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "LongLeCE"
+        },
+        "content": "                    if (dateInfos.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int first \u003d Integer.parseInt(dateInfos[0]);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int second \u003d Integer.parseInt(dateInfos[1]);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int firstLength \u003d dateInfos[0].length();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int secondLength \u003d dateInfos[1].length();"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int lim \u003d 13;"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        if (this.ampm.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            lim \u003d 24;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        if (60 \u003e second \u0026\u0026 second \u003e lim - 1 \u0026\u0026 0 \u003c first \u0026\u0026 first \u003c lim) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.format \u003d \"H\".repeat(firstLength) + \":\" + \"m\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        } else if (60 \u003e first \u0026\u0026 first \u003e lim - 1 \u0026\u0026 0 \u003c second \u0026\u0026 second \u003c lim) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.format \u003d \"m\".repeat(firstLength) + \":\" + \"H\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        } else if (60 \u003e second \u0026\u0026 second \u003e 0 \u0026\u0026 0 \u003c first \u0026\u0026 first \u003c lim) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.format \u003d \"H\".repeat(firstLength) + \":\" + \"m\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        } else {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            throw new NotADateException();"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        Integer.parseInt(dateInfos[0]);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        Integer.parseInt(dateInfos[1]);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        Integer.parseInt(dateInfos[2]);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int firstLength \u003d dateInfos[0].length();"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int secondLength \u003d dateInfos[1].length();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int thirdLength \u003d dateInfos[2].length();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.format \u003d \"H\".repeat(firstLength) + \":\" + \"m\".repeat(secondLength) + \":\" + \"s\".repeat(thirdLength);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    String timeTmp \u003d String.join(\":\", dateInfos);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    DateTimeFormatter timeFormat \u003d DateTimeFormatter.ofPattern(this.format);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    this.time \u003d LocalDateTime.of(LocalDate.now(), LocalTime.parse(timeTmp, timeFormat));"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    String currHour \u003d DateTime.getTimeAMPM(LocalDateTime.now().getHour(), 0, 0);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int currHourValue \u003d Integer.parseInt(currHour.substring(0, currHour.length() - 2));"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    if (currHourValue \u003e this.time.getHour() || currHourValue \u003d\u003d this.time.getHour() \u0026\u0026 LocalDateTime.now().getMinute() \u003e this.time.getMinute()"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            || LocalDateTime.now().getMinute() \u003d\u003d this.time.getMinute() \u0026\u0026 LocalDateTime.now().getSecond() \u003e\u003d this.time.getSecond()"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            \u0026\u0026 !(currHour.substring(currHour.length() - 2).equals(\"am\") \u0026\u0026 this.ampm.equals(\"pm\"))) {"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.time \u003d this.time.plusDays(1);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    this.updateTime();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    if (this.ampm.equals(\"pm\") \u0026\u0026 this.hour \u003c 12) {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.hour \u003d this.time.getHour() + 12;"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (NumberFormatException ex0) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    throw new NotADateException();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                if (dateInfos.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    if (!this.ampm.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        throw new NotADateException();"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int first \u003d Integer.parseInt(dateInfos[0]);"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int second \u003d Integer.parseInt(dateInfos[1]);"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int firstLength \u003d dateInfos[0].length();"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int secondLength \u003d dateInfos[1].length();"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    String currYear \u003d String.valueOf(LocalDate.now().getYear());"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int currYearFormat \u003d currYear.length();"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    this.format \u003d \"y\".repeat(currYearFormat) + DateTime.dateMonthFormat(first, second, firstLength, secondLength);"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    DateTimeFormatter timeFormat \u003d DateTimeFormatter.ofPattern(this.format);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    this.time \u003d LocalDateTime.of(LocalDate.parse(currYear + \"/\" + first + \"/\" + second, timeFormat), LocalTime.of(0, 0));"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    if (this.time.isBefore(LocalDateTime.now())) {"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.time \u003d this.time.plusYears(1);"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    this.updateTime();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                else if (dateInfos.length \u003d\u003d 3) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    String[] begin \u003d dateInfos[0].replaceAll(\" *:\", \":\").replaceAll(\": *\", \":\").split(\" +\");"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    String[] end \u003d dateInfos[dateInfos.length - 1].replaceAll(\" *:\", \":\").replaceAll(\": *\", \":\").split(\" +\");"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    if (begin.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        DateTime timeHour \u003d new DateTime(begin[0] + this.ampm);"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        List\u003cString\u003e dayInfo \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        dayInfo.add(begin[1]);"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        dayInfo.addAll(Arrays.asList(dateInfos).subList(1, dateInfos.length));"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        DateTime timeDay \u003d new DateTime(String.join(\"/\", dayInfo));"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.updateHourDay(timeHour, timeDay);"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    } else if (end.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        DateTime timeHour \u003d new DateTime(end[1] + this.ampm);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        List\u003cString\u003e dayInfo \u003d new ArrayList\u003c\u003e(Arrays.asList(dateInfos).subList(0, dateInfos.length - 1));"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        dayInfo.add(end[0]);"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        DateTime timeDay \u003d new DateTime(String.join(\"/\", dayInfo));"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.updateHourDay(timeHour, timeDay);"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        if (!this.ampm.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            throw new NotADateException();"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int first \u003d Integer.parseInt(dateInfos[0]);"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int second \u003d Integer.parseInt(dateInfos[1]);"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int third \u003d Integer.parseInt(dateInfos[2]);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int firstLength \u003d dateInfos[0].length();"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int secondLength \u003d dateInfos[1].length();"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        int thirdLength \u003d dateInfos[2].length();"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        if (first \u003e third) {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.format \u003d \"y\".repeat(firstLength) + \"/\" + DateTime.dateMonthFormat(second, third, secondLength, thirdLength);"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            DateTimeFormatter timeFormat \u003d DateTimeFormatter.ofPattern(this.format);"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.time \u003d LocalDateTime.of(LocalDate.parse(first + \"/\" + second + \"/\" + third, timeFormat), LocalTime.of(0, 0));"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        } else {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.format \u003d \"y\".repeat(thirdLength) + \"/\" + DateTime.dateMonthFormat(first, second, firstLength, secondLength);"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            DateTimeFormatter timeFormat \u003d DateTimeFormatter.ofPattern(this.format);"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                            this.time \u003d LocalDateTime.of(LocalDate.parse(third + \"/\" + first + \"/\" + second, timeFormat), LocalTime.of(0, 0));"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                        this.updateTime();"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    throw new NotADateException();"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            catch (NumberFormatException ex) {"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                throw new NotADateException();"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static String dateMonthFormat(int first, int second, int firstLength, int secondLength) throws NotADateException {"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (32 \u003e first \u0026\u0026 first \u003e 12 \u0026\u0026 0 \u003c second \u0026\u0026 second \u003c 13) {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"d\".repeat(firstLength) + \"/\" + \"M\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (32 \u003e second \u0026\u0026 second \u003e 12 \u0026\u0026 0 \u003c first \u0026\u0026 first \u003c 13) {"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"M\".repeat(firstLength) + \"/\" + \"d\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (first \u003e 31 \u0026\u0026 0 \u003c second \u0026\u0026 second \u003c 13) {"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"y\".repeat(firstLength) + \"/\" + \"M\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (second \u003e 31 \u0026\u0026 0 \u003c first \u0026\u0026 first \u003c 13) {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"M\".repeat(firstLength) + \"/\" + \"y\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (0 \u003c first \u0026\u0026 first \u003c 32 \u0026\u0026 0 \u003c second \u0026\u0026 second \u003c 13) {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"d\".repeat(firstLength) + \"/\" + \"M\".repeat(secondLength);"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        throw new NotADateException();"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private void updateHourDay(DateTime timeHour, DateTime timeDay) {"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.hour \u003d timeHour.hour;"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.minute \u003d timeHour.minute;"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.second \u003d timeHour.second;"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.year \u003d timeDay.year;"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.month \u003d timeDay.month;"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.day \u003d timeDay.day;"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.weekday \u003d timeDay.weekday;"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private void updateTime() throws NotADateException {"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.hour \u003d this.time.getHour();"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (!this.ampm.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (this.ampm.equals(\"am\") \u0026\u0026 (this.hour \u003e 12 || this.hour \u003c 1)) {"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                throw new NotADateException();"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (this.ampm.equals(\"pm\")) {"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                if (this.hour \u003e 12 || this.hour \u003c 1) {"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    throw new NotADateException();"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                if (this.hour \u003c 12) {"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    this.hour +\u003d 12;"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.year \u003d this.time.getYear();"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.month \u003d this.time.getMonth().toString();"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.month \u003d this.month.charAt(0) + this.month.substring(1).toLowerCase();"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.day \u003d this.time.getDayOfMonth();"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.weekday \u003d this.time.getDayOfWeek().name();"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.weekday \u003d this.weekday.charAt(0) + this.weekday.substring(1, 3).toLowerCase();"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.minute \u003d this.time.getMinute();"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.second \u003d this.time.getSecond();"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static String getDaySuffix(int x) {"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (x % 100 \u003d\u003d 11 || x % 100 \u003d\u003d 12 || x % 100 \u003d\u003d 13) {"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"th\";"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (x % 10 \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"st\";"
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (x % 10 \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"nd\";"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (x % 10 \u003d\u003d 3) {"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"rd\";"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"th\";"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static String getTimeAMPM(int hour, int minute, int second) {"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        String afterHour \u003d \"\";"
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (second !\u003d 0) {"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            afterHour \u003d minute + \":\" + second;"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        else if (minute !\u003d 0) {"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            afterHour \u003d String.valueOf(minute);"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (afterHour.equals(\"\") \u0026\u0026 hour \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"\";"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (!afterHour.isEmpty()) {"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            afterHour \u003d \":\" + afterHour;"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (hour \u003c 12) {"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return hour + afterHour + \"am\";"
+      },
+      {
+        "lineNumber": 282,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 283,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        else if (hour \u003d\u003d 12) {"
+      },
+      {
+        "lineNumber": 284,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return hour + afterHour + \"pm\";"
+      },
+      {
+        "lineNumber": 285,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 286,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return hour - 12 + afterHour + \"pm\";"
+      },
+      {
+        "lineNumber": 287,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 288,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 289,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getTimeString() {"
+      },
+      {
+        "lineNumber": 290,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (this.month.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 291,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return String.valueOf(this.year);"
+      },
+      {
+        "lineNumber": 292,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 293,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        String timeHour \u003d getTimeAMPM(this.hour, this.minute, this.second);"
+      },
+      {
+        "lineNumber": 294,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (timeHour.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 295,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return this.weekday + \", \" + this.day + DateTime.getDaySuffix(this.day) + \" of \" + this.month + \" \" + this.year;"
+      },
+      {
+        "lineNumber": 296,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 297,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.weekday + \", \" + this.day + DateTime.getDaySuffix(this.day) + \" of \" + this.month + \" \" + this.year + \", \" + timeHour;"
+      },
+      {
+        "lineNumber": 298,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 299,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 299
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import IOUtils.DataReader;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import IOUtils.DataWriter;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import exception.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import task.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.lang.reflect.*;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static String horizontalLine \u003d \"    ____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static ArrayList\u003cTask\u003e taskHistory \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static Method[] methods \u003d TaskCommand.class.getMethods();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static Map\u003cString, Method\u003e methodMap \u003d new HashMap\u003c\u003e();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static DataReader reader;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static DataWriter writer;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static String savePath \u003d \"data/duke.txt\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "//        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "//                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "//                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "//                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "//                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "//        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        for (Method method: methods) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            methodMap.put(method.getName(), method);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        readSavedTasks(savePath);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        greet();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Scanner stdin \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        for (String text \u003d stdin.nextLine().trim(); !text.equals(\"bye\"); text \u003d stdin.nextLine().trim()) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            if (text.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                listHistory();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            else if (text.length() \u003e 3 \u0026\u0026 text.substring(0, 4).equals(\"done\")) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    int taskIndex \u003d Integer.parseInt(text.substring(5)) - 1;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    markTaskAsDone(taskIndex);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkDoneMarkingTaskAsDone(taskIndex);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (NumberFormatException ex) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkInvalidNumber();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (StringIndexOutOfBoundsException ex) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkEmptyDone();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (IndexOutOfBoundsException ex) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkTaskIndexOutOfBound();"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    addTaskToHistory(text);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkSuccessTaskAdding();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (EmptyTimeException ex) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkEmptyTime(ex.getMessage());"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (EmptyCommandException ex) {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkEmptyCommand();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (NoSuchMethodException | NullPointerException ex) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkUnknownCommand();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (EmptyTaskException ex) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkEmptyTask(ex.getMessage());"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (MissingArgumentException ex) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talk(\"☹ OOPS!!! \" + ex.getMessage());"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (InvalidCommandArgumentException ex) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    talkInvalidCommandArgument(ex.getMessage());"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                catch (Throwable ex) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    System.out.println(ex);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "-"
         },
         "content": "        }"
       },
@@ -574,14 +2675,14 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        else {"
+        "content": "        if (!taskHistory.isEmpty()) {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            return false;"
+        "content": "            writeTasks(savePath);"
       },
       {
         "lineNumber": 84,
@@ -593,9 +2694,9 @@
       {
         "lineNumber": 85,
         "author": {
-          "gitId": "LongLeCE"
+          "gitId": "-"
         },
-        "content": "        return true;"
+        "content": "        goodbye();"
       },
       {
         "lineNumber": 86,
@@ -614,58 +2715,1810 @@
       {
         "lineNumber": 88,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    private static void listHistory() {"
+        "content": "    private static void writeTasks(String path) {"
       },
       {
         "lineNumber": 89,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        System.out.println(horizontalLine);"
+        "content": "        try {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talkNoLine(\"Here are the tasks in your list:\");"
+        "content": "            writer \u003d new DataWriter(path);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        for (int i \u003d 0; i \u003c Duke.taskHistory.size(); ++i) {"
+        "content": "        }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            talkNoLine(i + 1 + \".\" + Duke.taskHistory.get(i));"
+        "content": "        catch (IOException ex) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            System.out.println(ex);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        System.out.println(horizontalLine);"
+        "content": "            return;"
       },
       {
         "lineNumber": 95,
         "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            for (Task task: taskHistory) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                writer.write(task.getSaveForm() + \"\\n\");"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            writer.close();"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            System.out.println(ex);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void readSavedTasks(String path) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            reader \u003d new DataReader(path);"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//            try {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//                if (!new File(path).createNewFile()) {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//                    throw new IOException(\"Could not create file \" + path);"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//                }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//                reader \u003d new DataReader(path);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//            }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//            catch (IOException ex0) {"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//                System.out.println(ex0);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "//            }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            for (String line \u003d reader.readLine(); !line.isEmpty(); line \u003d reader.readLine()) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                addTaskToHistory(line.substring(1));"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                if (line.charAt(0) \u003d\u003d \u00271\u0027) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                    markTaskAsDone(taskHistory.size() - 1);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            reader.close();"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (Throwable ex) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            System.out.println(ex);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkSuccessTaskAdding() {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        int nofTasks \u003d taskHistory.size();"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"Got it. I\u0027ve added this task:\" +"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                \"\\n       \" + taskHistory.get(nofTasks - 1) +"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                \"\\n     Now you have \" + nofTasks + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkInvalidCommandArgument(String argument) {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! \" + argument + \" is not a valid command argument\");"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkEmptyTask(String taskType) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! The description of a \" + taskType + \" cannot be empty\");"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkEmptyDone() {"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! The index to be marked as done cannot be empty\");"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkTaskIndexOutOfBound() {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! That index is not applicable for your current task list\\n\" +"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                \"     You currently have \" + taskHistory.size() + \" task(s) in your task list\");"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkUnknownCommand() {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkEmptyCommand() {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! Please enter some command so that I can serve you\");"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkEmptyTime(String taskType) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        int nofTasks \u003d taskHistory.size();"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"Warning: No time specified, \" + taskType + \" will be added without time\");"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"I\u0027ve added this task:\" +"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                \"\\n       \" + taskHistory.get(nofTasks - 1) +"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                \"\\n     Now you have \" + nofTasks + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkInvalidNumber() {"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talk(\"☹ OOPS!!! That was not a number :-(. Please review the task index to be marked as done\");"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void greet() {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        talk(\"Hello! I\u0027m Duke\\n     What can I do for you?\");"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
           "gitId": "-"
         },
         "content": "    }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void goodbye() {"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        talk(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void talk(String text) {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        talkOptional(text, true);"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void talkNoLine(String text) {"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        talkOptional(text, false);"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void talkOptional(String text, boolean line) {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (line) {"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(horizontalLine);"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"     \" + text);"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (line) {"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(horizontalLine);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void addTaskToHistory(String text) throws Throwable {"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (text.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyCommandException();"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            int separator \u003d text.indexOf(\" \");"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (separator \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                methodMap.get(text).invoke(null, taskHistory, \"\");"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                methodMap.get(text.substring(0, separator)).invoke(null, taskHistory, text.substring(separator + 1).trim());"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (InvocationTargetException ex) {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw ex.getCause();"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    private static void listHistory() {"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (taskHistory.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            talk(\"You currently have no tasks on your task list\");"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(horizontalLine);"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            talkNoLine(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            for (int i \u003d 0; i \u003c Duke.taskHistory.size(); ++i) {"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                talkNoLine(i + 1 + \".\" + Duke.taskHistory.get(i));"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            System.out.println(horizontalLine);"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void markTaskAsDone(int taskIndex) throws IndexOutOfBoundsException {"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        Task finishedTask \u003d taskHistory.get(taskIndex);"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        finishedTask.markAsDone();"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void talkDoneMarkingTaskAsDone(int taskIndex) {"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        System.out.println(horizontalLine);"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talkNoLine(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        talkNoLine(\"  \" + taskHistory.get(taskIndex));"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(horizontalLine);"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 193,
+      "-": 56
+    }
+  },
+  {
+    "path": "src/main/java/IOUtils/DataReader.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "// Slight modifications from GeeksforGeeks"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "// Use for fast data reading"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package IOUtils;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.DataInputStream;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.FileInputStream;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class DataReader {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    final private int BUFFER_SIZE \u003d 1 \u003c\u003c 16;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private DataInputStream din;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private byte[] buffer;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private int bufferPointer, bytesRead;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DataReader() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        din \u003d new DataInputStream(System.in);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        buffer \u003d new byte[BUFFER_SIZE];"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        bufferPointer \u003d bytesRead \u003d 0;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DataReader(String file_name) throws IOException {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        din \u003d new DataInputStream(new FileInputStream(file_name));"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        buffer \u003d new byte[BUFFER_SIZE];"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        bufferPointer \u003d bytesRead \u003d 0;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String readLine() throws IOException {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.readLine(64);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String readLine(int length) throws IOException {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        byte[] buf \u003d new byte[length]; // line length"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        int cnt \u003d 0, c;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        while ((c \u003d read()) !\u003d -1) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (c \u003d\u003d \u0027\\n\u0027)"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            buf[cnt++] \u003d (byte) c;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return new String(buf, 0, cnt);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public int nextInt() throws IOException {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        int ret \u003d 0;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        byte c \u003d read();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        while (c \u003c\u003d \u0027 \u0027)"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            c \u003d read();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        boolean neg \u003d (c \u003d\u003d \u0027-\u0027);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (neg)"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            c \u003d read();"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        do {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            ret \u003d ret * 10 + c - \u00270\u0027;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        } while ((c \u003d read()) \u003e\u003d \u00270\u0027 \u0026\u0026 c \u003c\u003d \u00279\u0027);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (neg)"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return -ret;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return ret;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public long nextLong() throws IOException {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        long ret \u003d 0;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        byte c \u003d read();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        while (c \u003c\u003d \u0027 \u0027)"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            c \u003d read();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        boolean neg \u003d (c \u003d\u003d \u0027-\u0027);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (neg)"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            c \u003d read();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        do {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            ret \u003d ret * 10 + c - \u00270\u0027;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        while ((c \u003d read()) \u003e\u003d \u00270\u0027 \u0026\u0026 c \u003c\u003d \u00279\u0027);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (neg)"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return -ret;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return ret;"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public double nextDouble() throws IOException {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        double ret \u003d 0, div \u003d 1;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        byte c \u003d read();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        while (c \u003c\u003d \u0027 \u0027)"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            c \u003d read();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        boolean neg \u003d (c \u003d\u003d \u0027-\u0027);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (neg)"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            c \u003d read();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        do {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            ret \u003d ret * 10 + c - \u00270\u0027;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        while ((c \u003d read()) \u003e\u003d \u00270\u0027 \u0026\u0026 c \u003c\u003d \u00279\u0027);"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (c \u003d\u003d \u0027.\u0027) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            while ((c \u003d read()) \u003e\u003d \u00270\u0027 \u0026\u0026 c \u003c\u003d \u00279\u0027) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                ret +\u003d (c - \u00270\u0027) / (div *\u003d 10);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 96,
@@ -679,68 +4532,1898 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static void markTaskAsDone(int taskIndex) {"
+        "content": "        if (neg)"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        Task finishedTask \u003d taskHistory.get(taskIndex);"
+        "content": "            return -ret;"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        finishedTask.markAsDone();"
+        "content": "        return ret;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        System.out.println(horizontalLine);"
+        "content": "    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talkNoLine(\"Nice! I\u0027ve marked this task as done:\");"
+        "content": ""
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talkNoLine(\"  \" + finishedTask);"
+        "content": "    private void fillBuffer() throws IOException {"
       },
       {
         "lineNumber": 103,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "        System.out.println(horizontalLine);"
+        "content": "        bytesRead \u003d din.read(buffer, bufferPointer \u003d 0, BUFFER_SIZE);"
       },
       {
         "lineNumber": 104,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        if (bytesRead \u003d\u003d -1)"
       },
       {
         "lineNumber": 105,
         "author": {
-          "gitId": "-"
+          "gitId": "LongLeCE"
+        },
+        "content": "            buffer[0] \u003d -1;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private byte read() throws IOException {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (bufferPointer \u003d\u003d bytesRead)"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            fillBuffer();"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return buffer[bufferPointer++];"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public void close() throws IOException {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (din \u003d\u003d null)"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        din.close();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "LongLeCE"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 47,
-      "-": 58
+      "LongLeCE": 119
+    }
+  },
+  {
+    "path": "src/main/java/IOUtils/DataWriter.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package IOUtils;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.io.RandomAccessFile;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.nio.ByteBuffer;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.nio.channels.FileChannel;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.nio.channels.OverlappingFileLockException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class DataWriter {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private RandomAccessFile stream;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private FileChannel channel;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private boolean lockingFile;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DataWriter() {}"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DataWriter(String fileName) throws IOException {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ArrayList\u003cObject\u003e ret \u003d DataWriter.createStreamChannelAuto(fileName);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.stream \u003d (RandomAccessFile) ret.get(0);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.channel \u003d (FileChannel) ret.get(1);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.lockingFile \u003d false;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static ArrayList\u003cObject\u003e createStreamChannelAuto(String fileName) throws IOException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return DataWriter.createStreamChannel(fileName);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (!new File(fileName).createNewFile()) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                throw new IOException(\"Could not create file \" + fileName);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return DataWriter.createStreamChannel(fileName);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static ArrayList\u003cObject\u003e createStreamChannel(String fileName) throws IOException {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        RandomAccessFile stream \u003d new RandomAccessFile(fileName, \"rw\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        FileChannel channel \u003d stream.getChannel();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ArrayList\u003cObject\u003e ret \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ret.add(stream);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ret.add(channel);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return ret;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public void write(String value) throws IOException {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (this.stream \u003d\u003d null || this.channel \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new IOException(\"Uninitialized Writer\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (!this.lockingFile) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            DataWriter.lockFile(this.stream, this.channel);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            this.lockingFile \u003d true;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        byte[] strBytes \u003d value.getBytes();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ByteBuffer buffer \u003d ByteBuffer.allocate(strBytes.length);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        buffer.put(strBytes);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        buffer.flip();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.channel.write(buffer);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static void write(String value, String fileName) throws IOException {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ArrayList\u003cObject\u003e ret \u003d DataWriter.createStreamChannelAuto(fileName);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        RandomAccessFile stream \u003d (RandomAccessFile) ret.get(0);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        FileChannel channel \u003d (FileChannel) ret.get(1);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        DataWriter.lockFile(stream, channel);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        byte[] strBytes \u003d value.getBytes();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        ByteBuffer buffer \u003d ByteBuffer.allocate(strBytes.length);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        buffer.put(strBytes);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        buffer.flip();"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        channel.write(buffer);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        stream.close();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        channel.close();"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static void lockFile(RandomAccessFile stream, FileChannel channel) throws IOException{"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            channel.tryLock();"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (final OverlappingFileLockException e) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            stream.close();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            channel.close();"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new IOException(\"Could not lock file\");"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public void close() throws IOException {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (this.stream !\u003d null) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            this.stream.close();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (this.channel !\u003d null) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            this.channel.close();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.lockingFile \u003d false;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 95
+    }
+  },
+  {
+    "path": "src/main/java/TaskCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import exception.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import task.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class TaskCommand {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static void todo(ArrayList\u003cTask\u003e taskHistory, String command) throws EmptyTaskException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTaskException(\"todo\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        taskHistory.add(new ToDos(command));"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static void deadline(ArrayList\u003cTask\u003e taskHistory, String command) throws Throwable {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTaskException(\"deadline\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        int separator \u003d command.indexOf(\"/by\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (separator \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new MissingArgumentException(\"Missing /by argument. Please ensure you have followed the format \u0027deadline [task] /by [time]\u0027\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        else if (separator \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTaskException(\"deadline\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        String time \u003d \"\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.length() \u003e separator + 3 \u0026\u0026 command.charAt(separator + 3) !\u003d \u0027 \u0027) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            int endArgument \u003d command.substring(separator).indexOf(\" \");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (endArgument \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                throw new InvalidCommandArgumentException(command.substring(separator));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new InvalidCommandArgumentException(command.substring(separator, separator + endArgument));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.length() \u003e separator + 4) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            time \u003d command.substring(separator + 4).trim();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        taskHistory.add(new Deadlines(command.substring(0, separator).trim(), time));"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (time.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTimeException(\"deadline\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static void event(ArrayList\u003cTask\u003e taskHistory, String command) throws Throwable {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTaskException(\"event\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        int separator \u003d command.indexOf(\"/at\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (separator \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new MissingArgumentException(\"Missing /at argument. Please ensure you have followed the format \u0027event [task] /at [time]\u0027\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        else if (separator \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTaskException(\"event\");"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        String time \u003d \"\";"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.length() \u003e separator + 3 \u0026\u0026 command.charAt(separator + 3) !\u003d \u0027 \u0027) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            int endArgument \u003d command.substring(separator).indexOf(\" \");"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            if (endArgument \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                throw new InvalidCommandArgumentException(command.substring(separator));"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new InvalidCommandArgumentException(command.substring(separator, separator + endArgument));"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (command.length() \u003e separator + 4) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            time \u003d command.substring(separator + 4).trim();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        taskHistory.add(new Events(command.substring(0, separator).trim(), time));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (time.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new EmptyTimeException(\"event\");"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 69
+    }
+  },
+  {
+    "path": "src/main/java/exception/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class DukeException extends Throwable {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DukeException() {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DukeException(String message) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DukeException(String message, Throwable cause) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message, cause);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public DukeException(Throwable cause) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(cause);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    protected DukeException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message, cause, enableSuppression, writableStackTrace);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 22
+    }
+  },
+  {
+    "path": "src/main/java/exception/EmptyCommandException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class EmptyCommandException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 4
+    }
+  },
+  {
+    "path": "src/main/java/exception/EmptyIndexException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class EmptyIndexException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public EmptyIndexException(String message) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 7
+    }
+  },
+  {
+    "path": "src/main/java/exception/EmptyTaskException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class EmptyTaskException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public EmptyTaskException(String message) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 7
+    }
+  },
+  {
+    "path": "src/main/java/exception/EmptyTimeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class EmptyTimeException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public EmptyTimeException(String message) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 7
+    }
+  },
+  {
+    "path": "src/main/java/exception/InvalidCommandArgumentException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class InvalidCommandArgumentException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public InvalidCommandArgumentException(String message) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 7
+    }
+  },
+  {
+    "path": "src/main/java/exception/MissingArgumentException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class MissingArgumentException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public MissingArgumentException(String message) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 8
+    }
+  },
+  {
+    "path": "src/main/java/exception/NotADateException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class NotADateException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 4
+    }
+  },
+  {
+    "path": "src/main/java/exception/UnknownCommandException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "public class UnknownCommandException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    // This class is currently unnecessary due to implementation as another exception replaces its usage but might prove to be useful in the future"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "LongLeCE": 5
     }
   },
   {
@@ -828,14 +6511,14 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public String toString() {"
+        "content": "    public String getType() {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return \"[D]\" + super.toString() + \" (by: \" + this.by + \")\";"
+        "content": "        return \"deadline\";"
       },
       {
         "lineNumber": 14,
@@ -849,11 +6532,102 @@
         "author": {
           "gitId": "LongLeCE"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getExtraParams() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"/by \" + this.by;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (this.by.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"[D]\" + super.toString() + \" (no deadline specified)\";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + this.by + \")\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 15
+      "LongLeCE": 28
     }
   },
   {
@@ -941,14 +6715,14 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public String toString() {"
+        "content": "    public String getType() {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return \"[E]\" + super.toString() + \" (at: \" + this.at + \")\";"
+        "content": "        return \"event\";"
       },
       {
         "lineNumber": 14,
@@ -962,11 +6736,102 @@
         "author": {
           "gitId": "LongLeCE"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getExtraParams() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"/at \" + this.at;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        if (this.at.equals(\"\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            return \"[E]\" + super.toString() + \" (no time specified)\";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + this.at + \")\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 15
+      "LongLeCE": 28
     }
   },
   {
@@ -1061,7 +6926,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return (isDone ? \"[\\u2713]\" : \"[\\u2718]\");"
+        "content": "        return (this.isDone ? \"[\\u2713]\" : \"[\\u2718]\");"
       },
       {
         "lineNumber": 14,
@@ -1110,31 +6975,171 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    @Override"
+        "content": "    public String getStatus() {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public String toString() {"
+        "content": "        return (this.isDone ? \"1\": \"0\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return this.getStatusIcon() + \" \" + this.description;"
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 24,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getType() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"task\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.description;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getExtraParams() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getSaveForm() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.getStatus() + String.join(\" \", this.getType(), this.getDescription()) + this.getExtraParams();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.getStatusIcon() + \" \" + this.description;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
         "author": {
           "gitId": "LongLeCE"
         },
@@ -1142,7 +7147,7 @@
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 24
+      "LongLeCE": 44
     }
   },
   {
@@ -1209,14 +7214,14 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public String toString() {"
+        "content": "    public String getType() {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return \"[T]\" + super.toString();"
+        "content": "        return \"todo\";"
       },
       {
         "lineNumber": 11,
@@ -1230,11 +7235,81 @@
         "author": {
           "gitId": "LongLeCE"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getExtraParams() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "LongLeCE"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 12
+      "LongLeCE": 22
     }
   }
 ]

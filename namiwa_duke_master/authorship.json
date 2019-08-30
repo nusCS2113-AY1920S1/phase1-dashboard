@@ -7,14 +7,14 @@
         "author": {
           "gitId": "namiwa"
         },
-        "content": "public class Deadline extends Task {"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private String dateAndTime;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 3,
@@ -28,49 +28,49 @@
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    Deadline(String... input) {"
+        "content": "public class Deadline extends Task {"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        super(input[0]);"
+        "content": "    private String dateAndTime;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        setDateAndTime(input[input.length - 1]);"
+        "content": "    private LocalDate date;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    Deadline(String... input) {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private void setDateAndTime(String dateAndTime) {"
+        "content": "        super(input[0]);"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        this.dateAndTime \u003d dateAndTime;"
+        "content": "        setDateAndTime(input[input.length - 1]);"
       },
       {
         "lineNumber": 11,
@@ -91,66 +91,136 @@
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    public String writingFile() {"
+        "content": "    private void setDateAndTime(String dateAndTime) {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        return \"D\" + \"|\" + super.writingFile() + \"|\" + dateAndTime;"
+        "content": "        if (dateAndTime.contains(\"/\")) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "            setStringToDate(dateAndTime);"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    public String toString() {"
+        "content": "        this.dateAndTime \u003d dateAndTime;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        return \"[D]\" + super.toString() + \"(by: \" + dateAndTime + \")\";"
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    private void setStringToDate(String dateAndTime) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "        String[] split \u003d dateAndTime.split(\" \");"
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        date \u003d LocalDate.parse(split[0], DateTimeFormatter.ofPattern(\"d/MM/yyyy\"));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    public String writingFile() { return \"D\" + \"|\" + super.writingFile() + \"|\" + dateAndTime; }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        return \"[D]\" + super.toString() + \"(by: \" + dateAndTime + \")\";"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "namiwa"
         },
@@ -158,7 +228,7 @@
       }
     ],
     "authorContributionMap": {
-      "namiwa": 22
+      "namiwa": 32
     }
   },
   {
@@ -862,7 +932,7 @@
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        String[] res \u003d inputs.split(\"/\");"
+        "content": "        String[] res \u003d inputs.split(\"/\", 2);"
       },
       {
         "lineNumber": 101,
@@ -1121,360 +1191,367 @@
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        lastTaskAddedMessage();"
+        "content": "        store.writeData(taskList);"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        currentTaskListSizeMsg();"
+        "content": "        lastTaskAddedMessage();"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "        currentTaskListSizeMsg();"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private void loopMsg() {"
+        "content": ""
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        String input \u003d scan.nextLine();"
+        "content": "    private void loopMsg() {"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        while (!input.equals(\"bye\")) {"
+        "content": "        String input \u003d scan.nextLine();"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "            if (input.equals(\"list\")) {"
+        "content": "        while (!input.equals(\"bye\")) {"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                try {"
+        "content": "            if (input.equals(\"list\")) {"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    displayAllTasks();"
+        "content": "                try {"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                } catch (IllegalAccessError e) {"
+        "content": "                    displayAllTasks();"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    tryAgainIndex();"
+        "content": "                } catch (IllegalAccessError e) {"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                }"
+        "content": "                    tryAgainIndex();"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "            } else if (input.startsWith(\"done\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                try {"
+        "content": "            } else if (input.startsWith(\"done\")) {"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    checkValidDoneIndex(input);"
+        "content": "                try {"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                } catch (NumberFormatException e) {"
+        "content": "                    checkValidDoneIndex(input);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    tryAgainNumber();"
+        "content": "                } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                } catch (IllegalAccessError e) {"
+        "content": "                    tryAgainNumber();"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    tryAgainIndex();"
+        "content": "                } catch (IllegalAccessError e) {"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                }"
+        "content": "                    tryAgainIndex();"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "            } else {"
+        "content": "                }"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                try {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    parseTask(input);"
+        "content": "                try {"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                } catch (DukeCommandException e) {"
+        "content": "                    parseTask(input);"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    tryAgainCommand();"
+        "content": "                } catch (DukeCommandException e) {"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                } catch (DukeEmptyCommandException e) {"
+        "content": "                    tryAgainCommand();"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                    tryAgainCommandEmpty();"
+        "content": "                } catch (DukeEmptyCommandException e) {"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "                }"
+        "content": "                    tryAgainCommandEmpty();"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "            input \u003d scan.nextLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        }"
+        "content": "            input \u003d scan.nextLine();"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private void goodbyeMsg() {"
+        "content": ""
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+        "content": "    private void goodbyeMsg() {"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        store.writeData(taskList);"
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        closeScan();"
+        "content": "        store.writeData(taskList);"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "        closeScan();"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private void closeScan() {"
+        "content": ""
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        scan.close();"
+        "content": "    private void closeScan() {"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "        scan.close();"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 181,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 182,
         "author": {
           "gitId": "-"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 182,
+        "lineNumber": 183,
         "author": {
           "gitId": "namiwa"
         },
         "content": "        Duke duke \u003d new Duke();"
       },
       {
-        "lineNumber": 183,
+        "lineNumber": 184,
         "author": {
           "gitId": "namiwa"
         },
         "content": "        duke.readStoredData();"
       },
       {
-        "lineNumber": 184,
+        "lineNumber": 185,
         "author": {
           "gitId": "namiwa"
         },
         "content": "        duke.helloMsg();"
       },
       {
-        "lineNumber": 185,
+        "lineNumber": 186,
         "author": {
           "gitId": "namiwa"
         },
         "content": "        duke.loopMsg();"
       },
       {
-        "lineNumber": 186,
+        "lineNumber": 187,
         "author": {
           "gitId": "namiwa"
         },
         "content": "        duke.goodbyeMsg();"
       },
       {
-        "lineNumber": 187,
+        "lineNumber": 188,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 188,
+        "lineNumber": 189,
         "author": {
           "gitId": "-"
         },
@@ -1482,7 +1559,7 @@
       }
     ],
     "authorContributionMap": {
-      "namiwa": 184,
+      "namiwa": 185,
       "-": 4
     }
   },
@@ -1552,133 +1629,133 @@
         "author": {
           "gitId": "namiwa"
         },
-        "content": "public class Events extends Task {"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private String dateAndTime;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "import java.time.LocalTime;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    Events(String... input) {"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        super(input[0]);"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        setDateAndTime(input[input.length - 1]);"
+        "content": "public class Events extends Task {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "    private String dateAndTime;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "    private LocalDateTime dateTime;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    private void setDateAndTime(String dateAndTime) {"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        this.dateAndTime \u003d dateAndTime;"
+        "content": "    Events(String... input) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "        super(input[0]);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "        setDateAndTime(input[input.length - 1]);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    public String writingFile() {"
+        "content": "    }"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        return \"E\" + \"|\" + super.writingFile() + \"|\" + dateAndTime;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    }"
+        "content": "    private void setDateAndTime(String dateAndTime) {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "namiwa"
         },
-        "content": ""
+        "content": "        if (dateAndTime.contains(\"/\")) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    @Override"
+        "content": "            setStringToDate(dateAndTime);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "    public String toString() {"
+        "content": "        }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "namiwa"
         },
-        "content": "        return \"[E]\" + super.toString() + \"(at: \" + dateAndTime + \")\";"
+        "content": "        this.dateAndTime \u003d dateAndTime;"
       },
       {
         "lineNumber": 20,
@@ -1699,11 +1776,663 @@
         "author": {
           "gitId": "namiwa"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    private void setStringToDate(String dateAndTime) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        String[] split \u003d dateAndTime.split(\" \");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        LocalDate datePart \u003d LocalDate.parse(split[0], DateTimeFormatter.ofPattern(\"d/MM/yyyy\"));"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        LocalTime timePart \u003d LocalTime.parse(split[1], DateTimeFormatter.ofPattern(\"HHmm\"));"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        dateTime \u003d  LocalDateTime.of(datePart, timePart);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    public String writingFile() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        return \"E\" + \"|\" + super.writingFile() + \"|\" + dateAndTime;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        return \"[E]\" + super.toString() + \"(at: \" + dateAndTime + \")\";"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "namiwa"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "namiwa": 22
+      "namiwa": 39
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.nio.charset.StandardCharsets;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.nio.file.Files;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.nio.file.Path;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.nio.file.Paths;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.util.Collections;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    private Path path;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    private boolean fileExits;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    Storage() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        path \u003d Paths.get(\"DukeData.txt\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        fileExits \u003d Files.isRegularFile(path);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    boolean getFileExits() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        return fileExits;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    void writeData(List\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        List\u003cString\u003e store \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        for (Task temp : taskList) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "            store.add(temp.writingFile());"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "            Files.write(path, store, StandardCharsets.UTF_8);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "            System.err.format(\"IOException: %s%n\", e);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    public List\u003cTask\u003e readData() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "     List\u003cTask\u003e list \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "     List\u003cString\u003e lines \u003d Collections.emptyList();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "     try {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "         lines \u003d Files.readAllLines(path, StandardCharsets.UTF_8);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "     } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "         e.printStackTrace();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "     }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        for (String line:lines) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "            String[] hold \u003d line.split(Pattern.quote(\"|\"));"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "            switch (hold[0]) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                case \"E\":"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    Events t_events \u003d new Events(hold[1], hold[3]);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    if (hold[2].equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                        t_events.setTaskDone();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    list.add(t_events);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                case \"D\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    Deadline t_deadline \u003d new Deadline(hold[1], hold[3]);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    if (hold[2].equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                        t_deadline.setTaskDone();"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    list.add(t_deadline);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                case \"T\":"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    Todo t_todo \u003d new Todo(hold[1]);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    if (hold[2].equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                        t_todo.setTaskDone();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    list.add(t_todo);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "        return list;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "namiwa"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "namiwa": 75
     }
   },
   {
