@@ -387,7 +387,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void execute(ArrayList\u003cTask\u003e list, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public void execute(TaskList list, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 12,
@@ -408,7 +408,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                list.add(new ToDo(c[1]));"
+        "content": "                list.addTask(new ToDo(c[1]));"
       },
       {
         "lineNumber": 15,
@@ -429,7 +429,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                list.add(new Event(c[1], new DukeDate(c[2], c[3], c[4], c[5])));"
+        "content": "                list.addTask(new Event(c[1], new DukeDate(c[2], c[3], c[4], c[5])));"
       },
       {
         "lineNumber": 18,
@@ -450,7 +450,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                list.add(new Deadline(c[1], new DukeDate(c[2], c[3], c[4], c[5])));"
+        "content": "                list.addTask(new Deadline(c[1], new DukeDate(c[2], c[3], c[4], c[5])));"
       },
       {
         "lineNumber": 21,
@@ -563,7 +563,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    abstract public void execute (ArrayList\u003cTask\u003e list, Ui ui, Storage storage) throws DukeException;"
+        "content": "    abstract public void execute (TaskList list, Ui ui, Storage storage) throws DukeException;"
       },
       {
         "lineNumber": 5,
@@ -775,7 +775,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void execute(ArrayList\u003cTask\u003e list, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public void execute(TaskList list, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 13,
@@ -810,94 +810,115 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            ui.printMessage(\"  \" + list.get(num).toString());"
+        "content": "            if (num \u003c 0 || num \u003e\u003d list.getSize()) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            list.remove(num);"
+        "content": "                throw new DukeException(\"The specified index is not avaliable.\");"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            ui.showTaskListSize(list);"
+        "content": "            }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            storage.saveData(list);"
+        "content": "            ui.printMessage(\"  \" + list.at(num).toString());"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } catch (NumberFormatException e) {"
+        "content": "            list.deleteTask(num);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"The number specified is not in the right format.\", e);"
+        "content": "            ui.showTaskListSize(list);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            storage.saveData(list);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "        } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "            throw new DukeException(\"The number specified is not in the right format.\", e);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public boolean isExit() {"
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return false;"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 30,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "JeremyKwok"
         },
@@ -905,7 +926,7 @@
       }
     ],
     "authorContributionMap": {
-      "JeremyKwok": 30
+      "JeremyKwok": 33
     }
   },
   {
@@ -1309,7 +1330,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void execute(ArrayList\u003cTask\u003e list, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public void execute(TaskList list, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 12,
@@ -1344,94 +1365,115 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            list.get(num).markAsDone();"
+        "content": "            if (num \u003c 0 || num \u003e\u003d list.getSize()) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            ui.printMessage(\"  \" + list.get(num).toString());"
+        "content": "                throw new DukeException(\"The specified index is not avaliable.\");"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            ui.showTaskListSize(list);"
+        "content": "            }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            storage.saveData(list);"
+        "content": "            list.at(num).markAsDone();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } catch (NumberFormatException e) {"
+        "content": "            ui.printMessage(\"  \" + list.at(num).toString());"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"The number specified is not in the right format.\", e);"
+        "content": "            ui.showTaskListSize(list);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            storage.saveData(list);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "        } catch (NumberFormatException e) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "            throw new DukeException(\"The number specified is not in the right format.\", e);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    @Override"
+        "content": "        }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public boolean isExit() {"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return false;"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 29,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
         "author": {
           "gitId": "JeremyKwok"
         },
@@ -1439,7 +1481,7 @@
       }
     ],
     "authorContributionMap": {
-      "JeremyKwok": 29
+      "JeremyKwok": 32
     }
   },
   {
@@ -1674,7 +1716,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    private ArrayList\u003cTask\u003e list;"
+        "content": "    private TaskList list;"
       },
       {
         "lineNumber": 34,
@@ -1751,7 +1793,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            list \u003d new ArrayList\u003cTask\u003e();"
+        "content": "            list \u003d new TaskList();"
       },
       {
         "lineNumber": 45,
@@ -3780,7 +3822,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void execute(ArrayList\u003cTask\u003e list, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public void execute(TaskList list, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 6,
@@ -3841,6 +3883,126 @@
     ],
     "authorContributionMap": {
       "JeremyKwok": 13
+    }
+  },
+  {
+    "path": "src/main/java/FindCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    private String[] c;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public FindCommand(String[] c) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        this.c \u003d c;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public void execute(TaskList list, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        TaskList filteredList \u003d list.find(c[1]);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        ui.printList(filteredList);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "JeremyKwok": 16
     }
   },
   {
@@ -3978,7 +4140,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void execute(ArrayList\u003cTask\u003e list, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public void execute(TaskList list, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 9,
@@ -4070,721 +4232,721 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (fullCommand.indexOf(\" \") \u003e -1) {"
+        "content": "        fullCommand \u003d fullCommand.strip();"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[0] \u003d fullCommand.split(\" \", 2)[0];"
+        "content": "        if (fullCommand.indexOf(\" \") \u003e -1) {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[1] \u003d fullCommand.split(\" \", 2)[1];"
+        "content": "            c[0] \u003d fullCommand.split(\" \", 2)[0];"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (fullCommand.equals(\"list\")) {"
+        "content": "            c[1] \u003d fullCommand.split(\" \", 2)[1].strip();"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return new ListCommand();"
+        "content": "        } else if (fullCommand.equals(\"list\")) {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (fullCommand.equals(\"bye\")) {"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        } else if (fullCommand.equals(\"bye\")) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (fullCommand.equals(\"todo\") || fullCommand.equals(\"event\") || fullCommand.equals(\"deadline\")) {"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a \" + fullCommand + \" cannot be empty.\");"
+        "content": "        } else if (fullCommand.equals(\"todo\") || fullCommand.equals(\"event\") || fullCommand.equals(\"deadline\")) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a \" + fullCommand + \" cannot be empty.\");"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        else {"
+        "content": "        }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means.\""
+        "content": "        else {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                    + \"Please enter a command and description :-(\");"
+        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means.\""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "                    + \"Please enter a command and description :-(\");"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (c[0].equals(\"done\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (isNumeric(c[1])) {"
+        "content": "        if (c[0].equals(\"done\")) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                return new DoneCommand(c);"
+        "content": "            if (isNumeric(c[1])) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            } else {"
+        "content": "                return new DoneCommand(c);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but the task must be specified with a number.\");"
+        "content": "            } else {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but the task must be specified with a number.\");"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (c[0].equals(\"delete\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (isNumeric(c[1])) {"
+        "content": "        } else if (c[0].equals(\"delete\")) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                return new DeleteCommand(c);"
+        "content": "            if (isNumeric(c[1])) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            } else {"
+        "content": "                return new DeleteCommand(c);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but the task must be specified with a number.\");"
+        "content": "            } else {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "                throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but the task must be specified with a number.\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (!c[0].equals(\"todo\") \u0026\u0026 !c[0].equals(\"deadline\") \u0026\u0026 !c[0].equals(\"event\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means.\""
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                    + \"Please enter a command and description :-(\");"
+        "content": "        if (c[0].equals(\"find\")) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            return new FindCommand(c);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (c[0].equals(\"todo\")) {"
+        "content": "        } else if (!c[0].equals(\"todo\") \u0026\u0026 !c[0].equals(\"deadline\") \u0026\u0026 !c[0].equals(\"event\")) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return new AddCommand(c);"
+        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means.\""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (c[0].equals(\"deadline\") \u0026\u0026 c[1].indexOf(\" /by \") \u003e -1) {"
+        "content": "                    + \"Please enter a command and description :-(\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[2] \u003d c[1].split(\" /by \", 2)[1];"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[1] \u003d c[1].split(\" /by \", 2)[0];"
+        "content": "        if (c[0].equals(\"todo\")) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (c[0].equals(\"event\") \u0026\u0026 c[1].indexOf(\" /at \") \u003e -1) {"
+        "content": "            return new AddCommand(c);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[2] \u003d c[1].split(\" /at \", 2)[1];"
+        "content": "        } else if (c[0].equals(\"deadline\") \u0026\u0026 c[1].indexOf(\" /by \") \u003e -1) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[1] \u003d c[1].split(\" /at \", 2)[0];"
+        "content": "            c[2] \u003d c[1].split(\" /by \", 2)[1].strip();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else {"
+        "content": "            c[1] \u003d c[1].split(\" /by \", 2)[0].strip();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means.\""
+        "content": "        } else if (c[0].equals(\"event\") \u0026\u0026 c[1].indexOf(\" /at \") \u003e -1) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                    + \"Please enter a command and description :-(\");"
+        "content": "            c[2] \u003d c[1].split(\" /at \", 2)[1].strip();"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            c[1] \u003d c[1].split(\" /at \", 2)[0].strip();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (c[1].equals(\"\") || c[1] \u003d\u003d null) {"
+        "content": "        } else {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a \" + c[0] + \" cannot be empty.\");"
+        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means.\""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "                    + \"Please enter a command and description :-(\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        String[] dParts \u003d {};"
+        "content": "        }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        String time \u003d \"\", dt \u003d \"\";"
+        "content": "        if (c[1].equals(\"\") || c[1] \u003d\u003d null) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (c[2].indexOf(\" \") \u003e -1) {"
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a \" + c[0] + \" cannot be empty.\");"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time \u003d c[2].split(\" \", 2)[1];"
+        "content": "        }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            dt \u003d c[2].split(\" \", 2)[0];"
+        "content": "        String[] dParts \u003d {};"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else {"
+        "content": "        String time \u003d \"\", dt \u003d \"\";"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! The date is in an invalid format\");"
+        "content": "        if (c[2].indexOf(\" \") \u003e -1) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            time \u003d c[2].split(\" \", 2)[1].strip();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (dt.indexOf(\"/\") \u003e -1){"
+        "content": "            dt \u003d c[2].split(\" \", 2)[0].strip();"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            dParts \u003d dt.split(\"/\");"
+        "content": "        } else {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else {"
+        "content": "            throw new DukeException(\"☹ OOPS!!! The date is in an invalid format\");"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! The date is in an invalid format\");"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "        if (dt.indexOf(\"/\") \u003e -1){"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (validateDate(dParts, time)) {"
+        "content": "            dParts \u003d dt.split(\"/\");"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[2] \u003d convertDay(dParts[0]);"
+        "content": "        } else {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[3] \u003d convertMonth(dParts[1]);"
+        "content": "            throw new DukeException(\"☹ OOPS!!! The date is in an invalid format\");"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[4] \u003d dParts[2];"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            c[5] \u003d getTime(time);"
+        "content": "        if (validateDate(dParts, time)) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else {"
+        "content": "            c[2] \u003d convertDay(dParts[0]);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            throw new DukeException(\"☹ OOPS!!! The date is in an invalid format\");"
+        "content": "            c[3] \u003d convertMonth(dParts[1]);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            c[4] \u003d dParts[2];"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return new AddCommand(c);"
+        "content": "            c[5] \u003d getTime(time);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static boolean validateDate(String[] dParts, String time) {"
+        "content": "            throw new DukeException(\"☹ OOPS!!! The date is in an invalid format\");"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        String time2;"
+        "content": "        }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int timeValue, time2Value;"
+        "content": "        return new AddCommand(c);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (time.indexOf(\"-\") \u003e -1) {"
+        "content": "    }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time2 \u003d time.split(\"-\",2)[1];"
+        "content": "    public static boolean validateDate(String[] dParts, String time) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time \u003d time.split(\"-\", 2) [0];"
+        "content": "        String time2;"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            timeValue \u003d Integer.parseInt(time);"
+        "content": "        int timeValue, time2Value;"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time2Value \u003d Integer.parseInt(time2);"
+        "content": "        if (time.indexOf(\"-\") \u003e -1) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (timeValue % 100 \u003e 60 || timeValue \u003c 0 || timeValue \u003e 2360) {"
+        "content": "            time2 \u003d time.split(\"-\",2)[1];"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                return false;"
+        "content": "            time \u003d time.split(\"-\", 2) [0];"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            } else if (time2Value % 100 \u003e 60 || time2Value \u003c 0 || time2Value \u003e 2360) {"
+        "content": "            timeValue \u003d Integer.parseInt(time);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                return false;"
+        "content": "            time2Value \u003d Integer.parseInt(time2);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "            if (timeValue % 100 \u003e 60 || timeValue \u003c 0 || timeValue \u003e 2360) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }else {"
+        "content": "                return false;"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            timeValue \u003d Integer.parseInt(time);"
+        "content": "            } else if (time2Value % 100 \u003e 60 || time2Value \u003c 0 || time2Value \u003e 2360) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (timeValue % 100 \u003e 60 || timeValue \u003c 0 || timeValue \u003e 2360) {"
+        "content": "                return false;"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                return false;"
+        "content": "            }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "        }else {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            timeValue \u003d Integer.parseInt(time);"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (dParts.length !\u003d 3) {"
+        "content": "            if (timeValue % 100 \u003e 60 || timeValue \u003c 0 || timeValue \u003e 2360) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return false;"
+        "content": "                return false;"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        for (String s: dParts) {"
+        "content": "        }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (!isNumeric(s)) {"
+        "content": "        if (dParts.length !\u003d 3) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                return false;"
+        "content": "            return false;"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "        for (String s: dParts) {"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int dayValue \u003d Integer.parseInt(dParts[0]);"
+        "content": "            if (!isNumeric(s)) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int monthValue \u003d Integer.parseInt(dParts[1]);"
+        "content": "                return false;"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (dayValue \u003c 1 || dayValue \u003e 31) {"
+        "content": "            }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return false;"
+        "content": "        }"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (monthValue \u003c 1 || monthValue \u003e 12) {"
+        "content": "        int dayValue \u003d Integer.parseInt(dParts[0]);"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return false;"
+        "content": "        int monthValue \u003d Integer.parseInt(dParts[1]);"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (dParts[2].length() \u003e 4) {"
+        "content": "        if (dayValue \u003c 1 || dayValue \u003e 31) {"
       },
       {
         "lineNumber": 107,
@@ -4798,511 +4960,511 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "        } else if (monthValue \u003c 1 || monthValue \u003e 12) {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return true;"
+        "content": "            return false;"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "        } else if (dParts[2].length() \u003e 4) {"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "            return false;"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static String getTime (String time) {"
+        "content": "        }"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        String time2 \u003d \"\";"
+        "content": "        return true;"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int timeValue, time2Value;"
+        "content": "    }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (time.indexOf(\"-\") \u003e -1) {"
+        "content": ""
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time2 \u003d time.split(\"-\",2)[1];"
+        "content": "    public static String getTime (String time) {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time \u003d time.split(\"-\", 2) [0];"
+        "content": "        String time2 \u003d \"\";"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time \u003d convertTime(time);"
+        "content": "        int timeValue, time2Value;"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            time2 \u003d convertTime(time2);"
+        "content": "        if (time.indexOf(\"-\") \u003e -1) {"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            return time + \" - \" + time2;"
+        "content": "            time2 \u003d time.split(\"-\",2)[1];"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            time \u003d time.split(\"-\", 2) [0];"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        time \u003d convertTime(time);"
+        "content": "            time \u003d convertTime(time);"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return time;"
+        "content": "            time2 \u003d convertTime(time2);"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "            return time + \" - \" + time2;"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static String convertTime(String s) {"
+        "content": "        time \u003d convertTime(time);"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "        return time;"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int timeValue \u003d Integer.parseInt(s);"
+        "content": "    }"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (timeValue \u003c 1200) {"
+        "content": ""
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            //am case"
+        "content": "    public static String convertTime(String s) {"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (timeValue / 100 !\u003d 0) {"
+        "content": ""
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                s \u003d Integer.toString(timeValue / 100) + \u0027.\u0027 + s.substring(2,4);"
+        "content": "        int timeValue \u003d Integer.parseInt(s);"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            } else {"
+        "content": "        if (timeValue \u003c 1200) {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                s \u003d Integer.toString(timeValue / 100);"
+        "content": "            //am case"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "            if (timeValue / 100 !\u003d 0) {"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"am\";"
+        "content": "                s \u003d Integer.toString(timeValue / 100) + \u0027.\u0027 + s.substring(2,4);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (timeValue \u003c 1260) {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (timeValue / 100 !\u003d 0) {"
+        "content": "                s \u003d Integer.toString(timeValue / 100);"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                s \u003d Integer.toString(timeValue / 100) + \u0027.\u0027 + s.substring(2,4);"
+        "content": "            }"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            } else {"
+        "content": "            s +\u003d \"am\";"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                s \u003d Integer.toString(timeValue / 100);"
+        "content": "        } else if (timeValue \u003c 1260) {"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "            if (timeValue / 100 !\u003d 0) {"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"pm\";"
+        "content": "                s \u003d Integer.toString(timeValue / 100) + \u0027.\u0027 + s.substring(2,4);"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        else if (timeValue \u003c 2360) {"
+        "content": "                s \u003d Integer.toString(timeValue / 100);"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            // pm case"
+        "content": "            }"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            timeValue -\u003d 1200;"
+        "content": "            s +\u003d \"pm\";"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            if (timeValue / 100 !\u003d 0) {"
+        "content": "        }"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                s \u003d Integer.toString(timeValue / 100) + \u0027.\u0027 + s.substring(2,4);"
+        "content": "        else if (timeValue \u003c 2360) {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            } else {"
+        "content": "            // pm case"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                s \u003d Integer.toString(timeValue / 100);"
+        "content": "            timeValue -\u003d 1200;"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            }"
+        "content": "            if (timeValue / 100 !\u003d 0) {"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"pm\";"
+        "content": "                s \u003d Integer.toString(timeValue / 100) + \u0027.\u0027 + s.substring(2,4);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "            } else {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return s;"
+        "content": "                s \u003d Integer.toString(timeValue / 100);"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "            }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "            s +\u003d \"pm\";"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static String convertMonth(String s) {"
+        "content": "        }"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int monthValue \u003d Integer.parseInt(s);"
+        "content": "        return s;"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        String[] months \u003d new String[]{\"January\", \"Febuary\", \"March\", \"April\", \"May\", \"June\","
+        "content": "    }"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "                \"July\", \"August\", \"September\", \"October\", \"November\", \"December\"};"
+        "content": ""
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return months[monthValue-1];"
+        "content": "    public static String convertMonth(String s) {"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "        int monthValue \u003d Integer.parseInt(s);"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "        String[] months \u003d new String[]{\"January\", \"Febuary\", \"March\", \"April\", \"May\", \"June\","
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static String convertDay(String s) {"
+        "content": "                \"July\", \"August\", \"September\", \"October\", \"November\", \"December\"};"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int dayValue \u003d Integer.parseInt(s);"
+        "content": "        return months[monthValue-1];"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        if (dayValue \u003d\u003d 1 || dayValue % 10 \u003d\u003d 1) {"
+        "content": "    }"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"st\";"
+        "content": ""
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (dayValue \u003d\u003d 2 || dayValue % 10 \u003d\u003d 2) {"
+        "content": "    public static String convertDay(String s) {"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"nd\";"
+        "content": "        int dayValue \u003d Integer.parseInt(s);"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else if (dayValue \u003d\u003d 3 || dayValue % 10 \u003d\u003d 3) {"
+        "content": "        if (dayValue \u003d\u003d 1 || dayValue % 10 \u003d\u003d 1) {"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"rd\";"
+        "content": "            s +\u003d \"st\";"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        } else {"
+        "content": "        } else if (dayValue \u003d\u003d 2 || dayValue % 10 \u003d\u003d 2) {"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            s +\u003d \"th\";"
+        "content": "            s +\u003d \"nd\";"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        }"
+        "content": "        } else if (dayValue \u003d\u003d 3 || dayValue % 10 \u003d\u003d 3) {"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return s;"
+        "content": "            s +\u003d \"rd\";"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "            s +\u003d \"th\";"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static boolean isNumeric(String s) {"
+        "content": "        }"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        return s !\u003d null \u0026\u0026 s.matches(\"[0-9]+\");"
+        "content": "        return s;"
       },
       {
         "lineNumber": 181,
@@ -5316,11 +5478,39 @@
         "author": {
           "gitId": "JeremyKwok"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public static boolean isNumeric(String s) {"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return s !\u003d null \u0026\u0026 s.matches(\"[0-9]+\");"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "JeremyKwok": 182
+      "JeremyKwok": 186
     }
   },
   {
@@ -5408,7 +5598,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void saveData(ArrayList\u003cTask\u003e list) throws DukeException {"
+        "content": "    public void saveData(TaskList list) throws DukeException {"
       },
       {
         "lineNumber": 13,
@@ -5520,7 +5710,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public ArrayList\u003cTask\u003e loadData() throws DukeException {"
+        "content": "    public TaskList loadData() throws DukeException {"
       },
       {
         "lineNumber": 29,
@@ -5555,7 +5745,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            ArrayList\u003cTask\u003e list \u003d (ArrayList\u003cTask\u003e) ois.readObject();"
+        "content": "            TaskList list \u003d (TaskList) ois.readObject();"
       },
       {
         "lineNumber": 34,
@@ -5823,24 +6013,325 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "package PACKAGE_NAME;"
+        "content": "import java.io.Serializable;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "public class TaskList {"
+        "content": ""
       },
       {
         "lineNumber": 4,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "public class TaskList implements Serializable {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    private ArrayList\u003cTask\u003e list;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        this.list \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e list) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        this.list \u003d list;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public boolean addTask(Task t) throws DukeException {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        if (list.add(t)) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "            throw new DukeException(\"The task could not be added\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public void doneTask(int index) throws DukeException {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        list.get(index).markAsDone();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public void deleteTask(int index) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        list.remove(index);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public int getSize() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return list.size();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public Task at(int index) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return list.get(index);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    public TaskList find(String keyword) throws DukeException {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        TaskList filteredList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        for (int i \u003d 0; i \u003c list.size(); i++) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "            if (list.get(i).description.contains(keyword)) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "                filteredList.addTask(list.get(i));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "        return filteredList;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "JeremyKwok"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
         "author": {
           "gitId": "JeremyKwok"
         },
@@ -5848,7 +6339,7 @@
       }
     ],
     "authorContributionMap": {
-      "JeremyKwok": 4
+      "JeremyKwok": 47
     }
   },
   {
@@ -6021,14 +6512,14 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void showTaskListSize(ArrayList\u003cTask\u003e list) {"
+        "content": "    public void showTaskListSize(TaskList list) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        printMessage(\"Now you have \" + Integer.toString(list.size()) + \" tasks in the list.\");"
+        "content": "        printMessage(\"Now you have \" + Integer.toString(list.getSize()) + \" tasks in the list.\");"
       },
       {
         "lineNumber": 14,
@@ -6112,7 +6603,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public void printList(ArrayList\u003cTask\u003e list) {"
+        "content": "    public void printList(TaskList list) {"
       },
       {
         "lineNumber": 26,
@@ -6126,14 +6617,14 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        for (int i \u003d 0; i \u003c list.size(); i++) {"
+        "content": "        for (int i \u003d 0; i \u003c list.getSize(); i++) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "            System.out.println(\"     \" + (i+1) + \".\" + list.get(i).toString());"
+        "content": "            System.out.println(\"     \" + (i+1) + \".\" + list.at(i).toString());"
       },
       {
         "lineNumber": 29,
@@ -6161,7 +6652,7 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "    public static void printLast(ArrayList\u003cTask\u003e list) {"
+        "content": "    public static void printLast(TaskList list) {"
       },
       {
         "lineNumber": 33,
@@ -6175,14 +6666,14 @@
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        int n \u003d list.size();"
+        "content": "        int n \u003d list.getSize();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "JeremyKwok"
         },
-        "content": "        printMessage(\" \" + list.get(n-1).toString());"
+        "content": "        printMessage(\" \" + list.at(n-1).toString());"
       },
       {
         "lineNumber": 36,
