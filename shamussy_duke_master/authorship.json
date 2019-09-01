@@ -661,6 +661,378 @@
     }
   },
   {
+    "path": "src/main/java/duke/command/DeleteCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.storage.Storage;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class DeleteCommand extends Command{"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private final int taskNumber;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private final String data;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public DeleteCommand(String data) throws DukeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        data \u003d data.trim();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.data \u003d data;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        String pattern \u003d \"^[0-9]+$\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!data.matches(pattern)) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"The task number should be numeric only\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                this.taskNumber \u003d Integer.parseInt(data);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            } catch (NumberFormatException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                throw new DukeException(\"The number must be an integer and cannot exceed 9 digits\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(this.taskNumber \u003c\u003d tasks.size()) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                String taskInformation \u003d tasks.get(taskNumber).toString();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                tasks.delete(this.taskNumber);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printMessage(\"Noted. I\u0027ve removed this task: \");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printMessage(taskInformation);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printMessage(\"Now you have \" + tasks.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    storage.writeFile(tasks.export());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    ui.printError(\"Error writing tasks to file\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            } catch (IndexOutOfBoundsException exceptionMessage) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printError(\"Invalid task number, there are \" + tasks.size() + \" tasks\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printError(\"You entered: \" + data);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            ui.printError(\"Invalid task number, there are \" + tasks.size() + \" tasks\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 52
+    }
+  },
+  {
     "path": "src/main/java/duke/command/DoneCommand.java",
     "lines": [
       {
@@ -1181,6 +1553,245 @@
     }
   },
   {
+    "path": "src/main/java/duke/command/FindCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.storage.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "import duke.task.Task;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "public class FindCommand extends Command{"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    private final String keyword;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public FindCommand(String keyword) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        this.keyword \u003d keyword.trim();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        if(!keyword.isEmpty() \u0026\u0026 !keyword.isBlank()) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            ArrayList\u003cTask\u003e result \u003d tasks.filter(keyword);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            if (result.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printError(\"There are no tasks that match this keyword\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                ui.printMessage(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                for (int i \u003d 0; i \u003c result.size(); i++) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                    ui.printMessage(i + 1 + \".\" + result.get(i).toString());"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            ui.printError(\"Keyword cannot be empty\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "shamussy": 33
+    }
+  },
+  {
     "path": "src/main/java/duke/command/ListCommand.java",
     "lines": [
       {
@@ -1449,409 +2060,451 @@
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.command.DoneCommand;"
+        "content": "import duke.command.DeleteCommand;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.command.ExitCommand;"
+        "content": "import duke.command.DoneCommand;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.command.ListCommand;"
+        "content": "import duke.command.ExitCommand;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.exception.DukeException;"
+        "content": "import duke.command.FindCommand;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.task.Deadline;"
+        "content": "import duke.command.ListCommand;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.task.Event;"
+        "content": "import duke.exception.DukeException;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "import duke.task.Todo;"
+        "content": "import duke.task.Deadline;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "import duke.task.Event;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "public class Parser {"
+        "content": "import duke.task.Todo;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    private final Scanner scanner \u003d new Scanner(System.in);"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "public class Parser {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    public Command parseLine() throws DukeException {"
+        "content": "    private final Scanner scanner \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        String input \u003d scanner.nextLine();"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        parseIsBlank(input);"
+        "content": "    public Command parseLine() throws DukeException {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        String action \u003d parseAction(input).trim();"
+        "content": "        String input \u003d scanner.nextLine();"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        String data \u003d parseData(input, action);"
+        "content": "        parseIsBlank(input);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        return parseActionMenu(action, data);"
+        "content": "        String action \u003d parseAction(input).trim();"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "        String data \u003d parseData(input, action);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "        return parseActionMenu(action, data);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    private void parseIsBlank(String input) throws DukeException {"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        if(input.isBlank() || input.isEmpty()) {"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            throw new DukeException(\"User input is empty, please enter something\");"
+        "content": "    private void parseIsBlank(String input) throws DukeException {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        }"
+        "content": "        if(input.isBlank() || input.isEmpty()) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\"User input is empty, please enter something\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    private String parseAction(String input) throws DukeException {"
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        String[] inputSplit \u003d input.split(\" \",2);"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        if(\"bye\".equals(inputSplit[0]) \u0026\u0026 inputSplit.length !\u003d 1) {"
+        "content": "    private String parseAction(String input) throws DukeException {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            throw new DukeException(\"bye should not contain trailing arguments\");"
+        "content": "        String[] inputSplit \u003d input.split(\" \",2);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        } else if (\"list\".equals(inputSplit[0]) \u0026\u0026 inputSplit.length !\u003d 1) {"
+        "content": "        if(\"bye\".equals(inputSplit[0]) \u0026\u0026 inputSplit.length !\u003d 1) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            throw new DukeException(\"list should not contain trailing arguments\");"
+        "content": "            throw new DukeException(\"bye should not contain trailing arguments\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        }"
+        "content": "        } else if (\"list\".equals(inputSplit[0]) \u0026\u0026 inputSplit.length !\u003d 1) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        return inputSplit[0];"
+        "content": "            throw new DukeException(\"list should not contain trailing arguments\");"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "        return inputSplit[0];"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    private String parseData(String input, String action) {"
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        String data \u003d input.substring(action.length(),input.length());"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        return data;"
+        "content": "    private String parseData(String input, String action) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "        String data \u003d input.substring(action.length(),input.length());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "        return data;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    private Command parseActionMenu(String action, String data) throws DukeException {"
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        switch (action) {"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        case \"bye\":"
+        "content": "    private Command parseActionMenu(String action, String data) throws DukeException {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            return new ExitCommand();"
+        "content": "        switch (action) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        case \"list\":"
+        "content": "        case \"bye\":"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            return new ListCommand();"
+        "content": "            return new ExitCommand();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        case \"done\":"
+        "content": "        case \"list\":"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            return new DoneCommand(data);"
+        "content": "            return new ListCommand();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        case \"deadline\":"
+        "content": "        case \"done\":"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            return new AddCommand(Deadline.create(data));"
+        "content": "            return new DoneCommand(data);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        case \"event\":"
+        "content": "        case \"delete\":"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            return new AddCommand(Event.create(data));"
+        "content": "            return new DeleteCommand(data);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        case \"todo\":"
+        "content": "        case \"find\":"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            return new AddCommand(Todo.create(data));"
+        "content": "            return new FindCommand(data);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        default:"
+        "content": "        case \"deadline\":"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "            return new AddCommand(Deadline.create(data));"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        }"
+        "content": "        case \"event\":"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "            return new AddCommand(Event.create(data));"
       },
       {
         "lineNumber": 65,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        case \"todo\":"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            return new AddCommand(Todo.create(data));"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
         "author": {
           "gitId": "shamussy"
         },
@@ -1859,7 +2512,7 @@
       }
     ],
     "authorContributionMap": {
-      "shamussy": 65
+      "shamussy": 71
     }
   },
   {
@@ -4282,80 +4935,178 @@
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    public void markDone(int i) throws IndexOutOfBoundsException {"
+        "content": "    public ArrayList\u003cTask\u003e filter(String keyword) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        tasks.get(i - 1).markDone();"
+        "content": "        ArrayList\u003cTask\u003e output \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "        for(Task task : tasks) {"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "shamussy"
         },
-        "content": ""
+        "content": "            if(task.getDescription().toLowerCase().contains(keyword.toLowerCase())) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    public ArrayList\u003cString\u003e export() {"
+        "content": "                output.add(task);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        ArrayList\u003cString\u003e output \u003d new ArrayList\u003c\u003e();"
+        "content": "            }"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        for(int i \u003d 1; i \u003c\u003d tasks.size(); i++) {"
+        "content": "        }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "            output.add(tasks.get(i-1).export());"
+        "content": "        return output;"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "        return output;"
+        "content": ""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "shamussy"
         },
-        "content": "    }"
+        "content": "    public void markDone(int i) throws IndexOutOfBoundsException {"
       },
       {
         "lineNumber": 91,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        tasks.get(i - 1).markDone();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public void delete(int i) throws IndexOutOfBoundsException {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        tasks.remove(i-1);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    public ArrayList\u003cString\u003e export() {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        ArrayList\u003cString\u003e output \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        for(int i \u003d 1; i \u003c\u003d tasks.size(); i++) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "            output.add(tasks.get(i-1).export());"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "        return output;"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "shamussy"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
         "author": {
           "gitId": "shamussy"
         },
@@ -4363,7 +5114,7 @@
       }
     ],
     "authorContributionMap": {
-      "shamussy": 91
+      "shamussy": 105
     }
   },
   {

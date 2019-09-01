@@ -555,63 +555,63 @@
         "author": {
           "gitId": "-"
         },
-        "content": "                    case \"todo\":"
+        "content": "                    case \"find\":"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
-        "content": "                        String description \u003d line.buildTodoDescription();"
+        "content": "                        String argument \u003d line.getArgument().toLowerCase();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "-"
         },
-        "content": "                        if (description.isBlank()) {"
+        "content": "                        if(argument.isEmpty())"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "-"
         },
-        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_TODO);"
+        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_ARGUMENT);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "-"
         },
-        "content": "                        }"
+        "content": "                        else {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "-"
         },
-        "content": "                        Todo todo \u003d new Todo(description);"
+        "content": "                            List\u003cTask\u003e foundList \u003d taskList.stream()"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "-"
         },
-        "content": "                        Ui.printTodo(todo, taskList);"
+        "content": "                                    .filter(x -\u003e x.description.toLowerCase().contains(argument)).collect(Collectors.toList());"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "-"
         },
-        "content": "                        taskList.add(todo);"
+        "content": "                            Ui.printList(foundList);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "-"
         },
-        "content": "                        new FileManager().saveFile(taskList);"
+        "content": "                        }"
       },
       {
         "lineNumber": 71,
@@ -625,276 +625,360 @@
         "author": {
           "gitId": "-"
         },
-        "content": "                    case \"deadline\":"
+        "content": "                    case \"todo\":"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "-"
         },
-        "content": "                        description \u003d line.buildDeadlineDescription();"
+        "content": "                        String description \u003d line.buildTodo();"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "-"
         },
-        "content": "                        String by \u003d line.buildDeadlineBy();"
+        "content": "                        if (description.isEmpty()) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "-"
         },
-        "content": "                        if (description.isBlank()) {"
+        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_TODO);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "-"
         },
-        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_DEADLINE);"
+        "content": "                        }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "-"
         },
-        "content": "                        }"
+        "content": "                        Todo todo \u003d new Todo(description);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "-"
         },
-        "content": "                        if (by.isBlank()) {"
+        "content": "                        Ui.printTodo(todo, taskList);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "-"
         },
-        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.DEADLINE_TIME);"
+        "content": "                        taskList.add(todo);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "-"
         },
-        "content": "                        }"
+        "content": "                        new FileManager().saveFile(taskList);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "-"
         },
-        "content": "                        LocalDateTime localDateTime \u003d new DukeDateTime().getLocalDateTime(by);"
+        "content": "                        break;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "-"
         },
-        "content": "                        Deadline deadline \u003d new Deadline(description, localDateTime);"
+        "content": "                    case \"deadline\":"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "-"
         },
-        "content": "                        taskList.add(deadline);"
+        "content": "                        line.buildDeadline();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "-"
         },
-        "content": "                        Ui.printDeadline(deadline, taskList);"
+        "content": "                        description \u003d line.description;"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "-"
         },
-        "content": "                        new FileManager().saveFile(taskList);"
+        "content": "                        String by \u003d line.additional;"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "-"
         },
-        "content": "                        break;"
+        "content": "                        if (description.isEmpty()) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "-"
         },
-        "content": "                    case \"event\":"
+        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_DEADLINE);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "-"
         },
-        "content": "                        description \u003d line.buildEventDescription();"
+        "content": "                        }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "-"
         },
-        "content": "                        String at \u003d line.buildEventAt();"
+        "content": "                        if (by.isEmpty()) {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "-"
         },
-        "content": "                        if (description.isBlank()) {"
+        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.DEADLINE_TIME);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "-"
         },
-        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_EVENT);"
+        "content": "                        }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "-"
         },
-        "content": "                        }"
+        "content": "                        LocalDateTime localDateTime \u003d new DukeDateTime().getLocalDateTime(by);"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "                        Deadline deadline \u003d new Deadline(description, localDateTime);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "-"
         },
-        "content": "                        if (at.isBlank()) {"
+        "content": "                        taskList.add(deadline);"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "-"
         },
-        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.EVENT_TIME);"
+        "content": "                        Ui.printDeadline(deadline, taskList);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "-"
         },
-        "content": "                        }"
+        "content": "                        new FileManager().saveFile(taskList);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
-        "content": "                        Event event \u003d new Event(description, at);"
+        "content": "                        break;"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
-        "content": "                        Ui.printEvent(event, taskList);"
+        "content": "                    case \"event\":"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "-"
         },
-        "content": "                        taskList.add(event);"
+        "content": "                        line.buildEvent();"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "-"
         },
-        "content": "                        new FileManager().saveFile(taskList);"
+        "content": "                        description \u003d line.description;"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "-"
         },
-        "content": "                        break;"
+        "content": "                        String at \u003d line.additional;"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "-"
         },
-        "content": "                    default:"
+        "content": "                        if (description.isEmpty()) {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "-"
         },
-        "content": "                        throw new DukeException(\"\", DukeException.ExceptionType.INVALID_COMMAND);"
+        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.INVALID_EVENT);"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "-"
         },
-        "content": "                }"
+        "content": "                        }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "-"
         },
-        "content": "            } catch (DukeException e) {"
+        "content": ""
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "-"
         },
-        "content": "                e.PrintExceptionMessage();"
+        "content": "                        if (at.isEmpty()) {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "-"
         },
-        "content": "            }"
+        "content": "                            throw new DukeException(\"\", DukeException.ExceptionType.EVENT_TIME);"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "                        }"
       },
       {
         "lineNumber": 109,
         "author": {
-          "gitId": "lucasfoo"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "                        Event event \u003d new Event(description, at);"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "-"
         },
-        "content": "}"
+        "content": "                        Ui.printEvent(event, taskList);"
       },
       {
         "lineNumber": 111,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        taskList.add(event);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        new FileManager().saveFile(taskList);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    default:"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                        throw new DukeException(\"\", DukeException.ExceptionType.INVALID_COMMAND);"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                e.PrintExceptionMessage();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "lucasfoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 123,
         "author": {
           "gitId": "-"
         },
@@ -902,7 +986,7 @@
       }
     ],
     "authorContributionMap": {
-      "-": 108,
+      "-": 120,
       "lucasfoo": 3
     }
   },
@@ -984,332 +1068,367 @@
         "author": {
           "gitId": "-"
         },
-        "content": "        UNKNOWN"
+        "content": "        UNKNOWN,"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        INVALID_ARGUMENT"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
-        "content": "    private ExceptionType type;"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    private ExceptionType type;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "-"
         },
-        "content": "    public DukeException(String message, ExceptionType type){"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
-        "content": "        super(message);"
+        "content": "    public DukeException(String message, ExceptionType type){"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "-"
         },
-        "content": "        this.type \u003d type;"
+        "content": "        super(message);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "-"
         },
-        "content": "    }"
+        "content": "        this.type \u003d type;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "-"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "-"
         },
-        "content": "    public void PrintExceptionMessage(){"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "-"
         },
-        "content": "        if(this.type.equals( ExceptionType.INVALID_COMMAND)){"
+        "content": "    public void PrintExceptionMessage(){"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        if(this.type.equals( ExceptionType.INVALID_COMMAND)){"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if(this.type.equals(ExceptionType.INVALID_TODO)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        }else if(this.type.equals(ExceptionType.INVALID_TODO)){"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if (this.type.equals(ExceptionType.INVALID_DEADLINE)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        }else if (this.type.equals(ExceptionType.INVALID_DEADLINE)){"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if(this.type.equals(ExceptionType.INVALID_EVENT)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        }else if(this.type.equals(ExceptionType.INVALID_EVENT)){"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! The description of a event cannot be empty.\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! The description of a event cannot be empty.\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if(this.type.equals(ExceptionType.EVENT_TIME)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        }else if(this.type.equals(ExceptionType.EVENT_TIME)){"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! The time of a event cannot be empty.\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! The time of a event cannot be empty.\");"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if(this.type.equals(ExceptionType.DEADLINE_TIME)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        }else if(this.type.equals(ExceptionType.DEADLINE_TIME)){"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! The time of a deadline cannot be empty.\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! The time of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if (this.type.equals(ExceptionType.OUT_OF_RANGE)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "        }else if (this.type.equals(ExceptionType.OUT_OF_RANGE)){"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! THe item you have selected is out of range.\");"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
-        "content": "            Ui.print_line();"
+        "content": "            System.out.println(\"☹ OOPS!!! THe item you have selected is out of range.\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "-"
         },
-        "content": "        }else if(this.type.equals(ExceptionType.UNKNOWN)){"
+        "content": "            Ui.print_line();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "-"
         },
-        "content": "            System.out.println(\"☹ OOPS!!! WTF SOMETHING WEIRED HAPPENED\");"
+        "content": "        }else if(this.type.equals(ExceptionType.UNKNOWN)){"
       },
       {
         "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(\"☹ OOPS!!! WTF SOMETHING WEIRED HAPPENED\");"
+      },
+      {
+        "lineNumber": 53,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "        }else if(this.type.equals(ExceptionType.INVALID_DONE)) {"
       },
       {
-        "lineNumber": 53,
+        "lineNumber": 54,
         "author": {
           "gitId": "-"
         },
         "content": "            Ui.print_line();"
       },
       {
-        "lineNumber": 54,
+        "lineNumber": 55,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "            System.out.println(\"☹ OOPS!!! The index of mark as done cannot be empty.\");"
       },
       {
-        "lineNumber": 55,
+        "lineNumber": 56,
         "author": {
           "gitId": "-"
         },
         "content": "            Ui.print_line();"
       },
       {
-        "lineNumber": 56,
+        "lineNumber": 57,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }else if(this.type.equals(ExceptionType.INVALID_ARGUMENT)) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            Ui.print_line();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            System.out.println(\"☹ OOPS!!! The argument for find cannot be empty!\");"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            Ui.print_line();"
+      },
+      {
+        "lineNumber": 61,
         "author": {
           "gitId": "lucasfoo"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 57,
+        "lineNumber": 62,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 58,
+        "lineNumber": 63,
         "author": {
           "gitId": "-"
         },
@@ -1317,7 +1436,7 @@
       }
     ],
     "authorContributionMap": {
-      "-": 54,
+      "-": 59,
       "lucasfoo": 4
     }
   },

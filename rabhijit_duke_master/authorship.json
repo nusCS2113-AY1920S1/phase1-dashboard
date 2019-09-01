@@ -338,6 +338,455 @@
     }
   },
   {
+    "path": "src/main/java/Ai.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "public class Ai {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected String command;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected int exitCode;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public Ai() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        exitCode \u003d 0;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public int getExitCode() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return exitCode;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void execute(ArrayList\u003cString\u003e commands, Ui ui, Storage storage, TaskList tasks) throws ParseException, IOException, DukeException {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        command \u003d commands.get(0);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        if (command.equals(\"close\")) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            storage.saveToFile(tasks.getAllItems());"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.farewell();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            exitCode \u003d 1;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printTaskArray(\"Here are the tasks in your list\", tasks.generateList());"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"done\")) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            int taskNo \u003d Integer.parseInt(commands.get(1)) - 1;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (taskNo + 1 \u003e tasks.getNumberOfItems()) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"We don\u0027t have that many tasks!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            tasks.markItemAsDone(taskNo);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printTask(\"Nice! I\u0027ve marked this task as done:\", tasks.getItemToPrint(taskNo));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"delete\")) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            int taskNo \u003d Integer.parseInt(commands.get(1)) - 1;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (taskNo + 1 \u003e tasks.getNumberOfItems()) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"We don\u0027t have that many tasks!\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Task thisTask \u003d tasks.getItem(taskNo);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            tasks.deleteItem(taskNo);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printRemovedTask(thisTask.toString(), tasks.getNumberOfItems());"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"find\")) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printTaskArray(\"Here are the matching tasks in your list:\", tasks.searchItems(commands.get(1)));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"todo\")) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Todo newTodo \u003d new Todo(commands.get(1));"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            tasks.addItem(newTodo);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printAddedTask(newTodo.toString(), tasks.getNumberOfItems());"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Deadline newDeadline \u003d new Deadline(commands.get(1), commands.get(2));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            tasks.addItem(newDeadline);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printAddedTask(newDeadline.toString(), tasks.getNumberOfItems());"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (command.equals(\"event\")) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Event newEvent \u003d new Event(commands.get(1), commands.get(2));"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            tasks.addItem(newEvent);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            ui.printAddedTask(newEvent.toString(), tasks.getNumberOfItems());"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rabhijit": 63
+    }
+  },
+  {
     "path": "src/main/java/Deadline.java",
     "lines": [
       {
@@ -514,70 +963,70 @@
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.util.*;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.io.FileWriter;"
+        "content": "import java.text.*;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.io.File;"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
-          "gitId": "rabhijit"
+          "gitId": "-"
         },
-        "content": "import java.io.BufferedWriter;"
+        "content": "public class Duke {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.io.IOException;"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.util.Date;"
+        "content": "    private TaskList tasks;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.text.DateFormat;"
+        "content": "    private Parser parser;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "import java.text.ParseException;"
+        "content": "    private Ai ai;"
       },
       {
         "lineNumber": 11,
@@ -589,1468 +1038,166 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "rabhijit"
         },
-        "content": "public class Duke {"
+        "content": "    public Duke(String filePath) throws FileNotFoundException, ParseException {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "    public static void main(String[] args) throws DukeException, IOException, ParseException {"
+        "content": "        storage \u003d new Storage(filePath);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        ArrayList\u003cTask\u003e items \u003d new ArrayList\u003cTask\u003e();"
+        "content": "        tasks \u003d new TaskList(storage.getItems());"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        Scanner inputScanner \u003d new Scanner(System.in);"
+        "content": "        parser \u003d new Parser();"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        File file \u003d new File(\"data/duke.txt\");"
+        "content": "        ai \u003d new Ai();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "rabhijit"
         },
-        "content": "        Scanner fileScanner \u003d new Scanner(file);"
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 18,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        while (fileScanner.hasNextLine()) {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            String[] line \u003d fileScanner.nextLine().split(\"`\");"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            boolean isDone \u003d (Integer.parseInt(line[2]) \u003d\u003d 1);"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            if (line[0].equals(\"T\")) {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                Todo newTodo \u003d new Todo(line[1], isDone);"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                items.add(newTodo);"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            else if (line[0].equals(\"D\")) {"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                Deadline newDeadline \u003d new Deadline(line[1], line[3], isDone);"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                items.add(newDeadline);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            else if (line[0].equals(\"E\")) {"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                Event newEvent \u003d new Event(line[1], line[3], isDone);"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                items.add(newEvent);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        System.out.println(\"\\tHello! I\u0027m Duke\");"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        System.out.println(\"\\tWhat can I do for you?\");"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        while (true) {"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                String input \u003d inputScanner.nextLine();"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                String[] words \u003d input.split(\" \");"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                if (input.equals(\"bye\") \u0026\u0026 words.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    BufferedWriter fileWriter \u003d new BufferedWriter(new FileWriter(file, false));"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    for (int i \u003d 0; i \u003c items.size(); i++) {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        Task thisTask \u003d items.get(i);"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        String line \u003d thisTask.getType() + \"`\" + thisTask.getDescription() + \"`\";"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        line +\u003d (thisTask.getDoneStatus() \u003d\u003d true ? 1 : 0);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        if (thisTask.getType() \u003d\u003d \u0027D\u0027 || thisTask.getType() \u003d\u003d \u0027E\u0027) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                            line +\u003d \"`\";"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                            line +\u003d thisTask.getDateToSave();"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        fileWriter.write(line);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        fileWriter.newLine();"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    fileWriter.close();"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tBye. Hope to see you again soon!\");"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (input.equals(\"list\") \u0026\u0026 words.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tHere are the tasks in your list:\");"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    for (int i \u003d 0; i \u003c items.size(); i++) {"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        Task thisTask \u003d items.get(i);"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t\" + (i+1) + \". \" + thisTask.toString());"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (words[0].equals(\"done\") \u0026\u0026 words.length \u003c\u003d 2) {"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (words.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Please specify the task number you want to mark as done.\");"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (!(words[1].matches(\"^\\\\d*$\"))) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"That\u0027s an invalid task number!\");"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    int taskNumber \u003d Integer.parseInt(words[1]) - 1;"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (taskNumber + 1 \u003e items.size()) {"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"We don\u0027t have that many tasks!\");"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    Task thisTask \u003d items.get(taskNumber);"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    thisTask.markAsDone();"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tNice! I\u0027ve marked this task as done:\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t  \" + thisTask.toString());"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (words[0].equals(\"delete\") \u0026\u0026 words.length \u003c\u003d 2) {"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (words.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Please specify the task number you want to delete.\");"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (!(words[1].matches(\"^\\\\d*$\"))) {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"That\u0027s an invalid task number!\");"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    int taskNumber \u003d Integer.parseInt(words[1]) - 1;"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (taskNumber + 1 \u003e items.size()) {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"We don\u0027t have that many tasks!\");"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    Task thisTask \u003d items.get(taskNumber);"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tNoted. I\u0027ve removed this task:\");"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t  \" + thisTask.toString());"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    items.remove(taskNumber);"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (words[0].equals(\"find\")) {"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (words.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Come on, man, give me something to find.\");"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    String query \u003d \"\";"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    for (int i \u003d 1; i \u003c words.length; i++) {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        query +\u003d words[i];"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        if (i !\u003d words.length - 1) {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                            query +\u003d \" \";"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    query \u003d query.toLowerCase();"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tHere are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    for (int j \u003d 0; j \u003c items.size(); j++) {"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        Task thisTask \u003d items.get(j);"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        if (thisTask.getDescription().toLowerCase().contains(query)) {"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                            System.out.println(\"\\t\" + (j+1) + \". \" + thisTask.toString());"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (words[0].equals(\"todo\")) {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (!(words.length \u003e 1)) {"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    input \u003d input.replaceFirst(\"todo \", \"\");"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    Todo newTodo \u003d new Todo(input);"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    items.add(newTodo);"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tGot it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t  \" + newTodo.toString());"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\tNow you have \" + items.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (words[0].equals(\"deadline\")) {"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (!(words.length \u003e 1)) {"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    input \u003d input.replaceFirst(\"deadline \", \"\");"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    int splitIndex \u003d input.indexOf(\"/by\");"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (splitIndex \u003d\u003d -1) {"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Please specify the deadline date/time using the \u0027/by\u0027 command.\");"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    else if (splitIndex \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    String description \u003d input.substring(0, splitIndex - 1);"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (description.isEmpty()) {"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    String by \u003d input.substring(splitIndex + 1);"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    by \u003d by.replaceFirst(\"by \", \"\");"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (by.equals(\"by\")) {"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    try {"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        Deadline newDeadline \u003d new Deadline(description, by);"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        items.add(newDeadline);"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\tGot it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t  \" + newDeadline.toString());"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\tNow you have \" + items.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Please enter your deadline date in the format: dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else if (words[0].equals(\"event\")) {"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (!(words.length \u003e 1)) {"
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of an event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    input \u003d input.replaceFirst(\"event \", \"\");"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    int splitIndex \u003d input.indexOf(\"/at\");"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (splitIndex \u003d\u003d -1) {"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Please specify the event date using the \u0027/at\u0027 command.\");"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    else if (splitIndex \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of an event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    String description \u003d input.substring(0, splitIndex - 1);"
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (description.isEmpty()) {"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The description of an event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 193,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    String at \u003d input.substring(splitIndex + 1);"
-      },
-      {
-        "lineNumber": 195,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    at \u003d at.replaceFirst(\"at \", \"\");"
-      },
-      {
-        "lineNumber": 196,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    if (at.equals(\"at\")) {"
-      },
-      {
-        "lineNumber": 197,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"The event date cannot be empty.\");"
-      },
-      {
-        "lineNumber": 198,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 199,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    try {"
-      },
-      {
-        "lineNumber": 200,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        Event newEvent \u003d new Event(description, at);"
-      },
-      {
-        "lineNumber": 201,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        items.add(newEvent);"
-      },
-      {
-        "lineNumber": 202,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 203,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\tGot it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 204,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t  \" + newEvent.toString());"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\tNow you have \" + items.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        System.out.println(\"\\t____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                        throw new DukeException(\"Please enter your event date in the format: dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                else {"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                    throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            catch(DukeException e) {"
-      },
-      {
-        "lineNumber": 217,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "                e.showError();"
-      },
-      {
-        "lineNumber": 218,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 219,
-        "author": {
-          "gitId": "rabhijit"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 220,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 221,
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void run() throws ParseException, IOException {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        while (ai.getExitCode() !\u003d 1) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                ai.execute(parser.parseInput(ui.getInput()), ui, storage, tasks);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                e.showError();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public static void main(String[] args) throws FileNotFoundException, ParseException, IOException, DukeException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        new Duke(\"data/duke.txt\").run();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
         "author": {
           "gitId": "-"
         },
@@ -2058,8 +1205,8 @@
       }
     ],
     "authorContributionMap": {
-      "rabhijit": 218,
-      "-": 3
+      "rabhijit": 31,
+      "-": 4
     }
   },
   {
@@ -2335,6 +1482,1233 @@
     ],
     "authorContributionMap": {
       "rabhijit": 23
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    // cleans up user input and passes to AI"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public Parser() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        ;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public ArrayList\u003cString\u003e parseInput(String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        ArrayList\u003cString\u003e commands \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        String[] words \u003d input.split(\" \");"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        if (input.equals(\"bye\") \u0026\u0026 words.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"close\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (input.equals(\"list\") \u0026\u0026 words.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"list\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (words[0].equals(\"done\") \u0026\u0026 words.length \u003c\u003d 2) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"done\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (words.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"Please specify the task number you want to mark as done.\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (!(words[1].matches(\"[1-9][0-9]*\"))) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"That\u0027s an invalid task number!\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(words[1]);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (words[0].equals(\"delete\") \u0026\u0026 words.length \u003c\u003d 2) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"delete\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (words.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"Please specify the task number you want to mark as done.\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (!(words[1].matches(\"[1-9][0-9]*\"))) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"That\u0027s an invalid task number!\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(words[1]);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (words[0].equals(\"find\")) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"find\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (words.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"Tell me what you want me to find.\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String query \u003d \"\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            for (int i \u003d 1; i \u003c words.length; i++) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                query +\u003d words[i];"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                if (i !\u003d words.length - 1) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                    query +\u003d \" \";"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            query \u003d query.toLowerCase();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(query);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (words[0].equals(\"todo\")) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"todo\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (!(words.length \u003e 1)) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            input \u003d input.replaceFirst(\"todo \", \"\");"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(input);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (words[0].equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"deadline\");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (!(words.length \u003e 1)) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            input \u003d input.replaceFirst(\"deadline \", \"\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            int splitIndex \u003d input.indexOf(\"/by\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (splitIndex \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"Please specify the deadline date/time using the \u0027/by\u0027 command.\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            else if (splitIndex \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String description \u003d input.substring(0, splitIndex - 1);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (description.isEmpty()) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(description);"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String by \u003d input.substring(splitIndex + 1);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            by \u003d by.replaceFirst(\"by \", \"\");"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (by.equals(\"by\")) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(by);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else if (words[0].equals(\"event\")) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(\"event\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (!(words.length \u003e 1)) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            input \u003d input.replaceFirst(\"event \", \"\");"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            int splitIndex \u003d input.indexOf(\"/at\");"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (splitIndex \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"Please specify the event date using the \u0027/at\u0027 command.\");"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            else if (splitIndex \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String description \u003d input.substring(0, splitIndex - 1);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (description.isEmpty()) {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(description);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String at \u003d input.substring(splitIndex + 1);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            at \u003d at.replaceFirst(\"at \", \"\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (at.equals(\"at\")) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                throw new DukeException(\"The event date cannot be empty.\");"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            commands.add(at);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return commands;"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rabhijit": 118
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    // converts the .txt file to a list of tasks"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected ArrayList\u003cTask\u003e items \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected File file;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public Storage(String filename) throws FileNotFoundException, ParseException {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        file \u003d new File(filename);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        readFromFile();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void readFromFile() throws FileNotFoundException, ParseException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        Scanner fileScanner \u003d new Scanner(file);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        while (fileScanner.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String[] line \u003d fileScanner.nextLine().split(\"`\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            boolean isDone \u003d (Integer.parseInt(line[2]) \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (line[0].equals(\"T\")) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                Todo newTodo \u003d new Todo(line[1], isDone);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                items.add(newTodo);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            else if (line[0].equals(\"D\")) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                Deadline newDeadline \u003d new Deadline(line[1], line[3], isDone);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                items.add(newDeadline);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            else if (line[0].equals(\"E\")) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                Event newEvent \u003d new Event(line[1], line[3], isDone);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                items.add(newEvent);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        // take in TaskList and save to it directly?"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void saveToFile(ArrayList\u003cTask\u003e tasks) throws ParseException, IOException {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        BufferedWriter fileWriter \u003d new BufferedWriter(new FileWriter(file, false));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        for (int i \u003d 0; i \u003c tasks.size(); i++) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Task thisTask \u003d tasks.get(i);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            String line \u003d thisTask.getType() + \"`\" + thisTask.getDescription() + \"`\";"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            line +\u003d (thisTask.getDoneStatus() \u003d\u003d true ? 1 : 0);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (thisTask.getType() \u003d\u003d \u0027D\u0027 || thisTask.getType() \u003d\u003d \u0027E\u0027) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                line +\u003d \"`\";"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                line +\u003d thisTask.getDateToSave();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            fileWriter.write(line);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            fileWriter.newLine();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        fileWriter.close();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getItems() {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return items;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rabhijit": 55
     }
   },
   {
@@ -2815,6 +3189,441 @@
     }
   },
   {
+    "path": "src/main/java/TaskList.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected ArrayList\u003cTask\u003e items;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e items) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        this.items \u003d items;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public Task getItem(int itemNo) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        Task thisItem \u003d items.get(itemNo);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return thisItem;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public String getItemToPrint(int itemNo) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        Task thisItem \u003d items.get(itemNo);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return (\"  \" + thisItem.toString());"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getAllItems() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return items;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public int getNumberOfItems() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return items.size();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void deleteItem(int itemNo) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        items.remove(itemNo);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void addItem(Task item) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        items.add(item);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void markItemAsDone(int itemNo) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        Task thisItem \u003d items.get(itemNo);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        thisItem.markAsDone();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public ArrayList\u003cString\u003e searchItems(String keyword) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        ArrayList\u003cString\u003e results \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        for (int j \u003d 0; j \u003c items.size(); j++) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Task thisTask \u003d items.get(j);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            if (thisTask.getDescription().toLowerCase().contains(keyword)) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "                results.add((j+1) + \". \" + thisTask.toString());"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return results;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public ArrayList\u003cString\u003e generateList() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        ArrayList\u003cString\u003e list \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        for (int i \u003d 0; i \u003c items.size(); i++) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            Task thisTask \u003d items.get(i);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            list.add((i+1) + \". \" + thisTask.toString());"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return list;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rabhijit": 61
+    }
+  },
+  {
     "path": "src/main/java/Todo.java",
     "lines": [
       {
@@ -2897,6 +3706,490 @@
     ],
     "authorContributionMap": {
       "rabhijit": 11
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "import java.text.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected Scanner inputScanner;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    protected String input;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public Ui() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        inputScanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        welcome();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public String getInput() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        input \u003d inputScanner.nextLine();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        return input;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void printArray(ArrayList\u003cString\u003e inputs) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        for (int i \u003d 0; i \u003c inputs.size(); i++) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            System.out.println(\"\\t\" + inputs.get(i));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void printTaskArray(String command, ArrayList\u003cString\u003e inputs) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t\" + command);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        for (int i \u003d 0; i \u003c inputs.size(); i++) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "            System.out.println(\"\\t\" + inputs.get(i));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void print(String input) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        printArray(new ArrayList\u003cString\u003e(Arrays.asList(input)));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void printTask(String command, String input) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        printTaskArray(command, new ArrayList\u003cString\u003e(Arrays.asList(input)));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void printAddedTask(String input, int noTasks) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\tGot it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t  \" + input);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\tNow you have \" + noTasks + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void printRemovedTask(String input, int noTasks) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\tNoted. I\u0027ve removed this task:\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t  \" + input);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\tNow you have \" + noTasks + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        System.out.println(\"\\t____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void farewell() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        print(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    public void welcome() {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "        printArray(new ArrayList\u003cString\u003e(Arrays.asList(\"Hello! I\u0027m Duke\", \"What can I do for you?\")));"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "rabhijit"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "rabhijit": 68
     }
   }
 ]
