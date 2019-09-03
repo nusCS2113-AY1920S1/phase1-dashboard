@@ -507,7 +507,7 @@
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "    private static Task[] array \u003d new Task[100];"
+        "content": "    private static ArrayList\u003cTask\u003e list;"
       },
       {
         "lineNumber": 14,
@@ -535,7 +535,7 @@
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "        int counter\u003d0;"
+        "content": "        list \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 18,
@@ -661,871 +661,1011 @@
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    for (int i \u003d 0; i \u003c 100; i++) {"
+        "content": "                    for (int i \u003d 0; i \u003c list.size(); i++) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        if (array[i] \u003d\u003d null) break;"
+        "content": "                        System.out.println(i + 1 + \".\" + list.get(i).toString());"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(i + 1 + \".\" + array[i].toString());"
+        "content": "                    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    }"
+        "content": "                } else if (words.equals(\"done\")) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else if (words.equals(\"done\")) {"
+        "content": "                    int num \u003d sc.nextInt();"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    int num \u003d sc.nextInt();"
+        "content": "                    list.get(num - 1).setDone(true);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    array[num - 1].setDone(true);"
+        "content": "                    refreshFile();"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    refreshFile();"
+        "content": "                    System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+        "content": "                    System.out.println(\"[\" + list.get(num - 1).getStatusIcon() + \"] \" + list.get(num - 1).getDescription());"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    System.out.println(\"[\" + array[num - 1].getStatusIcon() + \"] \" + array[num - 1].getDescription());"
+        "content": "                } else if (words.equals(\"deadline\")) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else if (words.equals(\"deadline\")) {"
+        "content": "                    try {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    try {"
+        "content": "                        String words2 \u003d sc.nextLine();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        String words2 \u003d sc.nextLine();"
+        "content": "                        if (words2.trim().isEmpty())"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        if (words2.trim().isEmpty())"
+        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+        "content": "                        String[] temparray \u003d words2.trim().split(\" /by \");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        String[] temparray \u003d words2.trim().split(\" /by \");"
+        "content": "                        SimpleDateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        SimpleDateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+        "content": "                        Date date \u003d format.parse(temparray[1]);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        Date date \u003d format.parse(temparray[1]);"
+        "content": "                        System.out.println(\"Got it. I\u0027ve added this task:\");"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Got it. I\u0027ve added this task:\");"
+        "content": "                        Task tempDeadline \u003d new Deadline(temparray[0], date);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        array[counter] \u003d new Deadline(temparray[0], date);"
+        "content": "                        list.add(tempDeadline);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        appendFile(array[counter]);"
+        "content": "                        appendFile(tempDeadline);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        counter++;"
+        "content": "                        System.out.println(tempDeadline.toString());"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(array[counter - 1].toString());"
+        "content": "                        System.out.println(\"Now you have \" + list.size() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Now you have \" + counter + \" tasks in the list.\");"
+        "content": "                    } catch (DukeException e) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    } catch (DukeException e) {"
+        "content": "                        System.out.println(e.getMessage());"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(e.getMessage());"
+        "content": "                    } catch (ParseException e) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    } catch (ParseException e) {"
+        "content": "                        System.out.println(\"Check format of date entered\");"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Check format of date entered\");"
+        "content": "                    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        continue;"
+        "content": "                } else if (words.equals(\"todo\")) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    }"
+        "content": "                    try {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else if (words.equals(\"todo\")) {"
+        "content": "                        String words2 \u003d sc.nextLine();"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    try {"
+        "content": "                        if (words2.trim().isEmpty())"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        String words2 \u003d sc.nextLine();"
+        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        if (words2.trim().isEmpty())"
+        "content": "                        System.out.println(\"Got it. I\u0027ve added this task:\");"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+        "content": "                        Task tempTodo \u003d new Todo(words2.trim());"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Got it. I\u0027ve added this task:\");"
+        "content": "                        list.add(tempTodo);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        array[counter] \u003d new Todo(words2.trim());"
+        "content": "                        appendFile(tempTodo);"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        appendFile(array[counter]);"
+        "content": "                        System.out.println(tempTodo.toString());"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        counter++;"
+        "content": "                        System.out.println(\"Now you have \" + list.size() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(array[counter - 1].toString());"
+        "content": "                    } catch (DukeException e) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Now you have \" + counter + \" tasks in the list.\");"
+        "content": "                        System.out.println(e.getMessage());"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    } catch (DukeException e) {"
+        "content": "                    }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(e.getMessage());"
+        "content": "                } else if (words.equals(\"event\")) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    }"
+        "content": "                    try {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else if (words.equals(\"event\")) {"
+        "content": "                        String words2 \u003d sc.nextLine();"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    try {"
+        "content": "                        if (words2.trim().isEmpty())"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        String words2 \u003d sc.nextLine();"
+        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a event cannot be empty.\");"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        if (words2.trim().isEmpty())"
+        "content": "                        String[] temparray \u003d words2.trim().split(\" /at \");"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a event cannot be empty.\");"
+        "content": "                        SimpleDateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        String[] temparray \u003d words2.trim().split(\" /at \");"
+        "content": "                        Date date \u003d format.parse(temparray[1]);"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        SimpleDateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+        "content": "                        System.out.println(\"Got it. I\u0027ve added this task:\");"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        Date date \u003d format.parse(temparray[1]);"
+        "content": "                        Task tempEvent \u003d new Event(temparray[0], date);"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Got it. I\u0027ve added this task:\");"
+        "content": "                        list.add(tempEvent);"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        array[counter] \u003d new Event(temparray[0], date);"
+        "content": "                        appendFile(tempEvent);"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        appendFile(array[counter]);"
+        "content": "                        System.out.println(tempEvent.toString());"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        counter++;"
+        "content": "                        System.out.println(\"Now you have \" + list.size() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(array[counter - 1].toString());"
+        "content": "                    } catch (DukeException e) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Now you have \" + counter + \" tasks in the list.\");"
+        "content": "                        System.out.println(e.getMessage());"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    } catch (DukeException e) {"
+        "content": "                    } catch (ParseException e) {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(e.getMessage());"
+        "content": "                        System.out.println(\"Check format of date entered\");"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    } catch (ParseException e) {"
+        "content": "                    }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        System.out.println(\"Check format of date entered\");"
+        "content": "                } else if (words.equals(\"delete\")) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                        continue;"
+        "content": "                    try {"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    }"
+        "content": "                        int num \u003d sc.nextInt();"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else {"
+        "content": "                        System.out.println(\"Noted. I\u0027ve removed this task:\");"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "                        System.out.println(list.get(num - 1).toString());"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                }"
+        "content": "                        list.remove(num - 1);"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "            } catch (DukeException e) {"
+        "content": "                        refreshFile();"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                System.out.println(e.getMessage());"
+        "content": "                        System.out.println(\"Now you have \" + list.size() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "            }"
+        "content": "                    } catch (Exception e) {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "        }"
+        "content": "                        e.printStackTrace();"
       },
       {
         "lineNumber": 106,
         "author": {
-          "gitId": "-"
+          "gitId": "darrenoje"
         },
-        "content": "    }"
+        "content": "                    }"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "    private static void readFile() {"
+        "content": "                } else if (words.equals(\"find\")) {"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "        File fileName \u003d new File(projRoot + \"duke.txt\");"
+        "content": "                    try {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "        int temp_counter \u003d 0;"
+        "content": "                        String words2 \u003d sc.nextLine();"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "        ArrayList\u003cString\u003e temp \u003d new ArrayList\u003c\u003e();"
+        "content": "                        int counter \u003d 1;"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "        try {"
+        "content": "                        System.out.println(\"Here are the matching tasks in your list:\");"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "            temp \u003d new ArrayList\u003c\u003e(Files.readAllLines(Paths.get(String.valueOf(fileName))));"
+        "content": "                        for (Task task : list) {"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "            for (String string : temp) {"
+        "content": "                            if (task.getDescription().contains(words2)) {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                Task tempTask;"
+        "content": "                                System.out.println(counter + \".\" + task.toString());"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                if (string.contains(\"[T]\")) {"
+        "content": "                            }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    tempTask \u003d new Todo(string.substring(7));"
+        "content": "                            counter++;"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else if (string.contains(\"[D]\")) {"
+        "content": "                        }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    DateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+        "content": "                    } catch (Exception e) {"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    Date date \u003d format.parse(string.substring(string.indexOf(\"(by: \") + 5, string.length() - 1));"
+        "content": "                        e.printStackTrace();"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    tempTask \u003d new Deadline(string.substring(7, string.indexOf(\"(by: \") - 1), date);"
+        "content": "                    }"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                } else {"
+        "content": "                }"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    DateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+        "content": "                else {"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    Date date \u003d format.parse(string.substring(string.indexOf(\"(by: \") + 5, string.length() - 1));"
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    tempTask \u003d new Event(string.substring(7, string.indexOf(\"(at: \") - 1), date);"
+        "content": "                }"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                }"
+        "content": "            } catch (DukeException e) {"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                if (string.contains(\"\\u2713\")) {"
+        "content": "                System.out.println(e.getMessage());"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                    tempTask.setDone(true);"
+        "content": "            }"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "darrenoje"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 129,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                array[temp_counter] \u003d tempTask;"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                temp_counter++;"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        } catch (IOException | ParseException e) {"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "    private static void appendFile(Task mytask) {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        File myFile \u003d new File(projRoot + \"duke.txt\");"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            FileWriter fileWriter \u003d new FileWriter(myFile, true);"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            fileWriter.write(mytask.toString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            fileWriter.close();"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            System.out.println(e.getMessage());"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "    private static void refreshFile() {"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        File myFile \u003d new File(projRoot + \"duke.txt\");"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            FileWriter fileWriter \u003d new FileWriter(myFile, false);"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            for (int i \u003d 0; i \u003c 100; i++) {"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                if (array[i] \u003d\u003d null) break;"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "                fileWriter.write(array[i].toString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            fileWriter.close();"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "            System.out.println(e.getMessage());"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "darrenoje"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 158,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "    private static void readFile() {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        File fileName \u003d new File(projRoot + \"duke.txt\");"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        ArrayList\u003cString\u003e temp \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            temp \u003d new ArrayList\u003c\u003e(Files.readAllLines(Paths.get(String.valueOf(fileName))));"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            for (String string : temp) {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                Task tempTask;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                if (string.contains(\"[T]\")) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    tempTask \u003d new Todo(string.substring(7));"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                } else if (string.contains(\"[D]\")) {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    DateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    Date date \u003d format.parse(string.substring(string.indexOf(\"(by: \") + 5, string.length() - 1));"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    tempTask \u003d new Deadline(string.substring(7, string.indexOf(\"(by: \") - 1), date);"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    DateFormat format \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    Date date \u003d format.parse(string.substring(string.indexOf(\"(by: \") + 5, string.length() - 1));"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    tempTask \u003d new Event(string.substring(7, string.indexOf(\"(at: \") - 1), date);"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                if (string.contains(\"\\u2713\")) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                    tempTask.setDone(true);"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                list.add(tempTask);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        } catch (IOException | ParseException e) {"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "    private static void appendFile(Task mytask) {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        File myFile \u003d new File(projRoot + \"duke.txt\");"
+      },
+      {
         "lineNumber": 159,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            FileWriter fileWriter \u003d new FileWriter(myFile, true);"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            fileWriter.write(mytask.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            fileWriter.close();"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "    private static void refreshFile() {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        File myFile \u003d new File(projRoot + \"duke.txt\");"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            FileWriter fileWriter \u003d new FileWriter(myFile, false);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            for (Task task : list) {"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "                fileWriter.write(task.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            fileWriter.close();"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "            System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "darrenoje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 179,
         "author": {
           "gitId": "-"
         },
@@ -1533,7 +1673,7 @@
       }
     ],
     "authorContributionMap": {
-      "darrenoje": 150,
+      "darrenoje": 170,
       "-": 9
     }
   },
