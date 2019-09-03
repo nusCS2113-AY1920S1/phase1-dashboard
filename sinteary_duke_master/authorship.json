@@ -1,0 +1,3853 @@
+[
+  {
+    "path": "src/main/java/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.NoSuchElementException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import Task.Deadline;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import Task.Event;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import Task.Task;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import Task.ToDo;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    Printer printer \u003d new Printer();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Duke duke \u003d new Duke();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        duke.run();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private void run() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printer.greet();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Scanner scanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        boolean continueReading \u003d true;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String userInput;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String command; String taskDetails;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Task task \u003d null;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        while (continueReading) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            userInput \u003d scanner.nextLine();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                InputProcessor inputProcessor \u003d new InputProcessor(userInput);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                command \u003d inputProcessor.getCommand();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                taskDetails \u003d inputProcessor.getDetails();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                switch (command) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"bye\":"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        this.printer.exit();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        taskList.saveTasksToFile();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        continueReading \u003d false;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"list\":"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        this.listTasks();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"done\":"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        this.completeTask(Integer.parseInt(taskDetails));"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"delete\":"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        this.removeTask(Integer.parseInt(taskDetails));"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"find\":"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        this.findTasksByKeyword(taskDetails);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"todo\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        task \u003d new ToDo(taskDetails);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        this.addTask(task);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"deadline\":"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    case \"event\":"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        SplitTaskNameAndTime splitTaskNameAndTime \u003d new SplitTaskNameAndTime(taskDetails);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        String taskName \u003d splitTaskNameAndTime.getTaskName();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        String dateTime \u003d splitTaskNameAndTime.getTime();"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        try {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            DateFormat inputFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            Date parsed \u003d inputFormat.parse(dateTime);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            DateFormat outputFormat \u003d new SimpleDateFormat(\"dd MMMMM yyyy, h.mm a\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            dateTime \u003d outputFormat.format(parsed);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            if (command.equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                                task \u003d new Deadline(taskName, dateTime);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            } else {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                                task \u003d new Event(taskName, dateTime);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            this.addTask(task);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            this.printer.printLines(\"☹ OOPS!!! I don\u0027t recognize the date and time you entered.\","
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                                    \"Please enter your date and time in this format: dd/MM/yyyy HHmm\", \"Example: 2/12/2019 1830 means 2 December 2019, 6.30pm\");"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                 }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.taskList.saveTasksToFile();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            catch (NoTaskNumberSpecifiedException e) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.printer.printLines(e.getMessage());"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            catch (NoTaskDescriptionException e) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.printer.printLines(e.getMessage());"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.printer.printLines(\"Oops! This task does not exist and cannot be removed!\");"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.printer.printLines(\"Please give me an instruction :)\");"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            catch (InvalidInputException e) {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.printer.printLines(e.getMessage());"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            catch (IOException e) {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.printer.printLines(e.getMessage());"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private void listTasks() {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d this.taskList.getTasks();"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        ArrayList\u003cString\u003e tasksInString \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        tasksInString.add(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        for (int index \u003d 1; index \u003c\u003d taskList.size(); index++) {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            tasksInString.add(index + \".\" + taskList.get(index - 1));"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printer.printLines(tasksInString.toArray(new String[0]));"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private void addTask(Task task){"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskList.addTask(task);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printer.printLines(\"Got it. I\u0027ve added this task:\","
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        task.toString(),"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        \"Now you have \" + this.taskList.getNumberOfTasks() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private void removeTask(int taskNumber) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printer.printLines(\"Got it. I\u0027ve removed this task:\","
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskList.getTask(taskNumber).toString(),"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        \"Now you have \" + this.taskList.getNumberOfTasks() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskList.removeTask(taskNumber);"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private void completeTask(int taskNumber) {"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        boolean isCompleted \u003d true;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Task task \u003d null;"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            task \u003d this.taskList.completeTask(taskNumber);"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            isCompleted \u003d false;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            this.printer.print(\"Task number \" + taskNumber + \" does not exist in the list!\");"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        if (isCompleted) {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            this.printer.printLines(\"Nice! I\u0027ve marked this task as done:\", task.toString());"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private void findTasksByKeyword(String keyword) {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        ArrayList\u003cString\u003e matchingTasksInString \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        matchingTasksInString.add(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        ArrayList\u003cTask\u003e matchingTasks \u003d this.taskList.getMatchingTasks(keyword);"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        for (int i \u003d 1; i \u003c\u003d matchingTasks.size(); i ++) {"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            matchingTasksInString.add(\"\" + (i) + \".\" + matchingTasks.get(i-1).toString());"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printer.printLines(matchingTasksInString.toArray(new String[0]));"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 151,
+      "-": 6
+    }
+  },
+  {
+    "path": "src/main/java/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class DukeException extends Exception {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    DukeException(String errorMessage) {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        super(errorMessage);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 5
+    }
+  },
+  {
+    "path": "src/main/java/InputProcessor.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class InputProcessor {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    boolean hasDetails;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String command;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String details;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public InputProcessor(String userInput) throws NoTaskDescriptionException, NoTaskNumberSpecifiedException, InvalidInputException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Scanner readUserInput \u003d new Scanner(userInput);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.command \u003d readUserInput.next();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.details \u003d \"\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        switch (this.command) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                if (readUserInput.hasNext()) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    this.details \u003d readUserInput.nextLine().trim();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    switch (this.command) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        case \"delete\":"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        case \"done\":"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            throw new NoTaskNumberSpecifiedException();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        case \"finish\":"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            //throw new NoKeywordSpecifiedException();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                        default:"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                            throw new NoTaskDescriptionException(command);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                throw new InvalidInputException();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String getCommand() {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.command;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String getDetails() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.details;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 50
+    }
+  },
+  {
+    "path": "src/main/java/InvalidInputException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class InvalidInputException extends DukeException {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    InvalidInputException() {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        super(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 5
+    }
+  },
+  {
+    "path": "src/main/java/NoTaskDescriptionException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class NoTaskDescriptionException extends DukeException{"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    NoTaskDescriptionException(String command) {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                super(\"☹ OOPS!!! The description of a \" + command + \" cannot be empty.\");"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 5
+    }
+  },
+  {
+    "path": "src/main/java/NoTaskNumberSpecifiedException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class NoTaskNumberSpecifiedException extends DukeException {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    NoTaskNumberSpecifiedException() { super(\"☹ OOPS!!! You did not specify the task number!\"); }"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 5
+    }
+  },
+  {
+    "path": "src/main/java/Printer.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class Printer {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String border \u003d \"     ____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String indentation \u003d \"      \";"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void printBorder() {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        System.out.println(border);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void print(String message) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        System.out.println(indentation + message);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    //To change List/ArrayList to primitive array: string list.toArray(new String[0])"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void printLines(String... lines) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        printBorder();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        for (String message : lines) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            print(message);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        printBorder();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void greet() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printLines(\"Hello I\u0027m Duke\", \"What can I do for you?\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void exit() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printLines(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 29
+    }
+  },
+  {
+    "path": "src/main/java/SplitTaskNameAndTime.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class SplitTaskNameAndTime {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private String taskName;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private String time;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public SplitTaskNameAndTime(String line) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Scanner splitInput \u003d new Scanner(line);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        boolean timeFound \u003d false;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String time \u003d \"\";"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String taskName \u003d \"\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        while(splitInput.hasNext()) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            String next \u003d splitInput.next();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            if (timeFound) { time \u003d time + \" \" + next; }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                if (next.equals(\"/by\") || next.equals(\"/at\")) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    timeFound \u003d true;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                else { taskName \u003d taskName + \" \" + next; }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskName \u003d taskName.trim();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.time \u003d time.trim();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String getTaskName() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskName;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    String getTime() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.time;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 34
+    }
+  },
+  {
+    "path": "src/main/java/Task/Deadline.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "package Task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private TaskType taskType \u003d TaskType.DEADLINE;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private String by;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public Deadline(String taskName, String by) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        super(taskName);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public TaskType getTasktype() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskType;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String getTaskTime() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.by;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + by + \")\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 25
+    }
+  },
+  {
+    "path": "src/main/java/Task/Event.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "package Task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private TaskType taskType \u003d TaskType.EVENT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private String at;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public Event(String taskName, String at) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        super(taskName);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.at \u003d at;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public TaskType getTasktype() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskType;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String getTaskTime() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.at;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + at + \")\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 25
+    }
+  },
+  {
+    "path": "src/main/java/Task/Task.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "package Task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private String taskName;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private boolean isDone;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private TaskType tasktype;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public Task(String taskName) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskName \u003d taskName;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public void markAsDone() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return (\"[\" + (this.isDone ? \"\\u2713\" : \"\\u2718\") + \"]\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String getTaskName() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskName;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public abstract TaskType getTasktype();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String getTaskTime() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public boolean isTaskDone() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.isDone;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return String.format(\"%s %s\", this.getStatusIcon(), this.taskName);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 40
+    }
+  },
+  {
+    "path": "src/main/java/Task/TaskType.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "package Task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public enum TaskType {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    TODO, DEADLINE, EVENT;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 5
+    }
+  },
+  {
+    "path": "src/main/java/Task/ToDo.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "package Task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class ToDo extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private TaskType taskType \u003d TaskType.TODO;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public ToDo(String toDoName) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        super(toDoName);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public TaskType getTasktype() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskType;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 19
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.io.FileWriter;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "import Task.*;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private ArrayList \u003cTask\u003e taskList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private Printer printer;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    private String filePath \u003d \".\\\\src\\\\main\\\\java\\\\data.txt\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        loadTasksFromFile();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.printer \u003d new Printer();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void loadTasksFromFile() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            File dataFile \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            Scanner dataFileReader \u003d new Scanner(dataFile);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            String fileLine \u003d null;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            while(dataFileReader.hasNext()) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                fileLine \u003d dataFileReader.nextLine();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                this.taskList.add(fileToTask(fileLine));"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    void saveTasksToFile() throws IOException {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        File dataFile \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        FileWriter fileWriter \u003d new FileWriter(dataFile);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String fileLine \u003d null;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        for (Task task: this.taskList) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            fileLine \u003d taskToFile(task);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            fileWriter.write(fileLine);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        fileWriter.close();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public Task fileToTask(String fileLine) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String[] taskInputs \u003d fileLine.split(\" \\\\| \");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        //System.out.println(taskInputs[0] + \" \" + taskInputs[1] + \" \" + taskInputs[2]);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        Task task \u003d null;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        boolean isDone \u003d (taskInputs[1].equals(\"1\"));"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        switch (taskInputs[0]) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"T\":"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                task \u003d new ToDo(taskInputs[2]);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"D\":"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                task \u003d new Deadline(taskInputs[2], taskInputs[3]);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case \"E\":"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                task \u003d new Event(taskInputs[2], taskInputs[3]);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        if (isDone) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            task.markAsDone();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return task;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public String taskToFile (Task task) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String separator \u003d \" | \";"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String taskInitial \u003d \"\";"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String taskDone \u003d (task.isTaskDone() ? \"1\" : \"0\");"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String taskName \u003d (task.getTaskName());"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        String taskTime \u003d \"\";"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        switch (task.getTasktype()) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case TODO:"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                taskInitial \u003d \"T\";"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case EVENT:"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                taskInitial \u003d \"E\";"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                taskTime \u003d task.getTaskTime();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            case DEADLINE:"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                taskInitial \u003d \"D\";"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                taskTime \u003d task.getTaskTime();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return taskInitial + separator + taskDone + separator + taskName + separator + taskTime + \"\\n\";"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public Task getTask(int taskNumber) {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskList.get(taskNumber - 1);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public void addTask(Task task) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskList.add(task);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    public void removeTask(int taskNumber) throws IndexOutOfBoundsException{"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskList.remove(taskNumber - 1);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    int getNumberOfTasks() {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskList.size();"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    ArrayList\u003cTask\u003e getTasks() {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskList;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    Task completeTask(int taskNumber) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        this.taskList.get(taskNumber - 1).markAsDone();"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return this.taskList.get(taskNumber - 1);"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    ArrayList\u003cTask\u003e getMatchingTasks(String keyword) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        ArrayList\u003cTask\u003e matchingTasks \u003d new ArrayList();"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        for(int i \u003d 0; i \u003c this.taskList.size(); i ++) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            String taskName \u003d this.taskList.get(i).getTaskName();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            Scanner parseTaskName \u003d new Scanner(taskName);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            while (parseTaskName.hasNext()) {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                String word \u003d parseTaskName.next();"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                if (word.equals(keyword)) {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    matchingTasks.add(this.taskList.get(i));"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "        return matchingTasks;"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "sinteary"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "sinteary": 130
+    }
+  }
+]

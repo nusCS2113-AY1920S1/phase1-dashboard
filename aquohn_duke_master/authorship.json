@@ -1,1 +1,3632 @@
-[]
+[
+  {
+    "path": "src/main/java/aquohn/duke/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeFatalException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeResetException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.task.DeadlineTask;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.task.EventTask;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.task.ToDoTask;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Jeffry Lum"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: create HashMap of (string, function) pairs for commands"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: convert constants to enums"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String CMD_LIST \u003d \"list\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String CMD_BYE \u003d \"bye\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String CMD_DONE \u003d \"done\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String CMD_TODO \u003d \"todo\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String CMD_EVENT \u003d \"event\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String CMD_DLINE \u003d \"deadline\";"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String KW_AT \u003d \"/at\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final String KW_BY \u003d \"/by\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: add help command"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Jeffry Lum"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        //print welcome message"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String logoSpace \u003d \"                                  \";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String titleSpace \u003d \"                                        \";"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String logo \u003d logoSpace + \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            + logoSpace + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            + logoSpace + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            + logoSpace + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            + logoSpace + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        System.out.println(\"\\n\" + titleSpace + \"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        //standard messages"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String[] hiArr \u003d {\"Hello, I\u0027m Duke!\", \"What can I do for you?\"};"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String[] byeArr \u003d {\"Bye. Hope to see you again soon!\"};"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        say(hiArr);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        TaskList taskList; // TODO: convert this into a class member, and make Duke non-static"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String inputStr;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        Scanner scanIn \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskList \u003d new TaskList(false);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (DukeResetException excp) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            String resetStr;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            String[] errArr \u003d {excp.getMessage(), \"Do you want to reset your Duke data now,\""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                + \" to continue using Duke? (y/n)\"};"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            say(errArr);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            while (true) { //wait for user to respond"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                resetStr \u003d scanIn.nextLine();"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                if (resetStr.length() \u003e 0) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    resetStr \u003d resetStr.substring(0,1); //extract first char"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    if (resetStr.equalsIgnoreCase(\"y\")) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        taskList \u003d new TaskList(true);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(new String[] {\"Your data has been reset!\"});"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    } else if (resetStr.equalsIgnoreCase(\"n\")) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        scanIn.close();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(new String[] {\"Exiting Duke...\"});"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        System.exit(0);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (DukeFatalException excp) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskList \u003d null; //just to keep the compiler happy"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            String[] errArr \u003d {excp.getMessage()};"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            say(errArr);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            System.exit(0);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        while (true) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            inputStr \u003d scanIn.nextLine();"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            inputStr \u003d inputStr.replace(\"\\t\", \"    \"); //sanitise input"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            String[] argArr \u003d inputStr.split(\" \");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                switch (argArr[0]) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case CMD_LIST:"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(taskList.listTasks()); //these names ordinarily make more sense than they appear to here"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case CMD_BYE:"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        taskList.writeTaskFile();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        scanIn.close();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(byeArr);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        System.exit(0);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case CMD_DONE:"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        if (argArr.length \u003c 2) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                            throw new DukeException(\"You didn\u0027t tell me which entry to mark as done!\");"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(taskList.markDone(argArr[1]));"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case CMD_TODO:"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        inputStr \u003d inputStr.substring(CMD_TODO.length());"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(taskList.addTask(ToDoTask.class, inputStr, null));"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case CMD_EVENT:"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        inputStr \u003d inputStr.substring(CMD_EVENT.length());"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(taskList.addTask(EventTask.class, inputStr, KW_AT));"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case CMD_DLINE:"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        inputStr \u003d inputStr.substring(CMD_DLINE.length());"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        say(taskList.addTask(DeadlineTask.class, inputStr, KW_BY));"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    default:"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means!\");"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            } catch (DukeFatalException excp) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String[] errArr \u003d {excp.getMessage()};"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                say(errArr);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                System.exit(0);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            } catch (DukeException excp) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String[] errArr \u003d {excp.getMessage()};"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                say(errArr);"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // for Duke to say any arbitrary message"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    private static void say(String[] msgArr) {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String line \u003d \"    ________________________________________________________________________________\";"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String indent \u003d \"    \";"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        System.out.println(line);"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        for (int i \u003d 0; i \u003c msgArr.length; ++i) {"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            System.out.println(indent + msgArr[i]);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        System.out.println(line + System.lineSeparator());"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "Jeffry Lum"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "Jeffry Lum"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 141,
+      "Jeffry Lum": 4
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/exception/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class DukeException extends RuntimeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   public DukeException(String msg) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "       super(\"Oops! :( \" + msg); //yeah this is pretty useless for now"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 8
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/exception/DukeFatalException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class DukeFatalException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   public DukeFatalException(String msg) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "       super(msg + \" Exiting Duke now...\"); "
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 8
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/exception/DukeResetException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class DukeResetException extends DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   public DukeResetException(String msg) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "       super(msg + \" You can back up the file, and/or reset it!\"); "
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 8
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/task/DeadlineTask.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.DateTimeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class DeadlineTask extends TimedTask {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    DeadlineTask(String _name, LocalDateTime _by) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        super(_name, _by);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        type \u003d \u0027D\u0027;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String toString() throws DateTimeException {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return \"[\" + type + \"]\" + super.toString() + \" (by: \" + getTime() + \")\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 18
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/task/EventTask.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.DateTimeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class EventTask extends TimedTask {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    EventTask(String _name, LocalDateTime _at) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        super(_name, _at);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        type \u003d \u0027E\u0027;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String toString() throws DateTimeException {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return \"[\" + type + \"]\" + super.toString() + \" (at: \" + getTime() + \")\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 17
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/task/Task.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "class Task {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    final private String name;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    private Boolean isDone;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    char type;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    Task(String _name) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        name \u003d _name;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        isDone \u003d false;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        type \u003d \u0027K\u0027;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    void markDone() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        if (isDone) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeException(\"You already did that task!\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            isDone \u003d true; "
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return \"[\" + (isDone ? \"\\u2713\" : \"\\u2718\") + \"] \" + name; //ternary operator returns tick or X"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String toData() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return type + \"\\t\" + (isDone ? \"1\" : \"0\") + \"\\t\" + name;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 32
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/task/TaskList.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeFatalException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import aquohn.duke.exception.DukeResetException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.io.FileWriter;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.lang.reflect.Constructor;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.format.DateTimeParseException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: look into throws keyword"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TSV files will have one entry per line, tabs disallowed in input"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskArrList;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    final private File taskFile;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public TaskList(boolean isReset) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        taskFile \u003d new File(\"../data/tasks.tsv\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            if (taskFile.exists()) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                if (isReset) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    taskArrList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    writeTaskFile();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    taskArrList \u003d parseTaskFile(taskFile);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                taskArrList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                 if (!taskFile.createNewFile()) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                     throw new IOException();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                 }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (IOException excp) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeFatalException(\"Unable to setup data file, try checking your permissions?\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String[] listTasks() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        int taskCount \u003d taskArrList.size();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        if (taskCount \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeException(\"You don\u0027t have any tasks yet!\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String[] taskArr \u003d new String[taskCount];"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskCount; ++i) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            Task currTask \u003d taskArrList.get(i);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskArr[i] \u003d (i + 1) + \".\" + currTask.toString();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return taskArr;"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String[] markDone(String idxStr) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        if (idxStr.matches(\"\\\\d+\")) { //if second arg is an integer"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            int idx \u003d Integer.parseInt(idxStr) - 1;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            if (idx \u003c taskArrList.size()) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                Task currTask \u003d taskArrList.get(idx);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                currTask.markDone();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                writeTaskFile();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String[] doneArr \u003d {\"Nice! I\u0027ve marked this task as done:\", \"\"};"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                doneArr[1] \u003d \"  \" + currTask.toString();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                return doneArr;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                throw new DukeException(\"I don\u0027t have that entry in the list!\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeException(\"You need to tell me what the number of the entry is!\");"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: in major need of refactoring, try to remove reflection/generics if possible and use polymorphism instead"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // Consider making Task an interface?"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public \u003cT extends Task\u003e String[] addTask(Class\u003cT\u003e taskClass, String inputStr, String keyword) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String[] addArr \u003d {\"Got it, I\u0027ve added this task:\", \"\", \"\"};"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String desc;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        T newTask;"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            if (TimedTask.class.isAssignableFrom(taskClass)) { "
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                //Task consists of desc and time separated by a keyword"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String[] splitArr \u003d inputStr.split(keyword, 2);"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                if (splitArr.length \u003c 2) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    throw generateInvalidTaskException(taskClass);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    desc \u003d splitArr[0].strip();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    String datetimeStr \u003d splitArr[1].strip();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    if (desc.length() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        throw new DukeException(\"The task description cannot be empty!\");"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    } else if (datetimeStr.length() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        throw generateInvalidTaskException(taskClass);"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    "
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    LocalDateTime datetime \u003d LocalDateTime.parse(datetimeStr, TimedTask.PAT_DATETIME);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    Constructor\u003cT\u003e taskConst \u003d taskClass.getConstructor("
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                            String.class, LocalDateTime.class);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    newTask \u003d taskClass.cast(taskConst.newInstance(desc, datetime));"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                } "
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                desc \u003d inputStr.strip();"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                if (desc.length() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    throw new DukeException(\"The task description cannot be empty!\");"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                Constructor\u003cT\u003e taskConst \u003d taskClass.getConstructor(String.class);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                newTask \u003d taskClass.cast(taskConst.newInstance(desc));"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskArrList.add(newTask);"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            writeTaskFile();"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            int taskCount \u003d taskArrList.size();"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            addArr[1] \u003d \"  \" + taskArrList.get(taskCount - 1).toString();"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            String taskCountStr \u003d taskCount + ((taskCount \u003d\u003d 1) ? \" task\" : \" tasks\");"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            addArr[2] \u003d \"Now you have \" + taskCountStr + \" in the list.\";"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (DukeException excp) {"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw excp; //let Duke handle it"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (DateTimeParseException excp) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeException(\"Date and time must be given as, e.g. \""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    + LocalDateTime.now().format(TimedTask.PAT_DATETIME) + \".\");"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (Exception excp) { //catch exceptions from generics, should only trigger if installation corrupt"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            System.out.println(excp.toString());"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeFatalException(\"Can\u0027t create new tasks! Your installation might be corrupt. Try reinstalling?\");"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return addArr;"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    private ArrayList\u003cTask\u003e parseTaskFile(File taskFile) {"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskArrList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        //message for when data corruption is detected in the file"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        String corrupt \u003d \"Data file has been corrupted!\";"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            Scanner taskScanner \u003d new Scanner(taskFile);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            while (taskScanner.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String taskLine \u003d taskScanner.nextLine();"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String[] taskArr \u003d taskLine.split(\"\\t\");"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String taskType \u003d taskArr[0];"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                LocalDateTime datetime;"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                boolean isDone;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                //check if task is done"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                String doneStr \u003d taskArr[1].strip();"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                if (doneStr.equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    isDone \u003d true;"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                } else if (doneStr.equals(\"0\")) {"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    isDone \u003d false;"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    throw new DukeResetException(corrupt);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                //add tasks to taskArrList"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                // TODO: look into ways to compact this, maybe a factory, switching factory inputs based on taskType?"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                switch(taskType) {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case \"T\":"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        ToDoTask currToDoTask \u003d new ToDoTask(taskArr[2]);"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        if (isDone) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                            currToDoTask.markDone();"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        taskArrList.add(currToDoTask);"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case \"E\":"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        datetime \u003d LocalDateTime.parse(taskArr[3], TimedTask.PAT_DATETIME);"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        EventTask currEventTask \u003d new EventTask(taskArr[2], datetime);"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        if (isDone) {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                            currEventTask.markDone();"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        taskArrList.add(currEventTask);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    case \"D\":"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        datetime \u003d LocalDateTime.parse(taskArr[3], TimedTask.PAT_DATETIME);"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        DeadlineTask currDeadlineTask \u003d new DeadlineTask(taskArr[2], datetime);"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        if (isDone) {"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                            currDeadlineTask.markDone();"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        taskArrList.add(currDeadlineTask);"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                    default:"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                        throw new DukeResetException(corrupt);"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskScanner.close();"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (DateTimeParseException | IndexOutOfBoundsException excp) {"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeResetException(corrupt);"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (FileNotFoundException excp) {"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeFatalException(\"Unable to find data file, try opening Duke again?\");"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return taskArrList;"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public void writeTaskFile() { // public because a separate close oepration would just call this"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        // TODO: figure out some way of editing that doesn\u0027t involve rewriting everything each time"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        // Maybe some kind of diff file?"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        StringBuilder taskFileStr \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskArrList.size(); ++i) {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskFileStr.append(taskArrList.get(i).toData()).append(System.lineSeparator());"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            FileWriter taskFileWr \u003d new FileWriter(taskFile);"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskFileWr.write(taskFileStr.toString());"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            taskFileWr.close();"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } catch (IOException excp) {"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            throw new DukeFatalException(\"Unable to write data! Some data may have been lost,\");"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: move this functionality to the classes"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    private DukeException generateInvalidTaskException(Class taskClass) {"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        if (taskClass \u003d\u003d EventTask.class) {"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            return new DukeException(\"Invalid event! I need to know the date and time that it is /at.\");"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } else if (taskClass \u003d\u003d DeadlineTask.class) {"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            return new DukeException(\"Invalid deadline I need to know the date and time that it is due /by.\");"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "            return new DukeException(\"I don\u0027t recognise that type of class!\");"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 228
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/task/TimedTask.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.DateTimeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class TimedTask extends Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    // TODO: convert to enum and place in separate file with other enums"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final DateTimeFormatter PAT_DATETIME \u003d DateTimeFormatter.ofPattern(\"d/M/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public static final DateTimeFormatter PAT_DATETIME_VIEW \u003d DateTimeFormatter.ofPattern(\"eee, d MMM yyyy hh:mm a\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    final protected LocalDateTime time;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    TimedTask(String _name, LocalDateTime _time) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        super(_name);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        time \u003d _time;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "   @Override"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String toData() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return super.toData() + \"\\t\" + time.format(PAT_DATETIME);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    protected String getTime() throws DateTimeException {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return time.format(PAT_DATETIME_VIEW);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 29
+    }
+  },
+  {
+    "path": "src/main/java/aquohn/duke/task/ToDoTask.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "package aquohn.duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "public class ToDoTask extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public ToDoTask(String _name) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        super(_name);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        type \u003d \u0027T\u0027;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "        return \"[\" + type + \"]\" + super.toString();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "John Khoo"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "John Khoo": 14
+    }
+  }
+]

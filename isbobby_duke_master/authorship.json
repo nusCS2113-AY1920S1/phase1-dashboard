@@ -1,0 +1,2468 @@
+[
+  {
+    "path": "src/main/java/Deadline.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    protected String by;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public Deadline(String description, String by) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + by + \")\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 14
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "enum commands {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "BYE,LIST,DEADLINE,TODO,DELETE,EVENT,UNKNOWN"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //declare some convenient stuff to use for later"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        String lines \u003d \"\\t____________________________________________________________\\n\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //print welcome lines"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print("
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        lines + \"\\tHello! I\u0027m Duke\\n \\tWhat can I do for you?\\n\" + lines );        "
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //initialize various classes"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        Scanner in \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        TaskList mylist \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        TaskHandler myHandler \u003d new TaskHandler(mylist);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        myHandler.running \u003d true;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //loop to keep the program running"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        while(myHandler.running\u003d\u003dtrue){"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            //handles user input"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            String input \u003d in.nextLine();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            myHandler.handleCommand(input);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    in.close();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 28,
+      "-": 4
+    }
+  },
+  {
+    "path": "src/main/java/ErrorHandling.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "import java.util.StringTokenizer;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class ErrorHandling {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public Boolean validInput \u003d true;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void checkCommands (String input){"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        StringTokenizer st \u003d new StringTokenizer(input,\" \");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        ArrayList\u003cString\u003e inputTokens \u003d new ArrayList\u003cString\u003e(); "
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        while(st.hasMoreElements()){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            inputTokens.add(st.nextToken());"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        if ( inputTokens.size() \u003d\u003d  1 ){"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            validInput \u003d false;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void printError (commands input) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        switch (input) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        case TODO:"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t☹ OOPS!!! The description of a todo cannot be empty.\\n\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        case DEADLINE:"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t☹ OOPS!!! The description of a deadline cannot be empty.\\n\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        case EVENT:"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t☹ OOPS!!! The description of an event cannot be empty.\\n\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            break;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        case UNKNOWN:"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 42
+    }
+  },
+  {
+    "path": "src/main/java/Event.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    protected String at;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public Event(String description, String at) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        this.at \u003d at;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (by: \" + at + \")\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 14
+    }
+  },
+  {
+    "path": "src/main/java/Task.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    protected String description;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    protected boolean isDone;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public Task(String description) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); //return tick or X symbols"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void printTask () {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print((\"[\" + getStatusIcon() + \"] \" + this.description + \"\\n\")); "
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public String toString () {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return (\"[\" + getStatusIcon() + \"] \" + this.description);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void markAsDone(){"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print(\"\\tNice! I\u0027ve marked this task as done:\\n\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print(\"\\t\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        printTask();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 30
+    }
+  },
+  {
+    "path": "src/main/java/TaskHandler.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "import java.util.StringTokenizer;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class TaskHandler {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    private String lines \u003d \"\\t____________________________________________________________\\n\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public boolean running;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    private TaskList mylist;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public TaskHandler(TaskList inputList) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        mylist \u003d inputList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void handleCommand (String input){"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //tokenize the string"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        StringTokenizer st \u003d new StringTokenizer(input,\" \");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        ArrayList\u003cString\u003e inputTokens \u003d new ArrayList\u003cString\u003e(); "
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        ErrorHandling myHandler \u003d new ErrorHandling();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        while(st.hasMoreElements()){"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            inputTokens.add(st.nextToken());"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        /*"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "         * Command handling begins here"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //handles bye and set running to false to break out of the loop"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        if (inputTokens.get(0).equals(\"bye\")){"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(lines + \"\\tBye. Hope to see you again soon!\\n\" + lines);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            running \u003d false;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        "
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //handles \"list\""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        else if(inputTokens.get(0).equals(\"list\")){"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            mylist.show();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //handles \"done x\""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        else if(inputTokens.get(0).equals(\"Done\") || inputTokens.get(0).equals(\"done\")){"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            int tasknumber \u003d Integer.parseInt(inputTokens.get(1)) - 1;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            mylist.getTask(tasknumber).markAsDone();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //handles \"deadline\""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        else if(inputTokens.get(0).equals(\"deadline\") || inputTokens.get(0).equals(\"Deadline\")){"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            int indexOfBy \u003d 1;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            String actualTask \u003d \"\";"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            String taskDeadline \u003d \"\";"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            boolean flag \u003d true;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            myHandler.checkCommands(input);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            if (myHandler.validInput \u003d\u003d true){"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                for ( ; indexOfBy \u003c inputTokens.size(); indexOfBy ++ ){"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (inputTokens.get(indexOfBy).equals(\"/by\")){"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (flag \u003d\u003d false){"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        actualTask +\u003d \" \";"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    actualTask +\u003d inputTokens.get(indexOfBy);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    flag \u003d false;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                }   "
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                flag \u003d true;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                indexOfBy +\u003d 1;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                for ( ; indexOfBy \u003c inputTokens.size(); indexOfBy ++ ){"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (flag \u003d\u003d false){"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        taskDeadline +\u003d \" \";"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    taskDeadline +\u003d inputTokens.get(indexOfBy).toString();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    flag \u003d false;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                Task newTask \u003d new Task (input);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                newTask \u003d new Deadline(actualTask, taskDeadline);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                mylist.append(newTask);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                //replies:"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(lines + \"\\tGot it. I\u0027ve added this task: \\n\");"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(\"\\t\" + newTask.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(\"\\t\" + mylist.getTaskNumber() + \"\\n\" + lines + \"\\n\" );"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            else{"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                myHandler.printError(commands.DEADLINE);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //handles \"todo\""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        else if(inputTokens.get(0).equals(\"Todo\") || inputTokens.get(0).equals(\"todo\")){"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            boolean flag \u003d true;"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            int index \u003d 1;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            String actualTask \u003d \"\";"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            myHandler.checkCommands(input);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            if (myHandler.validInput \u003d\u003d true){"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                for ( ; index \u003c inputTokens.size(); index ++ ){"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (flag \u003d\u003d false){"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        actualTask +\u003d \" \";"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    actualTask +\u003d inputTokens.get(index);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    flag \u003d false;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                }   "
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                Task newTask \u003d new Task (input);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                newTask \u003d new Todo(actualTask);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                mylist.append(newTask);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                //replies:"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(lines + \"\\tGot it. I\u0027ve added this task: \\n\");"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(\"\\t\" + newTask.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(\"\\t\" + mylist.getTaskNumber() + \"\\n\" + lines + \"\\n\" );"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                myHandler.printError(commands.TODO);"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //Handles \"event\""
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        else if(inputTokens.get(0).equals(\"event\") || inputTokens.get(0).equals(\"Event\")){"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            int indexOfAt \u003d 1;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            String actualTask \u003d \"\";"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            String taskEvent \u003d \"\";"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            boolean flag \u003d true;"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            myHandler.checkCommands(input);"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            if (myHandler.validInput \u003d\u003d true ){"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                for ( ; indexOfAt \u003c inputTokens.size(); indexOfAt ++ ){"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (inputTokens.get(indexOfAt).equals(\"/at\")){"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (flag \u003d\u003d false){"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        actualTask +\u003d \" \";"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    actualTask +\u003d inputTokens.get(indexOfAt);"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    flag \u003d false;"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                }   "
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                flag \u003d true;"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                indexOfAt +\u003d 1;"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                for ( ; indexOfAt \u003c inputTokens.size(); indexOfAt ++ ){"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    if (flag \u003d\u003d false){"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                        taskEvent +\u003d \" \";"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    taskEvent +\u003d inputTokens.get(indexOfAt).toString();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                    flag \u003d false;"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                Task newTask \u003d new Task (input);"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                newTask \u003d new Event(actualTask, taskEvent);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                mylist.append(newTask);"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                "
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                //replies:"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(lines + \"\\tGot it. I\u0027ve added this task: \\n\");"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(\"\\t\" + newTask.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                System.out.print(\"\\t\" + mylist.getTaskNumber() + \"\\n\" + lines + \"\\n\" );"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            else{"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "                myHandler.printError(commands.EVENT);"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        //"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        else{"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            myHandler.printError(commands.UNKNOWN);"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 170
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    private ArrayList\u003cTask\u003e todo \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void append(Task new_task) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        todo.add(new_task);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public Task getTask (int x){"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return todo.get(x);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public void show () {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        for ( int i \u003d 0; i \u003c todo.size(); i ++ ){"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            int index \u003d i + 1;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(\"\\t\" + index + \".\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "            System.out.print(todo.get(i).toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        System.out.print(\"\\t____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public String getTaskNumber () {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return \"Now you have \" + todo.size() + \" tasks in the list.\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 28
+    }
+  },
+  {
+    "path": "src/main/java/Todo.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "public class Todo extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    protected String at;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public Todo(String description) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "isbobby"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "isbobby": 13
+    }
+  }
+]

@@ -1,1 +1,4389 @@
-[]
+[
+  {
+    "path": "src/main/java/AddCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class AddCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String ddl;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String timePiece;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public AddCommand(String commandType, String description, String ddl, String timePiece) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(commandType);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.ddl \u003d ddl;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.timePiece \u003d timePiece;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage){"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        switch (super.commandType) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                tasks.addToDo(description);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                tasks.addDeadline(description, ddl);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                tasks.addEvent(description, timePiece);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        storage.update(tasks.toStorageStrings());"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(\"Got it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(tasks.getTaskInfo(tasks.getSize() - 1));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(\"Now you have \" + tasks.getSize() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 36
+    }
+  },
+  {
+    "path": "src/main/java/Command.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected String commandType;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected Command(String commandType){"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.commandType \u003d commandType;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        // to be overridden"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if (commandType.equals(\"exit\")) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 19
+    }
+  },
+  {
+    "path": "src/main/java/Deadline.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String ddl;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private Date by;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public Deadline(String description, String ddl) throws DukeException {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.ddl \u003d ddl;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            by \u003d TimeParser.parse(ddl);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    // (by: June 6th)"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"[D]\" + super.toString() + \" (by: \" + ddl + \")\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toStorageString() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"D | \" + super.toStorageString() + \" | \" + ddl;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 26
+    }
+  },
+  {
+    "path": "src/main/java/DeleteCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public DeleteCommand(int index) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(\"delete\");"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        String str;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            str \u003d tasks.getTaskInfo(index);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tasks.delete(index);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The index should be in range.\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        storage.update(tasks.toStorageStrings());"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(\"Noted. I\u0027ve removed this task:\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(str);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(\"Now you have \" + tasks.getSize() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 24
+    }
+  },
+  {
+    "path": "src/main/java/DoneCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public DoneCommand(int index) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(\"done\");"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tasks.done(index);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The index should be in range.\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            storage.update(tasks.toStorageStrings());"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(tasks.getTaskInfo(index));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 25
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        Ui ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        // System.out.println(System.getProperty(\"user.dir\") + \"/data/TaskListStorage.txt\");"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        Storage storage \u003d new Storage(System.getProperty(\"user.dir\") + \"/data/TaskListStorage.txt\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        TaskList tasks;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tasks \u003d new TaskList(storage.load());"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            ui.showError(e);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tasks \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.showWelcome();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        boolean isExit \u003d false;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        while (!isExit) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            String fullCommand \u003d ui.readCommand();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                Command packagedCommand \u003d Parser.parse(fullCommand);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                packagedCommand.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                isExit \u003d packagedCommand.isExit();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                ui.showError(e);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 29,
+      "-": 4
+    }
+  },
+  {
+    "path": "src/main/java/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class DukeException extends RuntimeException {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public DukeException(String message){"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 5
+    }
+  },
+  {
+    "path": "src/main/java/Event.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String timePiece;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private Date start;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private Date end;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public Event(String description, String timePiece) throws DukeException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.timePiece \u003d timePiece;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        String[] tokens \u003d timePiece.split(\"-\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if(tokens.length \u003c 2) throw new DukeException(\"☹ OOPS!!! Cannot only show start or end time.\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        for(int i \u003d 0; i \u003c tokens.length; i++) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tokens[i] \u003d tokens[i].trim();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            start \u003d TimeParser.parse(tokens[0]);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            end \u003d TimeParser.parse(tokens[1]);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"[E]\" + super.toString() + \" (at: \" + timePiece + \")\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toStorageString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"E | \" + super.toStorageString() + \" | \" + timePiece;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 33
+    }
+  },
+  {
+    "path": "src/main/java/ExitCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class ExitCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public ExitCommand() {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(\"exit\");"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    ui.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 11
+    }
+  },
+  {
+    "path": "src/main/java/FindCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String target;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public FindCommand(String target) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(\"find\");"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.target \u003d target;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ArrayList\u003cInteger\u003e matchedList \u003d tasks.find(target);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if (matchedList.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            ui.println(\"No results found.\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ui.println(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        int count \u003d 1;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        for (int i : matchedList) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            ui.println(count + \".\" + tasks.getTaskInfo(i));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            count ++;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 25
+    }
+  },
+  {
+    "path": "src/main/java/ListCommand.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public ListCommand() {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(\"list\");"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if(tasks.getSize() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            ui.println(\"Ops, you haven\u0027t added any task!\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            ui.println(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            for (int i \u003d 0; i \u003c tasks.getSize(); i++) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                ui.println((i + 1) + \".\" + tasks.getTaskInfo(i));"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 17
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.regex.Matcher;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static String commandType;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static String description;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static String ddl;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static String timePiece;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static Matcher m;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static int index;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static Command packageCommand(String commandType, String[] tokens) throws DukeException {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        switch(commandType) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if (tokens.length \u003e 1) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"Please use other command to store time.\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                } else if (tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                description \u003d tokens[0];"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new AddCommand(commandType, description,\"\",\"\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if (tokens.length \u003d\u003d 1 \u0026\u0026 !tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The time of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                } else if(tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                description \u003d tokens[0];"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                ddl \u003d tokens[1];"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new AddCommand(commandType, description, ddl, \"\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if (tokens.length \u003d\u003d 1 \u0026\u0026 !tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The time of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                } else if(tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                description \u003d tokens[0];"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                timePiece\u003d tokens[1];"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new AddCommand(commandType, description, \"\", timePiece);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if(!tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new ListCommand();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if (tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The index cannot be empty.\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    index \u003d Integer.parseInt(tokens[0]);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                } catch(NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The index should be numerical.\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new DoneCommand(index-1); // 0-based"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if (tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The index cannot be empty.\");"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    index \u003d Integer.parseInt(tokens[0]);"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                } catch(NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! The index should be numerical.\");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new DeleteCommand(index-1); // 0-based"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if(tokens[0].equals(\"\") || tokens.length \u003e 1) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I don\u0027t what to find.\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new FindCommand(tokens[0]);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                if(!tokens[0].equals(\"\")) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return new ExitCommand();"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                throw new DukeException(\"Unknown error!\");"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public static Command parse(String fullCommand) throws DukeException {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        String regex \u003d \"todo|deadline|event|list|done|bye|delete|find\";"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        m \u003d Pattern.compile(regex).matcher(fullCommand); // AddCommmand"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if(m.find()) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            commandType \u003d m.group();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            fullCommand \u003d m.replaceFirst(\"\").trim();"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            String[] tokens \u003d fullCommand.split(\"/by|/at\");"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            for(int i \u003d 0; i \u003c tokens.length; i++) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                tokens[i] \u003d tokens[i].trim();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                return packageCommand(commandType, tokens);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                throw e;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 103
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.io.PrintWriter;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String filePath;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private File file;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public Storage(String filePath){"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.filePath \u003d filePath;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        file \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public ArrayList\u003cString\u003e load() throws DukeException {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            if (!file.exists()) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                file.createNewFile();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            ArrayList\u003cString\u003e taskStrings \u003d new ArrayList\u003cString\u003e(100);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            Scanner fileReader \u003d new Scanner(file);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            while (fileReader.hasNext()) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                taskStrings.add(fileReader.nextLine());"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return taskStrings;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Errors occurred in loading porcess.\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void update(ArrayList\u003cString\u003e taskStrings) throws DukeException {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            file.delete();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            file.createNewFile();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            PrintWriter writer \u003d new PrintWriter(file);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            for(String line : taskStrings) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                writer.println(line);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            writer.close();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Errors occurred when updating storage.\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 49
+    }
+  },
+  {
+    "path": "src/main/java/Task.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected String description;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected boolean isDone;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected Task(String description) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected void markAsDone() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        isDone \u003d true;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    protected void markAsNotDone() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        isDone \u003d false;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if(isDone) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return \"\\u2713\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return \"\\u2718\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"[\" + getStatusIcon() + \"] \" + description;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toStorageString() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        String storageString;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        if (isDone \u003d\u003d true) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            storageString \u003d \"1\";"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            storageString \u003d \"0\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        storageString +\u003d \" | \" + description;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return storageString;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public boolean contains(String s) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return description.contains(s);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 44
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private ArrayList\u003cTask\u003e tasks;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        tasks \u003d new ArrayList\u003cTask\u003e(100);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public TaskList(ArrayList\u003cString\u003e taskStrings) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        tasks \u003d new ArrayList\u003cTask\u003e(100);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        for (String line : taskStrings) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            String[] tokens \u003d line.split(\"\\\\Q|\\\\E\");"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            for(int i \u003d 0; i \u003c tokens.length; i++) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                tokens[i] \u003d tokens[i].trim();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            switch (tokens[0]) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                case \"T\":"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    addToDo(tokens[2]);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    if(tokens[1].equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                        done(tasks.size() - 1);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                case \"D\":"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    addDeadline(tokens[2], tokens[3]);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    if(tokens[1].equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                        done(tasks.size() - 1);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                case \"E\":"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    addEvent(tokens[2], tokens[3]);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    if(tokens[1].equals(\"1\")) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                        done(tasks.size() - 1);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void addToDo(String description) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        tasks.add(new ToDo(description));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void addDeadline(String description, String ddl) throws DukeException{"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tasks.add(new Deadline(description, ddl));"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void addEvent(String description, String timePiece) throws DukeException {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            tasks.add(new Event(description, timePiece));"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw e;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void done(int index) { // 0-based"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        tasks.get(index).markAsDone();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void delete(int index) { // 0-based"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        tasks.remove(index);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public ArrayList\u003cInteger\u003e find(String s) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ArrayList\u003cInteger\u003e matchedList \u003d new ArrayList\u003cInteger\u003e(100);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        for (int i \u003d 0 ; i \u003c tasks.size(); i++) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            if (tasks.get(i).contains(s)) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                matchedList.add(i);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return matchedList;"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String getTaskInfo(int index) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return tasks.get(index).toString();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public ArrayList\u003cString\u003e toStorageStrings() {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        ArrayList\u003cString\u003e taskStrings \u003d new ArrayList\u003cString\u003e(100);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        for(Task task : tasks) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            taskStrings.add(task.toStorageString());"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return taskStrings;"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public int getSize(){"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return tasks.size();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 94
+    }
+  },
+  {
+    "path": "src/main/java/TimeParser.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class TimeParser {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private static SimpleDateFormat sdf \u003d new SimpleDateFormat(\"MM/dd/yyyy HHmm\") ;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public static Date parse(String timeStr) throws DukeException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            return sdf.parse(timeStr);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! Incorrect time format.\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 16
+    }
+  },
+  {
+    "path": "src/main/java/ToDo.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class ToDo extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public ToDo(String description) {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String toStorageString() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return \"T | \" + super.toStorageString();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 15
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    private Scanner dukeIn;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public Ui(){"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        dukeIn \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void showWelcome() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        System.out.println(\"I am Duke. What can I do for you?\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public String readCommand() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        return dukeIn.nextLine();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void println(String s) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        System.out.println(s);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    public void showError(DukeException e) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "        System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Liu Chaojie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Liu Chaojie": 31
+    }
+  }
+]

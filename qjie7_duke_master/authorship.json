@@ -1,1 +1,3518 @@
-[]
+[
+  {
+    "path": "src/main/java/Deadline.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public Deadline(String description , String time) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.time \u003d time;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.type \u003d \"D\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return \"[\" + this.type + \"][\" + this.getStatusIcon() + \"] \" + this.description + \" (by: \" + time + \")\";"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 12
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.BufferedReader;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.BufferedWriter;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.FileReader;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.FileWriter;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    private Parser parser;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    private Ui ui;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public Duke() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        parser \u003d new Parser();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    private static final String WHITESPACE \u003d \" \";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003c\u003e(100);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void loadFile() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        File file \u003d new File(\"/Users/qianjie/Desktop/duke/src/main/java/data/duke.txt\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        FileReader fileReader \u003d null;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        BufferedReader bufferedReader \u003d null;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            fileReader \u003d new FileReader(file);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            bufferedReader \u003d new BufferedReader(fileReader);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            String input \u003d bufferedReader.readLine();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            while (input !\u003d null) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                parser.loadParse(taskList , input);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                input \u003d bufferedReader.readLine();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }finally {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                if (fileReader !\u003d null) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    fileReader.close();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }catch (IOException e) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                if (bufferedReader !\u003d null) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    bufferedReader.close();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }catch (IOException e) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void writeToFile () {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        FileWriter fileWriter \u003d null;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        BufferedWriter bufferedWriter \u003d null;"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        try{"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            File file \u003d new File(\"/Users/qianjie/Desktop/duke/src/main/java/data/duke.txt\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            fileWriter \u003d new FileWriter(file , false);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            bufferedWriter \u003d new BufferedWriter(fileWriter);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            for (Task t : taskList) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                String taskType \u003d t.getType();"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                String taskStatus \u003d t.getStatusIcon();"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                String taskDescription \u003d t.getDescription();"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                String taskTime \u003d t.getTime();"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                if (taskType.equals(\"T\")) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    bufferedWriter.write(taskType + \" | \" + taskStatus + \" | \" + taskDescription);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    bufferedWriter.newLine();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }else{"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    bufferedWriter.write(taskType + \" | \" + taskStatus + \" | \" + taskDescription + \" | \" + taskTime);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    bufferedWriter.newLine();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                bufferedWriter.flush();"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        } finally {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                if (fileWriter !\u003d null) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    fileWriter.close();"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }catch (IOException e) {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                if (bufferedWriter !\u003d null) {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    bufferedWriter.close();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }catch (IOException e) {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void run() {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showWelcome();"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        loadFile();"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String newString;"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String[] secondBox;"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String description;"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String time;"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String day;"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String userInput \u003d ui.readUserInput();"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        while(!userInput.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            String[] firstBox \u003d parser.firstFilter(userInput); // return a string array with commands and description"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            String commands \u003d firstBox[0];"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                switch (commands) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"list\":"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        ui.showTaskList(taskList);"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"done\":"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        runDone(userInput);"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"delete\":"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        runDelete(userInput);"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"find\":"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        runFind(userInput);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"todo\":"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        try {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                            if (firstBox[1].isBlank()){"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                                throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                            }else {"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                                description \u003d firstBox[1];"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                                runToDo(description);"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        }catch(DukeException e) {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        }finally{"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                            break;"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"deadline\":"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        newString \u003d firstBox[1];"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        secondBox \u003d parser.secondFilter(newString , \"deadline\");"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        description \u003d secondBox[0];"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        time \u003d secondBox[1].trim();"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        day \u003d time.split(\"/\")[0];"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        String timeInString \u003d parser.timeFormatter(time , day);"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        runDeadline(description , timeInString);"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    case \"event\":"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        newString \u003d firstBox[1];"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        secondBox \u003d parser.secondFilter(newString , \"event\");"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        description \u003d secondBox[0];"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        time \u003d secondBox[1];"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        day \u003d time.split(\"/\")[0];"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        timeInString \u003d parser.timeFormatter(time , day);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        runEvent(description , timeInString);"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                    default:"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                        throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }catch(DukeException | ParseException e) {"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }finally {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                userInput \u003d ui.readUserInput().trim();"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showExit();"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void runDone(String userInput) {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        int index \u003d Integer.parseInt(userInput.split(\" \")[1]);"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        Task chosenTask \u003d taskList.get(index - 1);"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        chosenTask.markAsDone();"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showDone(taskList , index);"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        writeToFile();"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void runDelete(String userInput) {"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        int index \u003d Integer.parseInt(userInput.split(\" \")[1]);"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showDelete(taskList , index);"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        taskList.remove(index - 1);"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showTaskListSize(taskList);"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        writeToFile();"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void runFind(String userInput) {"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        int index \u003d 0 ;"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ArrayList\u003cTask\u003e searchResults \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String keyword \u003d userInput.split(\" \")[1];"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        for (Task task : taskList) {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            String description \u003d task.getDescription();"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            if (description.contains(keyword)) {"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                searchResults.add(task);"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showMatchTasks(taskList , index);"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void runToDo(String description) {"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        Task toDoTask \u003d new ToDo(description);"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        taskList.add(toDoTask);"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showAddTodoTask(taskList , toDoTask);"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        writeToFile();"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void runDeadline(String description , String time) {"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        Task deadlineTask \u003d new Deadline(description , time);"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        taskList.add(deadlineTask);"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showAddDeadlineTask(taskList , deadlineTask);"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        writeToFile();"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void runEvent(String description , String time) {"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        Task eventTask \u003d new Event(description , time);"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        taskList.add(eventTask);"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        ui.showAddEventTask(taskList , eventTask);"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        writeToFile();"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        new Duke().run();"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 240,
+      "-": 4
+    }
+  },
+  {
+    "path": "src/main/java/DukeException.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class DukeException extends Exception {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public DukeException(){}"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public DukeException(String msg){"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        super(msg);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 6
+    }
+  },
+  {
+    "path": "src/main/java/Event.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public Event(String description , String time) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.time \u003d time;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.type \u003d \"E\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return \"[\" + this.type +\"][\" + this.getStatusIcon() + \"] \" + this.description + \" (at: \" + time + \")\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 13
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    private static final String WHITESPACE \u003d \" \";"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void loadParse(ArrayList\u003cTask\u003e taskList , String input) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String[] arr \u003d  input.split(\" \\\\| \");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String taskType \u003d arr[0].trim();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String taskStatus \u003d arr[1].trim();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String taskDescription \u003d arr[2].trim();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String taskTime \u003d \"\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        if (taskType.equals(\"T\")) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            Task todo \u003d new ToDo(taskDescription);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            if (taskStatus.equals(\"\\u2713\")) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                todo.markAsDone();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            taskList.add(todo);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }else if (taskType.equals(\"D\")) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            taskTime \u003d arr[3].trim();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            Task deadline \u003d new Deadline(taskDescription , taskTime);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            if (taskStatus.equals(\"\\u2713\")) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                deadline.markAsDone();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            taskList.add(deadline);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }else {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            taskTime \u003d arr[3].trim();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            Task event \u003d new Event(taskDescription , taskTime);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            if (taskStatus.equals(\"\\u2713\")) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                event.markAsDone();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            taskList.add(event);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String timeFormatter(String dateInString , String day) throws ParseException {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        DateFormat parser \u003d new SimpleDateFormat(\"dd/M/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        DateFormat stFormatter \u003d new SimpleDateFormat(\"d\u0027st of\u0027 MMMM yyyy , ha\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        DateFormat ndFormatter \u003d new SimpleDateFormat(\"d\u0027nd of\u0027 MMMM yyyy , ha\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        DateFormat rdFormatter \u003d new SimpleDateFormat(\"d\u0027rd of\u0027 MMMM yyyy , ha\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        DateFormat thFormatter \u003d new SimpleDateFormat(\"d\u0027th of\u0027 MMMM yyyy , ha\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String output;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        Date convertedDate \u003d parser.parse(dateInString);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        if (day.equals(\"1\")){"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            output \u003d stFormatter.format(convertedDate);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }else if (day.equals(\"2\")) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            output \u003d ndFormatter.format(convertedDate);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }else if (day.equals(\"3\")) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            output \u003d rdFormatter.format(convertedDate);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }else{"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            output \u003d thFormatter.format(convertedDate);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return output;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String[] firstFilter(String userInput) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String[] filter \u003d userInput.split(\" \");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String firstWord \u003d filter[0];"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        StringBuilder str \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        for (int i \u003d 1 ; i \u003c filter.length ; i++) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            str.append(filter[i]);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            str.append(WHITESPACE);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String[] result \u003d {firstWord , str.toString().trim()};"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return result;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String[] secondFilter(String newString , String firstWord) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String[] filter;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        if (firstWord.equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            filter \u003d newString.split(\" /by \");"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }else{"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            filter \u003d newString.split(\" /at \");"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return filter;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 85
+    }
+  },
+  {
+    "path": "src/main/java/Task.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class Task{"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    protected String description;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    protected boolean isDone;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    protected String type;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    protected String time;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public Task(String description) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.type \u003d \"\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.time \u003d \"\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String getType() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return this.type;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return this.description;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String getTime() {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return this.time;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void markAsDone() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return \"[\" + this.getStatusIcon() + \"] \" + this.description;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 39
+    }
+  },
+  {
+    "path": "src/main/java/ToDo.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class ToDo extends Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public ToDo(String description) {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        this.type \u003d \"T\";"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return \"[\" + this.type + \"][\" + this.getStatusIcon() + \"] \" + this.description;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 10
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    private Scanner scanner;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public Ui() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        scanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public String readUserInput() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        return scanner.nextLine();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showWelcome() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showTaskList(ArrayList\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            System.out.println((i + 1) + \". \" + taskList.get(i));"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showExit() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showDone(ArrayList\u003cTask\u003e taskList , int index) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(taskList.get(index - 1));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showDelete(ArrayList\u003cTask\u003e taskList , int index) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Noted. I\u0027ve removed this task:\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(taskList.get(index - 1));"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showTaskListSize(ArrayList\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showMatchTasks(ArrayList\u003cTask\u003e searchResults , int index) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        for (Task results : searchResults) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            index++;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "            System.out.println(index + \".\" + results);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showAddTodoTask(ArrayList\u003cTask\u003e taskList , Task todoTask) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(todoTask);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showAddDeadlineTask(ArrayList\u003cTask\u003e taskList , Task deadlineTask) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(deadlineTask);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showAddEventTask(ArrayList\u003cTask\u003e taskList , Task eventTask) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(eventTask);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showError (String message) {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"☹ OOPS!!!\" + message);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    public void showLine() {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "        System.out.println(\"____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Qian Jie"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Qian Jie": 84
+    }
+  }
+]

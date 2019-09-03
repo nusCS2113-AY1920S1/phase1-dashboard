@@ -225,7 +225,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public static void main(String[] args) throws NoCommandException, NoTaskException, NoDateException {"
+        "content": "    public static void main(String[] args) {"
       },
       {
         "lineNumber": 8,
@@ -281,7 +281,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "        Task[] tasks \u003d new  Task[100];"
+        "content": "        ArrayList\u003cTask\u003e tasks \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 16,
@@ -330,581 +330,581 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "            String[] tokens \u003d message.split(\" \"); //parse string into done and the number"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            if(tokens[0].equals(\"done\")){"
+        "content": "            String[] tokens \u003d message.split(\" \", 2); //parse the command and the rest"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                int idTaskDone \u003d Integer.parseInt(tokens[1]);"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                if(idTaskDone \u003e tasksId || idTaskDone \u003c\u003d 0){"
+        "content": "            if(tokens[0].equals(\"done\")) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    System.out.println(line + \"Sorry, this task doesn\u0027t exist \\n\" + line);"
+        "content": "                if (tokens.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "                    System.out.println(line + \"OOPS! You forgot to put the number of the task \\n\" + line);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                else {"
+        "content": "                } else {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    tasks[(idTaskDone - 1)].isDone \u003d true;"
+        "content": "                    if(!tokens[1].matches(\"\\\\d+\")){"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    System.out.println(line + \"Nice! I\u0027ve marked this task as done : \\n\" +"
+        "content": "                        System.out.println(line + \"OOPS! Your have to put the number of the task \\n\" + line);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            \"[\" + tasks[(idTaskDone - 1)].getStatusIcon() + \"] \" + tasks[(idTaskDone - 1)].description + \"\\n\" + line);"
+        "content": "                    }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "                    else {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                        int idTaskDone \u003d Integer.parseInt(tokens[1]);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else if(message.equals(\"bye\")){ //exit"
+        "content": "                        tasks.get(idTaskDone - 1).isDone \u003d true; //idTaskDone goes from 1 to n, the position in the array goes from 0 to n-1"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                System.out.println(line + \"Bye. Hope to see you again soon ! \\n\" + line);"
+        "content": "                        if (idTaskDone \u003e tasksId || idTaskDone \u003c\u003d 0) { // can\u0027t finish a task that doesn\u0027t exist"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                saveFile.writeFile(tasks, tasksId);"
+        "content": "                            System.out.println(line + \"Sorry, this task doesn\u0027t exist \\n\" + line);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                running \u003d false;"
+        "content": "                        } else {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                            System.out.println(line + \"Nice! I\u0027ve marked this task as done : \\n\" +"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else if(message.equals(\"list\")){ //listing all tasks"
+        "content": "                                    tasks.get(idTaskDone - 1).toString() + \"\\n\" + line);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                System.out.print(line + \"Here are the tasks in your list \\n\");"
+        "content": "                        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                for(int i \u003d0; i \u003ctasksId; i++){"
+        "content": "                    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    int numbTask \u003d i+1;"
+        "content": "                }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    System.out.println(numbTask + tasks[i].toString());"
+        "content": ""
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "            }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                System.out.print(line);"
+        "content": "            else if(message.equals(\"bye\")){ //exit"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                System.out.println(line + \"Bye. Hope to see you again soon ! \\n\" + line);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            else {"
+        "content": "                saveFile.writeFile(tasks);"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                try {"
+        "content": "                running \u003d false;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if (!(tokens[0].equals(\"todo\") || tokens[0].equals(\"deadline\") || tokens[0].equals(\"event\"))) {"
+        "content": "            }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        throw new NoCommandException(line + \"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + line);"
+        "content": "            else if(message.equals(\"list\")){ //listing all tasks"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                System.out.print(line + \"Here are the tasks in your list \\n\");"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    else {"
+        "content": "                for(int i \u003d 0; i \u003c tasks.size(); i++){"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        if (tokens[0].equals(\"todo\")) {"
+        "content": "                    int numbTask \u003d i+1;"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            String[] todoMessage \u003d message.split(\"todo\");"
+        "content": "                    System.out.println(numbTask + tasks.get(i).toString());"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            if (todoMessage.length \u003d\u003d 0) {"
+        "content": "                }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    throw new NoTaskException(line + \"OOPS!!! The description of a todo cannot be empty\\n\" + line);"
+        "content": "                System.out.print(line);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            }"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            else {"
+        "content": "            else if(tokens[0].equals(\"delete\")) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                tasks[tasksId] \u003d new Todo(todoMessage[1].trim());"
+        "content": "                int idTaskDelete \u003d Integer.parseInt(tokens[1]);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                int numberTask \u003d tasksId + 1;"
+        "content": "                if (idTaskDelete \u003e tasksId || idTaskDelete \u003c\u003d 0) { // can\u0027t finish a task that doesn\u0027t exist"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                System.out.println(line + \"Got it. I\u0027ve added this task : \\n\" + tasks[tasksId].toString() +"
+        "content": "                    System.out.println(line + \"Sorry, this task doesn\u0027t exist \\n\" + line);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        \"\\nNow you have \" + numberTask + \" tasks in the list. \\n\" + line);"
+        "content": "                } else {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                tasksId++;"
+        "content": "                    Task task \u003d tasks.remove(idTaskDelete - 1);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            }"
+        "content": "                    tasksId--;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                    System.out.println(line + \" Noted. I\u0027ve removed this task: \\n\" +"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        }"
+        "content": "                            task.toString() + \"\\n\" + \"Now you have \" + tasksId + \" tasks in the list \\n\" + line);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        else if (tokens[0].equals(\"deadline\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            String[] messageWoDeadline \u003d message.split(\"deadline\");"
+        "content": "            else if(tokens[0].equals(\"find\")){"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            if (messageWoDeadline.length \u003d\u003d 0) {"
+        "content": "                if(tokens.length \u003d\u003d 1){"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                throw new NoTaskException(line + \"OOPS!!! The description of a deadline cannot be empty\\n\" + line);"
+        "content": "                    System.out.println(line + \"OOPS! You forgot to write the keyword \\n\" + line);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            }"
+        "content": "                else {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            else {"
+        "content": "                    System.out.println(line + \"\\n Here are the matching tasks in your list: \\n\");"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                String[] deadlineMessage \u003d messageWoDeadline[1].split(\"/by\");"
+        "content": "                    int numbTask \u003d 0;"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                if (deadlineMessage.length \u003d\u003d 1) {"
+        "content": "                    for (Task task : tasks) {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    throw new NoDateException(line + \"OOPS!!! The date of a deadline cannot be empty\\n\" + line);"
+        "content": "                        numbTask++;"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                }"
+        "content": "                        if (task.description.contains(tokens[1])) {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                else {"
+        "content": "                            System.out.println(numbTask + \".\" + task.toString());"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    if (deadlineMessage[0].isBlank()) {"
+        "content": "                        }"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        throw new NoTaskException(line + \"OOPS!!! The description of a deadline cannot be empty\\n\" + line);"
+        "content": "                    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    }"
+        "content": "                    System.out.println(line);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    else if (deadlineMessage[1].isBlank()) {"
+        "content": "                }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        throw new NoDateException(line + \"OOPS!!! The date of a deadline cannot be empty\\n\" + line);"
+        "content": "            }"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    }"
+        "content": "            else {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    else {"
+        "content": "                try {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        LocalDateTime date \u003d null;"
+        "content": "                    if (!(tokens[0].equals(\"todo\") || tokens[0].equals(\"deadline\") || tokens[0].equals(\"event\"))) {"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        try{"
+        "content": "                        throw new NoCommandException(\"\\n\" + line + \"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + line);"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy kkmm\", Locale.ENGLISH);"
+        "content": "                    }"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            date \u003d LocalDateTime.parse(deadlineMessage[1].trim(), formatter);"
+        "content": "                    else {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        }catch (Exception e){"
+        "content": "                        if (tokens[0].equals(\"todo\")) {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            System.out.println(\"OOPS!!! The date format is invalid, please write as DD/MM/YYYY HHMM\");"
+        "content": "                            String[] todoMessage \u003d message.split(\"todo\");"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        }"
+        "content": "                            if (todoMessage.length \u003d\u003d 0) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        if(!(date \u003d\u003d null)) {"
+        "content": "                                    throw new NoTaskException(\"\\n\" + line + \"OOPS!!! The description of a todo cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            tasks[tasksId] \u003d new Deadline(deadlineMessage[0].trim(), date);"
+        "content": ""
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            int numberTask \u003d tasksId + 1;"
+        "content": "                            }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            System.out.println(line + \"Got it. I\u0027ve added this task : \\n\" + tasks[tasksId].toString() +"
+        "content": "                            else {"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                                    \"\\nNow you have \" + numberTask + \" tasks in the list. \\n\" + line);"
+        "content": "                                Todo todo \u003d new Todo(todoMessage[1].trim());"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            tasksId++;"
+        "content": "                                tasks.add(todo);"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        }"
+        "content": "                                int numberTask \u003d tasks.size();"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    }"
+        "content": "                                System.out.println(line + \"Got it. I\u0027ve added this task : \\n\" + todo.toString() +"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                }"
+        "content": "                                        \"\\nNow you have \" + numberTask + \" tasks in the list. \\n\" + line);"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                                tasksId++;"
       },
       {
         "lineNumber": 105,
@@ -925,112 +925,112 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        } else if (tokens[0].equals(\"event\")) {"
+        "content": "                        }"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            String[] messageWoEvent \u003d message.split(\"event\");"
+        "content": "                        else if (tokens[0].equals(\"deadline\")) {"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            if (messageWoEvent.length \u003d\u003d 0) {"
+        "content": ""
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                throw new NoTaskException(line + \"OOPS!!! The description of a event cannot be empty\\n\" + line);"
+        "content": "                            String[] messageWoDeadline \u003d message.split(\"deadline\");"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            }"
+        "content": "                            if (messageWoDeadline.length \u003d\u003d 0) {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            else {"
+        "content": "                                throw new NoTaskException(\"\\n\"+ line + \"OOPS!!! The description of a deadline cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                String[] eventMessage \u003d messageWoEvent[1].split(\"/at\");"
+        "content": ""
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                if (eventMessage.length \u003d\u003d 1) {"
+        "content": "                            }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    throw new NoDateException(line + \"OOPS!!! The date of a event cannot be empty\\n\" + line);"
+        "content": "                            else {"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                }"
+        "content": "                                String[] deadlineMessage \u003d messageWoDeadline[1].split(\"/by\");"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                else {"
+        "content": "                                if (deadlineMessage.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    if (eventMessage[0].isBlank()) {"
+        "content": "                                    throw new NoDateException(\"\\n\"+ line + \"OOPS!!! The date of a deadline cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        throw new NoTaskException(line + \"OOPS!!! The description of a event cannot be empty\\n\" + line);"
+        "content": "                                }"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    }"
+        "content": "                                else {"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    else if (eventMessage[1].isBlank()) {"
+        "content": "                                    if (deadlineMessage[0].isBlank()) {"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        throw new NoDateException(line + \"OOPS!!! The date of a event cannot be empty\\n\" + line);"
+        "content": "                                        throw new NoTaskException(\"\\n\"+ line + \"OOPS!!! The description of a deadline cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 123,
@@ -1044,147 +1044,147 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    else {"
+        "content": "                                    else if (deadlineMessage[1].isBlank()) {"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        LocalDateTime date \u003d null;"
+        "content": "                                        throw new NoDateException(\"\\n\"+ line + \"OOPS!!! The date of a deadline cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        try{"
+        "content": "                                    }"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy kkmm\", Locale.ENGLISH);"
+        "content": "                                    else {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            date \u003d LocalDateTime.parse(eventMessage[1].trim(), formatter);"
+        "content": "                                        LocalDateTime date \u003d null;"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        }catch (Exception e){"
+        "content": "                                        try{"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            System.out.println(\"OOPS!!! The date format is invalid, please write as DD/MM/YYYY HHMM\");"
+        "content": "                                            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy kkmm\", Locale.ENGLISH);"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        }"
+        "content": "                                            date \u003d LocalDateTime.parse(deadlineMessage[1].trim(), formatter);"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        if(!(date \u003d\u003d null)) {"
+        "content": "                                        }catch (Exception e){"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            tasks[tasksId] \u003d new Event(eventMessage[0].trim(), date);"
+        "content": "                                            System.out.println(\"\\n\"+ line +\"OOPS!!! The date format is invalid, please write as DD/MM/YYYY HHMM\" + line);"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            int numberTask \u003d tasksId + 1;"
+        "content": "                                        }"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            System.out.println(line + \"Got it. I\u0027ve added this task : \\n\" + tasks[tasksId].toString() +"
+        "content": "                                        if(!(date \u003d\u003d null)) {"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                                    \"\\nNow you have \" + numberTask + \" tasks in the list. \\n\" + line);"
+        "content": "                                            Deadline deadline \u003d new Deadline(deadlineMessage[0].trim(), date);"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                            tasksId++;"
+        "content": "                                            tasks.add(deadline);"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                        }"
+        "content": "                                            int numberTask \u003d tasks.size();"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                                            System.out.println(line + \"Got it. I\u0027ve added this task : \\n\" + deadline.toString() +"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                    }"
+        "content": "                                                    \"\\nNow you have \" + numberTask + \" tasks in the list. \\n\" + line);"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                                }"
+        "content": "                                            tasksId++;"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                                        }"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            }"
+        "content": "                                    }"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        }"
+        "content": "                                }"
       },
       {
         "lineNumber": 145,
@@ -1198,94 +1198,465 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                            }"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }catch (NoCommandException e) {"
+        "content": ""
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    System.out.println(e);"
+        "content": "                        } else if (tokens[0].equals(\"event\")) {"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }catch (NoTaskException e) {"
+        "content": "                            String[] messageWoEvent \u003d message.split(\"event\");"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    System.out.println(e);"
+        "content": "                            if (messageWoEvent.length \u003d\u003d 0) {"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }catch (NoDateException e) {"
+        "content": "                                throw new NoTaskException(\"\\n\" + line + \"OOPS!!! The description of a event cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    System.out.println(e);"
+        "content": "                            }"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                }"
+        "content": "                            else {"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                                String[] eventMessage \u003d messageWoEvent[1].split(\"/at\");"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "                                if (eventMessage.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "                                    throw new NoDateException(\"\\n\" + line + \"OOPS!!! The date of a event cannot be empty\\n\" + line);"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "                                }"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "huangje"
         },
-        "content": "}"
+        "content": "                                else {"
       },
       {
         "lineNumber": 159,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                    if (eventMessage[0].isBlank()) {"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        throw new NoTaskException(\"\\n\" + line + \"OOPS!!! The description of a event cannot be empty\\n\" + line);"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                    }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                    else if (eventMessage[1].isBlank()) {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        throw new NoDateException(\"\\n\" + line + \"OOPS!!! The date of a event cannot be empty\\n\" + line);"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                    }"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                    else {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        String[] eventDate \u003d eventMessage[1].split(\"-\");"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        if(eventDate.length \u003d\u003d 1){"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            throw new NoDateException(\"\\n\" + line + \"OOPS!!! The date of a event cannot be empty\\n\" + line);"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        } else if (eventDate[0].isBlank() || eventDate[1].isBlank()) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            throw new NoDateException(\"\\n\" + line + \"OOPS!!! One of the two date are empty\\n\" + line);"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        }"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        else {"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            LocalDateTime date1 \u003d null;"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            LocalDateTime date2 \u003d null;"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            try{"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy kkmm\", Locale.ENGLISH); //the date format must be this one"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                date1 \u003d LocalDateTime.parse(eventDate[0].trim(), formatter);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                date2 \u003d LocalDateTime.parse(eventDate[1].trim(), formatter);"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            }catch (Exception e){"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                System.out.println(\"\\n\" + line + \"OOPS!!! The date format is invalid, please write as DD/MM/YYYY HHMM - DD/MM/YYYY HHMM or the date doesn\u0027t exist\" +line);"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            }"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            if(!(date1 \u003d\u003d null || date2 \u003d\u003d null)) {"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                Event event \u003d new Event(eventMessage[0].trim(), date1, date2);"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                tasks.add(event);"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                int numberTask \u003d tasks.size();"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                System.out.println(line + \"Got it. I\u0027ve added this task : \\n\" + event.toString() +"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                        \"\\nNow you have \" + numberTask + \" tasks in the list. \\n\" + line);"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                                tasksId++;"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                            }"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                        }"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                    }"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                                }"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                }catch (NoCommandException e) {"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                    System.out.println(e);"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                }catch (NoTaskException e) {"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                    System.out.println(e);"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                }catch (NoDateException e) {"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                    System.out.println(e);"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 212,
         "author": {
           "gitId": "huangje"
         },
@@ -1293,7 +1664,7 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 159
+      "huangje": 212
     }
   },
   {
@@ -1375,136 +1746,157 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "    protected LocalDateTime at;"
+        "content": "    protected LocalDateTime at1;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    protected LocalDateTime at2;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public Event(String description, LocalDateTime at) {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        super(description);"
+        "content": "    public Event(String description, LocalDateTime at1, LocalDateTime at2) {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        this.at \u003d at;"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        this.at1 \u003d at1;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "        this.at2 \u003d at2;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public Event(String description, LocalDateTime at, boolean isDone) {"
+        "content": "    }"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        super(description, isDone);"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        this.at \u003d at;"
+        "content": "    public Event(String description, LocalDateTime at1, LocalDateTime at2, boolean isDone) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        super(description, isDone);"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "        this.at1 \u003d at1;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public String toString(){"
+        "content": "        this.at2 \u003d at2;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        return \"[E]\" + super.toString() + \" (at \" + at.toString() +\")\";"
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    public String toString(){"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public boolean isEvent(){"
+        "content": "        return \"[E]\" + super.toString() + \" (at \" + at1.toString() + \" \" + at2.toString() +\")\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        return true;"
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 24,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    public boolean isEvent(){"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "huangje"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
         "author": {
           "gitId": "huangje"
         },
@@ -1512,7 +1904,7 @@
       }
     ],
     "authorContributionMap": {
-      "huangje": 24
+      "huangje": 27
     }
   },
   {
@@ -1680,168 +2072,168 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "import java.util.Locale;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "huangje"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.util.Locale;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "huangje"
         },
-        "content": "public class SaveFile {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    File file;"
+        "content": "public class SaveFile {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    File file;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public SaveFile(String file){"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        this.file \u003d new File(file);"
+        "content": "    public SaveFile(String file){"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        try {"
+        "content": "        this.file \u003d new File(file);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            this.file.createNewFile();"
+        "content": "        try {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            this.file.createNewFile();"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public int readFile(Task[] task) {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "huangje"
         },
-        "content": ""
+        "content": "    public int readFile(ArrayList\u003cTask\u003e task) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        Scanner sc \u003d null;"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        try {"
+        "content": "        Scanner sc \u003d null;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            sc \u003d new Scanner(this.file);"
+        "content": "        try {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        } catch (FileNotFoundException e) {"
+        "content": "            sc \u003d new Scanner(this.file);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        } catch (FileNotFoundException e) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        }"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "huangje"
         },
-        "content": "        int numberTasks \u003d 0;"
+        "content": "        }"
       },
       {
         "lineNumber": 28,
@@ -1897,7 +2289,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        task[numberTasks] \u003d new Todo(tokens[2], true);"
+        "content": "                        task.add(new Todo(tokens[2], true));"
       },
       {
         "lineNumber": 36,
@@ -1918,7 +2310,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        task[numberTasks] \u003d new Todo(tokens[2], false);"
+        "content": "                        task.add(new Todo(tokens[2], false));"
       },
       {
         "lineNumber": 39,
@@ -1960,7 +2352,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        task[numberTasks] \u003d new Deadline(tokens[2], LocalDateTime.parse(dateD, formatter), true);"
+        "content": "                        task.add(new Deadline(tokens[2], LocalDateTime.parse(dateD, formatter), true));"
       },
       {
         "lineNumber": 45,
@@ -1981,7 +2373,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        task[numberTasks] \u003d new Deadline(tokens[2], LocalDateTime.parse(dateD, formatter), true);"
+        "content": "                        task.add(new Deadline(tokens[2], LocalDateTime.parse(dateD, formatter), true));"
       },
       {
         "lineNumber": 48,
@@ -2009,70 +2401,70 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    String dateE \u003d tokens[3].replace(\"T\", \" \");"
+        "content": "                    String dateE1 \u003d tokens[3].replace(\"T\", \" \");"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if(tokens[1].equals(\"1\")){"
+        "content": "                    String dateE2 \u003d tokens[4].replace(\"T\", \" \");"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        task[numberTasks] \u003d new Event(tokens[2], LocalDateTime.parse(dateE, formatter), true);"
+        "content": "                    if(tokens[1].equals(\"1\")){"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                        task.add(new Event(tokens[2], LocalDateTime.parse(dateE1, formatter), LocalDateTime.parse(dateE2, formatter), true));"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    else {"
+        "content": "                    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        task[numberTasks] \u003d new Event(tokens[2], LocalDateTime.parse(dateE, formatter), true);"
+        "content": "                    else {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    }"
+        "content": "                        task.add(new Event(tokens[2], LocalDateTime.parse(dateE2, formatter), LocalDateTime.parse(dateE2, formatter), true));"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    break;"
+        "content": "                    }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            }"
+        "content": "                    break;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "huangje"
         },
-        "content": "            numberTasks++;"
+        "content": "            }"
       },
       {
         "lineNumber": 61,
@@ -2086,7 +2478,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "        return numberTasks;"
+        "content": "        return task.size();"
       },
       {
         "lineNumber": 63,
@@ -2107,7 +2499,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "    public void writeFile(Task[] tasks, int numberTasks){"
+        "content": "    public void writeFile(ArrayList\u003cTask\u003e tasks){"
       },
       {
         "lineNumber": 66,
@@ -2149,28 +2541,28 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                for (int i \u003d 0; i\u003cnumberTasks; i++) {"
+        "content": "                for (Task task : tasks){"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    if (tasks[i].isTodo()) {"
+        "content": "                    if (task.isTodo()) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        if (tasks[i].isDone) {"
+        "content": "                        if (task.isDone) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            fileWriter.write(\"T/1/\" + tasks[i].description + \"\\n\");"
+        "content": "                            fileWriter.write(\"T/1/\" + task.description + \"\\n\");"
       },
       {
         "lineNumber": 75,
@@ -2191,7 +2583,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            fileWriter.write(\"T/0/\" + tasks[i].description+ \"\\n\");"
+        "content": "                            fileWriter.write(\"T/0/\" + task.description+ \"\\n\");"
       },
       {
         "lineNumber": 78,
@@ -2205,21 +2597,21 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    } else if (tasks[i].isDeadline()) {"
+        "content": "                    } else if (task.isDeadline()) {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        if (tasks[i].isDone) {"
+        "content": "                        if (task.isDone) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            fileWriter.write(\"D/1/\" + tasks[i].description + \"/\" + ((Deadline) tasks[i]).by.toString()+ \"\\n\");"
+        "content": "                            fileWriter.write(\"D/1/\" + task.description + \"/\" + ((Deadline) task).by.toString()+ \"\\n\");"
       },
       {
         "lineNumber": 82,
@@ -2233,7 +2625,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            fileWriter.write(\"D/0/\" + tasks[i].description + \"/\" + ((Deadline) tasks[i]).by.toString()+ \"\\n\");"
+        "content": "                            fileWriter.write(\"D/0/\" + task.description + \"/\" + ((Deadline) task).by.toString()+ \"\\n\");"
       },
       {
         "lineNumber": 84,
@@ -2247,21 +2639,21 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                    } else if (tasks[i].isEvent()) {"
+        "content": "                    } else if (task.isEvent()) {"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                        if (tasks[i].isDone) {"
+        "content": "                        if (task.isDone) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            fileWriter.write(\"D/1/\" + tasks[i].description + \"/\" + ((Event) tasks[i]).at.toString()+ \"\\n\");"
+        "content": "                            fileWriter.write(\"D/1/\" + task.description + \"/\" + ((Event) task).at1.toString()+ \"/\" + ((Event) task).at2.toString() + \"\\n\");"
       },
       {
         "lineNumber": 88,
@@ -2275,7 +2667,7 @@
         "author": {
           "gitId": "huangje"
         },
-        "content": "                            fileWriter.write(\"D/0/\" + tasks[i].description + \"/\" + ((Event) tasks[i]).at.toString()+ \"\\n\");"
+        "content": "                            fileWriter.write(\"D/0/\" + task.description + \"/\" + ((Event) task).at1.toString()+ \"/\" + ((Event) task).at2.toString() +\"\\n\");"
       },
       {
         "lineNumber": 90,
