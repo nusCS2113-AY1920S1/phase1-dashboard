@@ -1,5 +1,490 @@
 [
   {
+    "path": "src/main/java/DateAndTimeConverter.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "class DateAndTimeConverter { //contains bugs (time/date out of range will be undetected)"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    private String convertDate(String str) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        if (str.contains(\"/\")) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            String[] split \u003d str.split(\"/\");"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            String day \u003d split[0], month \u003d split[1], year \u003d split[2];"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            int tempDay \u003d Integer.parseInt(day);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            if (tempDay \u003d\u003d 1 || tempDay \u003d\u003d 21 || tempDay \u003d\u003d 31) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                day +\u003d \"st\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            } else if (tempDay \u003d\u003d 2 || tempDay \u003d\u003d 22) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                day +\u003d \"nd\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            } else if (tempDay \u003d\u003d 3 || tempDay \u003d\u003d 23) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                day +\u003d \"rd\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                day +\u003d \"th\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            int tempMonth \u003d Integer.parseInt(month);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            String[] months \u003d {\"Jan\", \"Feb\", \"Mar\", \"April\", \"May\", \"June\", \"July\", \"Aug\", \"Sept\", \"Oct\", \"Nov\", \"Dec\"}; //SWITCH TO ENUM"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            month \u003d months[tempMonth - 1]; //- 1 cause indexing"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            return day + \" \" + month + \" \" + year;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        return str;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    private String convertTime(String str) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        if (str.contains(\"am\") || str.contains(\"pm\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            return str;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            String hr \u003d str.substring(0, 2), min \u003d str.substring(2, 4), m \u003d \"\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            int hh \u003d Integer.parseInt(hr); //mins \u003d Integer.parseInt(min);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            if (hh \u003c 12) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                m \u003d \"am\";"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                m \u003d \"pm\";"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                hh -\u003d 12;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            if (hh \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                hh \u003d 12;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            hr \u003d Integer.toString(hh);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            return hr + \":\" + min + m;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    private static boolean isNumeric(String str) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        for (char c : str.toCharArray()) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            if (!Character.isDigit(c)) return false;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    String convert(String str) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        String temp \u003d \"\";"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        String[] split \u003d str.split(\" \");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        if (split.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            String date \u003d convertDate(split[0]);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            String time \u003d convertTime(split[1]);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            temp +\u003d date + \", \" + time;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            if (isNumeric(split[0])) { //is time"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                temp \u003d convertTime(split[0]);"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                temp \u003d convertDate(split[0]);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        return temp;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Weng-Kexin": 68
+    }
+  },
+  {
     "path": "src/main/java/Deadline.java",
     "fileType": "java",
     "lines": [
@@ -304,871 +789,1277 @@
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        int i \u003d 0;"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": ""
+        "content": "        String filePath \u003d \"C:\\\\Users\\\\Asus\\\\Desktop\\\\duke\\\\src\\\\main\\\\java\\\\data\\\\duke.txt\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        String filePath \u003d \"C:\\\\Users\\\\Asus\\\\Desktop\\\\duke\\\\src\\\\main\\\\java\\\\data\\\\duke.txt\";"
+        "content": "        storage.readFromFile(filePath, myArray); //read from file"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        //read from file here"
+        "content": "        int i \u003d myArray.size();"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        storage.readFromFile(filePath, myArray);"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        i +\u003d myArray.size();"
+        "content": "        while (true) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": ""
+        "content": "            Scanner scanner \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        while (true) {"
+        "content": "            String input \u003d scanner.nextLine();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "            Scanner scanner \u003d new Scanner(System.in);"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "            String input \u003d scanner.nextLine();"
+        "content": "            if (input.equals(\"bye\")) { //cant use \"\u003d\u003d\" to compare strings **it only compares the memory address"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": ""
+        "content": "                System.out.println(horzline + \"\\n\" + \"Bye. Hope to see you again soon!\\n\" + horzline);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "            if (input.equals(\"bye\")) { //cant use \"\u003d\u003d\" to compare strings **it only compares the memory address"
+        "content": "                break;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                System.out.println(horzline + \"\\n\" + \"Bye. Hope to see you again soon!\\n\" + horzline);"
+        "content": "            } else if (input.equals(\"list\")) { //list the array directly from Task[]"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                break;"
+        "content": "                if (myArray.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "            } else if (input.equals(\"list\")) { //list the array directly from Task[]"
+        "content": "                    System.out.println(horzline + \"\\n\" + \"There are no tasks in your list.\\n\" + horzline);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                System.out.println(horzline + \"\\n\" + \"Here are the tasks in your list:\");"
+        "content": "                } else {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                for (int j \u003d 0; j \u003c myArray.size(); j++) {"
+        "content": "                    String t \u003d (myArray.size() \u003d\u003d 1 ? \" task \" : \" tasks \");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                    System.out.println((j + 1) + \".\" + myArray.get(j));"
+        "content": "                    System.out.println(horzline + \"\\n\" + \"Here are the\" + t + \"in your list:\");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                }"
+        "content": "                    for (int j \u003d 0; j \u003c myArray.size(); j++) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                System.out.println(horzline);"
+        "content": "                        System.out.println((j + 1) + \".\" + myArray.get(j));"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "            } else {"
+        "content": "                    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                //add to array or mark as done"
+        "content": "                    System.out.println(horzline);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                String[] splitted \u003d input.split(\" \");"
+        "content": "                }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                switch (splitted[0]) {"
+        "content": "            } else {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                    case \"done\":"
+        "content": "                DateAndTimeConverter c \u003d new DateAndTimeConverter();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        try {"
+        "content": "                String[] splitted \u003d input.split(\" \");"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            String temp \u003d splitted[1];"
+        "content": "                switch (splitted[0]) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            int taskNum \u003d Integer.parseInt(temp) - 1;"
+        "content": "                    case \"done\":"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            myArray.get(taskNum).markAsDone(); //use get to modify/access the element"
+        "content": "                        try {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            System.out.println(horzline + \"\\n\" + \"Nice! I\u0027ve marked this task as done:\");"
+        "content": "                            String temp \u003d splitted[1];"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            System.out.println(myArray.get(taskNum) + \"\\n\" + horzline);"
+        "content": "                            int taskNum \u003d Integer.parseInt(temp) - 1;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        } catch (Exception e) {"
+        "content": "                            myArray.get(taskNum).markAsDone(); //use get to modify/access the element"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            if (splitted.length \u003d\u003d 1) {"
+        "content": "                            System.out.println(horzline + \"\\n\" + \"Nice! I\u0027ve marked this task as done:\");"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a done cannot be empty.\\n\" + horzline);"
+        "content": "                            System.out.println(myArray.get(taskNum) + \"\\n\" + horzline);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            } else {"
+        "content": "                        } catch (Exception e) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The number is out of range.\\n\" + horzline);"
+        "content": "                            if (splitted.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a done cannot be empty.\\n\" + horzline);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        }"
+        "content": "                            } else {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        break;"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The number is out of range.\\n\" + horzline);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                    case \"todo\":"
+        "content": "                            }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        try {"
+        "content": "                        }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            String temp \u003d \"\";"
+        "content": "                        break;"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            for (int k \u003d 1; k \u003c splitted.length; k++) {"
+        "content": "                    case \"delete\":"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                temp +\u003d splitted[k];"
+        "content": "                        try {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                temp +\u003d \" \";"
+        "content": "                            int taskNum \u003d Integer.parseInt(splitted[1]) - 1;"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                            myArray.remove(taskNum);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            if (splitted.length \u003d\u003d 1) { //the exception handling for todo"
+        "content": "                            i--;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a todo cannot be empty.\\n\" + horzline);"
+        "content": "                            System.out.println(horzline + \"\\n\" + \"Noted. I\u0027ve removed this task:\");"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            } else {"
+        "content": "                            System.out.println(myArray.get(taskNum));"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                myArray.add(new ToDo(temp));"
+        "content": "                            String t \u003d (myArray.size() \u003d\u003d 1 ? \" task\" : \" tasks\");"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"Got it. I\u0027ve added this task:\\n\" + \" \" + myArray.get(i));"
+        "content": "                            System.out.println(\"Now you have \" + myArray.size() + t + \" in the list.\\n\" + horzline);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(\"Now you have \" + myArray.size() + \" tasks in the list.\\n\" + horzline);"
+        "content": "                        } catch (Exception e) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                i++;"
+        "content": "                            if (splitted.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a delete cannot be empty.\\n\" + horzline);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        } catch (Exception e) {"
+        "content": ""
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a todo cannot be empty.\\n\" + horzline);"
+        "content": "                            } else {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        }"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The number is out of range.\\n\" + horzline);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        break;"
+        "content": "                            }"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                    case \"deadline\":"
+        "content": "                        }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        try {"
+        "content": "                        break;"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            String tempTask \u003d \"\", tempBy \u003d \"\";"
+        "content": "                    case \"todo\":"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            boolean isBy \u003d false;"
+        "content": "                        try {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            for (int k \u003d 1; k \u003c splitted.length; k++) {"
+        "content": "                            String temp \u003d \"\";"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                if (splitted[k].equals(\"/by\")) isBy \u003d true;"
+        "content": "                            for (int k \u003d 1; k \u003c splitted.length; k++) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                if (isBy) {"
+        "content": "                                temp +\u003d splitted[k];"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    if (!splitted[k].equals(\"/by\")) { //need to do this to get rid of \"/by\""
+        "content": "                                temp +\u003d \" \";"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                        tempBy +\u003d splitted[k];"
+        "content": "                            }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                        tempBy +\u003d \" \";"
+        "content": "                            if (splitted.length \u003d\u003d 1) { //the exception handling for todo"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    }"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a todo cannot be empty.\\n\" + horzline);"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                } else {"
+        "content": "                            } else {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    tempTask +\u003d splitted[k];"
+        "content": "                                myArray.add(new ToDo(temp));"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    tempTask +\u003d \" \";"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"Got it. I\u0027ve added this task:\\n\" + \" \" + myArray.get(i));"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                }"
+        "content": "                                String t \u003d (myArray.size() \u003d\u003d 1 ? \" task\" : \" tasks\");"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                                System.out.println(\"Now you have \" + myArray.size() + t + \" in the list.\\n\" + horzline);"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            if (!isBy || splitted.length \u003d\u003d 1) {"
+        "content": "                                i++;"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a deadline cannot be empty.\\n\" + horzline);"
+        "content": "                            }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            } else {"
+        "content": "                        } catch (Exception e) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                tempBy.trim(); tempTask.trim();"
+        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + horzline);"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                myArray.add(new Deadline(tempTask, tempBy));"
+        "content": "                        }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"Got it. I\u0027ve added this task:\\n\" + \" \" + myArray.get(i));"
+        "content": "                        break;"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(\"Now you have \" + myArray.size() + \" tasks in the list.\\n\" + horzline);"
+        "content": "                    case \"deadline\":"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                i++;"
+        "content": "                        try {"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                            String tempTask \u003d \"\", tempBy \u003d \"\";"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        } catch (Exception e) {"
+        "content": "                            boolean isBy \u003d false;"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a deadline cannot be empty.\\n\" + horzline);"
+        "content": "                            for (int k \u003d 1; k \u003c splitted.length; k++) {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        }"
+        "content": "                                if (splitted[k].equals(\"/by\")) isBy \u003d true;"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        break;"
+        "content": "                                if (isBy) {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                    case \"event\":"
+        "content": "                                    if (!splitted[k].equals(\"/by\")) { //need to do this to get rid of \"/by\""
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        try {"
+        "content": "                                        tempBy +\u003d splitted[k];"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            String tempTask \u003d \"\", tempAt \u003d \"\";"
+        "content": "                                        tempBy +\u003d \" \";"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            boolean isAt \u003d false;"
+        "content": "                                    }"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            for (int k \u003d 1; k \u003c splitted.length; k++) {"
+        "content": "                                } else {"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                if (splitted[k].equals(\"/at\")) isAt \u003d true;"
+        "content": "                                    tempTask +\u003d splitted[k];"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                if (isAt) {"
+        "content": "                                    tempTask +\u003d \" \";"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    if (!splitted[k].equals(\"/at\")) { //need to do this to get rid of \"/at\""
+        "content": "                                }"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                        tempAt +\u003d splitted[k];"
+        "content": "                            }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                        tempAt +\u003d \" \";"
+        "content": "                            if (!isBy || splitted.length \u003d\u003d 1) {"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    }"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a deadline cannot be empty.\\n\" + horzline);"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                } else {"
+        "content": "                            } else {"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    tempTask +\u003d splitted[k];"
+        "content": "                                tempBy \u003d c.convert(tempBy);"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                    tempTask +\u003d \" \";"
+        "content": "                                myArray.add(new Deadline(tempTask.trim(), tempBy.trim()));"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                }"
+        "content": "                                System.out.println(horzline + \"\\n\" + \"Got it. I\u0027ve added this task:\\n\" + \" \" + myArray.get(i));"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                                String t \u003d (myArray.size() \u003d\u003d 1 ? \" task\" : \" tasks\");"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            if (!isAt || splitted.length \u003d\u003d 1) {"
+        "content": "                                System.out.println(\"Now you have \" + myArray.size() + t + \" in the list.\\n\" + horzline);"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of an event cannot be empty.\\n\" + horzline);"
+        "content": "                                i++;"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            } else {"
+        "content": "                            }"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                tempAt.trim(); //to remove the last space"
+        "content": "                        } catch (Exception e) {"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                myArray.add(new Event(tempTask, tempAt));"
+        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + horzline);"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(horzline + \"\\n\" + \"Got it. I\u0027ve added this task:\\n\" + \" \" + myArray.get(i));"
+        "content": "                        }"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                System.out.println(\"Now you have \" + myArray.size() + \" tasks in the list.\\n\" + horzline);"
+        "content": "                        break;"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                                i++;"
+        "content": "                    case \"event\":"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            }"
+        "content": "                        try {"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        } catch (Exception e) {"
+        "content": "                            String tempTask \u003d \"\", tempAt \u003d \"\";"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of an event cannot be empty.\\n\" + horzline);"
+        "content": "                            boolean isAt \u003d false;"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        }"
+        "content": "                            for (int k \u003d 1; k \u003c splitted.length; k++) {"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        break;"
+        "content": "                                if (splitted[k].equals(\"/at\")) isAt \u003d true;"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                    default:"
+        "content": "                                if (isAt) {"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + horzline);"
+        "content": "                                    if (!splitted[k].equals(\"/at\")) { //need to do this to get rid of \"/at\""
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                        break;"
+        "content": "                                        tempAt +\u003d splitted[k];"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "                }"
+        "content": "                                        tempAt +\u003d \" \";"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "            }"
+        "content": "                                    }"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        }"
+        "content": "                                } else {"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "Weng-Kexin"
         },
-        "content": "        storage.saveToFile(myArray, filePath);"
+        "content": "                                    tempTask +\u003d splitted[k];"
       },
       {
         "lineNumber": 143,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    tempTask +\u003d \" \";"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            if (!isAt || splitted.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of an event cannot be empty.\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            } else {"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                tempAt \u003d c.convert(tempAt);"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                myArray.add(new Event(tempTask.trim(), tempAt.trim()));"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                System.out.println(horzline + \"\\n\" + \"Got it. I\u0027ve added this task:\\n\" + \" \" + myArray.get(i));"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                String t \u003d (myArray.size() \u003d\u003d 1 ? \" task\" : \" tasks\");"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                System.out.println(\"Now you have \" + myArray.size() + t + \" in the list.\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                i++;"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                    case \"find\":"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        try {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            if (splitted.length \u003d\u003d 1) {"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! The description of a find task cannot be empty.\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            } else {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                String toFind \u003d \"\";"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                for (int x \u003d 1; x \u003c splitted.length; x++) {"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    toFind +\u003d splitted[x] + \" \";"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                }"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                toFind \u003d toFind.trim();"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                ArrayList\u003cTask\u003e findArray \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                for (int x \u003d 0; x \u003c myArray.size(); x++) {"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    if (myArray.get(x).getDescription().contains(\" \" + toFind + \" \")"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                            || myArray.get(x).getDescription().contains(\" \" + toFind)"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                            || myArray.get(x).getDescription().contains(toFind + \" \")) {"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                        findArray.add(myArray.get(x));"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    }"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                }"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                if (findArray.size() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    System.out.println(horzline + \"\\nSorry. There are no matching tasks in your list.\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                } else {"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    String is \u003d (findArray.size() \u003d\u003d 1 ? \"is\" : \"are\");"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    String t \u003d (findArray.size() \u003d\u003d 1 ? \"task\" : \"tasks\");"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    System.out.println(horzline + \"\\nHere \" + is + \" the matching \" + t + \" in your list:\");"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    for (int j \u003d 0; j \u003c findArray.size(); j++) {"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                        System.out.println((j + 1) + \".\" + findArray.get(j));"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    }"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                    System.out.println(horzline);"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                                }"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                            System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                    default:"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        System.out.println(horzline + \"\\n\" + \"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\" + horzline);"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        storage.saveToFile(myArray, filePath);"
+      },
+      {
+        "lineNumber": 201,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 144,
+        "lineNumber": 202,
         "author": {
           "gitId": "-"
         },
@@ -1176,7 +2067,7 @@
       }
     ],
     "authorContributionMap": {
-      "Weng-Kexin": 135,
+      "Weng-Kexin": 193,
       "-": 9
     }
   },
@@ -2110,11 +3001,39 @@
         "author": {
           "gitId": "Weng-Kexin"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Weng-Kexin"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "Weng-Kexin": 30
+      "Weng-Kexin": 34
     }
   },
   {

@@ -171,110 +171,110 @@
         "author": {
           "gitId": "assman"
         },
-        "content": "import java.io.*;"
+        "content": ""
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "assman"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "assman"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "assman"
-        },
         "content": ""
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 6,
         "author": {
           "gitId": "-"
         },
         "content": "public class Duke {"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 7,
         "author": {
           "gitId": "assman"
         },
         "content": "    private static final String LOGO \u003d \" ____        _        \\n\" + \"|  _ \\\\ _   _| | _____ \\n\""
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 8,
         "author": {
           "gitId": "assman"
         },
         "content": "            + \"| | | | | | | |/ / _ \\\\\\n\" + \"| |_| | |_| |   \u003c  __/\\n\" + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 9,
         "author": {
           "gitId": "assman"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    private TaskList taskList \u003d new TaskList();"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "assman"
         },
-        "content": "    private ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+        "content": "    private Storage storage \u003d new Storage();"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "assman"
         },
-        "content": ""
+        "content": "    private Parser parser \u003d new Parser();"
       },
       {
         "lineNumber": 13,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
         "author": {
           "gitId": "-"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 15,
         "author": {
           "gitId": "assman"
         },
         "content": "        System.out.println(\"Hello I\u0027m Duke\\n\" + \"What can I do for you?\\n\" + \"____________________________\");"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 16,
         "author": {
           "gitId": "assman"
         },
         "content": "        Duke myDuke \u003d new Duke();"
       },
       {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        myDuke.initialize();"
-      },
-      {
         "lineNumber": 17,
         "author": {
           "gitId": "assman"
         },
-        "content": "        myDuke.processUserInput(getInput());"
+        "content": "        myDuke.run();"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "-"
+          "gitId": "assman"
         },
         "content": "    }"
       },
@@ -290,1228 +290,59 @@
         "author": {
           "gitId": "assman"
         },
-        "content": "    public void initialize() {"
+        "content": "    public void run() {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "assman"
         },
-        "content": "      try{"
+        "content": "      this.storage.load(this.taskList);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "assman"
         },
-        "content": "        FileInputStream fis \u003d new FileInputStream(\"tasks.txt\");"
+        "content": "      Scanner input \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "assman"
         },
-        "content": "        ObjectInputStream ois \u003d new ObjectInputStream(fis);"
+        "content": "      while(input.hasNextLine()){"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "assman"
         },
-        "content": "        taskList \u003d (ArrayList\u003cTask\u003e) ois.readObject();"
+        "content": "        String inputString \u003d input.nextLine();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "assman"
         },
-        "content": "        ois.close();"
+        "content": "        parser.processUserInput(inputString, this.taskList, this.storage);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "assman"
         },
-        "content": "        }"
+        "content": "      }"
       },
       {
         "lineNumber": 27,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        catch(Exception e){"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "          try{"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            FileOutputStream fos \u003d new FileOutputStream(\"tasks.txt\");"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            oos.writeObject(taskList);"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            oos.close();"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            catch(Exception ee){"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              respondToUser(\"OOPS, unable to write to file\");"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    public void save(){"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "      try{"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        FileOutputStream fos \u003d new FileOutputStream(\"tasks.txt\");"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        oos.writeObject(this.taskList);"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        oos.close();"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        catch(Exception e){"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "          respondToUser(\"Error while saving your tasks :(\");"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    public void addTask(Task task) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "      this.taskList.add(task);"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    public static String getInput() {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "      Scanner input \u003d new Scanner(System.in);"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "      String inputString \u003d null;"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "      inputString \u003d input.nextLine();"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "      return inputString;"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "  }"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    public void processUserInput(String userInput) {"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        String[] parts \u003d userInput.split(\" \", 2);"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        switch(parts[0]) {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"done\":"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              if(Integer.parseInt(parts[1]) \u003e taskList.size()){"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Task not found\");"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              else {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "               taskList.get((Integer.parseInt(parts[1]) - 1)).setDone(true);"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "               respondToUser(\"Nice! I\u0027ve marked this task as done: \\n\" +"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                            taskList.get((Integer.parseInt(parts[1]) - 1)).toString());"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"list\":"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              System.out.println(\"-----------------------\\nHere are the tasks in your list:\");"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              for (int i \u003d 0; i \u003c taskList.size(); i++) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  System.out.println(i + 1 + \": \" + taskList.get(i).toString());"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              System.out.println(\"-----------------------\\n\");"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"delete\":"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              if(Integer.parseInt(parts[1]) \u003e taskList.size()){"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Task not found\");"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              else {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                Task deletedTask \u003d taskList.get(Integer.parseInt(parts[1]) - 1);"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                taskList.remove(Integer.parseInt(parts[1]) - 1);"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Noted. I\u0027ve removed this task: \\n\" +"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              deletedTask.toString() + \"\\n\" +"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"bye\":"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              respondToUser(\"Bye. Hope to see you again soon!\");"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              this.save();"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              System.exit(0);"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"find\":"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              String searchQuery \u003d parts[1];"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              ArrayList\u003cTask\u003e searchResult \u003d new ArrayList\u003cTask\u003e();"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              for (Task task : taskList) {"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  if(task.toString().contains(searchQuery)){"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                      searchResult.add(task);"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  }"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              if(searchResult.size() \u003e 0){"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                System.out.println(\"-----------------------\\nHere are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                for (int i \u003d 0; i \u003c searchResult.size(); i++) {"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                    System.out.println(i + 1 + \": \" + searchResult.get(i).toString());"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                System.out.println(\"-----------------------\\n\");"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              else {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Sorry, no such tasks found :(\");"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"todo\":"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              try {"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  respondToUser(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  break;"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                Todo todo \u003d new Todo(parts[1]);"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                taskList.add(todo);"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Got it. I\u0027ve added this task:  \\n\" +"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              todo.toString() + \"\\n\" + "
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"deadline\":"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              try {"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  respondToUser(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  break;"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                String[] deadline_parts \u003d parts[1].split(\" /by \", 2);"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm\");"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                LocalDateTime dateTime;"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                try{"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  dateTime \u003d LocalDateTime.parse(deadline_parts[1], formatter);"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                catch(Exception e){"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  respondToUser(\"Invalid Date/Time. Please use the format dd-MM-yyyy HH:mm\");"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  break;                "
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                Deadline deadline \u003d new Deadline(deadline_parts[0], dateTime);"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                taskList.add(deadline);"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Got it. I\u0027ve added this task:  \\n\" +"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              deadline.toString() + \"\\n\" + "
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            case \"event\":"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              try {"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  respondToUser(\"☹ OOPS!!! The description of a event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  break;"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                String[] event_parts \u003d parts[1].split(\" /at \", 2);"
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm\");"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                LocalDateTime dateTime;"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                try{"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  dateTime \u003d LocalDateTime.parse(event_parts[1], formatter);"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                catch(Exception e){"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  respondToUser(\"Invalid Date/Time. Please use the format dd-MM-yyyy HH:mm\");"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                  break;                "
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                Event event \u003d new Event(event_parts[0], dateTime);"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                taskList.add(event);"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"Got it. I\u0027ve added this task:  \\n\" +"
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              event.toString() + \"\\n\" + "
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "                respondToUser(\"☹ OOPS!!! The description of a event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              }"
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              break;"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "            default:"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "              respondToUser(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "          }"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "          "
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "          processUserInput(getInput());"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "    public void respondToUser(String userResponse) {"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": "        System.out.println(\"-----------------------\\n\" + userResponse + \"\\n-----------------------\\n\");"
-      },
-      {
-        "lineNumber": 193,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "assman"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 195,
+        "lineNumber": 28,
         "author": {
           "gitId": "-"
         },
@@ -1519,8 +350,8 @@
       }
     ],
     "authorContributionMap": {
-      "assman": 190,
-      "-": 5
+      "assman": 24,
+      "-": 4
     }
   },
   {
@@ -1670,6 +501,1340 @@
     ],
     "authorContributionMap": {
       "assman": 20
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "package main.java;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void processUserInput(String userInput, TaskList taskList, Storage storage) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        String[] parts \u003d userInput.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        switch(parts[0]) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              if(Integer.parseInt(parts[1]) \u003e taskList.size()){"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"Task not found\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              else {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "               taskList.get((Integer.parseInt(parts[1]) - 1)).setDone(true);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              Ui.respondToUser(\"Nice! I\u0027ve marked this task as done: \\n\" +"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                            taskList.get((Integer.parseInt(parts[1]) - 1)).toString());"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              System.out.println(\"-----------------------\\nHere are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  System.out.println(i + 1 + \": \" + taskList.get(i).toString());"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              System.out.println(\"-----------------------\\n\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              try {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Ui.respondToUser(\"Which task do you want to delete?\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  if(Integer.parseInt(parts[1]) \u003e taskList.size()){"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Ui.respondToUser(\"Task not found\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  else {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Task deletedTask \u003d taskList.get(Integer.parseInt(parts[1]) - 1);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    taskList.getlist().remove(Integer.parseInt(parts[1]) - 1);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Ui.respondToUser(\"Noted. I\u0027ve removed this task: \\n\" +"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                                  deletedTask.toString() + \"\\n\" +"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                                  \"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  Ui.respondToUser(\"Which task do you want to delete?\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              try {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Ui.respondToUser(\"☹ OOPS!!! The search query cannot be empty.\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                String searchQuery \u003d parts[1];"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                ArrayList\u003cTask\u003e searchResult \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                for (Task task : taskList.getlist()) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    if(task.toString().contains(searchQuery)){"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                        searchResult.add(task);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                if(searchResult.size() \u003e 0){"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    System.out.println(\"-----------------------\\nHere are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    for (int i \u003d 0; i \u003c searchResult.size(); i++) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                        System.out.println(i + 1 + \": \" + searchResult.get(i).toString());"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    System.out.println(\"-----------------------\\n\");"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Ui.respondToUser(\"Sorry, no such tasks found :(\");"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                    Ui.respondToUser(\"☹ OOPS!!! The search query cannot be empty.\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              Ui.respondToUser(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              storage.save(taskList);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              System.exit(0);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              try {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  Ui.respondToUser(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  break;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Todo todo \u003d new Todo(parts[1]);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                taskList.addTask(todo);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"Got it. I\u0027ve added this task:  \\n\" +"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                              todo.toString() + \"\\n\" + "
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              try {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  Ui.respondToUser(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  break;"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                String[] deadline_parts \u003d parts[1].split(\" /by \", 2);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm\");"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                LocalDateTime dateTime;"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                try{"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  dateTime \u003d LocalDateTime.parse(deadline_parts[1], formatter);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                catch(Exception e){"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  Ui.respondToUser(\"Invalid Date/Time. Please use the format dd-MM-yyyy HH:mm\");"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  break;                "
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Deadline deadline \u003d new Deadline(deadline_parts[0], dateTime);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                taskList.addTask(deadline);"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"Got it. I\u0027ve added this task:  \\n\" +"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                              deadline.toString() + \"\\n\" + "
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              try {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                if(parts[1].isBlank() | parts[1].isEmpty()){"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  Ui.respondToUser(\"☹ OOPS!!! The description of a event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  break;"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                String[] event_parts \u003d parts[1].split(\" /at \", 2);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm\");"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                LocalDateTime dateTime;"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                try{"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  dateTime \u003d LocalDateTime.parse(event_parts[1], formatter);"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                catch(Exception e){"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  Ui.respondToUser(\"Invalid Date/Time. Please use the format dd-MM-yyyy HH:mm\");"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                  break;                "
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Event event \u003d new Event(event_parts[0], dateTime);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                taskList.addTask(event);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"Got it. I\u0027ve added this task:  \\n\" +"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                              event.toString() + \"\\n\" + "
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                              \"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              } catch (ArrayIndexOutOfBoundsException exception) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"☹ OOPS!!! The description of a event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              }"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              break;"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "              Ui.respondToUser(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "          }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "     }"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "assman": 150
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "package main.java;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void load(TaskList tList) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            FileInputStream fis \u003d new FileInputStream(\"tasks.txt\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            ObjectInputStream ois \u003d new ObjectInputStream(fis);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            tList.setlist((ArrayList\u003cTask\u003e) ois.readObject());"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            ois.close();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                FileOutputStream fos \u003d new FileOutputStream(\"tasks.txt\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                oos.writeObject(tList.getlist());"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                oos.close();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            } catch (Exception ee) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "                Ui.respondToUser(\"OOPS, unable to write to file\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void save(TaskList tList) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            FileOutputStream fos \u003d new FileOutputStream(\"tasks.txt\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            oos.writeObject(tList.getlist());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            oos.close();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "            Ui.respondToUser(\"Error while saving your tasks :(\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "assman": 38
     }
   },
   {
@@ -1997,6 +2162,274 @@
     }
   },
   {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "package main.java;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void addTask(Task task) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        this.taskList.add(task);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void deleteTask(Integer index) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        this.taskList.remove(index);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public Integer size() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        return this.taskList.size();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public Task get(Integer index) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        return this.taskList.get(index);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getlist() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        return this.taskList;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void setlist(ArrayList\u003cTask\u003e tList) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        this.taskList \u003d tList;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public void remove(Integer index){"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        this.taskList.remove(index);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "assman": 37
+    }
+  },
+  {
     "path": "src/main/java/Todo.java",
     "fileType": "java",
     "lines": [
@@ -2062,6 +2495,85 @@
           "gitId": "assman"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "assman": 10
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "package main.java;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    public static void respondToUser(String userResponse) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "        System.out.println(\"-----------------------\\n\" + userResponse + \"\\n-----------------------\\n\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "assman"
+        },
+        "content": "    }"
       },
       {
         "lineNumber": 10,

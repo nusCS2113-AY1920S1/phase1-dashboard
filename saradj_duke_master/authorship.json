@@ -1032,192 +1032,416 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            default:"
+        "content": "                            case \"find\":"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "                                if(splitted.length\u003d\u003d2){"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                        }"
+        "content": "                                    StringBuilder sb\u003d new StringBuilder();"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                        if (newTask !\u003d null) {"
+        "content": "                                    int i\u003d1;"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            tasks.add(newTask);"
+        "content": "                                for( Task task : tasks){"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            System.out.println(\"\\t Got it. I\u0027ve added this task: \");"
+        "content": "                                    if(task.getDescription().contains(splitted[1])){"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            System.out.println(\"\\t \" + newTask.toString());"
+        "content": "                                        sb.append(i++).append(\".\").append(task.toString());"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            System.out.println(tasks.size() \u003d\u003d 1 ? \"\\t Now you have \" + tasks.size() + \" task in the list.\" : \"\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
+        "content": "                                        sb.append(System.lineSeparator());"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "                                    }"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            writer.write(newTask.printInFile());"
+        "content": "                                }if(sb.length()\u003d\u003d0){"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            writer.newLine();"
+        "content": "                                        System.out.println(\"No matching tasks found! \");"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                        }"
+        "content": "                                    }else"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                        writer.close();"
+        "content": "                                        System.out.println(\"\\t Here are the matching tasks in your list:\");"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                    } catch (IOException e) {"
+        "content": "                                sb.setLength(sb.length()-1);// to remove the last new line"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                        System.out.println(\"IO problems, can not open file:\" + e.getMessage());"
+        "content": "                                    System.out.println(sb.toString());"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                    }"
+        "content": "                                } else throw new DukeException(\"Need a word to find! \");"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                } catch (Exception e) {"
+        "content": "                                break;"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                    System.out.println(e.getMessage());"
+        "content": "                            case \"delete\":"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                }"
+        "content": "                                if(splitted.length\u003d\u003d2) {"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            }"
+        "content": "                                    int taskNb \u003d Integer.parseInt(splitted[1]);"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            System.out.println(\"\\t\" + line);"
+        "content": "                                    if (taskNb \u003c\u003d tasks.size() \u0026\u0026 taskNb \u003e 0) {"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            input \u003d scanner.nextLine();  // Read next user input"
+        "content": "                                Task removed\u003dtasks.remove(taskNb-1);"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        }"
+        "content": "                                        List\u003cString\u003e fileContent \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        System.out.println(\"\\t\" + line);"
+        "content": "                                        fileContent.remove(taskNb-1); // changing the file content"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        System.out.println(\"\\t Bye. Hope to see you again soon!\");"
+        "content": "                                        Files.write(path, fileContent, StandardCharsets.UTF_8);"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        System.out.println(\"\\t\" + line);"
+        "content": "                                        System.out.println(\"\\t Noted. I\u0027ve removed this task:\");"
       },
       {
         "lineNumber": 133,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                        System.out.println(\"\\t \" + removed.toString());"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                        System.out.println(tasks.size() \u003d\u003d 1 ? \"\\t Now you have \" + tasks.size() + \" task in the list.\" : \"\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                    } else"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                        throw new DukeException(\"Enter a valid task number after done, between 1 and \" + tasks.size());"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                }else throw new DukeException(\"Need a task number after done!\");"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                break;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            default:"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                                throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        if (newTask !\u003d null) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            tasks.add(newTask);"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            System.out.println(\"\\t Got it. I\u0027ve added this task: \");"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            System.out.println(\"\\t \" + newTask.toString());"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            System.out.println(tasks.size() \u003d\u003d 1 ? \"\\t Now you have \" + tasks.size() + \" task in the list.\" : \"\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            writer.write(newTask.printInFile());"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                            writer.newLine();"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        writer.close();"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        System.out.println(\"IO problems, can not open file:\" + e.getMessage());"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    System.out.println(\"exception caught: \"+ e.getMessage());"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    e.printStackTrace();"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            System.out.println(\"\\t\" + line);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            input \u003d scanner.nextLine();  // Read next user input"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t\" + line);"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t\" + line);"
+      },
+      {
+        "lineNumber": 165,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 134,
+        "lineNumber": 166,
         "author": {
           "gitId": "-"
         },
@@ -1225,7 +1449,7 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 126,
+      "saradj": 158,
       "-": 8
     }
   },

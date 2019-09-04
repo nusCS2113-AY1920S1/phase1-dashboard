@@ -143,7 +143,7 @@
     }
   },
   {
-    "path": "src/main/java/Deadline.java",
+    "path": "src/main/java/duke/command/AddCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -151,112 +151,112 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.text.DateFormat;"
+        "content": "package duke.command;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.util.Date;"
+        "content": "import duke.task.Task;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "import duke.task.TaskList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "public class Deadline extends Task{"
+        "content": "import duke.ui.Ui;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    private Date dueDate;"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "public class AddCommand extends Command{"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public Deadline(String taskDetail, Date dueDate){"
+        "content": "    private final Task task;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        super(taskDetail);"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        this.dueDate \u003d dueDate;"
+        "content": "    public AddCommand(Task task){"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    }"
+        "content": "        this.task \u003d task;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    @Override"
+        "content": "    public void execute(Ui ui, TaskList tasklist){"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public String getDetails(){"
+        "content": "        tasklist.addTask(task);"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        DateFormat printDateTime \u003d new SimpleDateFormat(\"dd MMMM yyyy HH:mma\");"
+        "content": "        ui.printMessage(\"Got it. I\u0027ve added this task: \");"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        return \"[D]\" + super.getDetails() + \" (by: \" + printDateTime.format(this.dueDate) + \")\";"
+        "content": "        ui.printMessage(task.getTaskDetails());"
       },
       {
         "lineNumber": 17,
@@ -278,665 +278,123 @@
     }
   },
   {
-    "path": "src/main/java/Duke.java",
+    "path": "src/main/java/duke/command/ByeCommand.java",
     "fileType": "java",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
-          "gitId": "-"
+          "gitId": "BrianTKM"
         },
-        "content": "public class Duke {"
+        "content": "package duke.command;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    private static final String FILE_PATH \u003d \"data.txt\";"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    List taskList \u003d new List();"
+        "content": "import duke.storage.Storage;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "import duke.task.TaskList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public Duke() {"
+        "content": "import duke.ui.Ui;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        greetUser();"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        taskList.initializeList();"
+        "content": "public class ByeCommand extends Command {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        //startup"
+        "content": "    public ByeCommand(){"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    }"
+        "content": "        this.exit \u003d true;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public void greetUser() {"
+        "content": "    }"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "BrianTKM"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "BrianTKM"
         },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "    public void execute(Ui ui, TaskList taskList) {"
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "BrianTKM"
         },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "        Storage storage \u003d new Storage();"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "BrianTKM"
         },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "        storage.save(taskList, ui);"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\\n\";"
+        "content": "        ui.printMessage(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "BrianTKM"
         },
-        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+        "content": "    }"
       },
       {
         "lineNumber": 17,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\\n\");"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public int executeCommand(String command) {"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] commandAction \u003d command.split(\" \", 2);"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        switch (commandAction[0]) {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"todo\":"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    taskList.addNewToDo((command.substring(4)).trim());"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                } catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"deadline\":"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    taskList.addNewDeadline((command.substring(8)).trim());"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                } catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"event\":"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    taskList.addNewEvent((command.substring(5)).trim());"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                } catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"done\":"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                taskList.finishTask(command);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"delete\":"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                taskList.deleteTask(command);"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"find\":"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                taskList.findTask(command);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"list\":"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    taskList.viewTasks(commandAction);"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                } catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            case \"bye\":"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                try{"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    this.bye(commandAction);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    return 1;"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            default:"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                System.out.println(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        System.out.print(\"\\n\");"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        return 0;"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void bye(String[] commandAction) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(commandAction.length !\u003d 1) {"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The \\\"bye\\\" command cannot be used with other arguments.\");"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        taskList.saveList();"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "BrianTKM": 74,
-      "-": 8
-    }
-  },
-  {
-    "path": "src/main/java/DukeExceptions.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "public class DukeExceptions extends Exception{"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    private String errorMessage;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public DukeExceptions(String errorMessage){"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        super(errorMessage);"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        this.errorMessage \u003d errorMessage;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public String toString(){"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        return \"\\u2639 OOPS!!! \" + this.errorMessage;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 11,
         "author": {
           "gitId": "BrianTKM"
         },
@@ -944,11 +402,11 @@
       }
     ],
     "authorContributionMap": {
-      "BrianTKM": 11
+      "BrianTKM": 17
     }
   },
   {
-    "path": "src/main/java/Event.java",
+    "path": "src/main/java/duke/command/Command.java",
     "fileType": "java",
     "lines": [
       {
@@ -956,133 +414,226 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.text.DateFormat;"
+        "content": "package duke.command;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.util.Date;"
+        "content": "import duke.task.TaskList;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "import duke.ui.Ui;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "public class Event extends Task{"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    private Date eventStartDate;"
+        "content": "public abstract class Command {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    private Date eventEndDate;"
+        "content": "    protected boolean exit \u003d false;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "    public boolean getExit(){"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public Event(String taskDetail, Date eventStartDate, Date eventEndDate){"
+        "content": "        return exit;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        super(taskDetail);"
+        "content": "    }"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        this.eventStartDate \u003d eventStartDate;"
+        "content": "    public abstract void execute(Ui ui, TaskList taskList);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        this.eventEndDate \u003d eventEndDate;"
-      },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 12
+    }
+  },
+  {
+    "path": "src/main/java/duke/command/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
       {
-        "lineNumber": 13,
+        "lineNumber": 1,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    }"
+        "content": "package duke.command;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 2,
         "author": {
           "gitId": "BrianTKM"
         },
         "content": ""
       },
       {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class DeleteCommand extends Command{"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private final int taskNumber;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public DeleteCommand(int taskNumber){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.taskNumber \u003d taskNumber;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void execute(Ui ui, TaskList tasklist){"
+      },
+      {
         "lineNumber": 15,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    @Override"
+        "content": "        try {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public String getDetails(){"
+        "content": "            tasklist.deleteTask(ui, taskNumber);"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        DateFormat printDateTime \u003d new SimpleDateFormat(\"dd MMMM yyyy HH:mma\");"
+        "content": "        } catch (DukeException errorMessage){"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        return \"[E]\" + super.getDetails() + \" (at: \" + printDateTime.format(this.eventStartDate) + \" - \""
+        "content": "            ui.printMessage(errorMessage.toString());"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "                + printDateTime.format(this.eventEndDate)+ \")\";"
+        "content": "        }"
       },
       {
         "lineNumber": 20,
@@ -1104,7 +655,7 @@
     }
   },
   {
-    "path": "src/main/java/List.java",
+    "path": "src/main/java/duke/command/DoneCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -1112,1920 +663,7 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.io.File;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.io.FileOutputStream;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.io.IOException;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.io.ObjectOutputStream;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.io.FileInputStream;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.io.ObjectInputStream;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.text.DateFormat;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.text.ParseException;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.text.SimpleDateFormat;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.util.Date;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "public class List {"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    private ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    private static final String FILE_PATH \u003d \"data.txt\";"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    private int parseTaskNumber(String command) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] executeCommand \u003d command.split(\" \");"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(executeCommand[0].equals(\"done\")){"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            command \u003d command.substring(4);"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } else if(executeCommand[0].equals(\"delete\")) {"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            command \u003d command.substring(6);"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } else{"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        command \u003d command.trim();"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(command.length() \u003c 1){"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The task number cannot be blank\");"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            int correctTaskNumber \u003d Integer.parseInt(command);"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(taskList.size() \u003d\u003d 0){"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"There are 0 tasks in the list.\");"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            else if((correctTaskNumber \u003c\u003d taskList.size()) \u0026\u0026 (correctTaskNumber \u003e 0)){"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                correctTaskNumber--;"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                if(executeCommand[0].equals(\"done\")) {"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    if (taskList.get(correctTaskNumber).getStatusIcon().equals(\"Y\")) {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                        throw new DukeExceptions(\"Task has already been completed.\");"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    return correctTaskNumber;"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            } else{"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"Incorrect task number. Please enter one task number from within the list.\");"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } catch(NumberFormatException e){"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Incorrect task number. Please enter one task number from within the list.\");"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    private void successfulAddTask(){"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\\n\""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                + taskList.get(taskList.size() - 1).getDetails());"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(taskList.size() \u003d\u003d 1){"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(\"Now you have \" + taskList.size() + \" task in the list.\");"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void addNewToDo(String details) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(details.length() \u003d\u003d 0){"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        Task newTodo \u003d new ToDo(details);"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        taskList.add(newTodo);"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        successfulAddTask();"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void addNewDeadline(String details) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(details.length() \u003d\u003d 0 || details.equals(\"/by\")){"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The description and deadline of a task cannot be empty.\");"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(details.length() \u003c 3 || details.substring(details.length()-4).equals(\" /at\")){"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The task must have a deadline.\");"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(!details.contains(\" /by \")){"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(details.contains(\"/by \") \u0026\u0026 details.split(\"/by \").length \u003d\u003d 2"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    \u0026\u0026 details.split(\"/by \")[0].length() \u003c 1){"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"The task must have a description.\");"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The task must have a deadline.\""
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    + \" Command format:\\nevent \u003ctask description\u003e /by \u003cdeadline\u003e\");"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] deadlineDetails \u003d details.split(\" /by \");"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] eventTime \u003d deadlineDetails[deadlineDetails.length-1].split(\" \");"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(eventTime.length \u003c 2){"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Incorrect date/time format.\""
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    + \" Format should be dd/MM/yyyy HHmm (24h format).\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String dateAndTime \u003d eventTime[0] + \" \""
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                + deadlineDetails[deadlineDetails.length-1].substring(eventTime[0].length()).trim();"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        DateFormat temp \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        Date dateTime;"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        temp.setLenient(false);"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            dateTime \u003d temp.parse(dateAndTime);"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(dateTime.compareTo(new Date()) \u003c\u003d 0){"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"Deadline entered is before now.\");"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } catch (ParseException e){"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Incorrect time format. Please enter a valid dd/MM/yyyy HHmm(24h) format.\");"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        Task newDeadline \u003d new Deadline("
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                details.substring(0,details.length()-deadlineDetails[deadlineDetails.length-1].length()-5),dateTime);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        taskList.add(newDeadline);"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        successfulAddTask();"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void addNewEvent(String details) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(details.length() \u003d\u003d 0 || details.equals(\"/at\")){"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The description and time of an event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(details.length() \u003c 3 || details.substring(details.length()-4).equals(\" /at\")){"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The event must have a date and time.\");"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(!details.contains(\" /at \")) {"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if (details.contains(\"/at \") \u0026\u0026 details.split(\"/at \").length \u003d\u003d 2"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    \u0026\u0026 details.split(\"/at \")[0].length() \u003c 1) {"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"The event must have a description.\");"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The event must have a date and time.\""
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    + \" Command format:\\nevent \u003cevent description\u003e /at \u003cdate and time\u003e\");"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] eventDetails \u003d details.split(\" /at \");"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] eventDates \u003d eventDetails[eventDetails.length-1].split(\"-\");"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(eventDates.length !\u003d 2){"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Incorrect event period.\""
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    + \" Event period format is dd/mm/yyyy HHmm - dd/mm/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] eventStartTime \u003d eventDates[0].split(\" \");"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String[] eventEndTime \u003d eventDates[1].split(\" \");"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(eventStartTime.length \u003c 2 || eventEndTime.length \u003c 2){"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Incorrect date/time format.\""
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    + \" Format should be dd/MM/yyyy HHmm (24h format).\");"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String startDateAndTime \u003d eventStartTime[0] + \" \""
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                + eventDates[0].substring(eventStartTime[0].length()).trim();"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        String endDateAndTime \u003d eventEndTime[0] + \" \""
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                + eventDates[1].substring(eventEndTime[0].length()).trim();"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        DateFormat temp \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        Date startDateTime;"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        Date endDateTime;"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        temp.setLenient(false);"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            startDateTime \u003d temp.parse(startDateAndTime);"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            endDateTime \u003d temp.parse(endDateAndTime);"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(startDateTime.compareTo(new Date()) \u003c\u003d 0){"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"Event entered is before now.\");"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(endDateTime.compareTo(startDateTime) \u003c\u003d 0){"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                throw new DukeExceptions(\"Event end date is before start date\");"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } catch (ParseException e){"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Incorrect time format.\""
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    + \" Please enter a valid dd/MM/yyyy HHmm(24h) format.\");"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        Task newEvent \u003d new Event("
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                details.substring(0,details.length()-eventDetails[eventDetails.length-1].length()-5),startDateTime"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                ,endDateTime);"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        taskList.add(newEvent);"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        successfulAddTask();"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void viewTasks(String[] commandAction) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(commandAction.length !\u003d 1){"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"The \\\"list\\\" command cannot be used with other arguments.\");"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(taskList.size() \u003c 1){"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(\"There are 0 tasks in the list.\");"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        for(int i \u003d 0; i \u003c taskList.size();i++)"
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println((i+1) + \". \" + (taskList.get(i)).getDetails());"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void finishTask(String command){"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            int taskNumber \u003d parseTaskNumber(command);"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            taskList.get(taskNumber).markAsDone();"
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(\"Nice! I\u0027ve marked this task as done: \");"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(taskList.get(taskNumber).getDetails());"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void deleteTask(String command){"
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            int taskNumber \u003d parseTaskNumber(command);"
-      },
-      {
-        "lineNumber": 193,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            Task temp \u003d taskList.get(taskNumber);"
-      },
-      {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            taskList.remove(taskNumber);"
-      },
-      {
-        "lineNumber": 195,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(\"Noted. I\u0027ve removed this task: \");"
-      },
-      {
-        "lineNumber": 196,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(temp.getDetails());"
-      },
-      {
-        "lineNumber": 197,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            temp \u003d null;"
-      },
-      {
-        "lineNumber": 198,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            Task.totalTasks--;"
-      },
-      {
-        "lineNumber": 199,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(Task.totalTasks !\u003d 1) {"
-      },
-      {
-        "lineNumber": 200,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                System.out.println(\"Now you have \" + Task.totalTasks + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 201,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 202,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            else {"
-      },
-      {
-        "lineNumber": 203,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                System.out.println(\"Now you have \" + Task.totalTasks + \" task in the list.\");"
-      },
-      {
-        "lineNumber": 204,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void saveList(){"
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            FileOutputStream fos \u003d new FileOutputStream(FILE_PATH);"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            oos.writeObject(taskList);"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            oos.close();"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            fos.close();"
-      },
-      {
-        "lineNumber": 217,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } catch (IOException ioe){"
-      },
-      {
-        "lineNumber": 218,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(\"\\u2639 OOPS!!! We are unable to save your task list :-(\");"
-      },
-      {
-        "lineNumber": 219,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 220,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void initializeList(){"
-      },
-      {
-        "lineNumber": 223,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        File dataFile \u003d new File(FILE_PATH);"
-      },
-      {
-        "lineNumber": 224,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(dataFile.exists()) {"
-      },
-      {
-        "lineNumber": 225,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 226,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                FileInputStream fis \u003d new FileInputStream(FILE_PATH);"
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                ObjectInputStream ois \u003d new ObjectInputStream(fis);"
-      },
-      {
-        "lineNumber": 228,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                taskList \u003d (ArrayList\u003cTask\u003e) ois.readObject();"
-      },
-      {
-        "lineNumber": 229,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                ois.close();"
-      },
-      {
-        "lineNumber": 230,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                fis.close();"
-      },
-      {
-        "lineNumber": 231,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                Task.totalTasks \u003d taskList.size();"
-      },
-      {
-        "lineNumber": 232,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            } catch (IOException ioe) {"
-      },
-      {
-        "lineNumber": 233,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                System.out.println(\"\\u2639 OOPS!!! We are unable to load your task list :-(\");"
-      },
-      {
-        "lineNumber": 234,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            } catch (ClassNotFoundException c) {"
-      },
-      {
-        "lineNumber": 235,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                //ignore"
-      },
-      {
-        "lineNumber": 236,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 237,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 238,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 239,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 240,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    private void searchForTask(String keyword) throws DukeExceptions{"
-      },
-      {
-        "lineNumber": 241,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(keyword.length() \u003d\u003d 0){"
-      },
-      {
-        "lineNumber": 242,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"Keyword cannot be empty.\");"
-      },
-      {
-        "lineNumber": 243,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 244,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(Task.totalTasks \u003d\u003d 0){"
-      },
-      {
-        "lineNumber": 245,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"There are 0 tasks in the list.\");"
-      },
-      {
-        "lineNumber": 246,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 247,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        int counter \u003d 0;"
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        for(int i \u003d 0; i \u003c Task.totalTasks; i++)"
-      },
-      {
-        "lineNumber": 249,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 250,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            if(taskList.get(i).getTaskDetail().contains(keyword)){"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                if(counter \u003d\u003d 0){"
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                    System.out.println(\"Here are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 253,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 254,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                System.out.println(counter+1 + \". \" + taskList.get(i).getDetails());"
-      },
-      {
-        "lineNumber": 255,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "                counter++;"
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        if(counter \u003d\u003d 0){"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            throw new DukeExceptions(\"There are no tasks that match your keyword.\");"
-      },
-      {
-        "lineNumber": 260,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 261,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 262,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 263,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void findTask(String command){"
-      },
-      {
-        "lineNumber": 264,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        command \u003d command.substring(4);"
-      },
-      {
-        "lineNumber": 265,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        command \u003d command.trim();"
-      },
-      {
-        "lineNumber": 266,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 267,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            searchForTask(command);"
-      },
-      {
-        "lineNumber": 268,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        } catch (DukeExceptions errorMessage){"
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            System.out.println(errorMessage.toString());"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 271,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 272,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "BrianTKM": 272
-    }
-  },
-  {
-    "path": "src/main/java/Task.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "import java.io.Serializable;"
+        "content": "package duke.command;"
       },
       {
         "lineNumber": 2,
@@ -3039,63 +677,63 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "public class Task implements Serializable {"
+        "content": "import duke.exception.DukeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    static int totalTasks \u003d 0;"
+        "content": "import duke.task.TaskList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    private String taskDetail;"
+        "content": "import duke.ui.Ui;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    private boolean isDone;"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": ""
+        "content": "public class DoneCommand extends Command{"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public Task(String taskDetail){"
+        "content": "    private final int taskNumber;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        this.taskDetail \u003d taskDetail;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        this.isDone \u003d false;"
+        "content": "    public DoneCommand(int taskNumber){"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        totalTasks +\u003d 1;"
+        "content": "        this.taskNumber \u003d taskNumber;"
       },
       {
         "lineNumber": 12,
@@ -3109,94 +747,59 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public String getStatusIcon() {"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        return (isDone ? \"Y\" : \"N\");"
+        "content": "    public void execute(Ui ui, TaskList tasklist){"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        //return Yes or No"
+        "content": "        try {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    }"
+        "content": "            tasklist.finishTask(ui, taskNumber);"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public String getTaskDetail(){"
+        "content": "        } catch (DukeException errorMessage){"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        return this.taskDetail;"
+        "content": "            ui.printMessage(errorMessage.toString());"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public String getDetails(){"
+        "content": "    }"
       },
       {
         "lineNumber": 21,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        return (\"[\" + this.getStatusIcon() + \"] \" + this.taskDetail);"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    public void markAsDone(){"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        this.isDone \u003d true;"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
         "author": {
           "gitId": "BrianTKM"
         },
@@ -3204,11 +807,11 @@
       }
     ],
     "authorContributionMap": {
-      "BrianTKM": 26
+      "BrianTKM": 21
     }
   },
   {
-    "path": "src/main/java/ToDo.java",
+    "path": "src/main/java/duke/command/FindCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -3216,28 +819,28 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "public class ToDo extends Task{"
+        "content": "package duke.command;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public ToDo(String taskDetail){"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        super(taskDetail);"
+        "content": "import duke.task.TaskList;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    }"
+        "content": "import duke.ui.Ui;"
       },
       {
         "lineNumber": 5,
@@ -3251,21 +854,142 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    @Override"
+        "content": "public class FindCommand extends Command {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "    public String getDetails(){"
+        "content": "    private final String keyword;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        return \"[T]\" + super.getDetails();"
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public FindCommand(String keyword){"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.keyword \u003d keyword;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void execute(Ui ui, TaskList tasklist){"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        tasklist.findTask(ui, keyword);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 16
+    }
+  },
+  {
+    "path": "src/main/java/duke/command/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class ListCommand extends Command{"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void execute(Ui ui, TaskList tasklist){"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        tasklist.viewTask(ui);"
       },
       {
         "lineNumber": 9,
@@ -3287,6 +1011,3890 @@
     }
   },
   {
+    "path": "src/main/java/duke/duke/Duke.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.Command;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.parse.Parser;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.storage.Storage;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private Ui ui;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private TaskList tasks;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private Parser parser;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private Storage storage;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void run(){"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        storage \u003d new Storage();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        parser \u003d new Parser();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        tasks \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        tasks \u003d storage.load(ui);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        boolean hasExit \u003d false;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.greetUser();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        while(!hasExit){"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                String command \u003d ui.readCommand();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                Command c \u003d parser.getCommand(command);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                c.execute(ui, tasks);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                hasExit \u003d c.getExit();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch (DukeException errorMessage){"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                ui.printMessage(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    /*"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private static final String FILE_PATH \u003d \"data.txt\";"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    List taskList \u003d new List();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public Duke() {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        greetUser();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskList.initializeList();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        //startup"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void greetUser() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\\n\";"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\\n\");"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public int executeCommand(String command) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        String[] commandAction \u003d command.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        switch (commandAction[0]) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    taskList.addNewToDo((command.substring(4)).trim());"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                } catch (DukeExceptions errorMessage){"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    System.out.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    taskList.addNewDeadline((command.substring(8)).trim());"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                } catch (DukeExceptions errorMessage){"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    System.out.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    taskList.addNewEvent((command.substring(5)).trim());"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                } catch (DukeExceptions errorMessage){"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    System.out.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                taskList.finishTask(command);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                taskList.deleteTask(command);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                taskList.findTask(command);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    taskList.viewTasks(commandAction);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                } catch (DukeExceptions errorMessage){"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    System.out.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                try{"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    this.bye(commandAction);"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    return 1;"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                catch (DukeExceptions errorMessage){"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    System.out.println(errorMessage.toString());"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                System.out.println(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.print(\"\\n\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return 0;"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void bye(String[] commandAction) throws DukeExceptions{"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(commandAction.length !\u003d 1) {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            throw new DukeExceptions(\"The \\\"bye\\\" command cannot be used with other arguments.\");"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskList.saveList();"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }*/"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 118
+    }
+  },
+  {
+    "path": "src/main/java/duke/exception/DukeException.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class DukeException extends Exception{"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private String errorMessage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public DukeException(String errorMessage){"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        super(errorMessage);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.errorMessage \u003d errorMessage;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public String toString(){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return \"\\u2639 OOPS!!! \" + this.errorMessage;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 13
+    }
+  },
+  {
+    "path": "src/main/java/duke/parse/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.parse;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.ByeCommand;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.Command;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.DoneCommand;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.FindCommand;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.AddCommand;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.DeleteCommand;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.command.ListCommand;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.Deadline;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.Event;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.Task;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.ToDo;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public Command getCommand(String fullInput) throws DukeException {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(fullInput.isEmpty() || fullInput.isBlank()){"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            throw new DukeException(\"Command cannot be empty\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        fullInput \u003d fullInput.replaceFirst(\"^\\\\s+\", \"\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        String[] subInput \u003d fullInput.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        Command finalCommand;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        switch (subInput[0]) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"list\":"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(!fullInput.trim().equals(\"list\")){"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The \\\"list\\\" command cannot be used with other arguments.\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            finalCommand \u003d new ListCommand();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return finalCommand;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"bye\":"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(!fullInput.trim().equals(\"bye\")){"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The \\\"bye\\\" command cannot be used with other arguments.\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            finalCommand \u003d new ByeCommand();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return finalCommand;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"done\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.substring(4);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.trim();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(fullInput.isBlank() || fullInput.isEmpty()){"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Task number cannot be empty.\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            try{"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                int taskNumber \u003d Integer.parseInt(fullInput);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                finalCommand \u003d new DoneCommand(taskNumber);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                return finalCommand;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch (NumberFormatException e){"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Invalid task number.\");"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"todo\":"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.substring(4);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.trim();"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(fullInput.isEmpty() || fullInput.isBlank()){"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            finalCommand \u003d new AddCommand(new ToDo(fullInput));"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return finalCommand;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"deadline\":"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.substring(8);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.trim();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if (fullInput.length() \u003d\u003d 0 || fullInput.equals(\"/by\")) {"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The description and deadline of a task cannot be empty.\");"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(fullInput.length() \u003c 4 || fullInput.substring(fullInput.length()-4).equals(\" /by\")){"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The task must have a deadline.\");"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(!fullInput.contains(\" /by \")){"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                if(fullInput.contains(\"/by \") \u0026\u0026 fullInput.split(\"/by \").length \u003d\u003d 2"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        \u0026\u0026 fullInput.split(\"/by \")[0].length() \u003c 1){"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    throw new DukeException(\"The task must have a description.\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The task must have a deadline,\""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        + \" Command format:\\n event \u003ctask description\u003e /by \u003cdeadline\u003e\");"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String[] deadlineDetails \u003d fullInput.split(\" /by \");"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String[] eventTime \u003d deadlineDetails[deadlineDetails.length-1].split(\" \");"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(eventTime.length \u003c 2){"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Incorrect date/time format.\""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        + \" Format should be \\\"dd/MM/yyyy HHmm\\\" in 24h format.\");"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String dateAndTime \u003d eventTime[0] + \" \""
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    + deadlineDetails[deadlineDetails.length-1].substring(eventTime[0].length()).trim();"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            DateFormat temp \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            Date dateTime;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            temp.setLenient(false);"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            try{"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                dateTime \u003d temp.parse(dateAndTime);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                if(dateTime.compareTo(new Date()) \u003c\u003d 0){"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    throw new DukeException(\"Deadline entered is before now.\");"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch(ParseException e){"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Incorrect time format. Please enter a valid dd/MM/yyyy HHmm (24h) format.\");"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            Task deadline \u003d new Deadline("
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    fullInput.substring(0,fullInput.length()-deadlineDetails[deadlineDetails.length-1].length()-5),dateTime);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            finalCommand \u003d new AddCommand(deadline);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return finalCommand;"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"event\":"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.substring(5);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.trim();"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(fullInput.length() \u003d\u003d 0 || fullInput.equals(\"/at\")){"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The description and time of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(fullInput.length() \u003c 4 || fullInput.substring(fullInput.length()-4).equals(\" /at\")){"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The event must have a date and time.\");"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(!fullInput.contains(\" /at \")){"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                if(fullInput.contains(\"/at \") \u0026\u0026 fullInput.split(\"/at \").length \u003d\u003d 2"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        \u0026\u0026 fullInput.split(\"/at \")[0].length() \u003c 1){"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    throw new DukeException(\"The event must have a description.\");"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"The event must have a date and time.\""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        + \" Command format:\\nevent \u003cevent description\u003e /at \u003cdate and time\u003e\");"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String[] eventDetails \u003d fullInput.split(\" /at \");"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String[] eventDates \u003d eventDetails[eventDetails.length-1].split(\"-\");"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(eventDates.length !\u003d 2){"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Incorrect event period.\""
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        + \" Event period format is dd/mm/yyyy HHmm - dd/mm/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String[] eventStartTime \u003d eventDates[0].split(\" \");"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String[] eventEndTime \u003d eventDates[1].split(\" \");"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(eventStartTime.length \u003c 2 || eventEndTime.length \u003c 2){"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Incorrect date/time format.\""
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        + \" Format should be dd/MM/yyyy HHmm (24h format).\");"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String startDateAndTime \u003d eventStartTime[0] + \" \""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    + eventDates[0].substring(eventStartTime[0].length()).trim();"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            String endDateAndTime \u003d eventEndTime[0] + \" \""
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    + eventDates[1].substring(eventEndTime[0].length()).trim();"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            DateFormat temp2 \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            Date startDateTime;"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            Date endDateTime;"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            temp2.setLenient(false);"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            try{"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                startDateTime \u003d temp2.parse(startDateAndTime);"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                endDateTime \u003d temp2.parse(endDateAndTime);"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                if(startDateTime.compareTo(new Date()) \u003c\u003d 0){"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    throw new DukeException(\"Event start date is before now.\");"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                if(endDateTime.compareTo(startDateTime) \u003c\u003d 0){"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    throw new DukeException(\"Event end date is before start date.\");"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch(ParseException e){"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Incorrect time format.\""
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                        + \" Please enter a valid \\\"dd/MM//yyyy HHmm\\\" in 24h format.\");"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            Task newEvent \u003d new Event("
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    fullInput.substring(0,fullInput.length()-eventDetails[eventDetails.length-1].length()-5),startDateTime"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    ,endDateTime);"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            finalCommand \u003d new AddCommand(newEvent);"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return finalCommand;"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"delete\":"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.substring(6);"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fullInput \u003d fullInput.trim();"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(fullInput.isBlank() || fullInput.isEmpty()){"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Task number cannot be empty.\");"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            try{"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                int taskNumber \u003d Integer.parseInt(fullInput);"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                finalCommand \u003d new DeleteCommand(taskNumber);"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                return finalCommand;"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch (NumberFormatException e){"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Invalid task number.\");"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        case \"find\":"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(subInput.length \u003d\u003d 1){"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                throw new DukeException(\"Cannot find empty input.\");"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            finalCommand \u003d new FindCommand(subInput[1]);"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return finalCommand;"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        default:"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 181
+    }
+  },
+  {
+    "path": "src/main/java/duke/storage/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.storage;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.Task;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.task.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.FileOutputStream;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.ObjectOutputStream;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.FileInputStream;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.ObjectInputStream;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private static final String FILE_PATH \u003d \"data.txt\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public TaskList load(Ui ui){"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        File dataFile \u003d new File(FILE_PATH);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(dataFile.exists()) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                FileInputStream fis \u003d new FileInputStream(FILE_PATH);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                ObjectInputStream ois \u003d new ObjectInputStream(fis);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                taskList \u003d ((TaskList) ois.readObject());"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                //taskList.refreshTotalTask();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                ois.close();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                fis.close();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                return taskList;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch (IOException ioe) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                ui.printMessage(\"\\u2639 OOPS!!! We are unable to load your task list :-(\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            } catch (ClassNotFoundException c) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                //ignore"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.printMessage(\"No saved list found. Creating a new list...\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void save(TaskList taskList, Ui ui){"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            FileOutputStream fos \u003d new FileOutputStream(FILE_PATH);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            oos.writeObject(taskList);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            oos.close();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            fos.close();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        } catch (IOException ioe){"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"\\u2639 OOPS!!! We are unable to save your task list :-(\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 50
+    }
+  },
+  {
+    "path": "src/main/java/duke/task/Deadline.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private Date deadline;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public Deadline(String taskDescription, Date deadline){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.deadline \u003d deadline;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public String getTaskDetails(){"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        DateFormat printDateTime \u003d new SimpleDateFormat(\"dd MMMM yyyy HH:mma\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return (\"[D][\" + this.getStatusIcon() + \"] \" + this.taskDescription"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \" (by: \" + printDateTime.format(this.deadline) + \")\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 19
+    }
+  },
+  {
+    "path": "src/main/java/duke/task/Event.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.DateFormat;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private Date startDate;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private Date endDate;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public Event(String taskDescription, Date startDate, Date endDate){"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.startDate \u003d startDate;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.endDate \u003d endDate;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public String getTaskDetails(){"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        DateFormat printDateTime \u003d new SimpleDateFormat(\"dd MMMM yyyy HH:mma\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return (\"[E][\" + this.getStatusIcon() + \"] \" + this.taskDescription"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \" (at: \" + printDateTime.format(this.startDate) + \" - \" + printDateTime.format(this.endDate) + \")\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 21
+    }
+  },
+  {
+    "path": "src/main/java/duke/task/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.Serializable;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public abstract class Task implements Serializable {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    String taskDescription;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private boolean isDone \u003d false;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    String getStatusIcon(){"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    String getTaskDescription(){"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return taskDescription;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void markAsDone(){"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public abstract String getTaskDetails();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 22
+    }
+  },
+  {
+    "path": "src/main/java/duke/task/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.exception.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import duke.ui.Ui;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.io.Serializable;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class TaskList implements Serializable {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void addTask(Task newTask){"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskList.add(newTask);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void viewTask(Ui ui){"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskList.size() \u003d\u003d 0){"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"There are 0 tasks in the task list.\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        for(int i \u003d 0; i \u003c taskList.size(); i++){"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(i+1 + \". \" + taskList.get(i).getTaskDetails());"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void finishTask(Ui ui, int taskNumber) throws DukeException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskList.size() \u003d\u003d 0){"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"There are 0 tasks in the list.\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskNumber \u003e taskList.size() || taskNumber \u003c\u003d 0){"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            throw new DukeException(\"Task number entered is out of range.\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskNumber--;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskList.get(taskNumber).getStatusIcon().equals(\"\\u2713\")){"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            throw new DukeException(\"Task has already been completed.\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskList.get(taskNumber).markAsDone();"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.printMessage(\"Nice! I\u0027ve marked this task as done: \");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.printMessage(taskList.get(taskNumber).getTaskDetails());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void findTask(Ui ui, String keyword){"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        int counter \u003d 0;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskList.size() \u003d\u003d 0){"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"There are 0 tasks in the task list.\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.printMessage(\"Finding all tasks with \\\"\" + keyword + \"\\\" in task description:\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        for(int i \u003d 0; i \u003c taskList.size(); i++){"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            if(taskList.get(i).getTaskDescription().toLowerCase().contains(keyword.toLowerCase())) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                if (counter \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                    ui.printMessage(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                ui.printMessage((counter+1) + taskList.get(i).getTaskDetails());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                counter++;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(counter \u003d\u003d 0){"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"There are 0 tasks that matches your keyword\");"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void deleteTask(Ui ui, int taskNumber) throws DukeException{"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskList.size() \u003d\u003d 0){"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"There are 0 tasks in the list.\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskNumber \u003e taskList.size() || taskNumber \u003c\u003d 0){"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            throw new DukeException(\"Task number entered is out of range.\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskNumber--;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        Task temp \u003d taskList.get(taskNumber);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        taskList.remove(taskNumber);"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.printMessage(\"Noted. I\u0027ve removed this task: \");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        ui.printMessage(temp.getTaskDetails());"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        temp \u003d null;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        if(taskList.size() \u003d\u003d 1){"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"Now you have \" + taskList.size() + \" task in the list.\");"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "            ui.printMessage(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 82
+    }
+  },
+  {
+    "path": "src/main/java/duke/task/ToDo.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class ToDo extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public ToDo(String taskDescription){"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public String getTaskDetails(){"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return (\"[T][\" + this.getStatusIcon() + \"] \" + this.taskDescription);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 11
+    }
+  },
+  {
+    "path": "src/main/java/duke/ui/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "package duke.ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void greetUser() {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\\n\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\\n\");"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public void printMessage(String msg){"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        System.out.println(msg);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    public String readCommand(){"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        Scanner input \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        String fullCommand \u003d input.nextLine();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "        return fullCommand;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "BrianTKM"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "BrianTKM": 25
+    }
+  },
+  {
     "path": "src/main/java/main.java",
     "fileType": "java",
     "lines": [
@@ -3295,7 +4903,7 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import duke.duke.Duke;"
       },
       {
         "lineNumber": 2,
@@ -3330,59 +4938,17 @@
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        Scanner input \u003d new Scanner(System.in);"
+        "content": "        duke.run();"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "BrianTKM"
         },
-        "content": "        int endProg \u003d 0;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        while(endProg \u003d\u003d 0 \u0026\u0026 input.hasNextLine()){"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            String command \u003d input.nextLine();"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            command \u003d command.trim();"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "            endProg \u003d duke.executeCommand(command);"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "BrianTKM"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "BrianTKM"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 8,
         "author": {
           "gitId": "BrianTKM"
         },
@@ -3390,7 +4956,7 @@
       }
     ],
     "authorContributionMap": {
-      "BrianTKM": 14
+      "BrianTKM": 8
     }
   }
 ]

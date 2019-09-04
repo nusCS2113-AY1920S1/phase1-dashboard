@@ -297,7 +297,7 @@
     }
   },
   {
-    "path": "src/main/java/CreateFile.java",
+    "path": "src/main/java/AddCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -305,21 +305,21 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.io.*;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.util.*;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.nio.Buffer;"
+        "content": "public class AddCommand extends Command {"
       },
       {
         "lineNumber": 4,
@@ -333,35 +333,35 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "public class CreateFile {"
+        "content": "    public String msgArray;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    public AddCommand(String name, String msgArray) {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public String filepath \u003d \"./data/duke.txt\";"
+        "content": "        super(name);"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public String newfilepath \u003d \"./data/temp.txt\";"
+        "content": "        this.msgArray \u003d msgArray;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public static void main(String[] args) throws IOException {"
+        "content": "    }"
       },
       {
         "lineNumber": 10,
@@ -375,70 +375,70 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "    @Override"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    public boolean isExit() {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public void saveDlEvent(String typeOf, String isDone, String nameTask, String date) throws IOException {"
+        "content": "        return false;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            FileWriter fw \u003d new FileWriter(filepath, true);"
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws IOException {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
+        "content": "        if (name.equals(\"todo\")) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            pw.println(typeOf + \" | \" + isDone + \" | \" + nameTask + \" | \" + date);"
+        "content": "            String[] todoArray \u003d msgArray.split(\" \", 2);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            pw.close();"
+        "content": "            Todo.setTodo(TaskList.taskList, todoArray, storage);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        } else if (name.equals(\"deadline\") || name.equals(\"event\")) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            System.out.println(\"Error: \" + e.getMessage());"
+        "content": "            Deadline.createDlEvent(TaskList.taskList, msgArray, storage);"
       },
       {
         "lineNumber": 21,
@@ -459,914 +459,132 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    public void saveTodo(String typeOf, String isDone, String nameTask) throws IOException {"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            FileWriter fw \u003d new FileWriter(\"./data/duke.txt\", true);"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.println(typeOf + \" | \" + isDone + \" | \" + nameTask);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.close();"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\"Error: \" + e.getMessage());"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    public void transferFile() throws IOException {"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            FileWriter fw \u003d new FileWriter(\"./data/temp.txt\", true);"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File file \u003d new File(filepath);"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            Scanner scanner \u003d new Scanner(file).useDelimiter(\"\\\\|\\\\s*\");"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            while (scanner.hasNext()) {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                pw.println(scanner.nextLine());"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.close();"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            scanner.close();"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\"Error: \" + e.getMessage());"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    public void updateFile(int lineNumber) throws IOException {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File tempFile \u003d new File(\"./data/temp.txt\");"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            FileWriter fw \u003d new FileWriter(tempFile, false);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File file \u003d new File(\"./data/duke.txt\");"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            Scanner scanner \u003d new Scanner(file);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            int i \u003d 1;"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            while (scanner.hasNext()) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                if (i !\u003d lineNumber) pw.println(scanner.nextLine());"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                else {"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    String[] str \u003d scanner.nextLine().split(\"\\\\s+\\\\|\\\\s+\");"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    str[1] \u003d \"1\";"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    String strBuffer \u003d \"\";"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    for (String x : str) strBuffer +\u003d (x + \" | \");"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    strBuffer \u003d strBuffer.substring(0, strBuffer.length()-3);"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    pw.println(strBuffer);"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                i++;"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.flush();"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.close();"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            scanner.close();"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            file.delete();"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File dump \u003d new File(filepath);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            tempFile.renameTo(dump);"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\"Error: \" + e.getMessage());"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    public void deleteFile(int lineNumber) throws IOException {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File tempFile \u003d new File(\"./data/temp.txt\");"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            FileWriter fw \u003d new FileWriter(tempFile, false);"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File file \u003d new File(\"./data/duke.txt\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            Scanner scanner \u003d new Scanner(file);"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            int i \u003d 1;"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            while (scanner.hasNext()) {"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                if (i !\u003d lineNumber) {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    pw.println(scanner.nextLine());"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                } else {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    scanner.nextLine();"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                i++;"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.flush();"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            pw.close();"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            scanner.close();"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            file.delete();"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File dump \u003d new File(filepath);"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            tempFile.renameTo(dump);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\"Error: \" + e.getMessage());"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    static void loadSave(ArrayList\u003cTask\u003e taskList) throws FileNotFoundException, DukeException{"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            File file \u003d new File(\"./data/duke.txt\");"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            Scanner scanner \u003d new Scanner(file);"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            while (scanner.hasNextLine()) {"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                String[] strArray \u003d scanner.nextLine().split(\"\\\\s+\\\\|\\\\s+\");"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                if (strArray[0].equals(\"T\")) {"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    if (strArray[1].equals(\"0\")) {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        Todo item \u003d new Todo(strArray[2]);"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        taskList.add(item);"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    } else {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        Todo item \u003d new Todo(strArray[2]);"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        item.setStatusDone();"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        taskList.add(item);"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                } else if (strArray[0].equals(\"E\")) {"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    if (strArray[1].equals(\"0\")) {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        Event ev \u003d new Event(strArray[2], strArray[3]);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        taskList.add(ev);"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    } else {"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        Event ev \u003d new Event(strArray[2], strArray[3]);"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        ev.setStatusDone();"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        taskList.add(ev);"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                } else if (strArray[0].equals(\"D\")) {"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    if (strArray[1].equals(\"0\")) {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        Deadline dl \u003d new Deadline(strArray[2], strArray[3]);"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        taskList.add(dl);"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    } else {"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        Deadline dl \u003d new Deadline(strArray[2], strArray[3]);"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        dl.setStatusDone();"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                        taskList.add(dl);"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            scanner.close();"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (FileNotFoundException e) {"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(e.getMessage());"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "GlenWong97"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 152
+      "GlenWong97": 23
+    }
+  },
+  {
+    "path": "src/main/java/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    protected String name;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public Command(String name) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        this.name \u003d name;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public abstract boolean isExit();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws IOException;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 16
     }
   },
   {
@@ -1539,7 +757,7 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void createDlEvent(ArrayList\u003cTask\u003e taskList, String inputMessage, CreateFile cf) throws IOException {"
+        "content": "    static void createDlEvent(ArrayList\u003cTask\u003e taskList, String inputMessage, Storage cf) throws IOException {"
       },
       {
         "lineNumber": 25,
@@ -1981,6 +1199,353 @@
     }
   },
   {
+    "path": "src/main/java/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public String deleteItem;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public DeleteCommand(String name, String deleteItem) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        super(name);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        this.deleteItem \u003d deleteItem;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        int index \u003d Integer.parseInt(deleteItem) - 1;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        ui.successDelete(index);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        Task.removeTask(TaskList.taskList, index);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(\" Now you have \" + Task.getNumberOfTasks() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        storage.deleteFile(index + 1);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 23
+    }
+  },
+  {
+    "path": "src/main/java/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public String doneItem;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public DoneCommand(String name, String doneItem) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        super(name);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        this.doneItem \u003d doneItem;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws IOException {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        int index \u003d Integer.parseInt(doneItem) - 1;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        TaskList.taskList.get(index).setStatusDone();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(\" Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.print(\"   \" + TaskList.taskList.get(index).getStatus() + \" \");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(TaskList.taskList.get(index).name);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        storage.updateFile(index + 1);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 24
+    }
+  },
+  {
     "path": "src/main/java/Duke.java",
     "fileType": "java",
     "lines": [
@@ -2024,311 +1589,262 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    public static void main(String[] args) throws DukeException, IOException {"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    private TaskList tasks;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        Messenger.openingMessage();"
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        Scanner myObj \u003d new Scanner(System.in);"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+        "content": "    public Duke(String filePath) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        CreateFile cf \u003d new CreateFile();"
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        CreateFile.loadSave(taskList);"
+        "content": "        storage \u003d new Storage(filePath);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String inputMessage \u003d myObj.nextLine();"
+        "content": "        try {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "            tasks \u003d new TaskList(storage.load());"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        while (!inputMessage.equals(\"bye\")) {"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            try {"
+        "content": "            ui.showLoadingError();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                Messenger.printBracket();"
+        "content": "            tasks \u003d new TaskList();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                String[] msgArray \u003d inputMessage.split(\"\\\\s+\");"
+        "content": "        }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                switch (msgArray[0]) {"
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"list\"):"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        Messenger.listPrint(taskList);"
+        "content": "    public void run() throws IOException {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"find\"):"
+        "content": "        ui.openingMessage();"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        Task.searchKeyword(taskList, msgArray);"
+        "content": "        boolean isExit \u003d false;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": "        while (!isExit) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"done\"):"
+        "content": "            try {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        Task.setDone(taskList, msgArray, cf);"
+        "content": "                String fullCommand \u003d ui.readCommand();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": "                ui.showLine();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"delete\"):"
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        Task.setDelete(taskList, msgArray, cf);"
+        "content": "                c.execute(tasks, ui, storage);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": "                isExit \u003d c.isExit();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"todo\"):"
+        "content": "            } catch (DukeException e) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        String[] todoArray \u003d inputMessage.split(\" \", 2);"
+        "content": "                System.out.println(\" ☹ OOPS!!! \" + e.getMessage());"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        Todo.setTodo(taskList, todoArray, cf);"
+        "content": "            } finally {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": "                ui.showLine();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"deadline\"):"
+        "content": "            }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    case (\"event\"):"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        Deadline.createDlEvent(taskList, inputMessage, cf);"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    default: throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "    public static void main(String[] args) throws IOException {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                }"
+        "content": "        new Duke(\"data/duke.txt\").run();"
       },
       {
         "lineNumber": 42,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            } catch (DukeException ex){"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                System.out.println(\" ☹ OOPS!!! \" + ex.getMessage());"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            Messenger.printBracket();"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            inputMessage \u003d myObj.nextLine();"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        Messenger.closingMessage();"
-      },
-      {
-        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 43,
         "author": {
           "gitId": "-"
         },
@@ -2336,7 +1852,7 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 47,
+      "GlenWong97": 40,
       "-": 3
     }
   },
@@ -2534,7 +2050,7 @@
     }
   },
   {
-    "path": "src/main/java/Messenger.java",
+    "path": "src/main/java/ExitCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -2542,7 +2058,7 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "public class ExitCommand extends Command {"
       },
       {
         "lineNumber": 2,
@@ -2556,7 +2072,114 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "public class Messenger {"
+        "content": "    public ExitCommand(String name) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        super(name);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        ui.closingMessage();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 14
+    }
+  },
+  {
+    "path": "src/main/java/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public String keyword;"
       },
       {
         "lineNumber": 4,
@@ -2570,199 +2193,178 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void openingMessage() {"
+        "content": "    public FindCommand(String name, String keyword) {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String bracket \u003d \"____________________________________________________________\\n\";"
+        "content": "        super(name);"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String intro \u003d \" Hello! I\u0027m Duke\\n\" +"
+        "content": "        this.keyword \u003d keyword;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                \" What can I do for you?\\n\";"
+        "content": "    }"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String listMessage \u003d \" Here are the tasks in your list:\\n\";"
+        "content": "    @Override"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        System.out.println(bracket + intro + bracket);"
+        "content": "    public boolean isExit() {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "        return false;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void closingMessage() {"
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String bracket \u003d \"____________________________________________________________\\n\";"
+        "content": "        ui.searchResult();"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String out \u003d \" \" + \"Bye. Hope to see you again soon!\" + \"\\n\";"
+        "content": "        int i \u003d 1;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        System.out.println(bracket + out + bracket);"
+        "content": "        for (Task x : TaskList.taskList) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "            String[] singleWord \u003d x.name.split(\" \");"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "            for (String y : singleWord) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void printBracket() {"
+        "content": "                if (y.equals(keyword)) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String bracket \u003d \"____________________________________________________________\\n\";"
+        "content": "                    System.out.print(\" \" + i + \".\");"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        System.out.print(bracket);"
+        "content": "                    System.out.println(x.toString());"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "                    i++;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "                    break;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void listPrint(ArrayList\u003cTask\u003e taskList) {"
+        "content": "                }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        String listMessage \u003d \" Here are the tasks in your list:\\n\";"
+        "content": "            }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        System.out.print(listMessage);"
+        "content": "        }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            System.out.print(\" \" + (i + 1) + \".\");"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            System.out.print(taskList.get(i).toString() + \" \\n\");"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "GlenWong97"
-        },
         "content": ""
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 30,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -2770,7 +2372,1525 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 33
+      "GlenWong97": 30
+    }
+  },
+  {
+    "path": "src/main/java/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class ListCommand extends Command{"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public ListCommand(String name) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        super(name);"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        ui.listPrint(TaskList.taskList);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 15
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public static Command parse(String command) throws DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String[] msgArray \u003d command.split(\"\\\\s+\");"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        switch (msgArray[0]) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case(\"bye\"):"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return new ExitCommand(msgArray[0]);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"list\"):"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return new ListCommand(msgArray[0]);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"find\"):"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (msgArray.length !\u003d 2) throw new DukeException(\"Please specify only one keyword!\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return new FindCommand(msgArray[0], msgArray[1]);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"done\"):"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (msgArray.length \u003d\u003d 1) throw new DukeException(\"The index of the done item must be stated.\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else if (!msgArray[1].matches(\"\\\\d+\")) throw new DukeException(\"The index must be of numerical value.\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else if (Integer.parseInt(msgArray[1]) -1 \u003e\u003d TaskList.taskList.size())"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    throw new DukeException(\"The index cannot be found! Try a smaller index!\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else if (TaskList.taskList.size() \u003d\u003d 0) throw new DukeException(\"No task yet! Insert new task to get started!\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return new DoneCommand(msgArray[0], msgArray[1]);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"delete\"):"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (msgArray.length \u003d\u003d 1) throw new DukeException(\"The index of the deleted item must be stated.\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else if (!msgArray[1].matches(\"\\\\d+\")) throw new DukeException(\"The index must be of numerical value.\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else if (Integer.parseInt(msgArray[1]) -1 \u003e\u003d TaskList.taskList.size())"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    throw new DukeException(\"The index cannot be found! Try a smaller index!\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else if (TaskList.taskList.size() \u003d\u003d 0) throw new DukeException(\"No task yet! Insert new task to get started!\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return new DeleteCommand(msgArray[0], msgArray[1]);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"todo\"):"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"deadline\"):"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            case (\"event\"):"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (msgArray.length \u003d\u003d 1) throw new DukeException(\"The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                return new AddCommand(msgArray[0], command);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            default: throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 35
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.nio.Buffer;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public String filePath;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private String newfilepath \u003d \"./data/temp.txt\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private static TaskList bufferList;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public Storage(String filePath) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        this.filePath \u003d filePath;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public ArrayList\u003cTask\u003e load() throws DukeException {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File file \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            Scanner scanner \u003d new Scanner(file);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            while (scanner.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                String[] strArray \u003d scanner.nextLine().split(\"\\\\s+\\\\|\\\\s+\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (strArray[0].equals(\"T\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    if (strArray[1].equals(\"0\")) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        Todo item \u003d new Todo(strArray[2]);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        taskList.add(item);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        Todo item \u003d new Todo(strArray[2]);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        item.setStatusDone();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        taskList.add(item);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                } else if (strArray[0].equals(\"E\")) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    if (strArray[1].equals(\"0\")) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        Event ev \u003d new Event(strArray[2], strArray[3]);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        taskList.add(ev);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        Event ev \u003d new Event(strArray[2], strArray[3]);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        ev.setStatusDone();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        taskList.add(ev);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                } else if (strArray[0].equals(\"D\")) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    if (strArray[1].equals(\"0\")) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        Deadline dl \u003d new Deadline(strArray[2], strArray[3]);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        taskList.add(dl);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        Deadline dl \u003d new Deadline(strArray[2], strArray[3]);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        dl.setStatusDone();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                        taskList.add(dl);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            scanner.close();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            throw new DukeException(\"No file\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public static void main(String[] args) throws IOException {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void saveDlEvent(String typeOf, String isDone, String nameTask, String date) throws IOException {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(filePath, true);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.println(typeOf + \" | \" + isDone + \" | \" + nameTask + \" | \" + date);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.close();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.println(\"Error: \" + e.getMessage());"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void saveTodo(String typeOf, String isDone, String nameTask) throws IOException {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(\"./data/duke.txt\", true);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.println(typeOf + \" | \" + isDone + \" | \" + nameTask);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.close();"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.println(\"Error: \" + e.getMessage());"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void transferFile() throws IOException {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(\"./data/temp.txt\", true);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File file \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            Scanner scanner \u003d new Scanner(file).useDelimiter(\"\\\\|\\\\s*\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            while (scanner.hasNext()) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                pw.println(scanner.nextLine());"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.close();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            scanner.close();"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.println(\"Error: \" + e.getMessage());"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void updateFile(int lineNumber) throws IOException {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File tempFile \u003d new File(\"./data/temp.txt\");"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(tempFile, false);"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File file \u003d new File(\"./data/duke.txt\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            Scanner scanner \u003d new Scanner(file);"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            int i \u003d 1;"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            while (scanner.hasNext()) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (i !\u003d lineNumber) pw.println(scanner.nextLine());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    String[] str \u003d scanner.nextLine().split(\"\\\\s+\\\\|\\\\s+\");"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    str[1] \u003d \"1\";"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    String strBuffer \u003d \"\";"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    for (String x : str) strBuffer +\u003d (x + \" | \");"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    strBuffer \u003d strBuffer.substring(0, strBuffer.length()-3);"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    pw.println(strBuffer);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                i++;"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.flush();"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.close();"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            scanner.close();"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            file.delete();"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File dump \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            tempFile.renameTo(dump);"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.println(\"Error: \" + e.getMessage());"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void deleteFile(int lineNumber) throws IOException {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File tempFile \u003d new File(\"./data/temp.txt\");"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(tempFile, false);"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            PrintWriter pw \u003d new PrintWriter(fw);"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File file \u003d new File(\"./data/duke.txt\");"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            Scanner scanner \u003d new Scanner(file);"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            int i \u003d 1;"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            while (scanner.hasNext()) {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                if (i !\u003d lineNumber) {"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    pw.println(scanner.nextLine());"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                    scanner.nextLine();"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                i++;"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.flush();"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            pw.close();"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            scanner.close();"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            file.delete();"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            File dump \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            tempFile.renameTo(dump);"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.println(\"Error: \" + e.getMessage());"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 163
     }
   },
   {
@@ -3083,140 +4203,140 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        System.out.println(\" Here are the matching tasks in your list:\");"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            if (msgArray.length !\u003d 2) throw new DukeException(\"Please specify only one keyword!\");"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            int i \u003d 1;"
+        "content": "    static void setDone(ArrayList\u003cTask\u003etaskList, String[] msgArray, Storage cf) throws IOException {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            for (Task x : taskList) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                String[] singleWord \u003d x.name.split(\" \");"
+        "content": "            if (msgArray.length \u003d\u003d 1) throw new DukeException(\"The index of the done item must be stated.\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                for (String y : singleWord) {"
+        "content": "            else if (!msgArray[1].matches(\"\\\\d+\")) throw new DukeException(\"The index must be of numerical value.\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    if (y.equals(msgArray[1])) {"
+        "content": "            else if (Integer.parseInt(msgArray[1]) -1 \u003e\u003d taskList.size())"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        System.out.print(\" \" + i + \".\");"
+        "content": "                throw new DukeException(\"The index cannot be found! Try a smaller index!\");"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        System.out.println(x.toString());"
+        "content": "            else if (taskList.size() \u003d\u003d 0) throw new DukeException(\"No task yet! Insert new task to get started!\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        i++;"
+        "content": "            int index \u003d Integer.parseInt(msgArray[1]) - 1;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                        break;"
+        "content": "            taskList.get(index).setStatusDone();"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                    }"
+        "content": "            System.out.println(\" Nice! I\u0027ve marked this task as done:\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "                }"
+        "content": "            System.out.print(\"   \" + taskList.get(index).getStatus() + \" \");"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "            System.out.println(taskList.get(index).name);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            }"
+        "content": "            cf.updateFile(index + 1);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": ""
+        "content": "        } catch (DukeException ex) {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        } catch (DukeException e) {"
+        "content": "            System.out.println(\" ☹ OOPS!!! \" + ex.getMessage());"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "            System.out.println(\" ☹ OOPS!!! \" + e.getMessage());"
+        "content": "        }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "        }"
+        "content": "    }"
       },
       {
         "lineNumber": 64,
@@ -3230,269 +4350,131 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    }"
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 65
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.util.ArrayList;"
       },
       {
-        "lineNumber": 66,
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 3,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": ""
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 4,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void setDelete(ArrayList\u003cTask\u003etaskList, String[] msgArray, CreateFile cf)  throws IOException {"
+        "content": "public class TaskList{"
       },
       {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            if (msgArray.length \u003d\u003d 1) throw new DukeException(\"The index of the done item must be stated.\");"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            else if (!msgArray[1].matches(\"\\\\d+\")) throw new DukeException(\"The index must be of numerical value.\");"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            else if (Integer.parseInt(msgArray[1]) -1 \u003e\u003d taskList.size())"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                throw new DukeException(\"The index cannot be found! Try a smaller index!\");"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            else if (taskList.size() \u003d\u003d 0) throw new DukeException(\"No task yet! Insert new task to get started!\");"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            int index \u003d Integer.parseInt(msgArray[1]) - 1;"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\" Noted. I\u0027ve removed this task: \");"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\"   \" + taskList.get(index).toString());"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            removeTask(taskList, index);"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\" Now you have \" + getNumberOfTasks() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            cf.deleteFile(index + 1);"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (DukeException ex) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\" ☹ OOPS!!! \" + ex.getMessage());"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 84,
+        "lineNumber": 5,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": ""
       },
       {
-        "lineNumber": 85,
+        "lineNumber": 6,
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void setDone(ArrayList\u003cTask\u003etaskList, String[] msgArray, CreateFile cf) throws IOException {"
+        "content": "    public static ArrayList\u003cTask\u003e taskList;"
       },
       {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            if (msgArray.length \u003d\u003d 1) throw new DukeException(\"The index of the done item must be stated.\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            else if (!msgArray[1].matches(\"\\\\d+\")) throw new DukeException(\"The index must be of numerical value.\");"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            else if (Integer.parseInt(msgArray[1]) -1 \u003e\u003d taskList.size())"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "                throw new DukeException(\"The index cannot be found! Try a smaller index!\");"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            else if (taskList.size() \u003d\u003d 0) throw new DukeException(\"No task yet! Insert new task to get started!\");"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            int index \u003d Integer.parseInt(msgArray[1]) - 1;"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            taskList.get(index).setStatusDone();"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\" Nice! I\u0027ve marked this task as done:\");"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.print(\"   \" + taskList.get(index).getStatus() + \" \");"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(taskList.get(index).name);"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            cf.updateFile(index + 1);"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        } catch (DukeException ex) {"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "            System.out.println(\" ☹ OOPS!!! \" + ex.getMessage());"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "GlenWong97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 102,
+        "lineNumber": 7,
         "author": {
           "gitId": "GlenWong97"
         },
         "content": ""
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        TaskList.taskList \u003d taskList;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void add(Task t) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        taskList.add(t);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
         "author": {
           "gitId": "GlenWong97"
         },
@@ -3500,7 +4482,7 @@
       }
     ],
     "authorContributionMap": {
-      "GlenWong97": 103
+      "GlenWong97": 17
     }
   },
   {
@@ -3673,7 +4655,7 @@
         "author": {
           "gitId": "GlenWong97"
         },
-        "content": "    static void setTodo(ArrayList\u003cTask\u003e taskList, String[] todoArray, CreateFile cf)  throws IOException {"
+        "content": "    static void setTodo(ArrayList\u003cTask\u003e taskList, String[] todoArray, Storage cf)  throws IOException {"
       },
       {
         "lineNumber": 25,
@@ -3762,6 +4744,386 @@
     ],
     "authorContributionMap": {
       "GlenWong97": 36
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    private static String command;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void showLoadingError() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(\"No duke.txt file found, creating one now!\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void openingMessage() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String bracket \u003d \"____________________________________________________________\\n\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String intro \u003d \" Hello! I\u0027m Duke\\n\" +"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "                \" What can I do for you?\\n\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String listMessage \u003d \" Here are the tasks in your list:\\n\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(bracket + intro + bracket);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void closingMessage() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String closeMsg \u003d \" \" + \"Bye. Hope to see you again soon!\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(closeMsg);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void showLine() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String bracket \u003d \"____________________________________________________________\\n\";"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.print(bracket);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void searchResult() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(\" Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public void successDelete(int index) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(\" Noted. I\u0027ve removed this task: \");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.println(\"   \" + TaskList.taskList.get(index).toString());"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public static void listPrint(ArrayList\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        String listMessage \u003d \" Here are the tasks in your list:\\n\";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        System.out.print(listMessage);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.print(\" \" + (i + 1) + \".\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "            System.out.print(taskList.get(i).toString() + \" \\n\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    public String readCommand() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        Scanner myObj \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        command \u003d myObj.nextLine();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "        return command;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "GlenWong97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "GlenWong97": 53
     }
   },
   {

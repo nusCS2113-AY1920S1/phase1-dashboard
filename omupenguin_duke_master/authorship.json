@@ -2124,647 +2124,598 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "        String command \u003d inputArray[0];"
       },
       {
         "lineNumber": 279,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        // Some improvements that can be made:"
+        "content": ""
       },
       {
         "lineNumber": 280,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        // We can ignore the length if we can ignore the rest of the contents after the"
+        "content": "        switch (command) {"
       },
       {
         "lineNumber": 281,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        // first word. So just check inputArray[0] and determine function from there."
+        "content": "            case \"list\":"
       },
       {
         "lineNumber": 282,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        if (inputArray.length \u003d\u003d 1) {"
+        "content": "                showList();"
       },
       {
         "lineNumber": 283,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "                break;"
       },
       {
         "lineNumber": 284,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            if (inputLine.equals(\"list\")) {"
+        "content": "            case \"done\":"
       },
       {
         "lineNumber": 285,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                showList();"
+        "content": "                completeTask(inputArray[1]);"
       },
       {
         "lineNumber": 286,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            } else {"
+        "content": "                break;"
       },
       {
         "lineNumber": 287,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                addToList(inputArray[0], inputLine);"
+        "content": "            case \"remove\":"
       },
       {
         "lineNumber": 288,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            }"
+        "content": "                removeTask(inputArray[1]);"
       },
       {
         "lineNumber": 289,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "                break;"
       },
       {
         "lineNumber": 290,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        } else if (inputArray.length \u003d\u003d 2) {"
+        "content": "            case \"find\":"
       },
       {
         "lineNumber": 291,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "                findString(command, inputLine);"
       },
       {
         "lineNumber": 292,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            if (inputArray[0].equals(\"done\")) {"
+        "content": "                break;"
       },
       {
         "lineNumber": 293,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                completeTask(inputArray[1]);"
+        "content": "            default:"
       },
       {
         "lineNumber": 294,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            } else if (inputArray[0].equals(\"remove\")) {"
+        "content": "                addToList(command, inputLine);"
       },
       {
         "lineNumber": 295,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                removeTask(inputArray[1]);"
+        "content": "                break;"
       },
       {
         "lineNumber": 296,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            } else if (inputArray[0].equals(\"find\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 297,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                findString(inputArray[0], inputLine);"
+        "content": "    }"
       },
       {
         "lineNumber": 298,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            } else {"
+        "content": ""
       },
       {
         "lineNumber": 299,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                addToList(inputArray[0], inputLine);"
+        "content": "    public static void save() {"
       },
       {
         "lineNumber": 300,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            }"
+        "content": "        try(FileWriter file \u003d new FileWriter(\"./data/duke.txt\")) {"
       },
       {
         "lineNumber": 301,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        } else if (inputArray[0].equals(\"find\")) {"
+        "content": "            for (Task currTask : list) {"
       },
       {
         "lineNumber": 302,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            findString(inputArray[0], inputLine);"
+        "content": "                String fileContent \u003d currTask.formatSave();"
       },
       {
         "lineNumber": 303,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        } else {"
+        "content": "                file.write(fileContent);"
       },
       {
         "lineNumber": 304,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            addToList(inputArray[0], inputLine);"
+        "content": "                file.write(System.lineSeparator());"
       },
       {
         "lineNumber": 305,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 306,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "//            System.out.println(\"saved\"); // DEBUG"
       },
       {
         "lineNumber": 307,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 308,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public static void save() {"
+        "content": "            System.out.println(\"***Error writing to duke.txt***\");"
       },
       {
         "lineNumber": 309,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        try(FileWriter file \u003d new FileWriter(\"./data/duke.txt\")) {"
+        "content": "            // exception handling"
       },
       {
         "lineNumber": 310,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            for (Task currTask : list) {"
+        "content": "        }"
       },
       {
         "lineNumber": 311,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                String fileContent \u003d currTask.formatSave();"
+        "content": "    }"
       },
       {
         "lineNumber": 312,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                file.write(fileContent);"
+        "content": ""
       },
       {
         "lineNumber": 313,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                file.write(System.lineSeparator());"
+        "content": "    public static LocalDateTime readTime(String timeStr) {"
       },
       {
         "lineNumber": 314,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            }"
+        "content": "        try {"
       },
       {
         "lineNumber": 315,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//            System.out.println(\"saved\"); // DEBUG"
+        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
       },
       {
         "lineNumber": 316,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            LocalDateTime time \u003d LocalDateTime.parse(timeStr, formatter);"
       },
       {
         "lineNumber": 317,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            System.out.println(\"***Error writing to duke.txt***\");"
+        "content": "//            System.out.println(time);"
       },
       {
         "lineNumber": 318,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            // exception handling"
+        "content": "            return time;"
       },
       {
         "lineNumber": 319,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        }"
+        "content": "        } catch(DateTimeParseException e) {"
       },
       {
         "lineNumber": 320,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "//            System.out.println(\"This format is not okay!\");"
       },
       {
         "lineNumber": 321,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "            return null;"
       },
       {
         "lineNumber": 322,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public static LocalDateTime readTime(String timeStr) {"
+        "content": "        }"
       },
       {
         "lineNumber": 323,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 324,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
+        "content": ""
       },
       {
         "lineNumber": 325,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            LocalDateTime time \u003d LocalDateTime.parse(timeStr, formatter);"
+        "content": "    public static LocalDateTime importTime(String timeStr) {"
       },
       {
         "lineNumber": 326,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//            System.out.println(time);"
+        "content": "        try {"
       },
       {
         "lineNumber": 327,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            return time;"
+        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
       },
       {
         "lineNumber": 328,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        } catch(DateTimeParseException e) {"
+        "content": "            LocalDateTime time \u003d LocalDateTime.parse(timeStr, formatter);"
       },
       {
         "lineNumber": 329,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//            System.out.println(\"This format is not okay!\");"
+        "content": "//            System.out.println(time);"
       },
       {
         "lineNumber": 330,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            return null;"
+        "content": "            return time;"
       },
       {
         "lineNumber": 331,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        }"
+        "content": "        } catch(DateTimeParseException e) {"
       },
       {
         "lineNumber": 332,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "//            System.out.println(\"This format is not okay!\");"
       },
       {
         "lineNumber": 333,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "            return null;"
       },
       {
         "lineNumber": 334,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public static LocalDateTime importTime(String timeStr) {"
+        "content": "        }"
       },
       {
         "lineNumber": 335,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 336,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
-      },
-      {
-        "lineNumber": 337,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            LocalDateTime time \u003d LocalDateTime.parse(timeStr, formatter);"
-      },
-      {
-        "lineNumber": 338,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "//            System.out.println(time);"
-      },
-      {
-        "lineNumber": 339,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return time;"
-      },
-      {
-        "lineNumber": 340,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } catch(DateTimeParseException e) {"
-      },
-      {
-        "lineNumber": 341,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "//            System.out.println(\"This format is not okay!\");"
-      },
-      {
-        "lineNumber": 342,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return null;"
-      },
-      {
-        "lineNumber": 343,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 344,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 345,
-        "author": {
-          "gitId": "omupenguin"
-        },
         "content": ""
       },
       {
-        "lineNumber": 346,
+        "lineNumber": 337,
         "author": {
           "gitId": "-"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 347,
+        "lineNumber": 338,
         "author": {
           "gitId": "-"
         },
         "content": "        String logo \u003d \" ____        _        \\n\""
       },
       {
-        "lineNumber": 348,
+        "lineNumber": 339,
         "author": {
           "gitId": "-"
         },
         "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
       },
       {
-        "lineNumber": 349,
+        "lineNumber": 340,
         "author": {
           "gitId": "-"
         },
         "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
       },
       {
-        "lineNumber": 350,
+        "lineNumber": 341,
         "author": {
           "gitId": "-"
         },
         "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
       },
       {
-        "lineNumber": 351,
+        "lineNumber": 342,
         "author": {
           "gitId": "-"
         },
         "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
       },
       {
-        "lineNumber": 352,
+        "lineNumber": 343,
         "author": {
           "gitId": "-"
         },
         "content": "        System.out.println(\"Hello from\\n\" + logo);"
       },
       {
-        "lineNumber": 353,
+        "lineNumber": 344,
         "author": {
           "gitId": "omupenguin"
         },
         "content": ""
       },
       {
-        "lineNumber": 354,
+        "lineNumber": 345,
         "author": {
           "gitId": "omupenguin"
         },
         "content": "        startup();"
       },
       {
-        "lineNumber": 355,
+        "lineNumber": 346,
         "author": {
           "gitId": "omupenguin"
         },
         "content": ""
       },
       {
-        "lineNumber": 356,
+        "lineNumber": 347,
         "author": {
           "gitId": "omupenguin"
         },
         "content": "        boolean isExit \u003d false;"
       },
       {
-        "lineNumber": 357,
+        "lineNumber": 348,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Scanner input \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 349,
         "author": {
           "gitId": "omupenguin"
         },
         "content": "        while (isExit \u003d\u003d false) {"
       },
       {
+        "lineNumber": 350,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            if (input.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 351,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                String inputLine \u003d input.nextLine();"
+      },
+      {
+        "lineNumber": 352,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                if (inputLine.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 353,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    isExit \u003d true;"
+      },
+      {
+        "lineNumber": 354,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    exit();"
+      },
+      {
+        "lineNumber": 355,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 356,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    handleInput(inputLine);"
+      },
+      {
+        "lineNumber": 357,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    save();"
+      },
+      {
         "lineNumber": 358,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            Scanner input \u003d new Scanner(System.in);"
+        "content": "                }"
       },
       {
         "lineNumber": 359,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            String inputLine \u003d input.nextLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 360,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            if (inputLine.equals(\"bye\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 361,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                isExit \u003d true;"
-      },
-      {
-        "lineNumber": 362,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                exit();"
-      },
-      {
-        "lineNumber": 363,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 364,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                handleInput(inputLine);"
-      },
-      {
-        "lineNumber": 365,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                save();"
-      },
-      {
-        "lineNumber": 366,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 367,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 368,
-        "author": {
-          "gitId": "omupenguin"
-        },
         "content": ""
       },
       {
-        "lineNumber": 369,
+        "lineNumber": 362,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 370,
+        "lineNumber": 363,
         "author": {
           "gitId": "-"
         },
@@ -2772,7 +2723,7 @@
       }
     ],
     "authorContributionMap": {
-      "omupenguin": 360,
+      "omupenguin": 353,
       "-": 10
     }
   },
@@ -3067,199 +3018,206 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); // returns ✓ or X"
+        "content": "//        return (isDone ? \"\\u2713\" : \"\\u2718\"); // returns ✓ or X"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        return (isDone ? \"O\" : \"X\"); // returns O or X"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public void markAsDone() {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        isDone \u003d true;"
+        "content": "    public void markAsDone() {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        isDone \u003d true;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public String getDate() {"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        return \"\";"
+        "content": "    public String getDate() {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        return \"\";"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public String timeToString(LocalDateTime time) {"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
+        "content": "    public String timeToString(LocalDateTime time) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        String timeStr \u003d time.format(formatter);"
+        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        return timeStr;"
+        "content": "        String timeStr \u003d time.format(formatter);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        return timeStr;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public String getTask() {"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        return \"[\" + type + \"][\" + getStatusIcon() + \"] \" + description + getDate();"
+        "content": "    public String getTask() {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        return \"[\" + type + \"][\" + getStatusIcon() + \"] \" + description + getDate();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public String formatDateSave() {"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        return \"\";"
+        "content": "    public String formatDateSave() {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        return \"\";"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public String formatSave() {"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        return type + \" | \" + (isDone ? 1 : 0) + \" | \" + description + formatDateSave();"
+        "content": "    public String formatSave() {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    }"
+        "content": "        return type + \" | \" + (isDone ? 1 : 0) + \" | \" + description + formatDateSave();"
       },
       {
         "lineNumber": 44,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
         "author": {
           "gitId": "omupenguin"
         },
@@ -3267,7 +3225,7 @@
       }
     ],
     "authorContributionMap": {
-      "omupenguin": 44
+      "omupenguin": 45
     }
   },
   {
