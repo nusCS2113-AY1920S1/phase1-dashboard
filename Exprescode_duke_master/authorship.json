@@ -346,6 +346,57 @@
     }
   },
   {
+    "path": "src/main/java/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public abstract boolean isExit();"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 6
+    }
+  },
+  {
     "path": "src/main/java/Deadline.java",
     "fileType": "java",
     "lines": [
@@ -467,6 +518,523 @@
     }
   },
   {
+    "path": "src/main/java/DeadlineCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class DeadlineCommand extends Command {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private String desc;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private Calendar by;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public DeadlineCommand(String desc, Calendar by){"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.desc \u003d desc;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(by.compareTo(Calendar.getInstance()) \u003c 1){"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"Date time has already expired.\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Deadline new_deadline \u003d new Deadline(desc, by);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        tasks.add(new_deadline);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.show(\"Got it. I\u0027ve added this task:\\n  \" + new_deadline.toString() + \"\\nNow you have \" + tasks.len() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        storage.store(tasks);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 28
+    }
+  },
+  {
+    "path": "src/main/java/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public DeleteCommand(int index){"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        String task_str \u003d tasks.remove(index);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(task_str.length() \u003c 1){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"Delete argument is not a valid entry from list command.\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.show(\"Noted. I\u0027ve removed this task:\\n  \" + task_str + \"\\nNow you have \" + tasks.len() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        storage.store(tasks);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 21
+    }
+  },
+  {
+    "path": "src/main/java/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public DoneCommand(int index){"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        String task_str \u003d tasks.tick(index);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(task_str.length() \u003c 1){"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"Done argument is not a valid entry from list command.\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.show(\"Nice! I\u0027ve marked this task as done:\\n \" + task_str);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        storage.store(tasks);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 21
+    }
+  },
+  {
     "path": "src/main/java/Duke.java",
     "fileType": "java",
     "lines": [
@@ -482,2362 +1050,1424 @@
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "import java.text.ParseException;"
+        "content": ""
       },
       {
         "lineNumber": 3,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import java.text.SimpleDateFormat;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import java.util.Calendar;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import java.util.Scanner;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import java.util.regex.Matcher;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import java.util.regex.Pattern;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "import static java.util.Arrays.copyOf;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 12,
         "author": {
           "gitId": "-"
         },
         "content": "public class Duke {"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 4,
         "author": {
           "gitId": "Exprescode"
         },
         "content": "    private static final String BAR \u003d \"    ____________________________________________________________\";"
       },
       {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private static Storage storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private static Ui ui;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public Duke(String filePath) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        storage\u003d new Storage(filePath);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try{"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            tasks \u003d new TaskList(storage.load());"
+      },
+      {
         "lineNumber": 14,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static ArrayList\u003cTask\u003e tasks;"
+        "content": "        } catch (IOException | ClassNotFoundException e) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "            ui.showLoadingError();"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    /**"
+        "content": "            tasks \u003d new TaskList();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * Program starts here. This is the main method."
+        "content": "        }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     *"
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     * @param args cmd line input arguments."
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "     */"
+        "content": "    public void run(){"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "-"
+          "gitId": "Exprescode"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "        ui.showWelcome();"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        restore_tasks();"
+        "content": "        boolean isExit \u003d false;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        Scanner scan \u003d new Scanner(System.in);"
+        "content": "        while(!isExit){"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        String user_input \u003d \"\";"
+        "content": "            try{"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        print_init_msg();"
+        "content": "                String fullCommand \u003d ui.readCommand();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        while (!user_input.equals(\"bye\")) {"
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            user_input \u003d scan.nextLine();"
+        "content": "                c.execute(tasks, ui, storage);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            if (user_input.equals(\"list\")) {"
+        "content": "                isExit \u003d c.isExit();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                try {"
+        "content": "            } catch (DukeEmptyException | DukeFormatException | DukeBoundException e) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    cmd_list();"
+        "content": "                ui.showError(e.getMessage());"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                } catch(DukeEmptyException e){"
+        "content": "            }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    print_console(format_error(\"You have no task.\"));"
+        "content": "        }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                }"
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                continue;"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "-"
         },
-        "content": "            }"
+        "content": "    public static void main(String[] args) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            String[] user_input_parts \u003d user_input.split(\" \", 2);"
+        "content": "        new Duke(\"C:\\\\Users\\\\JH\\\\Documents\\\\GitHub\\\\duke\\\\data\\\\duke.txt\").run();"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "Exprescode"
+          "gitId": "-"
         },
-        "content": "            if(user_input_parts.length \u003c 2) {"
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                user_input_parts \u003d copyOf(user_input_parts, 2);"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                user_input_parts[1] \u003d \"\";"
+        "content": "//    private static void print_console(String msg) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            } else {"
+        "content": "//        System.out.println(BAR + \"\\n     \" + msg.replaceAll(\"\\n\", \"\\n     \") + \"\\n\" + BAR + \"\\n\");"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                user_input_parts[1] \u003d user_input_parts[1].replaceAll(\"\\\\s+\", \" \").trim();"
+        "content": "//    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "//"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            switch(user_input_parts[0]){"
+        "content": "//    private static void print_init_msg() {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"delete\":"
+        "content": "//        print_console(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    try{"
+        "content": "//    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        cmd_delete(user_input_parts[1]);"
+        "content": "//"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeFormatException e) {"
+        "content": "//    private static void print_exit_msg() {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The argument of delete must be numeric.\"));"
+        "content": "//        print_console(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeBoundException e) {"
+        "content": "//    }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The argument of delete must be an entry number from list.\"));"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeEmptyException e) {"
+        "content": "//    private static String format_add_task(String added_task) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The argument of delete must not be empty\"));"
+        "content": "//        return \"Got it. I\u0027ve added this task:\\n  \" + added_task + \"\\nNow you have \" + tasks.len() + \" tasks in the list.\";"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "//    }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"done\":"
+        "content": "//    private static String format_error(String msg) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    try{"
+        "content": "//        return \"☹ OOPS!!! \" + msg;"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        cmd_done(user_input_parts[1]);"
+        "content": "//    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        backup_tasks();"
+        "content": "//"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch(DukeEmptyException e) {"
+        "content": "//    private static void cmd_list() throws DukeEmptyException {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The arguments of done must not be empty\"));"
+        "content": "//        if(tasks.len() \u003c 1){"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeFormatException e) {"
+        "content": "//            throw new DukeEmptyException(\"Task list is empty! Cannot list an empty list.\");"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The argument of done must be numeric.\"));"
+        "content": "//        }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeBoundException e) {"
+        "content": "//        ui.show(\"Here are the tasks in your list:\\n\" + tasks.list());"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The argument of done must be an entry number from list.\"));"
+        "content": "//    }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "//"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//    private static void cmd_done(String option) throws DukeEmptyException,DukeFormatException,DukeBoundException {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"find\":"
+        "content": "//        int index;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    try{"
+        "content": "//        if(option.length() \u003d\u003d 0){"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        cmd_find(user_input_parts[1]);"
+        "content": "//            throw new DukeEmptyException(\"Arguemnt cannot be empty!\");"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeEmptyException e) {"
+        "content": "//        }"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console((format_error(\"Your list is empty. Please populate it first.\")));"
+        "content": "//        try {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "//            index \u003d Integer.parseInt(option);"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//        } catch (Exception e) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"todo\":"
+        "content": "//            throw new DukeFormatException(\"Done argument is not numeric.\");"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    try{"
+        "content": "//        }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        cmd_todo(user_input_parts[1]);"
+        "content": "//        String task_str \u003d tasks.tick(--index);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch(DukeEmptyException e){"
+        "content": "//        if(task_str.length() \u003c 1){"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The description of a todo cannot be empty.\"));"
+        "content": "//            throw new DukeBoundException(\"Option is not within list options.\");"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "//        }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//        ui.show(\"Nice! I\u0027ve marked this task as done:\\n \" + task_str);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"deadline\":"
+        "content": "//        storage.store(tasks);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    try{"
+        "content": "//    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        cmd_deadline(user_input_parts[1]);"
+        "content": "//"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch(DukeEmptyException e){"
+        "content": "//    private static void cmd_delete(String option) throws DukeEmptyException,DukeFormatException,DukeBoundException {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The description and date/time of a deadline cannot be empty.\"));"
+        "content": "//        int index;"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeFormatException e) {"
+        "content": "//        if(option.length() \u003d\u003d 0){"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"Incorrect date time format!\\nPlease enter date time in the follow format:\\n\u003cDAY\u003e/\u003cMONTH\u003e/\u003cYEAR\u003e\u003cspace\u003e\u003cHOURS\u003e\u003cMINUTES\u003e\\nDD/MM/YYYY HHMM\"));"
+        "content": "//            throw new DukeEmptyException(\"Arguemnt cannot be empty!\");"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeBoundException e) {"
+        "content": "//        }"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"Deadline date time must be earlier than the present date time.\"));"
+        "content": "//        try {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "//            index \u003d Integer.parseInt(option);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//        } catch (Exception e) {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"event\":"
+        "content": "//            throw new DukeFormatException(\"Delete argument is not numeric.\");"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    try{"
+        "content": "//        }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        cmd_event(user_input_parts[1]);"
+        "content": "//        String task_str \u003d tasks.remove(--index);"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch(DukeEmptyException e){"
+        "content": "//        if(task_str.length() \u003c 1){"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(\"The description and data/time of an event cannot be empty.\"));"
+        "content": "//            throw new DukeBoundException(\"Option is not within list options.\");"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeFormatException e) {"
+        "content": "//        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        String msg \u003d e.getMessage();"
+        "content": "//        ui.show(\"Noted. I\u0027ve removed this task:\\n  \" + task_str + \"\\nNow you have \" + tasks.len() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        if(msg.equals(\"Wrong start date time format.\")){"
+        "content": "//        storage.store(tasks);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            msg \u003d \"Incorrect starting\";"
+        "content": "//    }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        } else if (msg.equals(\"Wrong end date time format.\")){"
+        "content": "//"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            msg \u003d \"Incorrect ending\";"
+        "content": "//    private static void cmd_find(String search_str) throws DukeEmptyException {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        } else {"
+        "content": "//        if(tasks.len() \u003c 1){"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            msg \u003d \"Incorrect\";"
+        "content": "//            throw new DukeEmptyException(\"Task list is empty! Cannot list an empty list.\");"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        }"
+        "content": "//        }"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(msg + \" date time format!\\nPlease enter date time in the follow format:\\n\u003cDAY\u003e/\u003cMONTH\u003e/\u003cYEAR\u003e\u003cspace\u003e\u003cHOURS\u003e\u003cMINUTES\u003e\\nDD/MM/YYYY HHMM\"));"
+        "content": "//        String result \u003d tasks.find(search_str);"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    } catch (DukeBoundException e) {"
+        "content": "//        if(result.length() \u003e 0){"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        String msg \u003d e.getMessage();"
+        "content": "//            ui.show(\"Here are the matching tasks in your list:\\n\" + result);"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        if(msg.equals(\"Start date time expired.\")){"
+        "content": "//        } else {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            msg \u003d \"Starting date time must be earlier than the present date time.\";"
+        "content": "//            ui.show(\"I\u0027ve search everywhere but there is not matching tasks.\");"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        } else {"
+        "content": "//        }"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                            msg \u003d \"Ending date time must be earlier than the starting date time.\";"
+        "content": "//    }"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        }"
+        "content": "//"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                        print_console(format_error(msg));"
+        "content": "//    private static void cmd_todo(String desc) throws DukeEmptyException{"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    }"
+        "content": "//        if(desc.isEmpty() || desc.isBlank()){"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//            throw new DukeEmptyException(\"Todo description cannot be empty\");"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                case \"bye\":"
+        "content": "//        }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    print_exit_msg();"
+        "content": "//        Todo new_todo \u003d new Todo(desc);"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    break;"
+        "content": "//        tasks.add(new_todo);"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                default:"
+        "content": "//        ui.show(format_add_task(new_todo.toString()));"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "                    print_console(format_error(\"I\u0027m sorry, but I don\u0027t know what that means :-(\"));"
+        "content": "//        storage.store(tasks);"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            }"
+        "content": "//    }"
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//"
       },
       {
         "lineNumber": 124,
         "author": {
-          "gitId": "-"
+          "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//    private static void cmd_deadline(String args) throws DukeEmptyException, DukeFormatException, DukeBoundException {"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        if(args.isEmpty() || args.isBlank()){"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void print_console(String msg) {"
+        "content": "//            throw new DukeEmptyException(\"Deadline description cannot be empty\");"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        System.out.println(BAR + \"\\n     \" + msg.replaceAll(\"\\n\", \"\\n     \") + \"\\n\" + BAR + \"\\n\");"
+        "content": "//        }"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//        String[] args_parts \u003d args.split(\" /by \", 2);"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        if(args_parts.length \u003c 2){"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void print_init_msg() {"
+        "content": "//            throw new DukeEmptyException(\"Deadline date time cannot be empty.\");"
       },
       {
         "lineNumber": 131,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        print_console(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
+        "content": "//        }"
       },
       {
         "lineNumber": 132,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//        Calendar cal \u003d Calendar.getInstance();"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyy HHmm\");"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void print_exit_msg() {"
+        "content": "//        sdf.setLenient(false);"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        print_console(\"Bye. Hope to see you again soon!\");"
+        "content": "//        try{"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//            cal.setTime(sdf.parse(args_parts[1]));"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        } catch (ParseException e) {"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static String format_add_task(String added_task) {"
+        "content": "//            throw new DukeFormatException(\"Wrong date time format.\");"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return \"Got it. I\u0027ve added this task:\\n  \" + added_task + \"\\nNow you have \" + tasks.size() + \" tasks in the list.\";"
+        "content": "//        }"
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//        if(cal.compareTo(Calendar.getInstance()) \u003c 1){"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//            throw new DukeBoundException(\"Date time has already expired.\");"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static String format_error(String msg) {"
+        "content": "//        }"
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        return \"☹ OOPS!!! \" + msg;"
+        "content": "//        Deadline new_deadline \u003d new Deadline(args_parts[0], cal);"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//        tasks.add(new_deadline);"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        ui.show(format_add_task(new_deadline.toString()));"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void cmd_list() throws DukeEmptyException {"
+        "content": "//        storage.store(tasks);"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if(tasks.size() \u003c 1){"
+        "content": "//    }"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeEmptyException(\"Task list is empty! Cannot list an empty list.\");"
+        "content": "//"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//    private static void cmd_event(String args) throws DukeEmptyException, DukeFormatException, DukeBoundException {"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        StringBuilder sb \u003d new StringBuilder();"
+        "content": "//        if(args.isEmpty() || args.isBlank()){"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        sb.append(\"Here are the tasks in your list:\\n\");"
+        "content": "//            throw new DukeEmptyException(\"Event description cannot be empty.\");"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        for (int i \u003d 0; i \u003c tasks.size(); ++i) {"
+        "content": "//        }"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            sb.append((i + 1) + \".\" + tasks.get(i).toString() + \"\\n\");"
+        "content": "//        String[] args_parts \u003d args.split(\" /at \", 2);"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//        if(args_parts.length \u003c 2) {"
       },
       {
         "lineNumber": 155,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        sb.deleteCharAt(sb.length() - 1); //Remove extra newline."
+        "content": "//            throw new DukeEmptyException(\"Event data/time cannot be empty.\");"
       },
       {
         "lineNumber": 156,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        print_console(sb.toString());"
+        "content": "//        }"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//        Matcher end_date_matcher \u003d Pattern.compile(\"^(\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{4}) ?(\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{4})?$\").matcher(args_parts[1]);"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        if(!end_date_matcher.find()){"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void cmd_done(String option) throws DukeEmptyException,DukeFormatException,DukeBoundException {"
+        "content": "//            throw new DukeFormatException(\"Wrong date time format.\");"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        int index;"
+        "content": "//        }"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if(option.length() \u003d\u003d 0){"
+        "content": "//        String start_str \u003d end_date_matcher.group(1);"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeEmptyException(\"Arguemnt cannot be empty!\");"
+        "content": "//        String end_str \u003d end_date_matcher.group(2);"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//        Calendar start_cal \u003d Calendar.getInstance();"
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "//        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyy HHmm\");"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            index \u003d Integer.parseInt(option);"
+        "content": "//        sdf.setLenient(false);"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "//        try{"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeFormatException(\"Done argument is not numeric.\");"
+        "content": "//            start_cal.setTime(sdf.parse(start_str));"
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//        } catch (ParseException e) {"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if (index \u003e 0 \u0026\u0026 index \u003c\u003d tasks.size()) {"
+        "content": "//            throw new DukeFormatException(\"Wrong start date time format.\");"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            Task curr_task \u003d tasks.get(--index);"
+        "content": "//        }"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            curr_task.setDone();"
+        "content": "//        if(start_cal.compareTo(Calendar.getInstance()) \u003c 1){"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            print_console(\"Nice! I\u0027ve marked this task as done:\\n \" + curr_task.toString());"
+        "content": "//            throw new DukeBoundException(\"Start date time expired.\");"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            backup_tasks();"
+        "content": "//        }"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } else {"
+        "content": "//        Event new_event;"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeBoundException(\"Option is not within list options.\");"
+        "content": "//        if(end_str !\u003d null){"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//            Calendar end_cal \u003d Calendar.getInstance();"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//            try{"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//                end_cal.setTime(sdf.parse(end_str));"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void cmd_delete(String option) throws DukeEmptyException,DukeFormatException,DukeBoundException {"
+        "content": "//            } catch (ParseException e) {"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        int index;"
+        "content": "//                throw new DukeFormatException(\"Wrong end date time format.\");"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if(option.length() \u003d\u003d 0){"
+        "content": "//            }"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeEmptyException(\"Arguemnt cannot be empty!\");"
+        "content": "//            if(end_cal.compareTo(start_cal) \u003c 1){"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//                throw new DukeBoundException(\"End date time expired.\");"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        try {"
+        "content": "//            }"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            index \u003d Integer.parseInt(option);"
+        "content": "//            new_event \u003d new Event(args_parts[0], start_cal, end_cal);"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "//        }else{"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeFormatException(\"Delete argument is not numeric.\");"
+        "content": "//            new_event \u003d new Event(args_parts[0], start_cal);"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//        }"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if (index \u003e 0 \u0026\u0026 index \u003c\u003d tasks.size()) {"
+        "content": "//        tasks.add(new_event);"
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            String task_desc \u003d tasks.get(--index).toString();"
+        "content": "//        ui.show(format_add_task(new_event.toString()));"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            tasks.remove(index);"
+        "content": "//        storage.store(tasks);"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            print_console(\"Noted. I\u0027ve removed this task:\\n  \" + task_desc + \"\\nNow you have \" + tasks.size() + \" tasks in the list.\");"
+        "content": "//    }"
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            backup_tasks();"
+        "content": ""
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        } else {"
+        "content": "//    @Override"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeBoundException(\"Option is not within list options.\");"
+        "content": "//    public void start(Stage stage) throws Exception {"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//        Label helloWorld \u003d new Label(\"Hello World!\"); //Creating a new Label control."
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    }"
+        "content": "//        helloWorld.setFont(new Font(\"Arial\", 50));"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": ""
+        "content": "//        Scene scene \u003d new Scene(helloWorld); //Setting the scene to be our label."
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "    private static void cmd_find(String search_str) throws DukeEmptyException {"
+        "content": "//        stage.setScene(scene); //Settings the stage to show our screen."
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        if(tasks.size() \u003c 1){"
+        "content": "//        stage.show(); //Render the stage."
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "            throw new DukeEmptyException(\"Task list is empty! Cannot list an empty list.\");"
+        "content": "//        Stage stage2 \u003d new Stage();"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        }"
+        "content": "//        stage2.setScene(scene);"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        Pattern pattern \u003d Pattern.compile(\".?\" + search_str.replaceAll(\" \", \".?\") + \".?\", Pattern.CASE_INSENSITIVE);"
+        "content": "//        stage2.show();"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "Exprescode"
         },
-        "content": "        int counter \u003d 0;"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        StringBuilder sb \u003d new StringBuilder();"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        sb.append(\"Here are the matching tasks in your list:\\n\");"
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        for (Task proc_task : tasks) {"
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            if (pattern.matcher(proc_task.getDesc()).find()) {"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                counter++;"
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                sb.append(counter + \".\" + proc_task.toString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        sb.deleteCharAt(sb.length() - 1); //Remove extra newline."
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(counter \u003e 0){"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            print_console(sb.toString());"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 217,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            print_console(\"I\u0027ve search everywhere but there is not matching tasks.\");"
-      },
-      {
-        "lineNumber": 218,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 219,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 220,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private static void cmd_todo(String desc) throws DukeEmptyException{"
-      },
-      {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(desc.isEmpty() || desc.isBlank()){"
-      },
-      {
-        "lineNumber": 223,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeEmptyException(\"Todo description cannot be empty\");"
-      },
-      {
-        "lineNumber": 224,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 225,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        Todo new_todo \u003d new Todo(desc);"
-      },
-      {
-        "lineNumber": 226,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        tasks.add(new_todo);"
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        print_console(format_add_task(new_todo.toString()));"
-      },
-      {
-        "lineNumber": 228,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        backup_tasks();"
-      },
-      {
-        "lineNumber": 229,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 230,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 231,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private static void cmd_deadline(String args) throws DukeEmptyException, DukeFormatException, DukeBoundException {"
-      },
-      {
-        "lineNumber": 232,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(args.isEmpty() || args.isBlank()){"
-      },
-      {
-        "lineNumber": 233,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeEmptyException(\"Deadline description cannot be empty\");"
-      },
-      {
-        "lineNumber": 234,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 235,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        String[] args_parts \u003d args.split(\" /by \", 2);"
-      },
-      {
-        "lineNumber": 236,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(args_parts.length \u003c 2){"
-      },
-      {
-        "lineNumber": 237,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeEmptyException(\"Deadline date time cannot be empty.\");"
-      },
-      {
-        "lineNumber": 238,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 239,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        Calendar cal \u003d Calendar.getInstance();"
-      },
-      {
-        "lineNumber": 240,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyy HHmm\");"
-      },
-      {
-        "lineNumber": 241,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        sdf.setLenient(false);"
-      },
-      {
-        "lineNumber": 242,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 243,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            cal.setTime(sdf.parse(args_parts[1]));"
-      },
-      {
-        "lineNumber": 244,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 245,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeFormatException(\"Wrong date time format.\");"
-      },
-      {
-        "lineNumber": 246,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 247,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(cal.compareTo(Calendar.getInstance()) \u003c 1){"
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeBoundException(\"Date time has already expired.\");"
-      },
-      {
-        "lineNumber": 249,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 250,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        Deadline new_deadline \u003d new Deadline(args_parts[0], cal);"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        tasks.add(new_deadline);"
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        print_console(format_add_task(new_deadline.toString()));"
-      },
-      {
-        "lineNumber": 253,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        backup_tasks();"
-      },
-      {
-        "lineNumber": 254,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 255,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private static void cmd_event(String args) throws DukeEmptyException, DukeFormatException, DukeBoundException {"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(args.isEmpty() || args.isBlank()){"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeEmptyException(\"Event description cannot be empty.\");"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 260,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        String[] args_parts \u003d args.split(\" /at \", 2);"
-      },
-      {
-        "lineNumber": 261,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(args_parts.length \u003c 2) {"
-      },
-      {
-        "lineNumber": 262,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeEmptyException(\"Event data/time cannot be empty.\");"
-      },
-      {
-        "lineNumber": 263,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 264,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        Matcher end_date_matcher \u003d Pattern.compile(\"^(\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{4}) ?(\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{4})?$\").matcher(args_parts[1]);"
-      },
-      {
-        "lineNumber": 265,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(!end_date_matcher.find()){"
-      },
-      {
-        "lineNumber": 266,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeFormatException(\"Wrong date time format.\");"
-      },
-      {
-        "lineNumber": 267,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 268,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        String start_str \u003d end_date_matcher.group(1);"
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        String end_str \u003d end_date_matcher.group(2);"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        Calendar start_cal \u003d Calendar.getInstance();"
-      },
-      {
-        "lineNumber": 271,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyy HHmm\");"
-      },
-      {
-        "lineNumber": 272,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        sdf.setLenient(false);"
-      },
-      {
-        "lineNumber": 273,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        try{"
-      },
-      {
-        "lineNumber": 274,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            start_cal.setTime(sdf.parse(start_str));"
-      },
-      {
-        "lineNumber": 275,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 276,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeFormatException(\"Wrong start date time format.\");"
-      },
-      {
-        "lineNumber": 277,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 278,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(start_cal.compareTo(Calendar.getInstance()) \u003c 1){"
-      },
-      {
-        "lineNumber": 279,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            throw new DukeBoundException(\"Start date time expired.\");"
-      },
-      {
-        "lineNumber": 280,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 281,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        Event new_event;"
-      },
-      {
-        "lineNumber": 282,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        if(end_str !\u003d null){"
-      },
-      {
-        "lineNumber": 283,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            Calendar end_cal \u003d Calendar.getInstance();"
-      },
-      {
-        "lineNumber": 284,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            try{"
-      },
-      {
-        "lineNumber": 285,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                end_cal.setTime(sdf.parse(end_str));"
-      },
-      {
-        "lineNumber": 286,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            } catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 287,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                throw new DukeFormatException(\"Wrong end date time format.\");"
-      },
-      {
-        "lineNumber": 288,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 289,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            if(end_cal.compareTo(start_cal) \u003c 1){"
-      },
-      {
-        "lineNumber": 290,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                throw new DukeBoundException(\"End date time expired.\");"
-      },
-      {
-        "lineNumber": 291,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 292,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            new_event \u003d new Event(args_parts[0], start_cal, end_cal);"
-      },
-      {
-        "lineNumber": 293,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }else{"
-      },
-      {
-        "lineNumber": 294,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            new_event \u003d new Event(args_parts[0], start_cal);"
-      },
-      {
-        "lineNumber": 295,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 296,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        tasks.add(new_event);"
-      },
-      {
-        "lineNumber": 297,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        print_console(format_add_task(new_event.toString()));"
-      },
-      {
-        "lineNumber": 298,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        backup_tasks();"
-      },
-      {
-        "lineNumber": 299,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 300,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 301,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private static void backup_tasks(){"
-      },
-      {
-        "lineNumber": 302,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 303,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            FileOutputStream fos \u003d new FileOutputStream(\"C:\\\\Users\\\\JH\\\\Documents\\\\GitHub\\\\duke\\\\data\\\\duke.txt\");"
-      },
-      {
-        "lineNumber": 304,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            ObjectOutputStream oos \u003d new ObjectOutputStream(fos);"
-      },
-      {
-        "lineNumber": 305,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            oos.writeObject(tasks);"
-      },
-      {
-        "lineNumber": 306,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            oos.close();"
-      },
-      {
-        "lineNumber": 307,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            fos.close();"
-      },
-      {
-        "lineNumber": 308,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } catch (FileNotFoundException e) {"
-      },
-      {
-        "lineNumber": 309,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            e.printStackTrace(); //If duke.txt cannot be created or open."
-      },
-      {
-        "lineNumber": 310,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 311,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            e.printStackTrace(); //Error while writing stream header"
-      },
-      {
-        "lineNumber": 312,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 313,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 314,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 315,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "    private static void restore_tasks(){"
-      },
-      {
-        "lineNumber": 316,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 317,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            FileInputStream fis \u003d new FileInputStream(\"C:\\\\Users\\\\JH\\\\Documents\\\\GitHub\\\\duke\\\\data\\\\duke.txt\");"
-      },
-      {
-        "lineNumber": 318,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            ObjectInputStream ois \u003d new ObjectInputStream(fis);"
-      },
-      {
-        "lineNumber": 319,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            Object obj \u003d ois.readObject();"
-      },
-      {
-        "lineNumber": 320,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            if(obj instanceof ArrayList\u003c?\u003e){"
-      },
-      {
-        "lineNumber": 321,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "                tasks \u003d (ArrayList\u003cTask\u003e) obj;"
-      },
-      {
-        "lineNumber": 322,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 323,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        } catch (ClassNotFoundException | IOException e) {"
-      },
-      {
-        "lineNumber": 324,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "            tasks \u003d new ArrayList\u003cTask\u003e();"
-      },
-      {
-        "lineNumber": 325,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 326,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 327,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 328,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//    @Override"
-      },
-      {
-        "lineNumber": 329,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//    public void start(Stage stage) throws Exception {"
-      },
-      {
-        "lineNumber": 330,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        Label helloWorld \u003d new Label(\"Hello World!\"); //Creating a new Label control."
-      },
-      {
-        "lineNumber": 331,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        helloWorld.setFont(new Font(\"Arial\", 50));"
-      },
-      {
-        "lineNumber": 332,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        Scene scene \u003d new Scene(helloWorld); //Setting the scene to be our label."
-      },
-      {
-        "lineNumber": 333,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        stage.setScene(scene); //Settings the stage to show our screen."
-      },
-      {
-        "lineNumber": 334,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        stage.show(); //Render the stage."
-      },
-      {
-        "lineNumber": 335,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        Stage stage2 \u003d new Stage();"
-      },
-      {
-        "lineNumber": 336,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        stage2.setScene(scene);"
-      },
-      {
-        "lineNumber": 337,
-        "author": {
-          "gitId": "Exprescode"
-        },
-        "content": "//        stage2.show();"
-      },
-      {
-        "lineNumber": 338,
-        "author": {
-          "gitId": "Exprescode"
-        },
         "content": "//    }"
       },
       {
-        "lineNumber": 339,
+        "lineNumber": 205,
         "author": {
           "gitId": "-"
         },
@@ -2845,8 +2475,8 @@
       }
     ],
     "authorContributionMap": {
-      "Exprescode": 334,
-      "-": 5
+      "Exprescode": 201,
+      "-": 4
     }
   },
   {
@@ -3173,6 +2803,558 @@
     }
   },
   {
+    "path": "src/main/java/EventCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class EventCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private String desc;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private Calendar start, end;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public EventCommand(String desc, Calendar start) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.desc \u003d desc;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.start \u003d start;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.end \u003d null;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public EventCommand(String desc, Calendar start, Calendar end) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.desc \u003d desc;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.start \u003d start;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.end \u003d end;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if (start.compareTo(Calendar.getInstance()) \u003c 1) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"Event start date time argument must be earlier than current date time.\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if (end.compareTo(start) \u003c 1) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"Event end date time argument must be earlier than start date time argument.\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Event new_event \u003d new Event(desc, start, end);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        tasks.add(new_event);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.show(\"Got it. I\u0027ve added this task:\\n  \" + new_event.toString() + \"\\nNow you have \" + tasks.len() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        storage.store(tasks);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 37
+    }
+  },
+  {
+    "path": "src/main/java/ExitCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class ExitCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public ExitCommand(){"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.showBye();"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 14
+    }
+  },
+  {
+    "path": "src/main/java/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private String query;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public FindCommand(String query){"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.query \u003d query;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(tasks.len() \u003c 1){"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"Find command cannot operate on an empty task list.\");"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        String result \u003d tasks.find(query);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(result.length() \u003e 0){"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            ui.show(\"Here are the matching tasks in your list:\\n\" + result);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            ui.show(\"I\u0027ve search everywhere but there is not matching tasks.\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 24
+    }
+  },
+  {
     "path": "src/main/java/Launcher.java",
     "fileType": "java",
     "lines": [
@@ -3228,6 +3410,1251 @@
     ],
     "authorContributionMap": {
       "Exprescode": 7
+    }
+  },
+  {
+    "path": "src/main/java/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public ListCommand(){"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(tasks.len() \u003c 1){"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            throw new DukeBoundException(\"List command cannot operate on an empty task list.\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.show(\"Here are the tasks in your list:\\n\" + tasks.list());"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 17
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.Calendar;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.regex.Matcher;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import static java.util.Arrays.copyOf;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public abstract class Parser {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public static Command parse(String input) throws DukeFormatException, DukeEmptyException {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(input.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return new ExitCommand();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if (input.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return new ListCommand();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        String[] input_parts \u003d input.split(\" \", 2);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(input_parts.length \u003c 2) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            input_parts \u003d copyOf(input_parts, 2);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            input_parts[1] \u003d \"\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            input_parts[1] \u003d input_parts[1].replaceAll(\"\\\\s+\", \" \").trim();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        String[] args;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyy HHmm\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        sdf.setLenient(false);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        switch(input_parts[0]){"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(input_parts[1].length() \u003c 1){"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeEmptyException(\"Delete arguemnt cannot be empty!\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    return new DeleteCommand(Integer.parseInt(input_parts[1]) - 1);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Delete argument must be numeric.\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(input_parts[1].length() \u003c 1){"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeEmptyException(\"Done arguemnt cannot be empty.\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    return new DoneCommand(Integer.parseInt(input_parts[1]) - 1);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Done argument must be numeric.\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                return new FindCommand(input_parts[1]);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(input_parts[1].isEmpty() || input_parts[1].isBlank()){"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeEmptyException(\"Todo description cannot be empty\");"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                return new TodoCommand(input_parts[1]);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                args \u003d input_parts[1].split(\" /by \", 2);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(args.length \u003c 2){"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Invalid event command!\\nPlease use the following event command format:\\nevent \u003cDescription\u003e /at \u003cDate\u003e \u003cTime\u003e[ \u003cDate\u003e \u003cTime]\");"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(args[0].isEmpty() || args[0].isBlank()){"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeEmptyException(\"Deadline description cannot be empty.\");"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                Calendar cal \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                try{"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    cal.setTime(sdf.parse(args[1]));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Invalid date/time format!\\nPlease use the following date/time format:\\n\u003cDAY\u003e/\u003cMONTH\u003e/\u003cYEAR\u003e \u003cHOURS\u003e\u003cMINUTES\u003e\\nDD/MM/YYYY HHMM\");"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                return new DeadlineCommand(args[0], cal);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                args \u003d input_parts[1].split(\" /at \", 2);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(args.length \u003c 2) {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Invalid event command!\\nPlease use the following event command format:\\nevent \u003cDescription\u003e /at \u003cDate\u003e \u003cTime\u003e[ \u003cDate\u003e \u003cTime]\");"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(args[0].isEmpty() || args[0].isBlank()){"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeEmptyException(\"Event description cannot be empty.\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                Matcher start_end_matcher \u003d Pattern.compile(\"^(\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{4}) ?(\\\\d{2}/\\\\d{2}/\\\\d{4} \\\\d{4})?$\").matcher(args[1]);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(!start_end_matcher.find()){"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Invalid date/time format!\\nPlease use the following date/time format:\\n\u003cDAY\u003e/\u003cMONTH\u003e/\u003cYEAR\u003e \u003cHOURS\u003e\u003cMINUTES\u003e\\nDD/MM/YYYY HHMM\");"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                String start_str \u003d start_end_matcher.group(1);"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                String end_str \u003d start_end_matcher.group(2);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                Calendar start \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                try{"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    start.setTime(sdf.parse(start_str));"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    throw new DukeFormatException(\"Invalid start date/time format!\\nPlease use the following date/time format:\\n\u003cDAY\u003e/\u003cMONTH\u003e/\u003cYEAR\u003e \u003cHOURS\u003e\u003cMINUTES\u003e\\nDD/MM/YYYY HHMM\");"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                if(end_str !\u003d null){"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    Calendar end \u003d Calendar.getInstance();"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    try{"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                        end.setTime(sdf.parse(end_str));"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                        throw new DukeFormatException(\"Invalid end date/time format!\\nPlease use the following date/time format:\\n\u003cDAY\u003e/\u003cMONTH\u003e/\u003cYEAR\u003e \u003cHOURS\u003e\u003cMINUTES\u003e\\nDD/MM/YYYY HHMM\");"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                    return new EventCommand(args[0], start, end);"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                return new EventCommand(args[0], start);"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                throw new DukeFormatException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 103
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private String path;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public Storage(String path){"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.path \u003d path;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    // FileOutputStream():FileNotFoundException - If the file exists but is a directory rather than a regular file, does not exist but cannot be created, or cannot be opened for any other reason"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    // ObjectOutputStream():IOException - If an I/O error occurs while writing stream header."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public int store(TaskList data) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        FileOutputStream fos \u003d null;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            fos \u003d new FileOutputStream(this.path);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return -1;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ObjectOutputStream oos \u003d null;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            oos \u003d new ObjectOutputStream(fos);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return -2;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            oos.writeObject(data.getSerializable());"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return -3;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            oos.close();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return -4;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            fos.close();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return -5;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return 0;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    // FileInputStream():FileNotFoundException - If the file does not exist, is a directory rather than a regular file, or for some other reason cannot be opened for reading."
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    // ObjectInputStream():IOException - If an I/O error occurs while reading stream header."
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    // ObjectInputStream.readObject():ClassNotFoundException - Class of a serialized object cannot be found."
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public ArrayList\u003cTask\u003e load() throws ClassNotFoundException, IOException {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        FileInputStream fis \u003d new FileInputStream(this.path);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ObjectInputStream ois \u003d new ObjectInputStream(fis);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ArrayList\u003cTask\u003e holder \u003d (ArrayList\u003cTask\u003e) ois.readObject();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ois.close();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        fis.close();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return holder;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "//\"C:\\\\Users\\\\JH\\\\Documents\\\\GitHub\\\\duke\\\\data\\\\duke.txt\""
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 54
     }
   },
   {
@@ -3429,6 +4856,505 @@
     }
   },
   {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private ArrayList\u003cTask\u003e list;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public TaskList(){"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        list \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e list) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.list \u003d list;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void add(Task t){"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        list.add(t);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public String remove(int index){"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(index \u003c 0 || index \u003e\u003d list.size()){"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return \"\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        String task_str \u003d list.get(index).toString();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        list.remove(index);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return task_str;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public String list(){"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        StringBuilder sb \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        int count \u003d 0;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        for (Task t : list) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            sb.append((++count) + \".\" + t.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        sb.deleteCharAt(sb.length() - 1); //Remove extra newline."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return sb.toString();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public String find(String query){"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        StringBuilder sb \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Pattern pattern \u003d Pattern.compile(\".*\" + query.replaceAll(\" \", \".*\") + \".*\", Pattern.CASE_INSENSITIVE);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        int count \u003d 0;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        for (Task t : list) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            if (pattern.matcher(t.getDesc()).find()) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "                sb.append(++count + \".\" + t.toString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(count !\u003d 0){"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            sb.deleteCharAt(sb.length() - 1); //Remove extra newline."
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return sb.toString();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public ArrayList getSerializable(){"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return list;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public int len(){"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return list.size();"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public String tick(int index){"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        if(index \u003c 0 || index \u003e\u003d list.size()){"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "            return \"\";"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Task curr_task \u003d list.get(index);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        curr_task.setDone();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return curr_task.toString();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 70
+    }
+  },
+  {
     "path": "src/main/java/Todo.java",
     "fileType": "java",
     "lines": [
@@ -3505,6 +5431,409 @@
     ],
     "authorContributionMap": {
       "Exprescode": 10
+    }
+  },
+  {
+    "path": "src/main/java/TodoCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class TodoCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private String desc;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public TodoCommand(String desc){"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.desc \u003d desc;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeBoundException {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        Todo new_todo \u003d new Todo(desc);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        tasks.add(new_todo);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        ui.show(\"Got it. I\u0027ve added this task:\\n  \" + new_todo.toString() + \"\\nNow you have \" + tasks.len() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        storage.store(tasks);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 20
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private final String BAR \u003d \"    ____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    private Scanner scan;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public Ui(){"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        this.scan \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public String readCommand(){"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        return scan.nextLine();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void show(String msg){"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        System.out.println(BAR + \"\\n     \" + msg.replaceAll(\"\\n\", \"\\n     \") + \"\\n\" + BAR + \"\\n\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void showWelcome(){"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        show(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void showBye(){"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        show(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void showError(String error){"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        show(\"☹ OOPS!!! \" + error);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    public void showLoadingError() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "        showError(\"Data file might be corrupted! Staring Duke with empty list.\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Exprescode"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Exprescode": 35
     }
   },
   {

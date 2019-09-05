@@ -220,7 +220,7 @@
     }
   },
   {
-    "path": "src/main/java/Deadline.java",
+    "path": "src/main/java/duke/CommandType.java",
     "fileType": "java",
     "lines": [
       {
@@ -228,7 +228,7 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.Date;"
+        "content": "package duke;"
       },
       {
         "lineNumber": 2,
@@ -242,63 +242,163 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "public class Deadline extends Task{"
+        "content": "public enum CommandType {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "    INVALID,"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private String dueDateString \u003d \"\";"
+        "content": "    DELETE,"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private Date dueDate \u003d null;"
+        "content": "    LIST,"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    Deadline(String description,String dueDate) {"
+        "content": "    DONE,"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        super(description);"
+        "content": "    TODO,"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        this.dueDateString \u003d dueDate;"
+        "content": "    DEADLINE,"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        this.dueDate \u003d Task.parseDateString(dueDateString);"
+        "content": "    EVENT,"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "    BYE,"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 13
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/AddCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.CommandType;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Deadline;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Event;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Task;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Todo;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
       },
       {
         "lineNumber": 12,
@@ -312,56 +412,622 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    @Override"
+        "content": "public class AddCommand extends Command {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return \"[D]\" + super.toString() + \"(by: \" + this.dueDateString + \")\";"
+        "content": "    private CommandType type \u003d CommandType.INVALID;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "    private String description \u003d \"\";"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "    private String date \u003d \"\";"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public String toStorageString() {"
+        "content": "    public AddCommand(CommandType type, String ...tokens) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return \"D|\" + super.toStorageString() + \"|\" + this.dueDateString;"
+        "content": "        this.type \u003d type;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        this.description \u003d tokens[0];"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        if (tokens.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            this.date \u003d tokens[1];"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        Task task \u003d null;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        switch (type) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case TODO:"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                task \u003d new Todo(description);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case EVENT:"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                task \u003d new Event(description,date);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case DEADLINE:"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                task \u003d new Deadline(description,date);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        taskList.addTask(task);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        storageHandler.addTask(task);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printLines(\"Added task: \" + task.toString());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 48
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/ByeCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class ByeCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public ByeCommand() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        isBye \u003d true;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printLines(\"Goodbye\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 16
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public boolean isBye \u003d false;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public abstract void execute(Ui ui, TaskList taskList, StorageHandler storageHandler);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 13
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Task;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public DeleteCommand(int index) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        this.index \u003d index;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storage) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        Task deleted \u003d taskList.deleteTask(index);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        storage.saveData(taskList.getTaskList());"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printLines(\"Removed this task:\" , deleted.toString());"
       },
       {
         "lineNumber": 21,
@@ -383,7 +1049,7 @@
     }
   },
   {
-    "path": "src/main/java/Duke.java",
+    "path": "src/main/java/duke/Commands/DoneCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -391,42 +1057,184 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "package duke.Commands;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.Arrays;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import duke.StorageHandler;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.regex.*;"
+        "content": "import duke.TaskList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "import duke.Ui;"
       },
       {
         "lineNumber": 6,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "public class Duke {"
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    int index;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public DoneCommand(int index) {  this.index \u003d index;  }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        taskList.setCompleted(index,true);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        storageHandler.saveData(taskList.getTaskList());"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printLines(\"Task set as done:\", taskList.getByIndex(index).toString());"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 19
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
       },
       {
         "lineNumber": 7,
@@ -440,21 +1248,21 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private static final String horizontalLine \u003d \"____________________________________________________________\";"
+        "content": "public class FindCommand extends Command {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private static ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private static StorageHandler storage;"
+        "content": "    private String keyword;"
       },
       {
         "lineNumber": 11,
@@ -466,9 +1274,193 @@
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "    public FindCommand(String keyword) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        this.keyword \u003d keyword;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printHorizLine();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printUnformattedLines(\"Here are the matching tasks:\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printUnformattedLines(taskList.filterToStringArray(keyword));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printHorizLine();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 25
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/InvalidCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class InvalidCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private String message \u003d \"Invalid Command!\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public InvalidCommand() {}"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public InvalidCommand(String message) {  this.message \u003d message;  }"
       },
       {
         "lineNumber": 13,
@@ -482,49 +1474,284 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        storage \u003d new StorageHandler();"
+        "content": "    @Override"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        taskList \u003d storage.getData();"
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": "        ui.printLines(message);"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "    }"
       },
       {
         "lineNumber": 18,
         "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 18
+    }
+  },
+  {
+    "path": "src/main/java/duke/Commands/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.StorageHandler;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void execute(Ui ui, TaskList taskList, StorageHandler storageHandler) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ui.printLines(taskList.filterToStringArray(\"\"));"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 13
+    }
+  },
+  {
+    "path": "src/main/java/duke/Duke.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Commands.Command;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Deadline;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Event;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Task;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Todo;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
           "gitId": "-"
         },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private static final String horizontalLine \u003d \"____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "   // private static ArrayList\u003cduke.Tasks.Task\u003e taskList \u003d new ArrayList\u003cduke.Tasks.Task\u003e();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private static TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private static StorageHandler storage \u003d new StorageHandler(\"data.txt\");"
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "    private static Ui ui \u003d new Ui();"
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "    private static Parser parser \u003d new Parser();"
       },
       {
         "lineNumber": 21,
@@ -536,16 +1763,16 @@
       {
         "lineNumber": 22,
         "author": {
-          "gitId": "-"
+          "gitId": "modakshantanu"
         },
-        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "modakshantanu"
+          "gitId": "-"
         },
-        "content": "        Scanner scanner \u003d new Scanner(System.in);"
+        "content": "    public static void main(String[] args) {"
       },
       {
         "lineNumber": 24,
@@ -559,49 +1786,49 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        String input;"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        taskList.setTaskList(storage.getData());"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        while (true) {"
+        "content": "        Scanner scanner \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            input \u003d scanner.nextLine();"
+        "content": "        String input;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        ui.printWelcome();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            // remove all occurrences of | as it is a separator for file storage"
+        "content": ""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            input \u003d input.replace(\"|\",\"\");"
+        "content": "        while (true) {"
       },
       {
         "lineNumber": 32,
@@ -615,7 +1842,318 @@
         "author": {
           "gitId": "modakshantanu"
         },
+        "content": "            input \u003d scanner.nextLine();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            if (input.isBlank()) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                continue;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            Command c \u003d parser.parseLine(input, taskList.size());"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            c.execute(ui, taskList, storage);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            if (c.isBye) {  return;  }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "modakshantanu"
+        },
         "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 39,
+      "-": 4
+    }
+  },
+  {
+    "path": "src/main/java/duke/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Commands.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public Command parseLine(String line, int listSize) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        // remove all | characters from input"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        line \u003d line.replace(\"|\",\"\")"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                .trim(); // remove leading and trailing spaces"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        String[] tokens \u003d line.split(\" \",2);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        if (tokens.length \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            return new InvalidCommand();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        switch(tokens[0].toLowerCase()) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                return new ListCommand();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case \"done\": case \"delete\":"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                if (tokens.length !\u003d 2) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    return new InvalidCommand();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                int index;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    index \u003d Integer.parseInt(tokens[1]) - 1;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                } catch(Exception ignored) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    return new InvalidCommand();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                if (index \u003c 0 || index \u003e\u003d listSize) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    return new InvalidCommand(\"Index not in bounds\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                }"
       },
       {
         "lineNumber": 34,
@@ -629,196 +2167,196 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            if (input.equals(\"bye\")) {"
+        "content": "                if (tokens[0].toLowerCase().equals(\"done\")) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                printFormattedLine(\"Bye. Hope to see you again soon!\");"
+        "content": "                    return new DoneCommand(index);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                return;"
+        "content": "                } else {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            } else if (input.startsWith(\"list\")) {"
+        "content": "                    return new DeleteCommand(index);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                printList();"
+        "content": "                }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            } else if (input.startsWith(\"done\") || input.startsWith(\"delete\")) {"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                // parse the input string and get the index of the task that needs to be marked done"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                int doneIndex;"
+        "content": "            case \"todo\": case \"event\": case \"deadline\":"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                try {"
+        "content": "                if (tokens.length !\u003d 2) {  return new InvalidCommand();  }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    doneIndex \u003d  Integer.parseInt(input.substring(input.lastIndexOf(\" \") + 1)) - 1;"
+        "content": "                String content \u003d tokens[1];"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                } catch (Exception e) {"
+        "content": "                String[] subTokens \u003d null;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    // Error if the string after \"done\" is not an integer"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    printFormattedLine(\"That task doesn\u0027t exist\");"
+        "content": "                switch (tokens[0].toLowerCase()) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    continue;"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                }"
+        "content": "                    case \"todo\": return new AddCommand(CommandType.TODO,content);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                    case \"event\": subTokens \u003d content.split(\"/at\"); break;"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                // error handling if the index is not in the array"
+        "content": "                    case \"deadline\": subTokens \u003d content.split(\"/by\"); break;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                if (doneIndex \u003c 0 || doneIndex \u003e\u003d taskList.size()) {"
+        "content": "                }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    printFormattedLine(\"That task doesn\u0027t exist\");"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    continue;"
+        "content": ""
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                }"
+        "content": "                if (subTokens.length !\u003d 2 || subTokens[0].isBlank() || subTokens[1].isBlank()) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                    return new InvalidCommand();"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                if (input.startsWith(\"delete\")) {"
+        "content": "                }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    removeTask(doneIndex);"
+        "content": "                if (tokens[0].toLowerCase().equals(\"event\")) {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    continue;"
+        "content": "                    return new AddCommand(CommandType.EVENT, subTokens[0], subTokens[1]);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                }"
+        "content": "                } else {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                    return new AddCommand(CommandType.DEADLINE, subTokens[0], subTokens[1]);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                taskList.get(doneIndex).setCompleted(true);"
+        "content": "                }"
       },
       {
         "lineNumber": 63,
@@ -832,84 +2370,84 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                System.out.println(horizontalLine);"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+        "content": "            case \"find\":"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                System.out.println(taskList.get(doneIndex).toString());"
+        "content": "                if (tokens.length !\u003d 2 || tokens[1].contains(\" \")) {  return new InvalidCommand();  }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                System.out.println(horizontalLine);"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                String keyword \u003d tokens[1];"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            } else if (input.startsWith(\"todo\")) {"
+        "content": "                return new FindCommand(keyword);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                String desc \u003d input.substring(4);"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                if (desc.isBlank()) {"
+        "content": "            case \"bye\":"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    printFormattedLine(\"Todo cannot be empty\");"
+        "content": "                return new ByeCommand();"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    continue;"
+        "content": ""
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                addItem(new Todo(desc));"
+        "content": ""
       },
       {
         "lineNumber": 76,
@@ -923,436 +2461,36 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            } else if (input.startsWith(\"deadline\")) {"
+        "content": "        return new InvalidCommand();"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                String temp  \u003d input.substring(8);"
+        "content": ""
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                String[] tokens \u003d temp.split(\"/by\");"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                if (tokens.length !\u003d 2 || tokens[0].isBlank() || tokens[1].isBlank()) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                    System.out.println(\"Invalid format, use \\\"deadline \u003cDescription\u003e /by \u003cDate|dd/MM/yyyy hhmm\u003e\\\"\");"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                    continue;"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                addItem(new Deadline(tokens[0],tokens[1]));"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "            } else if (input.startsWith(\"event\") ) {"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                String temp  \u003d input.substring(5);"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                String[] tokens \u003d temp.split(\"/at\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                if (tokens.length !\u003d 2 || tokens[0].isBlank() || tokens[1].isBlank()) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                    System.out.println(\"Invalid format, use \\\"event \u003cDescription\u003e /at \u003cDate|dd/MM/yyyy hhmm\u003e\\\"\");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                    continue;"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                addItem(new Event(tokens[0],tokens[1]));"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "            }  else { // only add non-empty strings"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "                System.out.println(\"Invalid command\");"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    // Prints one String between 2 horizontal Lines"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    private static void printFormattedLine(String line) {"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        System.out.println(horizontalLine);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        System.out.println(line);"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        System.out.println(horizontalLine);"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    private static void addItem(Task item) {"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        taskList.add(item);"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        storage.addTask(item);"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        printFormattedLine(\"added: \" + item);"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    private static void removeTask(int index) {"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        taskList.remove(index);"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        storage.saveData(taskList);"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        printFormattedLine(\"Task \" + ++index + \" deleted\");"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    private static void printList() {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        System.out.println(horizontalLine);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        // Print each element of list with numbering"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "            System.out.println(i+1 + \". \" + taskList.get(i).toString());"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        System.out.println(horizontalLine);"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "-"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "modakshantanu": 126,
-      "-": 11
+      "modakshantanu": 80
     }
   },
   {
-    "path": "src/main/java/Event.java",
+    "path": "src/main/java/duke/StorageHandler.java",
     "fileType": "java",
     "lines": [
       {
@@ -1360,7 +2498,7 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.Date;"
+        "content": "package duke;"
       },
       {
         "lineNumber": 2,
@@ -1374,254 +2512,84 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "public class Event extends Task{"
+        "content": "import duke.Tasks.Task;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private String dueDateString \u003d \"\";"
+        "content": ""
       },
       {
         "lineNumber": 5,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    private Date dueDate \u003d null; // Used if the date given is in date format"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    Event(String description, String dueDate) {"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        super(description);"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        this.dueDateString \u003d dueDate;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        this.dueDate \u003d Task.parseDateString(dueDateString);"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        return \"[E]\" + super.toString() + \"(at: \" + this.dueDateString + \")\";"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    public String toStorageString() {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "        return \"E|\" + super.toStorageString() + \"|\" + this.dueDateString;"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "modakshantanu": 23
-    }
-  },
-  {
-    "path": "src/main/java/StorageHandler.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "import org.jetbrains.annotations.NotNull;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
         "author": {
           "gitId": "modakshantanu"
         },
         "content": "import java.io.File;"
       },
       {
-        "lineNumber": 4,
+        "lineNumber": 6,
         "author": {
           "gitId": "modakshantanu"
         },
         "content": "import java.io.FileNotFoundException;"
       },
       {
-        "lineNumber": 5,
+        "lineNumber": 7,
         "author": {
           "gitId": "modakshantanu"
         },
         "content": "import java.io.FileWriter;"
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 8,
         "author": {
           "gitId": "modakshantanu"
         },
         "content": "import java.io.IOException;"
       },
       {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": "import java.nio.file.Files;"
-      },
-      {
         "lineNumber": 9,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.nio.file.Paths;"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.nio.file.StandardOpenOption;"
+        "content": "import java.nio.file.Files;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.nio.file.Paths;"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.nio.file.StandardOpenOption;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "public class StorageHandler {"
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 15,
@@ -1635,189 +2603,702 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private String path \u003d \"data.txt\";"
+        "content": "public class StorageHandler {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    private File file;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    StorageHandler() {"
+        "content": "    private String path;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        file \u003d new File(path);"
+        "content": "    private File file;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        try {"
+        "content": "    StorageHandler(String path) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            file.createNewFile();"
+        "content": "        this.path \u003d path;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "        file \u003d new File(path);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        try {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        }"
+        "content": "            file.createNewFile();"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public ArrayList\u003cTask\u003e getData() {"
+        "content": "        }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        ArrayList\u003cTask\u003e array \u003d new ArrayList\u003cTask\u003e();"
+        "content": "    }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            Scanner scanner \u003d new Scanner(file);"
+        "content": "    public ArrayList\u003cTask\u003e getData() {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            while (scanner.hasNextLine()) {"
+        "content": "        ArrayList\u003cTask\u003e array \u003d new ArrayList\u003cTask\u003e();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                String data \u003d scanner.nextLine();"
+        "content": "        try {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                if (data.isBlank()) {"
+        "content": "            Scanner scanner \u003d new Scanner(file);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                    continue;"
+        "content": "            while (scanner.hasNextLine()) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                }"
+        "content": "                String data \u003d scanner.nextLine();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                array.add(Task.parseStorageString(data));"
+        "content": "                if (data.isBlank()) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            }"
+        "content": "                    continue;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                array.add(Task.parseStorageString(data));"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        } catch (FileNotFoundException e) {"
+        "content": "            }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            System.out.println(\"An error occurred.\");"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "modakshantanu"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            System.out.println(\"An error occurred.\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "modakshantanu"
+        },
         "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        return array;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void saveData(ArrayList\u003cTask\u003e data) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            FileWriter writer \u003d new FileWriter(path);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            for (int i \u003d 0; i \u003c data.size(); i++) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                writer.write(data.get(i).toStorageString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            writer.close();"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        } catch (IOException e){"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            System.out.println(\"Error while writing file\");"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void addTask(Task task) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            Files.write(Paths.get(path),task.toStorageString().getBytes(), StandardOpenOption.APPEND);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 72
+    }
+  },
+  {
+    "path": "src/main/java/duke/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import duke.Tasks.Task;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void addTask(Task t) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        taskList.add(t);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public Task deleteTask(int index) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        return taskList.remove(index);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public ArrayList\u003cTask\u003e filterByKeyword(String word) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ArrayList\u003cTask\u003e temp \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        for (Task task:taskList) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            String[] tokens \u003d task.toString().split(\" \");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            for (String token: tokens) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                if (token.equalsIgnoreCase(word)) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    temp.add(task);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        return temp;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public String[] filterToStringArray(String word) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        ArrayList\u003cString\u003e temp \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            Task task \u003d taskList.get(i);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            String[] tokens \u003d task.toString().split(\" \");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            for (String token: tokens) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                if (token.equalsIgnoreCase(word) || word.isBlank()) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    temp.add(i+1 + \". \" + task.toString());"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            }"
       },
       {
         "lineNumber": 43,
@@ -1831,14 +3312,14 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        return temp.toArray(new String[0]);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return array;"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
@@ -1852,157 +3333,143 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "    public void setCompleted(int index, boolean isCompleted) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public void saveData(ArrayList\u003cTask\u003e data) {"
+        "content": "        taskList.get(index).setCompleted(isCompleted);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            FileWriter writer \u003d new FileWriter(path);"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            for (int i \u003d 0; i \u003c data.size(); i++) {"
+        "content": "    public int size() {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                writer.write(data.get(i).toStorageString() + \"\\n\");"
+        "content": "        return taskList.size();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            }"
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            writer.close();"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        } catch (IOException e){"
+        "content": "    public Task getByIndex(int index) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            System.out.println(\"Error while writing file\");"
+        "content": "        return taskList.get(index);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            e.printStackTrace();"
+        "content": "    }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "    public ArrayList\u003cTask\u003e getTaskList() {"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    void addTask(Task task) {"
+        "content": "        return taskList;"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            Files.write(Paths.get(path),task.toStorageString().getBytes(), StandardOpenOption.APPEND);"
+        "content": ""
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "    public void setTaskList(ArrayList\u003cTask\u003e taskList) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        this.taskList \u003d taskList;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "modakshantanu"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "modakshantanu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 69,
+        "lineNumber": 67,
         "author": {
           "gitId": "modakshantanu"
         },
@@ -2010,11 +3477,11 @@
       }
     ],
     "authorContributionMap": {
-      "modakshantanu": 69
+      "modakshantanu": 67
     }
   },
   {
-    "path": "src/main/java/Task.java",
+    "path": "src/main/java/duke/Tasks/Deadline.java",
     "fileType": "java",
     "lines": [
       {
@@ -2022,14 +3489,14 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.text.ParseException;"
+        "content": "package duke.Tasks;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": ""
       },
       {
         "lineNumber": 3,
@@ -2050,14 +3517,14 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "public class Task {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "public class Deadline extends Task{"
       },
       {
         "lineNumber": 7,
@@ -2071,42 +3538,42 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "    private String dueDateString \u003d \"\";"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    protected String description \u003d \"\";"
+        "content": "    private Date dueDate \u003d null;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    protected boolean isCompleted \u003d false;"
+        "content": "    public Deadline(String description, String dueDate) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        super(description);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    Task(String description) {"
+        "content": "        this.dueDateString \u003d dueDate;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        this.description \u003d description;"
+        "content": "        this.dueDate \u003d parseDateString(dueDateString);"
       },
       {
         "lineNumber": 14,
@@ -2127,189 +3594,557 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public static Task parseStorageString(String s) {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        String[] tokens \u003d s.split(\"\\\\|\");"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        return \"[D]\" + super.toString() + \"(by: \" + this.dueDateString + \")\";"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        if (tokens.length !\u003d 3 \u0026\u0026 tokens.length !\u003d 4) {"
+        "content": "    }"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            System.out.println(\"File Handling Errrr\");"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            return  new Task(\"ERROR\");"
+        "content": "    @Override"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        }"
+        "content": "    public String toStorageString() {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        Task temp;"
+        "content": "        return \"D|\" + super.toStorageString() + \"|\" + this.dueDateString;"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        switch (tokens[0]) {"
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            case \"T\":"
-      },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 25
+    }
+  },
+  {
+    "path": "src/main/java/duke/Tasks/Event.java",
+    "fileType": "java",
+    "lines": [
       {
-        "lineNumber": 26,
+        "lineNumber": 1,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                temp \u003d new Todo(tokens[2]);"
+        "content": "package duke.Tasks;"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 2,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                break;"
+        "content": ""
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 3,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            case \"E\":"
+        "content": "import java.util.Date;"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 4,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                temp \u003d new Event(tokens[2], tokens[3]);"
+        "content": ""
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 5,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                break;"
+        "content": "public class Event extends Task{"
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 6,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            case \"D\":"
+        "content": "    private String dueDateString \u003d \"\";"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 7,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                temp \u003d new Deadline(tokens[2], tokens[3]);"
+        "content": "    private Date dueDate \u003d null; // Used if the date given is in date format"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 8,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                break;"
+        "content": ""
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 9,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            default:"
+        "content": "    public Event(String description, String dueDate) {"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 10,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                System.out.println(\"File handling errorrr\");"
+        "content": "        super(description);"
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 11,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                return new Task(\"Err\");"
+        "content": "        this.dueDateString \u003d dueDate;"
       },
       {
-        "lineNumber": 37,
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        this.dueDate \u003d Task.parseDateString(dueDateString);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        return \"[E]\" + super.toString() + \"(at: \" + this.dueDateString + \")\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public String toStorageString() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        return \"E|\" + super.toStorageString() + \"|\" + this.dueDateString;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 25
+    }
+  },
+  {
+    "path": "src/main/java/duke/Tasks/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke.Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    protected String description \u003d \"\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    protected boolean isCompleted \u003d false;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    Task(String description) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public static Task parseStorageString(String s) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        String[] tokens \u003d s.split(\"\\\\|\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        if (tokens.length !\u003d 3 \u0026\u0026 tokens.length !\u003d 4) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            System.out.println(\"File Handling Errrr\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            return  new Task(\"ERROR\");"
+      },
+      {
+        "lineNumber": 24,
         "author": {
           "gitId": "modakshantanu"
         },
         "content": "        }"
       },
       {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        Task temp;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        switch (tokens[0]) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case \"T\":"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                temp \u003d new Todo(tokens[2]);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case \"E\":"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                temp \u003d new Event(tokens[2], tokens[3]);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            case \"D\":"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                temp \u003d new Deadline(tokens[2], tokens[3]);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                System.out.println(\"File handling errorrr\");"
+      },
+      {
         "lineNumber": 38,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "                return new Task(\"Err\");"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        temp.setCompleted(tokens[1].equals(\"1\"));"
+        "content": "        }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return temp;"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        temp.setCompleted(tokens[1].equals(\"1\"));"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "        return temp;"
       },
       {
         "lineNumber": 43,
@@ -2323,210 +4158,210 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    static Date parseDateString(String dateString) {"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        String[] formats \u003d {\"d/M/y HHmm\"};"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        for (String format : formats) {"
+        "content": "    static Date parseDateString(String dateString) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            try {"
+        "content": "        String[] formats \u003d {\"d/M/y HHmm\"};"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "                return new SimpleDateFormat(format).parse(dateString);"
+        "content": "        for (String format : formats) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            } catch(ParseException ignored) {}"
+        "content": "            try {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        }"
+        "content": "                return new SimpleDateFormat(format).parse(dateString);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "            } catch(ParseException ignored) {}"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return null;"
+        "content": "        }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        return null;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public String toString() {"
+        "content": "    }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        String message \u003d description;"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        if (isCompleted) {"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            message \u003d \"[✓] \" + message;"
+        "content": "        String message \u003d description;"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        } else {"
+        "content": "        if (isCompleted) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "            message \u003d \"[✗] \" + message;"
+        "content": "            message \u003d \"[✓] \" + message;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return message;"
+        "content": "            message \u003d \"[✗] \" + message;"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        return message;"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public void setCompleted(boolean completed) {"
+        "content": "    }"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        isCompleted \u003d completed;"
+        "content": ""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "    public void setCompleted(boolean completed) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        isCompleted \u003d completed;"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public String toStorageString() {"
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return (isCompleted?\"1\":\"0\") + \"|\" + description;"
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "    public String toStorageString() {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        return (isCompleted?\"1\":\"0\") + \"|\" + description;"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 74,
@@ -2547,15 +4382,29 @@
         "author": {
           "gitId": "modakshantanu"
         },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "modakshantanu"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "modakshantanu": 76
+      "modakshantanu": 78
     }
   },
   {
-    "path": "src/main/java/Todo.java",
+    "path": "src/main/java/duke/Tasks/Todo.java",
     "fileType": "java",
     "lines": [
       {
@@ -2563,7 +4412,7 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "public class Todo extends Task{"
+        "content": "package duke.Tasks;"
       },
       {
         "lineNumber": 2,
@@ -2577,56 +4426,191 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "public class Todo extends Task{"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    Todo(String description) {"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        super(description);"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "    public Todo(String description) {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "        super(description);"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "modakshantanu"
         },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "modakshantanu"
+        },
         "content": "        return \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public String toStorageString() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        return \"T|\" + super.toStorageString();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "modakshantanu": 18
+    }
+  },
+  {
+    "path": "src/main/java/duke/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "package duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    private final String horizLine \u003d \"____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void printHorizLine() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        System.out.println(horizLine);"
       },
       {
         "lineNumber": 11,
@@ -2640,31 +4624,164 @@
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": ""
+        "content": "    public void printLines(String ...strings) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    public String toStorageString() {"
+        "content": "        System.out.println(horizLine);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "        return \"T|\" + super.toStorageString();"
+        "content": "        for (String s: strings) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "modakshantanu"
         },
-        "content": "    }"
+        "content": "            System.out.println(s);"
       },
       {
         "lineNumber": 16,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        System.out.println(horizLine);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void printUnformattedLines(String ...strings) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        for (String s: strings) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "            System.out.println(s);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    public void printWelcome() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "modakshantanu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
         "author": {
           "gitId": "modakshantanu"
         },
@@ -2672,7 +4789,7 @@
       }
     ],
     "authorContributionMap": {
-      "modakshantanu": 16
+      "modakshantanu": 35
     }
   }
 ]

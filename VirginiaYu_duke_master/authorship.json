@@ -162,7 +162,7 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        this.by \u003d pickDay()+ \" of \" + pickMonth() + \" \"+ this.year + \", \" + convertTime();"
+        "content": "        this.by \u003d pickDay()+ \" of \" + Month.returnMonth(month) + \" \"+ this.year + \", \" + convertTime();"
       },
       {
         "lineNumber": 24,
@@ -309,325 +309,192 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    // Change digit month representation to text"
+        "content": "    // Day represented in ordinal numbers"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String pickMonth() {"
+        "content": "    public String pickDay() {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        switch (this.month) {"
+        "content": "        switch (this.day%10) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 1: return \"January\";"
+        "content": "            case 1: return \"1st\";"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 2: return \"February\";"
+        "content": "            case 2: return \"2nd\";"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 3: return \"March\";"
+        "content": "            case 3: return \"3rd\";"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 4: return \"April\";"
+        "content": "            default: return this.day+\"th\";"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 5: return \"May\";"
+        "content": "        }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 6: return \"June\";"
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 7: return \"July\";"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 8: return \"August\";"
+        "content": "    // Enforce AM-PM"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 9: return \"September\";"
+        "content": "    public String convertTime() {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 10: return \"October\";"
+        "content": ""
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 11: return \"November\";"
+        "content": "        String DeadlineTime;"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 12: return \"December\";"
+        "content": "        if (this.hour\u003e11) { // time after noon"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            default: return \"\";"
+        "content": "            if (this.minute\u003d\u003d0) DeadlineTime \u003d (this.hour-12) + \"PM\"; // e.g. 9:00PM simply writes as 9PM"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        }"
+        "content": "            else if (this.minute\u003c10) DeadlineTime \u003d (this.hour-12) + \":0\" + this.minute + \"PM\";"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    }"
+        "content": "            else DeadlineTime \u003d (this.hour-12) + \":\" + this.minute+ \"PM\";"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "        } else { // time before noon"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    // Day represented in ordinal numbers"
+        "content": "            if (this.minute\u003d\u003d0) DeadlineTime \u003d this.hour + \"AM\";      // e.g. 9:00AM simply writes as 9AM"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String pickDay() {"
+        "content": "            else if (this.minute\u003c10) DeadlineTime \u003d this.hour + \":0\" + this.minute + \"AM\";"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        switch (this.day%10) {"
+        "content": "            else DeadlineTime \u003d this.hour + \":\" + this.minute + \"AM\";"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 1: return \"1st\";"
+        "content": "        }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 2: return \"2nd\";"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 3: return \"3rd\";"
+        "content": "        return DeadlineTime;"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            default: return this.day+\"th\";"
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 71,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    // Enforce AM-PM"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    public String convertTime() {"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        String DeadlineTime;"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (this.hour\u003e12) { // time after noon"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (this.minute\u003d\u003d0) DeadlineTime \u003d (this.hour-12) + \"PM\"; // e.g. 9:00PM simply writes as 9PM"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (this.minute\u003c10) DeadlineTime \u003d (this.hour-12) + \":0\" + this.minute + \"PM\";"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else DeadlineTime \u003d (this.hour-12) + \":\" + this.minute+ \"PM\";"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        } else { // time before noon"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (this.minute\u003d\u003d0) DeadlineTime \u003d this.hour + \"AM\";      // e.g. 9:00AM simply writes as 9AM"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (this.minute\u003c10) DeadlineTime \u003d this.hour + \":0\" + this.minute + \"AM\";"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else DeadlineTime \u003d this.hour + \":\" + this.minute + \"AM\";"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        return DeadlineTime;"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 90,
         "author": {
           "gitId": "VirginiaYu"
         },
@@ -635,7 +502,7 @@
       }
     ],
     "authorContributionMap": {
-      "VirginiaYu": 90
+      "VirginiaYu": 71
     }
   },
   {
@@ -703,126 +570,126 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public static void main(String[] args) throws DukeException {"
+        "content": "    private TaskList tasks;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        // Greetings!"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 12,
         "author": {
-          "gitId": "-"
+          "gitId": "VirginiaYu"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
-          "gitId": "-"
+          "gitId": "VirginiaYu"
         },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "    public Duke(String filePath) {"
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "-"
+          "gitId": "VirginiaYu"
         },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "-"
+          "gitId": "VirginiaYu"
         },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "        storage \u003d new Storage(filePath);"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "-"
+          "gitId": "VirginiaYu"
         },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "        try {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        System.out.println(\"Hello! I am\\n\" + logo);"
+        "content": "            tasks \u003d new TaskList(storage.load());"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        System.out.println(\"What can I do for you?\");"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "            ui.showLoadingError(e);"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        // Load info from txt file into the task array"
+        "content": "            ArrayList\u003cTask\u003e arrList \u003d new ArrayList\u003cTask\u003e();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        String filePath \u003d \"/Users/yu/duke.txt\";"
+        "content": "            tasks \u003d new TaskList(arrList);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        ArrayList\u003cTask\u003e taskArray \u003d readTxtFileIntoTaskArray(filePath);"
+        "content": "        }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        // Declare the object and initialize with"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        // predefined standard input object"
+        "content": "    public void run() {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        Scanner sc \u003d new Scanner(System.in);"
+        "content": "        ui.showWelcome();"
       },
       {
         "lineNumber": 27,
@@ -836,2327 +703,59 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        while (true) {"
+        "content": "        //String userInput \u003d ui.askForInput();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "        Parser parser \u003d new Parser(ui, tasks);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            // String user input"
+        "content": "        parser.process(\"enter\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            String input \u003d sc.nextLine();"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            // Exit"
+        "content": "    public static void main(String[] args){"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            if (input.equals(\"bye\")) {"
+        "content": "        new Duke(\"/Users/yu/duke.txt\").run();"
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "VirginiaYu"
+          "gitId": "-"
         },
-        "content": "                System.out.println(\"Bye. Hope to see you again soon!\");"
+        "content": "    }"
       },
       {
         "lineNumber": 36,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                System.exit(0);"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            // List tasks"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.equals(\"list\")) {"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // If no task in the list"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                if (taskArray.size()\u003d\u003d0)"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"No task in your list!\");"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // List all task in the list w/ their status"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                else {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Here are the tasks in your list:\");"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    for(int i \u003d 0; i \u003c taskArray.size(); i++) {"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        int ptNum \u003d i+1;"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        System.out.println(ptNum+\".\"+taskArray.get(i).toString());"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            // Mark the task as done"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.startsWith(\"done\")) {"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // Try and catch block"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String doneInfo \u003d checkItem(\"done\", input);"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    int index \u003d Integer.parseInt(doneInfo);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    taskArray.get(index-1).markAsDone();"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    writeTaskArrayIntoTxtFile(filePath, taskArray);"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (IOException ex) {"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (DukeException ex){"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            // Delete item"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.startsWith(\"delete\")) {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // Try and catch block"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String delInfo \u003d checkItem(\"delete\", input);"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    int index \u003d Integer.parseInt(delInfo);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Print out the delete info"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Noted. I\u0027ve removed this task: \");"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(taskArray.get(index-1).toString());"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Remove the task"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    taskArray.remove(index-1);"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Now you have \"+taskArray.size()+\" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    writeTaskArrayIntoTxtFile(filePath, taskArray);"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (IOException ex) {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (DukeException ex){"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.startsWith(\"find\")) {"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // Try and catch block"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String regex \u003d checkItem(\"find\", input);"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    Pattern pattern \u003d Pattern.compile(regex);"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    if (taskArray.size()\u003d\u003d0)"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        System.out.println(\"None\");"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    else {"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        System.out.println(\"Here are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        int cnt \u003d 0;"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        for(int i \u003d 0; i \u003c taskArray.size(); i++) {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            String strToBeMatched \u003d taskArray.get(i).description;"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            Matcher matcher \u003d pattern.matcher(strToBeMatched);"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            if (matcher.find()) {"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                                cnt++;"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                                System.out.println(cnt+\".\"+taskArray.get(i).toString());"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (DukeException ex) {"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            // Add event"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.startsWith(\"event\")) {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // Try and catch block"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Check if the right format"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String eventInfo \u003d checkItem(\"event\", input);"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Split the input, and get the event and the event data/time"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String event \u003d eventInfo.split(\" /at \")[0];"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String at \u003d eventInfo.split(\" /at \")[1];"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    "
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Add the task into the list"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    taskArray.add(new Event(event, at));"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Print out the info of the task"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\");"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"  \"+taskArray.get(taskArray.size()-1).toString());"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Show how many tasks are there in the list now"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Now you have \" + taskArray.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    writeTaskArrayIntoTxtFile(filePath, taskArray);"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (DukeException ex)"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                {"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (IOException ex) {"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.startsWith(\"deadline\")) {"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // Try and catch block"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Check if the right format"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String ddlInfo \u003d checkItem(\"deadline\", input);"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Split the input, and get the deadline and the ddl data/time"
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String ddl \u003d ddlInfo.split(\" /by \")[0];"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String by \u003d ddlInfo.split(\" /by \")[1];"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Add the task into the list"
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    taskArray.add(new Deadline(ddl,by));"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Print out the info of the task"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\");"
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"  \"+taskArray.get(taskArray.size()-1).toString());"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Show how many tasks are there in the list now"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Now you have \" + taskArray.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    writeTaskArrayIntoTxtFile(filePath, taskArray);"
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (DukeException | IOException ex)"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                {"
-      },
-      {
-        "lineNumber": 193,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    //System.out.println(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 195,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 196,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 197,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 198,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 199,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else if (input.startsWith(\"todo\")) {"
-      },
-      {
-        "lineNumber": 200,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 201,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                // Try and catch block"
-      },
-      {
-        "lineNumber": 202,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try"
-      },
-      {
-        "lineNumber": 203,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                {"
-      },
-      {
-        "lineNumber": 204,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Check if the right format"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String todoInfo \u003d checkItem(\"todo\", input);"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Add the task into the list"
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    taskArray.add(new Todo(todoInfo));"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Print out the info of the task"
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\");"
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"  \"+taskArray.get(taskArray.size()-1).toString());"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Show how many tasks are there in the list now"
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(\"Now you have \" + taskArray.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    writeTaskArrayIntoTxtFile(filePath, taskArray);"
-      },
-      {
-        "lineNumber": 217,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 218,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 219,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 220,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                catch (DukeException | IOException ex)"
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                {"
-      },
-      {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    //System.out.println(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 223,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 224,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 225,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 226,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 228,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 229,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            // Deal w/ exceptions"
-      },
-      {
-        "lineNumber": 230,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            else{"
-      },
-      {
-        "lineNumber": 231,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 232,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    checkItem(\"others\", input);"
-      },
-      {
-        "lineNumber": 233,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                } catch (DukeException ex) {"
-      },
-      {
-        "lineNumber": 234,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 235,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 236,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 237,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 238,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 239,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 240,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 241,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    public static String checkItem(String type, String input) throws DukeException {"
-      },
-      {
-        "lineNumber": 242,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 243,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (type.equals(\"event\")) {"
-      },
-      {
-        "lineNumber": 244,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            String pattern \u003d \"event ([a-zA-Z0-9_\\\\s]+) /at (\\\\d{1,2}/\\\\d{1,2}/\\\\d{4}) [012][0-9][0-6][0-9]-[012][0-9][0-6][0-9]\";"
-      },
-      {
-        "lineNumber": 245,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (!Pattern.matches(pattern, input)) {"
-      },
-      {
-        "lineNumber": 246,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\\nTry to follow the time format as 28/08/2019 0942-1153\");"
-      },
-      {
-        "lineNumber": 247,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            return input.substring(6);"
-      },
-      {
-        "lineNumber": 249,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 250,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else if (type.equals(\"deadline\")) {"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            String pattern \u003d \"deadline ([a-zA-Z0-9_\\\\s]+) /by (\\\\d{1,2}/\\\\d{1,2}/\\\\d{4}) [012][0-9][0-6][0-9]\";"
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (!Pattern.matches(pattern, input)) {"
-      },
-      {
-        "lineNumber": 253,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\\nTry to follow the time format as 28/08/2019 0700\");"
-      },
-      {
-        "lineNumber": 254,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 255,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            return input.substring(9);"
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else if (type.equals(\"todo\")) {"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            String pattern \u003d \"todo ([a-zA-Z0-9_\\\\s]+)\";"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (!Pattern.matches(pattern, input)) {"
-      },
-      {
-        "lineNumber": 260,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\");"
-      },
-      {
-        "lineNumber": 261,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 262,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            return input.substring(5);"
-      },
-      {
-        "lineNumber": 263,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 264,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else if (type.equals(\"done\")) {"
-      },
-      {
-        "lineNumber": 265,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            String pattern \u003d \"done ([0-9]+)\";"
-      },
-      {
-        "lineNumber": 266,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (!Pattern.matches(pattern, input)) {"
-      },
-      {
-        "lineNumber": 267,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\");"
-      },
-      {
-        "lineNumber": 268,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            return input.substring(5);"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 271,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else if (type.equals(\"delete\")) {"
-      },
-      {
-        "lineNumber": 272,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            String pattern \u003d \"delete ([0-9]+)\";"
-      },
-      {
-        "lineNumber": 273,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (!Pattern.matches(pattern, input)) {"
-      },
-      {
-        "lineNumber": 274,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\");"
-      },
-      {
-        "lineNumber": 275,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 276,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            return input.substring(7);"
-      },
-      {
-        "lineNumber": 277,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 278,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else if (type.equals(\"find\")){"
-      },
-      {
-        "lineNumber": 279,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            String pattern \u003d \"find ([a-zA-Z0-9_\\\\s]+)\";"
-      },
-      {
-        "lineNumber": 280,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (!Pattern.matches(pattern, input)) {"
-      },
-      {
-        "lineNumber": 281,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\");"
-      },
-      {
-        "lineNumber": 282,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 283,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            return input.substring(5);"
-      },
-      {
-        "lineNumber": 284,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 285,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else {"
-      },
-      {
-        "lineNumber": 286,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            throw new DukeException(\"\\\"OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\\"\");"
-      },
-      {
-        "lineNumber": 287,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 288,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 289,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 290,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 291,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    public static ArrayList\u003cTask\u003e readTxtFileIntoTaskArray(String filePath) throws DukeException"
-      },
-      {
-        "lineNumber": 292,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    {"
-      },
-      {
-        "lineNumber": 293,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        // Create a new task array"
-      },
-      {
-        "lineNumber": 294,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        ArrayList\u003cTask\u003e taskArray \u003d new ArrayList\u003cTask\u003e();"
-      },
-      {
-        "lineNumber": 295,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 296,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 297,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            File file \u003d new File(filePath);"
-      },
-      {
-        "lineNumber": 298,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (file.isFile() \u0026\u0026 file.exists()) {"
-      },
-      {
-        "lineNumber": 299,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                InputStreamReader reader \u003d new InputStreamReader(new FileInputStream(file));"
-      },
-      {
-        "lineNumber": 300,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                BufferedReader bufferedReader \u003d new BufferedReader(reader);"
-      },
-      {
-        "lineNumber": 301,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 302,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                String lineTxt \u003d null;"
-      },
-      {
-        "lineNumber": 303,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                while ((lineTxt \u003d bufferedReader.readLine()) !\u003d null) {"
-      },
-      {
-        "lineNumber": 304,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    String[] storeInfo \u003d lineTxt.split(\" \\\\| \");"
-      },
-      {
-        "lineNumber": 305,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    // Write the tasks into array"
-      },
-      {
-        "lineNumber": 306,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    switch (storeInfo[0]) {"
-      },
-      {
-        "lineNumber": 307,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        case \"E\": // Events"
-      },
-      {
-        "lineNumber": 308,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            taskArray.add(new Event(storeInfo[2], storeInfo[3]));"
-      },
-      {
-        "lineNumber": 309,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            if (storeInfo[1].equals(\"1\")) taskArray.get(taskArray.size()-1).isDone\u003dtrue;"
-      },
-      {
-        "lineNumber": 310,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            break;"
-      },
-      {
-        "lineNumber": 311,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        case \"T\":  // Todos"
-      },
-      {
-        "lineNumber": 312,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            taskArray.add(new Todo(storeInfo[2]));"
-      },
-      {
-        "lineNumber": 313,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            if (storeInfo[1].equals(\"1\")) taskArray.get(taskArray.size()-1).isDone\u003dtrue;"
-      },
-      {
-        "lineNumber": 314,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            break;"
-      },
-      {
-        "lineNumber": 315,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        case \"D\": // Deadlines"
-      },
-      {
-        "lineNumber": 316,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            taskArray.add(new Deadline(storeInfo[2], storeInfo[3]));"
-      },
-      {
-        "lineNumber": 317,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            if (storeInfo[1].equals(\"1\")) taskArray.get(taskArray.size()-1).isDone\u003dtrue;"
-      },
-      {
-        "lineNumber": 318,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            break;"
-      },
-      {
-        "lineNumber": 319,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                        default:"
-      },
-      {
-        "lineNumber": 320,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                            break;"
-      },
-      {
-        "lineNumber": 321,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 322,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 323,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                bufferedReader.close();"
-      },
-      {
-        "lineNumber": 324,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                reader.close();"
-      },
-      {
-        "lineNumber": 325,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 326,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                file.createNewFile();"
-      },
-      {
-        "lineNumber": 327,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                throw new DukeException(\"Sorry I cannot find such file.\");"
-      },
-      {
-        "lineNumber": 328,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 329,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 330,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        catch (DukeException | IOException ex) {"
-      },
-      {
-        "lineNumber": 331,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            System.out.println(ex.getMessage());"
-      },
-      {
-        "lineNumber": 332,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 333,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        return taskArray;"
-      },
-      {
-        "lineNumber": 334,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 335,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 336,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    public static void writeTaskArrayIntoTxtFile(String filePath, ArrayList\u003cTask\u003e taskArray) throws IOException {"
-      },
-      {
-        "lineNumber": 337,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        File file \u003d new File(filePath);"
-      },
-      {
-        "lineNumber": 338,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        // File not exist"
-      },
-      {
-        "lineNumber": 339,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (!file.exists()) {"
-      },
-      {
-        "lineNumber": 340,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 341,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                file.createNewFile();"
-      },
-      {
-        "lineNumber": 342,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 343,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                e.printStackTrace();"
-      },
-      {
-        "lineNumber": 344,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 345,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 346,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 347,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        BufferedWriter out \u003d new BufferedWriter(new FileWriter(file));"
-      },
-      {
-        "lineNumber": 348,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 349,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            if (taskArray.size()!\u003d0)"
-      },
-      {
-        "lineNumber": 350,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            for(int i \u003d 0; i \u003c taskArray.size(); i++) {"
-      },
-      {
-        "lineNumber": 351,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "                out.write(taskArray.get(i).toTxtFile()+\"\\n\");"
-      },
-      {
-        "lineNumber": 352,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 353,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            out.flush();"
-      },
-      {
-        "lineNumber": 354,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            out.close();"
-      },
-      {
-        "lineNumber": 355,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 356,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        catch (IOException e){"
-      },
-      {
-        "lineNumber": 357,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 358,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 359,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 360,
         "author": {
           "gitId": "-"
         },
@@ -3164,8 +763,8 @@
       }
     ],
     "authorContributionMap": {
-      "-": 9,
-      "VirginiaYu": 351
+      "-": 3,
+      "VirginiaYu": 33
     }
   },
   {
@@ -3177,7 +776,7 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "public class DukeException extends Exception{"
+        "content": "import java.util.InputMismatchException;"
       },
       {
         "lineNumber": 2,
@@ -3191,45 +790,59 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public DukeException(String message)"
+        "content": "public class DukeException extends InputMismatchException {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    {"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        // Call constructor of parent Exception"
+        "content": "    public DukeException(String message)"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        super(message);"
+        "content": "    {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    }"
+        "content": "        // Call constructor of parent Exception"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "        super(message);"
       },
       {
         "lineNumber": 9,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
         "author": {
           "gitId": "VirginiaYu"
         },
@@ -3237,7 +850,7 @@
       }
     ],
     "authorContributionMap": {
-      "VirginiaYu": 9
+      "VirginiaYu": 11
     }
   },
   {
@@ -3431,7 +1044,7 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        this.at \u003d pickDay()+ \" of \" + pickMonth() + \" \" + this.year + \", \" + convertTime();"
+        "content": "        this.at \u003d pickDay()+ \" of \" + Month.returnMonth(month) + \" \" + this.year + \", \" + convertTime();"
       },
       {
         "lineNumber": 28,
@@ -3634,353 +1247,227 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String pickMonth() {"
+        "content": "    public String pickDay() {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        switch (this.month) {"
+        "content": "        switch (this.day%10) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 1: return \"January\";"
+        "content": "            case 1: return \"1st\";"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 2: return \"February\";"
+        "content": "            case 2: return \"2nd\";"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 3: return \"March\";"
+        "content": "            case 3: return \"3rd\";"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 4: return \"April\";"
+        "content": "            default: return this.day+\"th\";"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 5: return \"May\";"
+        "content": "        }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 6: return \"June\";"
+        "content": "    }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 7: return \"July\";"
+        "content": ""
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 8: return \"August\";"
+        "content": "    public String convertTime() {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 9: return \"September\";"
+        "content": "        String endTime;"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 10: return \"October\";"
+        "content": "        String Time;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 11: return \"November\";"
+        "content": ""
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 12: return \"December\";"
+        "content": "        boolean am; // true if the time is before noon, false otherwise."
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            default: return \"\";"
+        "content": "        if (this.startHour\u003e11) am \u003d false;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        }"
+        "content": "        else am \u003d true;"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "        String startMinute \u003d String.valueOf(this.startMin);"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String pickDay() {"
+        "content": "        if (this.startMin\u003c10) startMinute \u003d \"0\"+startMinute;"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        switch (this.day%10) {"
+        "content": "        String endMinute \u003d String.valueOf(this.endMin);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 1: return \"1st\";"
+        "content": "        if (this.endMin\u003c10) endMinute \u003d \"0\"+endMinute;"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 2: return \"2nd\";"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            case 3: return \"3rd\";"
+        "content": "        if (this.endHour\u003e11) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "            default: return this.day+\"th\";"
+        "content": "            endTime \u003d (this.endHour-12) + \":\" + endMinute + \"PM\";"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        }"
+        "content": "            Time \u003d am? (this.startHour + \":\" + startMinute+\"AM-\"+endTime):((this.startHour-12) + \":\" + startMinute +\"-\"+endTime);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    }"
+        "content": "        } else {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "            endTime \u003d this.endHour + \":\" + endMinute + \"AM\";"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String convertTime() {"
+        "content": "            Time \u003d am? (this.startHour + \":\" + startMinute +\"-\"+endTime):((this.startHour-12) + \":\" + startMinute +\"PM-\"+endTime);"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        String endTime;"
+        "content": "        }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        String Time;"
+        "content": "        return Time;"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        boolean am; // true if the time is before noon, false otherwise."
+        "content": ""
       },
       {
         "lineNumber": 88,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (this.startHour\u003e12) am \u003d false;"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        else am \u003d true;"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        String startMinute \u003d String.valueOf(this.startMin);"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (this.startMin\u003c10) startMinute \u003d \"0\"+startMinute;"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        String endMinute \u003d String.valueOf(this.endMin);"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (this.endMin\u003c10) endMinute \u003d \"0\"+endMinute;"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        if (this.endHour\u003e12) {"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            endTime \u003d (this.endHour-12) + \":\" + endMinute + \"PM\";"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            Time \u003d am? (this.startHour + \":\" + startMinute+\"AM-\"+endTime):((this.startHour-12) + \":\" + startMinute +\"-\"+endTime);"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            endTime \u003d this.endHour + \":\" + endMinute + \"AM\";"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "            Time \u003d am? (this.startHour + \":\" + startMinute +\"-\"+endTime):((this.startHour-12) + \":\" + startMinute +\"PM-\"+endTime);"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "        return Time;"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "VirginiaYu"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
         "author": {
           "gitId": "VirginiaYu"
         },
@@ -3988,11 +1475,11 @@
       }
     ],
     "authorContributionMap": {
-      "VirginiaYu": 106
+      "VirginiaYu": 88
     }
   },
   {
-    "path": "src/main/java/Task.java",
+    "path": "src/main/java/Month.java",
     "fileType": "java",
     "lines": [
       {
@@ -4000,105 +1487,261 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "public class Task {"
+        "content": "public enum Month {"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    protected String description;"
+        "content": "    January, February, March, April, May, June, July, August, September, October, November, December;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    protected boolean isDone;"
+        "content": ""
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "    public static String returnMonth(int index){"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public Task(String description) {"
+        "content": "        switch (index){"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        this.description \u003d description;"
+        "content": "            case 1: return \"January\";"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        this.isDone \u003d false;"
+        "content": "            case 2: return \"February\";"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    }"
+        "content": "            case 3: return \"March\";"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "            case 4: return \"April\";"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String getStatusIcon() {"
+        "content": "            case 5: return \"May\";"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); //return tick or X symbols"
+        "content": "            case 6: return \"June\";"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    }"
+        "content": "            case 7: return \"July\";"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": ""
+        "content": "            case 8: return \"August\";"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public String getDescription() {"
+        "content": "            case 9: return \"September\";"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        return this.description;"
+        "content": "            case 10: return \"October\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            case 11: return \"November\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            case 12: return \"December\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "VirginiaYu": 21
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.util.regex.Matcher;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.util.regex.Pattern;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    private Ui ui;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    private TaskList list;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected String filePath;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public Parser(Ui temp1, TaskList temp2) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.ui \u003d temp1;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.list \u003d temp2;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.filePath \u003d \"/Users/yu/duke.txt\";"
       },
       {
         "lineNumber": 16,
@@ -4119,28 +1762,2447 @@
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "    public void markAsDone() {"
+        "content": "    public void process(String value) throws DukeException {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        this.isDone \u003d true;"
+        "content": "        String userInput;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+        "content": "        String[] temp, temp1;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "VirginiaYu"
         },
-        "content": "        System.out.println(\"  [\\u2713] \"+this.description);"
+        "content": "        while (true) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                value \u003d ui.askForInput();"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Exit"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                if (value.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    ui.byeMsg();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    System.exit(0);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // List"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"list\")) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    if (list.getTask().size()\u003d\u003d0) { // If no task in the list"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(\"No task in your list!\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    } else { // List all tasks in the list w/ their status"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        ui.listMsg();"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        for(int i \u003d 0; i \u003c list.getTask().size(); i++) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            System.out.println((i+1)+\".\"+list.getTask().get(i).toString());"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Find"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"find\")) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String regex \u003d checkItem(\"find\", value);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        Pattern pattern \u003d Pattern.compile(regex);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        if (list.getTask().size()\u003d\u003d0)"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            System.out.println(\"No task in list. No matching.\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        else {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            ui.findMsg();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            int cnt \u003d 0;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            for(int i \u003d 0; i \u003c list.getTask().size(); i++) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                                String strToBeMatched \u003d list.getTask().get(i).description;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                                Matcher matcher \u003d pattern.matcher(strToBeMatched);"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                                if (matcher.find()) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                                    cnt++;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                                    System.out.println(cnt+\".\"+list.getTask().get(i).toString());"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                                }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Mark as Done"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"done\")) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String doneInfo \u003d checkItem(\"done\", value);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        int index \u003d Integer.parseInt(doneInfo) - 1;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        if (index \u003c 0 | index \u003e\u003d list.getTask().size()) {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            System.out.println(\"Sorry. Index invalid.\");"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        } else {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            String description \u003d list.getTask().get(index).markAsDone();"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            ui.doneTaskMsg(description);"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            // Update txt file"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            writeTaskArrayIntoTxtFile(filePath, list);"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (DukeException ex){"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Delete"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"delete\")) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String delInfo \u003d checkItem(\"delete\", value);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        int index \u003d Integer.parseInt(delInfo) - 1;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        if (index \u003c 0 | index \u003e\u003d list.getTask().size()) {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            System.out.println(\"Sorry. Index invalid.\");"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        } else {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            String description \u003d list.getTask().get(index).toString();"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            int size \u003d list.getTask().size() - 1;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            list.removeTask(index); // Remove the task"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            // Print out Msg"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            ui.deleteMsg(description, size);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            // Update txt file"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            writeTaskArrayIntoTxtFile(filePath, list);"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        }"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (DukeException ex){"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Add todos"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"todo\")) {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Check if the right format"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String todoInfo \u003d checkItem(\"todo\", value);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Add the task into the list"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        Todo todo \u003d new Todo(todoInfo);"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        list.addTask(todo);"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Print out Msg"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        ui.addTaskMsg(todo.toString(), list.getTask().size());"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Update txt file"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        writeTaskArrayIntoTxtFile(filePath, list);"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    } catch (DukeException ex) {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Add deadlines"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Check if the right format"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String ddlInfo \u003d checkItem(\"deadline\", value);"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Split the input, and get the deadline and the ddl data/time"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String ddl \u003d ddlInfo.split(\" /by \")[0];"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String by \u003d ddlInfo.split(\" /by \")[1];"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Add the task into the list"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        Deadline deadline \u003d new Deadline(ddl,by);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        list.addTask(deadline);"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Print out the info of the task"
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        ui.addTaskMsg(deadline.toString(),list.getTask().size());"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Update txt file"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        writeTaskArrayIntoTxtFile(filePath, list);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    } catch (DukeException ex) {"
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                // Add events"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else if (value.startsWith(\"event\")) {"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Check if the right format"
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String eventInfo \u003d checkItem(\"event\", value);"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Split the input, and get the event and the event data/time"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String ev \u003d eventInfo.split(\" /at \")[0];"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        String at \u003d eventInfo.split(\" /at \")[1];"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Add the task into the list"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        Event event \u003d new Event(ev, at);"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        list.addTask(event);"
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Print out the info of the task"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        ui.addTaskMsg(event.toString(),list.getTask().size());"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        // Update txt file"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        writeTaskArrayIntoTxtFile(filePath, list);"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    catch (DukeException ex) {"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    } catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                else {"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    // Check whether user input is in the right format"
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    // by using regular expression to match the pattern"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public static String checkItem(String type, String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        if (type.equals(\"event\")) {"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            String pattern \u003d \"event ([a-zA-Z0-9_\\\\s]+) /at (\\\\d{1,2}/\\\\d{1,2}/\\\\d{4}) [012][0-9][0-6][0-9]-[012][0-9][0-6][0-9]\";"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (!Pattern.matches(pattern, input)) {"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\nTry to follow the format as \\\"event some_task /at 28/08/2019 0945-1350\");"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            return input.substring(6);"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        else if (type.equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            String pattern \u003d \"deadline ([a-zA-Z0-9_\\\\s]+) /by (\\\\d{1,2}/\\\\d{1,2}/\\\\d{4}) [012][0-9][0-6][0-9]\";"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (!Pattern.matches(pattern, input)) {"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\nPlease follow the format as \\\"deadline some_task /by 28/08/2019 2100\\\"\");"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            return input.substring(9);"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        else if (type.equals(\"todo\")) {"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            String pattern \u003d \"todo ([a-zA-Z0-9_\\\\s]+)\";"
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (!Pattern.matches(pattern, input)) {"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\nPlease follow the format as \\\"todo some_task\\\"\");"
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            return input.substring(5);"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        else if (type.equals(\"done\")) {"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            String pattern \u003d \"done ([0-9]+)\";"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (!Pattern.matches(pattern, input)) {"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\nPlease follow the format as \\\"done some_number\\\"\");"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            return input.substring(5);"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        else if (type.equals(\"delete\")) {"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            String pattern \u003d \"delete ([0-9]+)\";"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (!Pattern.matches(pattern, input)) {"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\nPlease follow the format as \\\"delete some_number\\\"\");"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            return input.substring(7);"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        else if (type.equals(\"find\")){"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            String pattern \u003d \"find ([a-zA-Z0-9_\\\\s]+)\";"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (!Pattern.matches(pattern, input)) {"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\nPlease follow the format as \\\"find some_description\\\".\");"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            return input.substring(5);"
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            throw new DukeException(\"\\u2639 OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 253,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 254,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 255,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 256,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 257,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public static void writeTaskArrayIntoTxtFile(String filePath, TaskList taskArray) throws IOException {"
+      },
+      {
+        "lineNumber": 258,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        File file \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 259,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        // File not exist"
+      },
+      {
+        "lineNumber": 260,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        if (!file.exists()) {"
+      },
+      {
+        "lineNumber": 261,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 262,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                file.createNewFile();"
+      },
+      {
+        "lineNumber": 263,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 264,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                e.printStackTrace();"
+      },
+      {
+        "lineNumber": 265,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 266,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 267,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 268,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        BufferedWriter out \u003d new BufferedWriter(new FileWriter(file));"
+      },
+      {
+        "lineNumber": 269,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 270,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (taskArray.getTask().size()!\u003d0)"
+      },
+      {
+        "lineNumber": 271,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                for(int i \u003d 0; i \u003c taskArray.getTask().size(); i++) {"
+      },
+      {
+        "lineNumber": 272,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    out.write(taskArray.getTask().get(i).toTxtFile()+\"\\n\");"
+      },
+      {
+        "lineNumber": 273,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 274,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            out.flush();"
+      },
+      {
+        "lineNumber": 275,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            out.close();"
+      },
+      {
+        "lineNumber": 276,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 277,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        catch (IOException e){"
+      },
+      {
+        "lineNumber": 278,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 279,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 280,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 281,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "VirginiaYu": 281
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected String filePath;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public Storage(String file) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.filePath \u003d file;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public ArrayList\u003cTask\u003e load() throws DukeException"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        // Create a new task array"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskArray \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            File file \u003d new File(filePath);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            if (file.isFile() \u0026\u0026 file.exists()) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                InputStreamReader reader \u003d new InputStreamReader(new FileInputStream(file));"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                BufferedReader bufferedReader \u003d new BufferedReader(reader);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                String lineTxt \u003d null;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                while ((lineTxt \u003d bufferedReader.readLine()) !\u003d null) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    String[] storeInfo \u003d lineTxt.split(\" \\\\| \");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    // Write the tasks into array"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    switch (storeInfo[0]) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        case \"E\": // Events"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            taskArray.add(new Event(storeInfo[2], storeInfo[3]));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            if (storeInfo[1].equals(\"1\")) taskArray.get(taskArray.size()-1).isDone\u003dtrue;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            break;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        case \"T\":  // Todos"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            taskArray.add(new Todo(storeInfo[2]));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            if (storeInfo[1].equals(\"1\")) taskArray.get(taskArray.size()-1).isDone\u003dtrue;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            break;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        case \"D\": // Deadlines"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            taskArray.add(new Deadline(storeInfo[2], storeInfo[3]));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            if (storeInfo[1].equals(\"1\")) taskArray.get(taskArray.size()-1).isDone\u003dtrue;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            break;"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                        default:"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                            break;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                bufferedReader.close();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                reader.close();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            } else {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                file.createNewFile();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                throw new DukeException(\"Sorry I cannot find output file. So I have created one for you! :)\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        } catch (IOException ex){"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        catch (DukeException ex) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "            System.out.println(ex.getMessage());"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return taskArray;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void setFilePath(String newFilePath) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.filePath \u003d newFilePath;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "VirginiaYu": 62
+    }
+  },
+  {
+    "path": "src/main/java/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "public class Task {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected String description;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected boolean isDone;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public Task(String description) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return (isDone ? \"\\u2713\" : \"\\u2718\"); //return tick or X symbols"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public String getDescription() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return this.description;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public String markAsDone() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return \"  [\\u2713] \"+this.description;"
       },
       {
         "lineNumber": 22,
@@ -4236,6 +4298,162 @@
     ],
     "authorContributionMap": {
       "VirginiaYu": 34
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected ArrayList\u003cTask\u003e arrList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e temp) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        this.arrList \u003d temp;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getTask() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return arrList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void addTask(Task temp) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        arrList.add(temp);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void removeTask(int index) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        arrList.remove(index);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "VirginiaYu": 21
     }
   },
   {
@@ -4385,6 +4603,400 @@
     ],
     "authorContributionMap": {
       "VirginiaYu": 20
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected String value;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    protected Scanner sc \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public String askForInput() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        value \u003d sc.nextLine();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        return value;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void showWelcome() {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        // Greetings!"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"What can I do for you?\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void byeMsg() {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Bye. See you soon again!\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void addTaskMsg(String description, int size) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \\n  \" + description);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Now you have \" + size + \" tasks in your list.\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void doneTaskMsg(String description) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(description);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void deleteMsg (String description, int size) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Noted. I\u0027ve removed this task:\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(description);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Now you have \" + size + \" tasks in your list.\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void listMsg() {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void findMsg() {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    public void showLoadingError(DukeException exception) {"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "        System.out.println(exception.getMessage());"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "VirginiaYu"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "VirginiaYu": 55
     }
   }
 ]

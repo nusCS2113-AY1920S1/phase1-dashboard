@@ -262,7 +262,7 @@
     }
   },
   {
-    "path": "src/main/java/CommandInterfaceView.java",
+    "path": "src/main/java/Duke.java",
     "fileType": "java",
     "lines": [
       {
@@ -270,56 +270,56 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "import exception.DukeBaseException;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "import model.TaskList;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import expection.DukeBaseException;"
+        "content": "import ui.Command;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import expection.DukeException;"
+        "content": "import ui.CommandInterfaceView;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import model.*;"
+        "content": "import util.ConstantHelper;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import util.ConstantHelper;"
+        "content": "import util.ReadWriteFileHelper;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import util.DateTimeHelper;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "Dkenobi"
+          "gitId": "-"
         },
-        "content": "import util.ReadWriteFileHelper;"
+        "content": "public class Duke {"
       },
       {
         "lineNumber": 9,
@@ -333,84 +333,84 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.io.BufferedReader;"
+        "content": "    public Duke(){"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.io.IOException;"
+        "content": "    }"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.io.InputStreamReader;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.text.DateFormat;"
+        "content": "    public void run (){"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": "        CommandInterfaceView cli \u003d new CommandInterfaceView();"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.util.ArrayList;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.util.Arrays;"
+        "content": "        TaskList taskList \u003d new TaskList();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "        new ReadWriteFileHelper().loadFile(ConstantHelper.dukeFilePath,taskList);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "public class CommandInterfaceView {"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "        cli.printWelcomeMessage();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    public CommandInterfaceView () {"
+        "content": "        cli.printLine();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    }"
+        "content": "        boolean isExit \u003d false;"
       },
       {
         "lineNumber": 22,
@@ -424,1023 +424,149 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    /**"
+        "content": "        while(!isExit) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "     * Method to call when View model is started."
+        "content": "            try {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "     */"
+        "content": "                String fullCommand \u003d cli.readCommand();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    public void start() throws IOException {"
+        "content": "                cli.printLine();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        String input;"
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        BufferedReader reader \u003d new BufferedReader(new InputStreamReader(System.in));"
+        "content": "                c.execute(taskList,cli);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "                isExit \u003d c.isExit();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        TaskList taskList \u003d new TaskList();"
+        "content": "                cli.printLine();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        new ReadWriteFileHelper().loadFile(ConstantHelper.dukeFilePath,taskList);"
+        "content": "                new  ReadWriteFileHelper().saveFile(ConstantHelper.dukeFilePath,cli.saveTaskList(taskList.getTaskList()));"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "            }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        printWelcomeMessage();"
+        "content": "            catch (DukeBaseException e){"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        while(!(input \u003d reader.readLine()).isEmpty()) {"
+        "content": "                System.out.println(e.getMessage());"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "            printLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "            try {"
+        "content": "        }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "                System.out.println(enterCommand(taskList, input));"
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "                new  ReadWriteFileHelper().saveFile(ConstantHelper.dukeFilePath,saveTaskList(taskList.getTaskList()));"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "Dkenobi"
+          "gitId": "-"
         },
-        "content": "            }"
+        "content": "    public static void main(String[] args) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "            catch (DukeBaseException e){"
+        "content": "       new Duke().run();"
       },
       {
         "lineNumber": 41,
         "author": {
-          "gitId": "Dkenobi"
+          "gitId": "-"
         },
-        "content": "                System.out.println(e.getMessage());"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            printLine();"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private void printWelcomeMessage()  {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        String logo \u003d \" ____        _        \\n\""
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        System.out.println(logo);"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        System.out.println(\"Hello! I\u0027m Duke\\n\" +"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                \"What can I do for you?\");"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        printLine();"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private void printLine() {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        System.out.println(\"____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private String enterCommand(TaskList taskList, String input) throws DukeBaseException {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        String[] splitString \u003d input.split(\"\\\\s+\");"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        switch(splitString[0])"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"bye\":"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                System.out.print(bye());"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                System.exit(0);"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"list\": return printTaskList(taskList.getTaskList());"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"done\": return completeTask(taskList,Integer.parseInt(splitString[1]));"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"delete\": return deleteTask(taskList,Integer.parseInt(splitString[1]));"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            default:"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                return addTaskToList(taskList,input);"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private String bye() {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        return \"Bye. Hope to see you again soon!\";"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private String addTaskToList(TaskList taskList, String message) throws DukeBaseException {"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        int id;"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        String[] splitString \u003d message.split(\"\\\\s+\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        ArrayList\u003cString\u003e descriptionArgs \u003d new ArrayList\u003c\u003e(Arrays.asList(splitString));"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        descriptionArgs.remove(0);"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        String description \u003d String.join(\" \",descriptionArgs);"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        String pattern \u003d \"dd/MM/yyyy HHmm\";"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        DateFormat df \u003d new SimpleDateFormat(pattern);"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        switch(splitString[0])"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"todo\":"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                if (description.equals(\"\"))"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                    throw new DukeException.ToDoExceptionDuke();"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                id \u003d taskList.addTaskToList(new ToDo(\"T\",description));"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                return \"Got it. I\u0027ve added this task: \\n\""
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                        + taskList.getTask(id).toString()"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                        + \"\\nNow you have \" + taskList.getTasksListSize() +\" tasks in the list.\";"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"deadline\":"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                if (description.equals(\"\"))"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                    throw new DukeException.DeadlineException();"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                String[] splitByBy \u003d description.split(\" /by \");"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                id \u003d taskList.addTaskToList(new Deadlines(\"D\",splitByBy[0],new DateTimeHelper().getFormattedDate(splitByBy[1])));"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                return \"Got it. I\u0027ve added this task: \\n\""
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                        + taskList.getTask(id).toString()"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                        + \"\\nNow you have \" + taskList.getTasksListSize() +\" tasks in the list.\";"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            case \"event\":"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                if (description.equals(\"\"))"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                    throw new DukeException.EventException();"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                String[] splitByAt \u003d description.split(\" /at \");"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                id \u003d taskList.addTaskToList(new Event(\"E\", splitByAt[0],new DateTimeHelper().getFormattedDate(splitByAt[1])));"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                return \"Got it. I\u0027ve added this task: \\n\""
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                        + taskList.getTask(id).toString()"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                        + \"\\nNow you have \" + taskList.getTasksListSize() +\" tasks in the list.\";"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            default:"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                throw new DukeException.WrongCommandException();"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private String printTaskList(ArrayList\u003cTask\u003e tasksList) {"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        StringBuilder listString;"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        int index \u003d 1;"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        listString \u003d new StringBuilder(\"Here are the tasks in your list.\");"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        for (var task: tasksList){"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            listString.append(\"\\n\").append(index++).append(\".\").append(task.toString());"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        return listString.toString();"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private String completeTask(TaskList taskList, int taskId){"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        taskList.completeTask(taskId);"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        return \"Nice I\u0027ve marked this task as done: \\n\""
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + \"[\" + taskList.getTask(taskId).getStatusIcon() + \"] \""
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + taskList.getTask(taskId).getDescription();"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private String deleteTask(TaskList taskList, int taskId){"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        String removedTask \u003d taskList.getTask(taskId).toString();"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        taskList.deleteTask(taskId);"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        return \"Noted. I\u0027ve removed this task: \\n\""
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + removedTask"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + \"\\nNow you have \""
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                + taskList.getTasksListSize()"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "                +\" tasks in the list.\";"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    private ArrayList\u003cString\u003e saveTaskList(ArrayList\u003cTask\u003e taskList){"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        ArrayList\u003cString\u003e tasksSaveAsList \u003d new ArrayList\u003c\u003e();;"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        //Find out if can cover ArrayList\u003cTask\u003e to ArrayList\u003cString\u003e"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        for(Task a: taskList)"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "            tasksSaveAsList.add(a.saveToFile());"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "        return tasksSaveAsList;"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "Dkenobi"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "Dkenobi"
+          "gitId": "-"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "Dkenobi": 167
+      "-": 4,
+      "Dkenobi": 38
     }
   },
   {
-    "path": "src/main/java/Duke.java",
+    "path": "src/main/java/Parser.java",
     "fileType": "java",
     "lines": [
       {
@@ -1448,79 +574,400 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import java.io.IOException;"
+        "content": "import exception.DukeBaseException;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "import exception.DukeException;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "import ui.*;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "Dkenobi"
         },
-        "content": "public class Duke {"
+        "content": "import util.DateTimeHelper;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    public static void main(String[] args) throws IOException {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        CommandInterfaceView cli \u003d new CommandInterfaceView();"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        cli.start();"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
-          "gitId": "-"
+          "gitId": "Dkenobi"
         },
-        "content": "    }"
+        "content": "public class Parser {"
       },
       {
         "lineNumber": 10,
         "author": {
-          "gitId": "-"
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public static Command parse(String fullCommand) throws DukeBaseException {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        String[] splitString \u003d fullCommand.split(\"\\\\s+\", 2);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        switch (splitString[0]) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new ByeCommand();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new ListCommand();"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new DoneCommand(Integer.parseInt(splitString[1]));"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new DeleteCommand(Integer.parseInt(splitString[1]));"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new FindCommand(splitString[1]);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return addTaskToList(fullCommand);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private static Command addTaskToList(String message) throws DukeBaseException {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        String[] splitString \u003d message.split(\"\\\\s+\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ArrayList\u003cString\u003e descriptionArgs \u003d new ArrayList\u003c\u003e(Arrays.asList(splitString));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        descriptionArgs.remove(0);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        String description \u003d String.join(\" \", descriptionArgs);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        switch (splitString[0]) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                if (description.equals(\"\"))"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                    throw new DukeException.ToDoExceptionDuke();"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new ToDoCommand(description);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                if (description.equals(\"\"))"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                    throw new DukeException.DeadlineException();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                String[] splitByBy \u003d description.split(\" /by \");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new DeadlineCommand(splitByBy[0], new DateTimeHelper().getFormattedDate(splitByBy[1]));"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                if (description.equals(\"\"))"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                    throw new DukeException.EventException();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                String[] splitByAt \u003d description.split(\" /at \");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                return new EventCommand(splitByAt[0], new DateTimeHelper().getFormattedDate(splitByAt[1]));"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                throw new DukeException.WrongCommandException();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Dkenobi"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "-": 3,
-      "Dkenobi": 7
+      "Dkenobi": 56
     }
   },
   {
-    "path": "src/main/java/expection/DukeBaseException.java",
+    "path": "src/main/java/exception/DukeBaseException.java",
     "fileType": "java",
     "lines": [
       {
@@ -1528,7 +975,7 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "package expection;"
+        "content": "package exception;"
       },
       {
         "lineNumber": 2,
@@ -1627,7 +1074,7 @@
     }
   },
   {
-    "path": "src/main/java/expection/DukeException.java",
+    "path": "src/main/java/exception/DukeException.java",
     "fileType": "java",
     "lines": [
       {
@@ -1635,7 +1082,7 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "package expection;"
+        "content": "package exception;"
       },
       {
         "lineNumber": 2,
@@ -2735,7 +2182,7 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        return tasksList.size() - 1;"
+        "content": "        return tasksList.size();"
       },
       {
         "lineNumber": 16,
@@ -2896,11 +2343,88 @@
         "author": {
           "gitId": "Dkenobi"
         },
+        "content": "    public String listFoundTask(String findString) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        StringBuilder listString \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        int index \u003d 1;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "//        listString \u003d new StringBuilder(\"Here are the tasks in your list.\");"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        for(Task task: tasksList)"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            if(task.toString().contains(findString))"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                listString.append(\"\\n\").append(index++).append(\".\").append(task.toString());"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        return listString.toString();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Dkenobi"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "Dkenobi": 38
+      "Dkenobi": 49
     }
   },
   {
@@ -3225,6 +2749,1720 @@
     ],
     "authorContributionMap": {
       "Dkenobi": 45
+    }
+  },
+  {
+    "path": "src/main/java/ui/ByeCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class ByeCommand extends Command{"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public ByeCommand (){"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.isExit \u003d true;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.bye();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 14
+    }
+  },
+  {
+    "path": "src/main/java/ui/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    protected boolean isExit;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        return this.isExit;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    abstract public void execute(TaskList taskList,CommandInterfaceView ui);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 13
+    }
+  },
+  {
+    "path": "src/main/java/ui/CommandInterfaceView.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class CommandInterfaceView {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private Scanner scanner;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public CommandInterfaceView () {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.scanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "     * Method to call when Duke is started."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public String readCommand() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        return this.scanner.nextLine();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void printWelcomeMessage()  {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(logo);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\n\" +"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                \"What can I do for you?\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void printLine() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(\"____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void bye() {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void printTaskList(ArrayList\u003cTask\u003e tasksList) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        StringBuilder listString;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        int index \u003d 1;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        listString \u003d new StringBuilder(\"Here are the tasks in your list.\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        for (var task: tasksList){"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            listString.append(\"\\n\").append(index++).append(\".\").append(task.toString());"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(listString);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void  printCompleteTask(TaskList taskList, int taskId){"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        taskList.completeTask(taskId);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println( \"Nice I\u0027ve marked this task as done: \\n\""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + \"[\" + taskList.getTask(taskId).getStatusIcon() + \"] \""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + taskList.getTask(taskId).getDescription());"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void printDeleteTask(TaskList taskList, int taskId){"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        String removedTask \u003d taskList.getTask(taskId).toString();"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        taskList.deleteTask(taskId);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println( \"Noted. I\u0027ve removed this task: \\n\""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + removedTask"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + \"\\nNow you have \""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + taskList.getTasksListSize()"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                +\" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public ArrayList\u003cString\u003e saveTaskList(ArrayList\u003cTask\u003e taskList){"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ArrayList\u003cString\u003e tasksSaveAsList \u003d new ArrayList\u003c\u003e();;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        //Find out if can cover ArrayList\u003cTask\u003e to ArrayList\u003cString\u003e"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        for(Task a: taskList)"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "            tasksSaveAsList.add(a.saveToFile());"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        return tasksSaveAsList;"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void printFoundList(String foundListString){"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(\"Here are the matching tasks in your list:\""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + foundListString);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void printToDo(String task, int sizeOfTaskList){"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \\n\""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "                + task + \"\\nNow you have \" + sizeOfTaskList + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 90
+    }
+  },
+  {
+    "path": "src/main/java/ui/DeadlineCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.Deadlines;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class DeadlineCommand extends Command{"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private String taskDescription;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private String date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public DeadlineCommand(String taskDescription, String date) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.date \u003d date;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        int id \u003d taskList.addTaskToList(new Deadlines(\"D\",taskDescription,date));"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printToDo(taskList.getTask(id).toString(),taskList.getTasksListSize());"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 20
+    }
+  },
+  {
+    "path": "src/main/java/ui/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class DeleteCommand extends Command{"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private int taskId;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public DeleteCommand(int taskId){"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.taskId \u003d taskId;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printDeleteTask(taskList,taskId);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 15
+    }
+  },
+  {
+    "path": "src/main/java/ui/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class DoneCommand extends Command{"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private int taskId;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public DoneCommand(int taskId){"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.taskId \u003d taskId;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printCompleteTask(taskList,taskId);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 16
+    }
+  },
+  {
+    "path": "src/main/java/ui/EventCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.Deadlines;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class EventCommand extends Command{"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private String taskDescription;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private String date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public EventCommand(String taskDescription, String date) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.date \u003d date;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        int id \u003d taskList.addTaskToList(new Deadlines(\"E\",taskDescription,date));"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printToDo(taskList.getTask(id).toString(),taskList.getTasksListSize());"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 20
+    }
+  },
+  {
+    "path": "src/main/java/ui/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class FindCommand extends Command{"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private String findString;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public FindCommand(String findString) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.findString \u003d findString;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printFoundList(taskList.listFoundTask(findString));"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 16
+    }
+  },
+  {
+    "path": "src/main/java/ui/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class ListCommand extends Command{"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printTaskList(taskList.getTaskList());"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 10
+    }
+  },
+  {
+    "path": "src/main/java/ui/ToDoCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "package ui;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.TaskList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "import model.ToDo;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "public class ToDoCommand extends Command{"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    private String taskDescription;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public ToDoCommand(String taskDescription){"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    public void execute(TaskList taskList, CommandInterfaceView ui) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        int id \u003d taskList.addTaskToList(new ToDo(\"T\",taskDescription));"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "        ui.printToDo(taskList.getTask(id).toString(),taskList.getTasksListSize());"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Dkenobi": 18
     }
   },
   {
@@ -4061,14 +5299,14 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import model.Task;"
+        "content": ""
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": "//import model.TaskList;"
       },
       {
         "lineNumber": 3,
@@ -4082,235 +5320,263 @@
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+        "content": "//import model.Task;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.fail;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "class DukeTest {"
+        "content": "//import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "//"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    String dukeAddedString \u003d \"added: \";"
+        "content": "//import static org.junit.jupiter.api.Assertions.assertEquals;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    "
+        "content": "//import static org.junit.jupiter.api.Assertions.fail;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    @Test"
+        "content": "//class DukeTest {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    void testByeCommand(){"
+        "content": "//"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        assertEquals(\"Bye. Hope to see you again soon!\", Duke.enterCommand(new TaskList(),\"bye\"));"
+        "content": "//    String dukeAddedString \u003d \"added: \";"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    }"
+        "content": "//"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "//    @Test"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    @Test"
+        "content": "//    void testByeCommand(){"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    void testInputCommand(){"
+        "content": "//        assertEquals(\"Bye. Hope to see you again soon!\", Duke.enterCommand(new TaskList(),\"bye\"));"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        assertEquals(dukeAddedString + \"Read book\", Duke.enterCommand(new TaskList(),\"Read book\"));"
+        "content": "//    }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    }"
+        "content": "//"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "//    @Test"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    @Test"
+        "content": "//    void testInputCommand(){"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    void testListCommand(){"
+        "content": "//        assertEquals(dukeAddedString + \"Read book\", Duke.enterCommand(new TaskList(),\"Read book\"));"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        String duekeTestList \u003d \"Here are the tasks in your list.\" +"
+        "content": "//    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "                \"\\n1. [✘] read book\" +"
+        "content": "//"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "                \"\\n2. [✘] watch GOT\";"
+        "content": "//    @Test"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "//    void testListCommand(){"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        String dukeDoneList \u003d \"Nice I\u0027ve marked this task as done: \\n\" +"
+        "content": "//        String duekeTestList \u003d \"Here are the tasks in your list.\" +"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "                \"[✓] watch GOT\";"
+        "content": "//                \"\\n1. [✘] read book\" +"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "//                \"\\n2. [✘] watch GOT\";"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        TaskList taskList \u003d new TaskList();"
+        "content": "//"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": ""
+        "content": "//        String dukeDoneList \u003d \"Nice I\u0027ve marked this task as done: \\n\" +"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        Duke.enterCommand(taskList,\"read book\");"
+        "content": "//                \"[✓] watch GOT\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        Duke.enterCommand(taskList,\"watch GOT\");"
+        "content": "//"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        assertEquals(duekeTestList, Duke.enterCommand(taskList,\"list\"));"
+        "content": "//        TaskList taskList \u003d new TaskList();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "        assertEquals(dukeDoneList, Duke.enterCommand(taskList,\"done 2\"));"
+        "content": "//"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "    }"
+        "content": "//        Duke.enterCommand(taskList,\"read book\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "Dkenobi"
         },
-        "content": "}"
+        "content": "//        Duke.enterCommand(taskList,\"watch GOT\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "//        assertEquals(duekeTestList, Duke.enterCommand(taskList,\"list\"));"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "//        assertEquals(dukeDoneList, Duke.enterCommand(taskList,\"done 2\"));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "//    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Dkenobi"
+        },
+        "content": "//}"
       }
     ],
     "authorContributionMap": {
-      "Dkenobi": 36
+      "Dkenobi": 40
     }
   }
 ]

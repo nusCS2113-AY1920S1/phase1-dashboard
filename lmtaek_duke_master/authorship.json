@@ -1,161 +1,5 @@
 [
   {
-    "path": "src/main/java/Deadline.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "public class Deadline extends Task {"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    public Deadline(String taskName, String deadline) {"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        super(taskName, deadline);"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        this.taskType \u003d TaskType.DEADLINE;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        convertTimeToDate();"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    public String getTime() {"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return \" (by: \" + super.getTime() + \")\";"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    public String getFullDate() {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (this.getHasDate()) {"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return \" (by: \" + super.getFullDate() + \")\";"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return \"\";"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "lmtaek": 21
-    }
-  },
-  {
     "path": "src/main/java/Duke.java",
     "fileType": "java",
     "lines": [
@@ -164,91 +8,1449 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.io.BufferedReader;"
+        "content": "import TaskPackage.Task;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.io.FileReader;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.io.FileWriter;"
+        "content": "import java.io.IOException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.io.IOException;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.util.Scanner;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "lmtaek"
-        },
         "content": ""
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 6,
         "author": {
           "gitId": "-"
         },
         "content": "public class Duke {"
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 7,
         "author": {
           "gitId": "lmtaek"
         },
         "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private static String dukeGreeting \u003d \"Hello, I\u0027m Duke.\\nWhat can I do to help you?\";"
+        "content": "    private TaskList tasks;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private static String dukeNeedsValidInput \u003d \"\\tI\u0027m not sure that I understand. Sorry.\";"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private static Task[] taskList \u003d new Task[100];"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private static int listLength \u003d 0;"
+        "content": "    public Duke(String filePath) throws IOException {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "lmtaek"
         },
+        "content": "        this.storage \u003d new Storage(filePath);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            this.tasks \u003d new TaskList(storage.loadFile());"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            System.out.println(\"File could not be loaded. Starting a new list...\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            this.tasks \u003d new TaskList(new ArrayList\u003cTask\u003e());"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        storage.updateTasks(this.tasks);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.ui \u003d new Ui(this.tasks, this.storage);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lmtaek"
+        },
         "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public static void main(String[] args) throws IOException {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        new Duke(\"../data/duke.txt\").run();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private void run() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        ui.handleInput();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        System.exit(0);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 30,
+      "-": 3
+    }
+  },
+  {
+    "path": "src/main/java/ParseActionsInterface.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public interface ParseActionsInterface {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    enum ActionType {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        EXIT, LIST, FIND, DELETE, DONE, TODO, DEADLINE, EVENT, INVALID;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 6
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public class Parser implements ParseActionsInterface {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String input;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static String badFormat \u003d \"badFormat\";"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Parser(String input) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.input \u003d input;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public ParseActionsInterface.ActionType determineAction() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (input.toLowerCase().equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.EXIT;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.LIST;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().contains(\"find\")) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.FIND;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().contains(\"done\")) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.DONE;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().contains(\"todo\")) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.TODO;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().contains(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.DEADLINE;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().contains(\"event\")) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.EVENT;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (input.toLowerCase().contains(\"delete\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return ActionType.DELETE;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return ActionType.INVALID;"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String parseFind() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String userInput \u003d input.trim();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (!userInput.contains(\"find \")) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badFormat;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            userInput \u003d userInput.replaceFirst(\"find \", \"\").toLowerCase().trim();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (userInput.isEmpty() || userInput.isBlank()) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badFormat;"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return userInput;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public int parseDelete() {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String userInput \u003d input.trim();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        int index \u003d -1;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (!userInput.contains(\"delete \")) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return index;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String task \u003d userInput.replaceFirst(\"delete \", \"\").trim();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (task.isBlank() || task.isEmpty()) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return index;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            index \u003d Integer.parseInt(task);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return index;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return index;"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public int parseDone() {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        int badIndex \u003d -1;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String userInput \u003d input.trim();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (!userInput.contains(\"done \")) {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badIndex;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String parsedInput[] \u003d input.split(\" \");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((parsedInput.length \u003c\u003d 1)) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badIndex;"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                Integer index \u003d Integer.parseInt(parsedInput[1]);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                if (index \u003c\u003d 0"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        || index \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    return badIndex;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                return index;"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            } catch (NumberFormatException | NullPointerException nfe) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                return badIndex;"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String parseToDo() {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String userInput \u003d input.trim();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (!userInput.contains(\"todo \")) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badFormat;"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String taskName \u003d userInput.replace(\"todo \", \"\").trim();"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (taskName.isEmpty() || taskName.isBlank()) {"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badFormat;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskName;"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String[] parseDeadline() {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String[] badOutput \u003d new String[0];"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String userInput \u003d input.trim();"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((!userInput.contains(\"deadline \")) || (!userInput.contains(\" /by \"))) {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badOutput;"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        userInput \u003d userInput.replaceFirst(\"deadline \", \"\").trim();"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String[] taskComponents \u003d userInput.split(\" /by \");"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskComponents.length; i++) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            taskComponents[i].trim();"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (taskComponents.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badOutput;"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String taskName \u003d taskComponents[0];"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String taskDeadline \u003d taskComponents[1];"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((taskName.isEmpty() || taskName.isBlank())"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                || (taskDeadline.isEmpty() || taskDeadline.isBlank())) {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badOutput;"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskComponents;"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String[] parseEvent() {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String[] badOutput \u003d new String[0];"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String userInput \u003d input.trim();"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((!userInput.contains(\"event \")) || (!userInput.contains(\" /at \"))) {"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badOutput;"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String task \u003d userInput.replaceFirst(\"event \", \"\").trim();"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String[] taskComponents \u003d task.split(\" /at \");"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskComponents.length; i++) {"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            taskComponents[i].trim();"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (taskComponents.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badOutput;"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String taskName \u003d taskComponents[0];"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String taskTime \u003d taskComponents[1];"
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((taskName.isEmpty() || taskName.isBlank())"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                || (taskTime.isEmpty() || taskTime.isBlank())) {"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return badOutput;"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskComponents;"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 151
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import TaskPackage.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String filePath;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Storage(String filePath) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.filePath \u003d filePath;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
       },
       {
         "lineNumber": 14,
@@ -262,364 +1464,364 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public static void main(String[] args) throws DukeException {"
+        "content": "    public ArrayList\u003cTask\u003e loadFile() throws IOException {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "        ArrayList\u003cTask\u003e tasks \u003d new ArrayList\u003cTask\u003e();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        //When Duke starts up, it will check to see if a list has already been made."
+        "content": "        try {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        try {"
+        "content": "            BufferedReader taskFile \u003d new BufferedReader(new FileReader(filePath));"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            readFile();"
+        "content": "            String currentLine \u003d taskFile.readLine();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        } catch (IOException e) {"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            e.printStackTrace();"
+        "content": "            if (currentLine !\u003d null) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        }"
+        "content": "                while (currentLine !\u003d null) {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                    String[] parsedCurrentLine \u003d currentLine.split(\"//\");"
       },
       {
         "lineNumber": 24,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": "                    if (parsedCurrentLine.length \u003c 3) {"
       },
       {
         "lineNumber": 25,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "                        currentLine \u003d taskFile.readLine();"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "                        continue;"
       },
       {
         "lineNumber": 27,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "                    }"
       },
       {
         "lineNumber": 28,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "                    if (parsedCurrentLine[0].equals(Task.TaskType.TODO.toString())) {"
       },
       {
         "lineNumber": 29,
         "author": {
-          "gitId": "-"
+          "gitId": "lmtaek"
         },
-        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+        "content": "                        ToDo readTask \u003d new ToDo(parsedCurrentLine[2]);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                        if (parsedCurrentLine[1].equals(\"true\")) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        System.out.println(dukeGreeting + \"\\r\\n\");"
+        "content": "                            readTask.markAsDone();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                        }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        // The user will enter commands from this point onwards."
+        "content": "                        tasks.add(readTask);"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        Scanner input \u003d new Scanner(System.in);"
+        "content": "                    } else if (parsedCurrentLine[0].equals(Task.TaskType.DEADLINE.toString())) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                        Deadline readTask \u003d new Deadline(parsedCurrentLine[2], parsedCurrentLine[3]);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        while (input.hasNextLine()) {"
+        "content": "                        if (parsedCurrentLine[1].equals(\"true\")) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            String userInput \u003d input.nextLine();"
+        "content": "                            readTask.markAsDone();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            if (userInput.toLowerCase().equals(\"bye\")) {"
+        "content": "                        tasks.add(readTask);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                closeApplication();"
+        "content": "                    } else if (parsedCurrentLine[0].equals(Task.TaskType.EVENT.toString())) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            } else if (userInput.toLowerCase().equals(\"list\")) {"
+        "content": "                        Event readTask \u003d new Event(parsedCurrentLine[2], parsedCurrentLine[3]);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                System.out.println(readTaskList());"
+        "content": "                        if (parsedCurrentLine[1].equals(\"true\")) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            } else if (userInput.toLowerCase().contains(\"done\")){"
+        "content": "                            readTask.markAsDone();"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                System.out.println(markCompletedRequest(userInput));"
+        "content": "                        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            } else if (userInput.toLowerCase().contains(\"todo\")) {"
+        "content": "                        tasks.add(readTask);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                System.out.println(addTodo(userInput));"
+        "content": "                    }"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            } else if (userInput.toLowerCase().contains(\"deadline\")) {"
+        "content": "                    currentLine \u003d taskFile.readLine();"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                System.out.println(addDeadline(userInput));"
+        "content": "                }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            } else if (userInput.toLowerCase().contains(\"event\")) {"
+        "content": "            }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                System.out.println(addEvent(userInput));"
+        "content": "            taskFile.close();"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            } else {"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                System.out.println(dukeNeedsValidInput);"
+        "content": "            System.out.println(e);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            }"
+        "content": "            return tasks;"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            continue;"
+        "content": "        }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        }"
+        "content": "        return tasks;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "    public void updateTasks(TaskList tasks) throws IOException {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    static void closeApplication() {"
+        "content": "        this.tasks \u003d tasks;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        System.out.println(\"\\tBye. Hope to see you again soon!\\n\");"
+        "content": "        writeInFile(formatFileText());"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        System.exit(0);"
+        "content": "    }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "    private Boolean writeInFile(String savedText) throws IOException {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    static Boolean writeInFile(String savedText) throws IOException {"
+        "content": "        try {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        try {"
+        "content": "            File file \u003d new File(filePath);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            FileWriter taskFile \u003d new FileWriter(\"./data/duke.txt\");"
+        "content": "            FileWriter taskFile \u003d new FileWriter(file);"
       },
       {
         "lineNumber": 67,
@@ -689,1703 +1891,169 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    static Boolean readFile() throws IOException {"
+        "content": "    private String formatFileText() {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        try {"
+        "content": "        String textToWrite \u003d \"\";"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            BufferedReader taskFile \u003d new BufferedReader(new FileReader(\"./data/duke.txt\"));"
+        "content": "        for (int i \u003d 0; i \u003c tasks.getNumberOfTasks(); i++) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            String currentLine \u003d taskFile.readLine();"
+        "content": "            textToWrite \u003d textToWrite"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            if (currentLine !\u003d null) {"
+        "content": "                    + tasks.getTaskAt(i).taskType"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                int i \u003d 0;"
+        "content": "                    + \"//\""
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                while (currentLine !\u003d null) {"
+        "content": "                    + tasks.getTaskAt(i).isTaskDone()"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                    String[] parsedCurrentLine \u003d currentLine.split(\"//\");"
+        "content": "                    + \"//\""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                    if (parsedCurrentLine.length \u003c 3) {"
+        "content": "                    + tasks.getTaskAt(i).getTaskName();"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        return false;"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                    }"
+        "content": "            if (tasks.getTaskAt(i).taskType.equals(Task.TaskType.DEADLINE)"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                    if (parsedCurrentLine[0].equals(Task.TaskType.TODO.toString())) {"
+        "content": "                    || tasks.getTaskAt(i).taskType.equals(Task.TaskType.EVENT)) {"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        ToDo readTask \u003d new ToDo(parsedCurrentLine[2]);"
+        "content": "                textToWrite \u003d textToWrite"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        if (parsedCurrentLine[1].equals(\"true\")) {"
+        "content": "                        + \"//\""
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                            readTask.markAsDone();"
+        "content": "                        + tasks.getTaskAt(i).getBasicTime()"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        }"
+        "content": "                        + \"\\n\";"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        addToList(readTask, i);"
+        "content": "            } else {"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                    } else if (parsedCurrentLine[0].equals(Task.TaskType.DEADLINE.toString())) {"
+        "content": "                textToWrite \u003d textToWrite + \"\\n\";"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        Deadline readTask \u003d new Deadline(parsedCurrentLine[2], parsedCurrentLine[3]);"
+        "content": "            }"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        if (parsedCurrentLine[1].equals(\"true\")) {"
+        "content": "        }"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                            readTask.markAsDone();"
+        "content": "        return textToWrite;"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        }"
+        "content": "    }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "                        addToList(readTask, i);"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    } else if (parsedCurrentLine[0].equals(Task.TaskType.EVENT.toString())) {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        Event readTask \u003d new Event(parsedCurrentLine[2], parsedCurrentLine[3]);"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        if (parsedCurrentLine[1].equals(\"true\")) {"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                            readTask.markAsDone();"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        addToList(readTask, i);"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    currentLine \u003d taskFile.readLine();"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    i++;"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            taskFile.close();"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        } catch (Exception e) {"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            System.out.println(e);"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return false;"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return true;"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String formatFileText() {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String textToWrite \u003d \"\";"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        for (int i \u003d 0; i \u003c listLength; i++) {"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            textToWrite \u003d textToWrite"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            + taskList[i].taskType"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            + \"//\""
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            + taskList[i].isTaskDone()"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            + \"//\""
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            + taskList[i].getTaskName();"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            if (taskList[i].taskType.equals(Task.TaskType.DEADLINE)"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            || taskList[i].taskType.equals(Task.TaskType.EVENT)) {"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                textToWrite \u003d textToWrite"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        + \"//\""
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        + taskList[i].getBasicTime()"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        + \"\\n\";"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                textToWrite \u003d textToWrite + \"\\n\";"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return textToWrite;"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String readTaskList() {"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String response \u003d \"\\tHere are the tasks in your list:\\n\";"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        for (int i\u003d0; i\u003clistLength; i++) {"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            response \u003d response"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + \"\\t\\t\""
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + (i+1)"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + \". \""
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + taskTypeLabel(taskList[i])"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + taskCompletionStatus(taskList[i].isTaskDone())"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + taskList[i].getTaskName()"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + getTimeOrDate(taskList[i])"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + \"\\n\";"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return response;"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String taskTypeLabel(Task task) {"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String taskLabel;"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (task.taskType.equals(Task.TaskType.TODO)) {"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            taskLabel \u003d \"[T] \";"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        } else if (task.taskType.equals(Task.TaskType.DEADLINE)) {"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            taskLabel \u003d \"[D] \";"
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        } else if (task.taskType.equals(Task.TaskType.EVENT)) {"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            taskLabel \u003d \"[E] \";"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        else {"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            taskLabel \u003d \"\";"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return taskLabel;"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String getTimeOrDate(Task task) {"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (task.getHasDate()) {"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return task.getFullDate();"
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return task.getTime();"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String addTodo(String userInput) {"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String specifyTask \u003d \"\\tYou need to specify what the task is!\";"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String parseProblem \u003d \"\\tCan you reformat your command?\";"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        userInput.trim();"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (!userInput.contains(\"todo \")) {"
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return parseProblem;"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String taskName \u003d userInput.replace(\"todo \", \"\");"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (taskName.equals(\"\") || taskName.isBlank()) {"
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return specifyTask;"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 193,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        ToDo newTask \u003d new ToDo(taskName);"
-      },
-      {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return addToList(newTask);"
-      },
-      {
-        "lineNumber": 195,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 196,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 197,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String addDeadline(String userInput) {"
-      },
-      {
-        "lineNumber": 198,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String parseProblem \u003d \"\\tI didn\u0027t catch that. Can you reformat your command?\";"
-      },
-      {
-        "lineNumber": 199,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String needMoreDetails \u003d \"\\tPlease provide more details for your deadline.\";"
-      },
-      {
-        "lineNumber": 200,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        userInput.trim();"
-      },
-      {
-        "lineNumber": 201,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (!userInput.contains(\"deadline \")) {"
-      },
-      {
-        "lineNumber": 202,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return parseProblem;"
-      },
-      {
-        "lineNumber": 203,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 204,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String task \u003d userInput.replaceFirst(\"deadline \", \"\");"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String[] taskComponents \u003d task.split(\" /by \");"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (taskComponents.length \u003c\u003d 1) {"
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return parseProblem;"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String taskName \u003d taskComponents[0];"
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String taskDeadline \u003d taskComponents[1];"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if ((taskName.isEmpty() || taskName.isBlank())"
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        || (taskDeadline.isEmpty() || taskDeadline.isBlank())) {"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return needMoreDetails;"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 217,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 218,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Deadline newTask \u003d new Deadline(taskName, taskDeadline);"
-      },
-      {
-        "lineNumber": 219,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return addToList(newTask);"
-      },
-      {
-        "lineNumber": 220,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String addEvent(String userInput) {"
-      },
-      {
-        "lineNumber": 223,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String parseProblem \u003d \"\\tI didn\u0027t catch that. Can you reformat your command?\";"
-      },
-      {
-        "lineNumber": 224,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String needMoreDetails \u003d \"\\tPlease provide more details for your event.\";"
-      },
-      {
-        "lineNumber": 225,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        userInput.trim();"
-      },
-      {
-        "lineNumber": 226,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (!userInput.contains(\"event \")) {"
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return parseProblem;"
-      },
-      {
-        "lineNumber": 228,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 229,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String task \u003d userInput.replaceFirst(\"event \", \"\");"
-      },
-      {
-        "lineNumber": 230,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String[] taskComponents \u003d task.split(\" /at \");"
-      },
-      {
-        "lineNumber": 231,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 232,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (taskComponents.length \u003c\u003d 1) {"
-      },
-      {
-        "lineNumber": 233,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return parseProblem;"
-      },
-      {
-        "lineNumber": 234,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 235,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 236,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String taskName \u003d taskComponents[0];"
-      },
-      {
-        "lineNumber": 237,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String taskTime \u003d taskComponents[1];"
-      },
-      {
-        "lineNumber": 238,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if ((taskName.isEmpty() || taskName.isBlank())"
-      },
-      {
-        "lineNumber": 239,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                || (taskTime.isEmpty() || taskTime.isBlank())) {"
-      },
-      {
-        "lineNumber": 240,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return needMoreDetails;"
-      },
-      {
-        "lineNumber": 241,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 242,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 243,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        Event newTask \u003d new Event(taskName, taskTime);"
-      },
-      {
-        "lineNumber": 244,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return addToList(newTask);"
-      },
-      {
-        "lineNumber": 245,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 246,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 247,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String addToList(Task task) {"
-      },
-      {
-        "lineNumber": 248,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (listLength \u003e\u003d 100) {"
-      },
-      {
-        "lineNumber": 249,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return \"\\tYou can\u0027t add any more tasks to your list!\";"
-      },
-      {
-        "lineNumber": 250,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 251,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        else {"
-      },
-      {
-        "lineNumber": 252,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            taskList[listLength] \u003d task;"
-      },
-      {
-        "lineNumber": 253,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            listLength++;"
-      },
-      {
-        "lineNumber": 254,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 255,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                writeInFile(formatFileText());"
-      },
-      {
-        "lineNumber": 256,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 257,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                e.printStackTrace();"
-      },
-      {
-        "lineNumber": 258,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 259,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 260,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            String output \u003d \"\\tGot it. I\u0027ve added this task: \""
-      },
-      {
-        "lineNumber": 261,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + \"\\n\\t\\t\""
-      },
-      {
-        "lineNumber": 262,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + taskTypeLabel(task)"
-      },
-      {
-        "lineNumber": 263,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + taskCompletionStatus(task.isTaskDone())"
-      },
-      {
-        "lineNumber": 264,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + task.getTaskName()"
-      },
-      {
-        "lineNumber": 265,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + getTimeOrDate(task)"
-      },
-      {
-        "lineNumber": 266,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    + \"\\n\\t Now you have \" + listLength + \" task(s) in the list.\";"
-      },
-      {
-        "lineNumber": 267,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return output;"
-      },
-      {
-        "lineNumber": 268,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 269,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 270,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 271,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static void addToList(Task task, int arrayIndex) {"
-      },
-      {
-        "lineNumber": 272,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        taskList[arrayIndex] \u003d task;"
-      },
-      {
-        "lineNumber": 273,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        listLength++;"
-      },
-      {
-        "lineNumber": 274,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 275,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 276,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String taskCompletionStatus(Boolean isDone) {"
-      },
-      {
-        "lineNumber": 277,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if (isDone) { return \"[✓] \";}"
-      },
-      {
-        "lineNumber": 278,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        else { return \"[✗] \"; }"
-      },
-      {
-        "lineNumber": 279,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 280,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 281,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String markCompletedRequest(String input) {"
-      },
-      {
-        "lineNumber": 282,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String couldNotFindTask \u003d \"\\tI couldn\u0027t find the task.\";"
-      },
-      {
-        "lineNumber": 283,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String parseProblem \u003d \"\\tCan you put a space in your command?\";"
-      },
-      {
-        "lineNumber": 284,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        String parsedInput[] \u003d input.split(\" \");"
-      },
-      {
-        "lineNumber": 285,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        if ((parsedInput.length \u003c\u003d 1)) {"
-      },
-      {
-        "lineNumber": 286,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            return parseProblem;"
-      },
-      {
-        "lineNumber": 287,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 288,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 289,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                Integer index \u003d Integer.parseInt(parsedInput[1]);"
-      },
-      {
-        "lineNumber": 290,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                if (index \u003c\u003d 0"
-      },
-      {
-        "lineNumber": 291,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        || index \u003d\u003d null"
-      },
-      {
-        "lineNumber": 292,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                        || index \u003e listLength) {"
-      },
-      {
-        "lineNumber": 293,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    return couldNotFindTask;"
-      },
-      {
-        "lineNumber": 294,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 295,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    index--;"
-      },
-      {
-        "lineNumber": 296,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    return markTaskAsDone(taskList[index]);"
-      },
-      {
-        "lineNumber": 297,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                } catch (NumberFormatException | NullPointerException nfe) {"
-      },
-      {
-        "lineNumber": 298,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                    return couldNotFindTask;"
-      },
-      {
-        "lineNumber": 299,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 300,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 301,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 302,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 303,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    static String markTaskAsDone(Task task) {"
-      },
-      {
-        "lineNumber": 304,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        task.markAsDone();"
-      },
-      {
-        "lineNumber": 305,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 306,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            writeInFile(formatFileText());"
-      },
-      {
-        "lineNumber": 307,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 308,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "            e.printStackTrace();"
-      },
-      {
-        "lineNumber": 309,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 310,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        return \"\\tNice! I\u0027ve marked this task as done:\\n\""
-      },
-      {
-        "lineNumber": 311,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                + \"\\t\\t\""
-      },
-      {
-        "lineNumber": 312,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                + taskTypeLabel(task)"
-      },
-      {
-        "lineNumber": 313,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                + taskCompletionStatus(task.isTaskDone())"
-      },
-      {
-        "lineNumber": 314,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                + task.getTaskName()"
-      },
-      {
-        "lineNumber": 315,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "                + getTimeOrDate(task);"
-      },
-      {
-        "lineNumber": 316,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 317,
-        "author": {
-          "gitId": "-"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "lmtaek": 308,
-      "-": 9
+      "lmtaek": 98
     }
   },
   {
-    "path": "src/main/java/DukeException.java",
+    "path": "src/main/java/TaskList.java",
     "fileType": "java",
     "lines": [
       {
@@ -2393,7 +2061,7 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "public class DukeException extends Exception {"
+        "content": "import TaskPackage.Task;"
       },
       {
         "lineNumber": 2,
@@ -2407,58 +2075,7 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public DukeException(String errorMessage) {"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "        super(errorMessage);"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "lmtaek": 6
-    }
-  },
-  {
-    "path": "src/main/java/Event.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "public class Event extends Task {"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "lmtaek"
-        },
-        "content": "    private String time;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 4,
@@ -2472,21 +2089,261 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public Event(String taskName, String eventTime) {"
+        "content": "public class TaskList {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        super(taskName, eventTime);"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        this.taskType \u003d TaskType.EVENT;"
+        "content": "    private ArrayList\u003cTask\u003e taskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e savedList) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.taskList \u003d savedList;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getTaskList() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Task getTaskAt(int index) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskList.get(index);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public int getNumberOfTasks() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskList.size();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public void addTask(Task task) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Task removeTaskAt(int index) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskList.remove(index);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 33
+    }
+  },
+  {
+    "path": "src/main/java/TaskPackage/Deadline.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "package TaskPackage;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Deadline(String taskName, String deadline) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        super(taskName, deadline);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.taskType \u003d TaskType.DEADLINE;"
       },
       {
         "lineNumber": 8,
@@ -2528,7 +2385,7 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return \" (at: \" + super.getTime() + \")\";"
+        "content": "        return \" (by: \" + super.getTime() + \")\";"
       },
       {
         "lineNumber": 14,
@@ -2570,7 +2427,7 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            return \" (at: \" + super.getFullDate() + \")\";"
+        "content": "            return \" (by: \" + super.getFullDate() + \")\";"
       },
       {
         "lineNumber": 20,
@@ -2606,7 +2463,7 @@
     }
   },
   {
-    "path": "src/main/java/Task.java",
+    "path": "src/main/java/TaskPackage/Event.java",
     "fileType": "java",
     "lines": [
       {
@@ -2614,21 +2471,21 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "package TaskPackage;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "import java.time.format.DateTimeParseException;"
+        "content": "public class Event extends Task {"
       },
       {
         "lineNumber": 4,
@@ -2642,7 +2499,7 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "public abstract class Task {"
+        "content": "    private String time;"
       },
       {
         "lineNumber": 6,
@@ -2656,91 +2513,275 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    enum TaskType {"
+        "content": "    public Event(String taskName, String eventTime) {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        TODO, DEADLINE, EVENT;"
+        "content": "        super(taskName, eventTime);"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "        this.taskType \u003d TaskType.EVENT;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "        convertTimeToDate();"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private String taskName;"
+        "content": "    }"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private Boolean isDone \u003d false;"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private String time;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private String dateInputPattern \u003d \"d/M/yyyy HHmm\";"
+        "content": "    public String getTime() {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private String dateOutputPattern \u003d \"MMMM d, yyyy h:mma\";"
+        "content": "        return \" (at: \" + super.getTime() + \")\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private LocalDateTime date;"
+        "content": "    }"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    private Boolean hasDate \u003d false;"
+        "content": ""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "    @Override"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public TaskType taskType;"
+        "content": "    public String getFullDate() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (this.getHasDate()) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return \" (at: \" + super.getFullDate() + \")\";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 25
+    }
+  },
+  {
+    "path": "src/main/java/TaskPackage/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "package TaskPackage;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.time.format.DateTimeFormatter;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.time.format.DateTimeParseException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public enum TaskType {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        TODO, DEADLINE, EVENT;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String taskName;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private Boolean isDone \u003d false;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String time;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String dateInputPattern \u003d \"d/M/yyyy HHmm\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String dateOutputPattern \u003d \"MMMM d, yyyy h:mma\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private LocalDateTime date;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private Boolean hasDate \u003d false;"
       },
       {
         "lineNumber": 20,
@@ -2754,42 +2795,739 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public Task(String taskName, String taskTime) {"
+        "content": "    public TaskType taskType;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        this.taskName \u003d taskName;"
+        "content": ""
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        this.time \u003d taskTime;"
+        "content": "    public Task(String taskName, String taskTime) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        if (taskTime.matches(\"datePattern\")) {"
+        "content": "        this.taskName \u003d taskName;"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            convertTimeToDate();"
+        "content": "        this.time \u003d taskTime;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "lmtaek"
         },
+        "content": "        if (taskTime.matches(\"datePattern\")) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            convertTimeToDate();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "lmtaek"
+        },
         "content": "        }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String getTaskName() {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskName;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String getTime() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return time;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String getBasicTime() { //Needed a function that wasn\u0027t overridden by subclasses."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return time;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Boolean getHasDate() {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return hasDate;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public void convertTimeToDate() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(dateInputPattern);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            LocalDateTime reformattedDate \u003d LocalDateTime.parse(this.time, formatter);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            this.date \u003d reformattedDate;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            this.hasDate \u003d true;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } catch (DateTimeParseException e) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            //System.out.println(\"Time formatting does not align with Date formatting.\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String getFullDate() {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (this.date \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return \"\";"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(dateOutputPattern);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String fullDate \u003d this.date.format(formatter);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return fullDate;"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public LocalDateTime getDate() {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return this.date;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Boolean isTaskDone() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return isDone;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public void markAsDone() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (this.isDone !\u003d true) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "}"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 82
+    }
+  },
+  {
+    "path": "src/main/java/TaskPackage/ToDo.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "package TaskPackage;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public class ToDo extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public ToDo(String taskName) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        super(taskName, \"No time specified.\");"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.taskType \u003d TaskType.TODO;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public String getTime() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return \"\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "lmtaek": 15
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import TaskPackage.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "public class Ui implements ParseActionsInterface {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private Parser parser;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static Storage storage;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String dukeGreeting \u003d \"Hello, I\u0027m Duke.\\nWhat can I do to help you?\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String logo \u003d \" ____        _\\n\""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            + \"|  _ \\\\ _   _| | _____\\n\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static String dukeNeedsValidInput \u003d \"\\tI\u0027m not sure that I understand. Could you reformat your request?\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static String dukeGoodbye \u003d \"\\tBye. Hope to see you again soon!\\n\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private static String badFormat \u003d \"badFormat\";"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private Boolean isUserFinished \u003d false;"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    public Ui(TaskList tasks, Storage storage) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.tasks \u003d tasks;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        this.storage \u003d storage;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
       },
       {
         "lineNumber": 27,
@@ -2810,21 +3548,21 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public String getTaskName() {"
+        "content": "    public void handleInput() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return taskName;"
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "        System.out.println(dukeGreeting + \"\\n\");"
       },
       {
         "lineNumber": 32,
@@ -2838,432 +3576,1543 @@
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public String getTime() {"
+        "content": "        // The user will enter commands from this point onwards."
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return time;"
+        "content": "        Scanner input \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "        while (input.hasNextLine()) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public String getBasicTime() { //Needed a function that wasn\u0027t overridden by subclasses."
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return time;"
+        "content": "            String userInput \u003d input.nextLine();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "            this.parser \u003d new Parser(userInput);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "            ActionType action \u003d parser.determineAction();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public Boolean getHasDate() {"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return hasDate;"
+        "content": "            switch(action) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "                case LIST:"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                    System.out.println(readTaskList());"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public void convertTimeToDate() {"
+        "content": "                    break;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        try {"
+        "content": "                case FIND:"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(dateInputPattern);"
+        "content": "                    System.out.println(findTask(parser.parseFind()));"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            LocalDateTime reformattedDate \u003d LocalDateTime.parse(this.time, formatter);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            this.date \u003d reformattedDate;"
+        "content": "                case DELETE:"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            this.hasDate \u003d true;"
+        "content": "                    System.out.println(deleteTask(parser.parseDelete()));"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        } catch (DateTimeParseException e) {"
+        "content": "                    break;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            //System.out.println(\"Time formatting does not align with Date formatting.\");"
+        "content": "                case DONE:"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        }"
+        "content": "                    System.out.println(markTaskAsDone(parser.parseDone()));"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                    break;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "                case TODO:"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                    System.out.println(addTodo(parser.parseToDo()));"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public String getFullDate() {"
+        "content": "                    break;"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        if (this.date \u003d\u003d null) {"
+        "content": "                case DEADLINE:"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            return \"\";"
+        "content": "                    System.out.println(addDeadline(parser.parseDeadline()));"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        }"
+        "content": "                    break;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(dateOutputPattern);"
+        "content": "                case EVENT:"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        String fullDate \u003d this.date.format(formatter);"
+        "content": "                    System.out.println(addEvent(parser.parseEvent()));"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return fullDate;"
+        "content": "                    break;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "                case EXIT:"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                    this.isUserFinished \u003d true;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public LocalDateTime getDate() {"
+        "content": "                    System.out.println(dukeGoodbye);"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return this.date;"
+        "content": "                    break;"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "                default:"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                    System.out.println(dukeNeedsValidInput);"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public Boolean isTaskDone() {"
+        "content": "                    break;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return isDone;"
+        "content": "            }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "            if (isUserFinished) {"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
+        "content": "                break;"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public void markAsDone() {"
+        "content": "            }"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        if (this.isDone !\u003d true) {"
+        "content": "        }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "            this.isDone \u003d true;"
+        "content": "    }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    }"
+        "content": "    /* ACTIONS */"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "}"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": ""
-      }
-    ],
-    "authorContributionMap": {
-      "lmtaek": 80
-    }
-  },
-  {
-    "path": "src/main/java/ToDo.java",
-    "fileType": "java",
-    "lines": [
+        "content": "    private String readTaskList() {"
+      },
       {
-        "lineNumber": 1,
+        "lineNumber": 81,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "public class ToDo extends Task {"
+        "content": "        String response \u003d \"\\tHere are the tasks in your list:\\n\";"
       },
       {
-        "lineNumber": 2,
+        "lineNumber": 82,
         "author": {
           "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 3,
+        "lineNumber": 83,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public ToDo(String taskName) {"
+        "content": "        for (int i \u003d 0; i\u003c tasks.getNumberOfTasks(); i++) {"
       },
       {
-        "lineNumber": 4,
+        "lineNumber": 84,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        super(taskName, \"No time specified.\");"
+        "content": "            response \u003d response"
       },
       {
-        "lineNumber": 5,
+        "lineNumber": 85,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        this.taskType \u003d TaskType.TODO;"
+        "content": "                    + \"\\t\\t\""
       },
       {
-        "lineNumber": 6,
+        "lineNumber": 86,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + (i+1)"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \". \""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskTypeLabel(tasks.getTaskAt(i))"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskCompletionStatus(tasks.getTaskAt(i).isTaskDone())"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + tasks.getTaskAt(i).getTaskName()"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + getTimeOrDate(tasks.getTaskAt(i))"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\n\";"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return response;"
+      },
+      {
+        "lineNumber": 95,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 7,
+        "lineNumber": 96,
         "author": {
           "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 8,
+        "lineNumber": 97,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    @Override"
+        "content": "    private String findTask(String userInput) {"
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 98,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "    public String getTime() {"
+        "content": "        String response \u003d \"\\tHere are the matching tasks in your list:\\n\";"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 99,
         "author": {
           "gitId": "lmtaek"
         },
-        "content": "        return \"\";"
+        "content": ""
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 100,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (userInput.equals(badFormat)) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return dukeNeedsValidInput;"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        for (int i \u003d 0; i \u003c tasks.getNumberOfTasks(); i++) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            if (tasks.getTaskAt(i).getTaskName().toLowerCase().contains(userInput)) {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                response \u003d response"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        +\"\\t\""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + (i+1)"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + \". \""
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + taskTypeLabel(tasks.getTaskAt(i))"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + taskCompletionStatus(tasks.getTaskAt(i).isTaskDone())"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + tasks.getTaskAt(i).getTaskName()"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + getTimeOrDate(tasks.getTaskAt(i))"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                        + \"\\n\";"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                continue;"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return response;"
+      },
+      {
+        "lineNumber": 121,
         "author": {
           "gitId": "lmtaek"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 122,
         "author": {
           "gitId": "lmtaek"
         },
         "content": ""
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 123,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String deleteTask(int index) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String response \u003d \"\\tNoted. I\u0027ve removed this task:\\n\";"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((index \u003c\u003d 0) || index \u003e tasks.getNumberOfTasks()) {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return dukeNeedsValidInput;"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            index--;"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            Task removedTask \u003d tasks.removeTaskAt(index);"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            response \u003d response"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\t\\t\""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + (index+1)"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \". \""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskTypeLabel(removedTask)"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskCompletionStatus(removedTask.isTaskDone())"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + removedTask.getTaskName()"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + getTimeOrDate(removedTask)"
+      },
+      {
+        "lineNumber": 138,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\n\""
+      },
+      {
+        "lineNumber": 139,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\tNow you have \" + tasks.getNumberOfTasks() + \" task(s) in the list.\";"
+      },
+      {
+        "lineNumber": 140,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 141,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        updateFile();"
+      },
+      {
+        "lineNumber": 142,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return response;"
+      },
+      {
+        "lineNumber": 143,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 144,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 145,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String markTaskAsDone(int index) {"
+      },
+      {
+        "lineNumber": 146,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String response \u003d \"\\tNice! I\u0027ve marked this task as done:\\n\";"
+      },
+      {
+        "lineNumber": 147,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if ((index \u003c\u003d 0) || (index \u003e tasks.getNumberOfTasks())) {"
+      },
+      {
+        "lineNumber": 148,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return dukeNeedsValidInput;"
+      },
+      {
+        "lineNumber": 149,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 150,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            index--;"
+      },
+      {
+        "lineNumber": 151,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            Task task \u003d tasks.getTaskAt(index);"
+      },
+      {
+        "lineNumber": 152,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            task.markAsDone();"
+      },
+      {
+        "lineNumber": 153,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            response \u003d response"
+      },
+      {
+        "lineNumber": 154,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\t\\t\""
+      },
+      {
+        "lineNumber": 155,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskTypeLabel(task)"
+      },
+      {
+        "lineNumber": 156,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskCompletionStatus(task.isTaskDone())"
+      },
+      {
+        "lineNumber": 157,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + task.getTaskName()"
+      },
+      {
+        "lineNumber": 158,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + getTimeOrDate(task);"
+      },
+      {
+        "lineNumber": 159,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            updateFile();"
+      },
+      {
+        "lineNumber": 160,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return response;"
+      },
+      {
+        "lineNumber": 161,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 162,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 163,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 164,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private void updateFile() {"
+      },
+      {
+        "lineNumber": 165,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 166,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            storage.updateTasks(tasks);"
+      },
+      {
+        "lineNumber": 167,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 168,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 169,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 170,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 171,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 172,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String addTodo(String userInput) {"
+      },
+      {
+        "lineNumber": 173,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (userInput.equals(badFormat)) {"
+      },
+      {
+        "lineNumber": 174,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return dukeNeedsValidInput;"
+      },
+      {
+        "lineNumber": 175,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 176,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            ToDo newTask \u003d new ToDo(userInput);"
+      },
+      {
+        "lineNumber": 177,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return addToList(newTask);"
+      },
+      {
+        "lineNumber": 178,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 179,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 180,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 181,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String addDeadline(String[] userInput) {"
+      },
+      {
+        "lineNumber": 182,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (userInput.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 183,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return dukeNeedsValidInput;"
+      },
+      {
+        "lineNumber": 184,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 185,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            String taskName \u003d userInput[0];"
+      },
+      {
+        "lineNumber": 186,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            String taskDeadline \u003d userInput[1];"
+      },
+      {
+        "lineNumber": 187,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 188,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            Deadline newTask \u003d new Deadline(taskName, taskDeadline);"
+      },
+      {
+        "lineNumber": 189,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return addToList(newTask);"
+      },
+      {
+        "lineNumber": 190,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 191,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 192,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 193,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String addEvent(String[] userInput) {"
+      },
+      {
+        "lineNumber": 194,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (userInput.length \u003c\u003d 1) {"
+      },
+      {
+        "lineNumber": 195,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return dukeNeedsValidInput;"
+      },
+      {
+        "lineNumber": 196,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 197,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            String taskName \u003d userInput[0];"
+      },
+      {
+        "lineNumber": 198,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            String taskTime \u003d userInput[1];"
+      },
+      {
+        "lineNumber": 199,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 200,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            Event newTask \u003d new Event(taskName, taskTime);"
+      },
+      {
+        "lineNumber": 201,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return addToList(newTask);"
+      },
+      {
+        "lineNumber": 202,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 203,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 204,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 205,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    private String addToList(Task task) {"
+      },
+      {
+        "lineNumber": 206,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (tasks.getNumberOfTasks() \u003e\u003d 100) {"
+      },
+      {
+        "lineNumber": 207,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return \"\\tYou can\u0027t add any more tasks to your list!\";"
+      },
+      {
+        "lineNumber": 208,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 209,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            tasks.addTask(task);"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            updateFile();"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            String output \u003d \"\\tGot it. I\u0027ve added this task:\""
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\n\\t\\t\""
+      },
+      {
+        "lineNumber": 215,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskTypeLabel(task)"
+      },
+      {
+        "lineNumber": 216,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + taskCompletionStatus(task.isTaskDone())"
+      },
+      {
+        "lineNumber": 217,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + task.getTaskName()"
+      },
+      {
+        "lineNumber": 218,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + getTimeOrDate(task)"
+      },
+      {
+        "lineNumber": 219,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "                    + \"\\n\\tNow you have \" + tasks.getNumberOfTasks() + \" task(s) in the list.\";"
+      },
+      {
+        "lineNumber": 220,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return output;"
+      },
+      {
+        "lineNumber": 221,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 222,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 223,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 224,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    /* FOR FORMATTING */"
+      },
+      {
+        "lineNumber": 225,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 226,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    static String taskTypeLabel(Task task) {"
+      },
+      {
+        "lineNumber": 227,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        String taskLabel;"
+      },
+      {
+        "lineNumber": 228,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (task.taskType.equals(Task.TaskType.TODO)) {"
+      },
+      {
+        "lineNumber": 229,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            taskLabel \u003d \"[T] \";"
+      },
+      {
+        "lineNumber": 230,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (task.taskType.equals(Task.TaskType.DEADLINE)) {"
+      },
+      {
+        "lineNumber": 231,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            taskLabel \u003d \"[D] \";"
+      },
+      {
+        "lineNumber": 232,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else if (task.taskType.equals(Task.TaskType.EVENT)) {"
+      },
+      {
+        "lineNumber": 233,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            taskLabel \u003d \"[E] \";"
+      },
+      {
+        "lineNumber": 234,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 235,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 236,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            taskLabel \u003d \"\";"
+      },
+      {
+        "lineNumber": 237,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 238,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        return taskLabel;"
+      },
+      {
+        "lineNumber": 239,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 240,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 241,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    static String getTimeOrDate(Task task) {"
+      },
+      {
+        "lineNumber": 242,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (task.getHasDate()) {"
+      },
+      {
+        "lineNumber": 243,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return task.getFullDate();"
+      },
+      {
+        "lineNumber": 244,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 245,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "            return task.getTime();"
+      },
+      {
+        "lineNumber": 246,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 247,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 248,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 249,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    static String taskCompletionStatus(Boolean isDone) {"
+      },
+      {
+        "lineNumber": 250,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        if (isDone) { return \"[✓] \";}"
+      },
+      {
+        "lineNumber": 251,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "        else { return \"[✗] \"; }"
+      },
+      {
+        "lineNumber": 252,
+        "author": {
+          "gitId": "lmtaek"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 253,
         "author": {
           "gitId": "lmtaek"
         },
@@ -3271,7 +5120,7 @@
       }
     ],
     "authorContributionMap": {
-      "lmtaek": 13
+      "lmtaek": 253
     }
   }
 ]

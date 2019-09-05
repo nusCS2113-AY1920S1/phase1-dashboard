@@ -1,5 +1,205 @@
 [
   {
+    "path": "src/main/java/AddCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class AddCommand extends Command {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private Task task;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public AddCommand(Task task) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.task \u003d task;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        taskList.addTask(task);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        ui.showAddCommand(task.toString(), taskList.size());"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            storage.addCommandInFile(task.printInFile());"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            throw new DukeException(\"Error while adding the command to the duke.txt file\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 19
+    }
+  },
+  {
+    "path": "src/main/java/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    abstract public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return false;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 7
+    }
+  },
+  {
     "path": "src/main/java/Deadline.java",
     "fileType": "java",
     "lines": [
@@ -8,42 +208,529 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.text.DateFormat;"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.text.ParseException;"
+        "content": "import java.time.LocalDate;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.text.SimpleDateFormat;"
+        "content": "import java.time.ZoneId;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.time.LocalDate;"
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.time.ZoneId;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.util.Date;"
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private String by;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private Date date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Deadline(String description, String by) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.by \u003d by;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.date \u003d getDate(by);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return (getDate(by) \u003d\u003d null) ? \"[D]\" + super.toString() + \"(by: \" + by + \")\" : \"[D]\" + super.toString() + \"(by: \" + getDateString(date) + \")\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Date getDate() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return date;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private String getDateString(Date date) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if (date \u003d\u003d null)"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            return by;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        LocalDate localDate \u003d date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        String pattern \u003d by.length() \u003e 11 ? \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy, ha \" : \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy\";"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(pattern);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return formatter.format(date);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String printInFile() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return this.isDone() ? \"D|1|\" + this.getDescription() + \"|\" + this.getDateString(date) : \"D|0|\" + this.getDescription() + \"|\" + this.getDateString(date);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 37
+    }
+  },
+  {
+    "path": "src/main/java/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.nio.charset.StandardCharsets;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.nio.file.Files;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private int taskNb;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public DeleteCommand(int taskNb) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.taskNb \u003d taskNb;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if (taskNb \u003c taskList.size() \u0026\u0026 taskNb \u003e\u003d 0) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            Task removed \u003d taskList.removeTask(taskNb);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            List\u003cString\u003e fileContent \u003d null;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                fileContent \u003d new ArrayList\u003c\u003e(Files.readAllLines(storage.getPath(), StandardCharsets.UTF_8));"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                fileContent.remove(taskNb); // changing the file content"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                Files.write(storage.getPath(), fileContent, StandardCharsets.UTF_8);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                throw new DukeException(\"Error while deleting the task from the had disc\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            ui.showRemovedTask(removed.toString(), taskList.size());"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } else"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            throw new DukeException(\"Enter a valid task number after delete, between 1 and \" + taskList.size());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 30
+    }
+  },
+  {
+    "path": "src/main/java/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private int taskNb;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public DoneCommand(int taskNb) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.taskNb \u003d taskNb;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
       },
       {
         "lineNumber": 7,
@@ -57,56 +744,56 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "public class Deadline extends Task {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected String by;"
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected Date date;"
+        "content": "        if (taskNb \u003c taskList.size() \u0026\u0026 taskNb \u003e\u003d 0) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "            taskList.markTaskDone(taskNb);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public Deadline(String description, String by) {"
+        "content": "            ui.showMarkDone(taskList.getTask(taskNb).toString());"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        super(description);"
+        "content": "            storage.changeContent(taskNb);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.by \u003d by;"
+        "content": "        } else"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.date \u003d getDate(by);"
+        "content": "            throw new DukeException(\"Enter a valid task number after done, between 1 and \" + taskList.size());"
       },
       {
         "lineNumber": 16,
@@ -120,165 +807,11 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        return (getDate(by) \u003d\u003d null) ? \"[D]\" + super.toString() + \"(by: \" + by + \")\" : \"[D]\" + super.toString() + \"(by: \" + getDateString(date) + \")\";"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    public Date getDate() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        return date;"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    private String getDateString(Date date) {"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        if (date \u003d\u003d null)"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            return by;"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        LocalDate localDate \u003d date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        String pattern \u003d by.length() \u003e 11 ? \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy, ha \" : \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy\";"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(pattern);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        return formatter.format(date);"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    public String printInFile() {"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        return this.isDone ? \"D|1|\" + this.getDescription() + \"|\" + this.getDateString(date) : \"D|0|\" + this.getDescription() + \"|\" + this.getDateString(date);"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "saradj"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "saradj": 39
+      "saradj": 17
     }
   },
   {
@@ -288,1169 +821,273 @@
       {
         "lineNumber": 1,
         "author": {
-          "gitId": "saradj"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "public class Duke {"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.io.*;"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.nio.charset.StandardCharsets;"
+        "content": "    private TaskList tasks;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.nio.file.Files;"
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.nio.file.Path;"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.nio.file.Paths;"
+        "content": "    public Duke(String filePath) {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.util.List;"
+        "content": "        storage \u003d new Storage(filePath);"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "saradj"
         },
-        "content": "import java.util.Scanner;"
+        "content": "        try {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "            tasks \u003d new TaskList(storage.load());"
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "-"
+          "gitId": "saradj"
         },
-        "content": "public class Duke {"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "            ui.showLoadingError();"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public static void main(String[] args) throws DukeException {"
+        "content": "            tasks \u003d new TaskList();"
       },
       {
         "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        String logo \u003d \" ____        _        \\n\""
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        String line \u003d \"____________________________________________________________\";"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        List\u003cTask\u003e tasks \u003d new ArrayList\u003c\u003e();"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        Path path \u003d Paths.get(\"C:\\\\Users\\\\Sara\\\\duke\\\\duke.txt\");"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            List\u003cString\u003e contentSoFar \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));// getting the data from the hard disk until now"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            for (String next : contentSoFar) {"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                String[] words \u003d next.split(\"\\\\|\");// splitting each line to extract the task type - words[0], done or not words-[1], description- words[2] and possibly due date words[3]"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                switch (words[0]) {"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    case \"T\":"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        tasks.add(new Todo(words[2]));"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        if (words[1].equals(\"1\"))"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            tasks.get(tasks.size() - 1).markAsDone();"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    case \"D\":"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        tasks.add(new Deadline(words[2], words[3]));"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        if (words[1].equals(\"1\"))"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            tasks.get(tasks.size() - 1).markAsDone();"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    default:"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        tasks.add(new Event(words[2], words[3]));"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        if (words[1].equals(\"1\"))"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            tasks.get(tasks.size() - 1).markAsDone();"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        } catch (IOException E) {"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            // No old tasks, ready to start now!"
-      },
-      {
-        "lineNumber": 46,
         "author": {
           "gitId": "saradj"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 15,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        System.out.println(\"\\t\" + line);"
+        "content": "    }"
       },
       {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        System.out.println(\"\\t Hello! I\u0027m Duke\");"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        System.out.println(\"\\t What can I do for you?\");"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        System.out.println(\"\\t\" + line);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        Scanner scanner \u003d new Scanner(System.in);  // Create a Scanner object"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        String input \u003d scanner.nextLine();  // Read user input"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        while (!(input.equals(\"bye\"))) { //Continue reading until user inputs until bye"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            System.out.println(\"\\t\" + line);"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            if (input.equals(\"list\")) {"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                if (tasks.isEmpty())"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    throw new DukeException(\"No tasks yet!\");"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                else {"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    System.out.println(\"\\t Here are the tasks in your list:\");"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    for (int i \u003d 1; i \u003c\u003d tasks.size(); i++) { // looping to print all the saved tasks"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        System.out.println(\"\\t \" + i + \".\" + tasks.get(i - 1).toString());"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                String[] splitted \u003d input.split(\" \", 2);// splitted contains the keyword and the rest (description or task number)"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                Task newTask \u003d null;"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    try (BufferedWriter writer \u003d new BufferedWriter(new OutputStreamWriter("
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            new FileOutputStream(\"duke.txt\", true), StandardCharsets.UTF_8))) {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        switch (splitted[0]) { // switching on the keyword"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            case \"done\":"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                if (splitted.length \u003d\u003d 2) {"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    int taskNb \u003d Integer.parseInt(splitted[1]);"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    if (taskNb \u003c\u003d tasks.size() \u0026\u0026 taskNb \u003e 0) {"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        tasks.get(taskNb - 1).markAsDone();"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        List\u003cString\u003e fileContent \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        fileContent.set(taskNb - 1, tasks.get(taskNb - 1).printInFile()); // changing the file content"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        Files.write(path, fileContent, StandardCharsets.UTF_8);"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(\"\\t Nice! I\u0027ve marked this task as done:\");"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(\"\\t \" + tasks.get(taskNb - 1).toString());"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    } else"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        throw new DukeException(\"Enter a valid task number after done, between 1 and \" + tasks.size());"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                } else throw new DukeException(\"Need a task number after done!\");"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                break;"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            case \"todo\":"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                if ((splitted.length \u003d\u003d 1) || splitted[1].isBlank())"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    throw new DukeException(\"The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                newTask \u003d new Todo(splitted[1]);"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                break;"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            case \"deadline\":"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                if ((splitted.length \u003d\u003d 1) || splitted[1].isBlank())"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    throw new DukeException(\"The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                String getBy[] \u003d splitted[1].split(\"/by \", 2);"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                if (getBy.length \u003c 2)"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    throw new DukeException(\"The description of a deadline must contain /by date!\");"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                newTask \u003d new Deadline(getBy[0], getBy[1]);"
-      },
-      {
-        "lineNumber": 97,
+        "lineNumber": 16,
         "author": {
           "gitId": "saradj"
         },
         "content": ""
       },
       {
-        "lineNumber": 98,
+        "lineNumber": 17,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                break;"
+        "content": "    public void run() {"
       },
       {
-        "lineNumber": 99,
+        "lineNumber": 18,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            case \"event\":"
+        "content": "        ui.showWelcome();"
       },
       {
-        "lineNumber": 100,
+        "lineNumber": 19,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                if ((splitted.length \u003d\u003d 1) || splitted[1].isBlank())"
+        "content": "        boolean isExit \u003d false;"
       },
       {
-        "lineNumber": 101,
+        "lineNumber": 20,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                    throw new DukeException(\"The description of an event cannot be empty, and it must contain /at\");"
+        "content": "        while (!isExit) {"
       },
       {
-        "lineNumber": 102,
+        "lineNumber": 21,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                String getAt[] \u003d splitted[1].split(\"/at \", 2);"
+        "content": "            try {"
       },
       {
-        "lineNumber": 103,
+        "lineNumber": 22,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                if (getAt.length \u003c 2)"
+        "content": "                String fullCommand \u003d ui.readCommand();"
       },
       {
-        "lineNumber": 104,
+        "lineNumber": 23,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                    throw new DukeException(\"The description of a deadline must contain /at data and time from-to!\");"
+        "content": "                ui.showLine();"
       },
       {
-        "lineNumber": 105,
+        "lineNumber": 24,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                newTask \u003d new Event(getAt[0], getAt[1]);"
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
       },
       {
-        "lineNumber": 106,
+        "lineNumber": 25,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                break;"
+        "content": "                c.execute(tasks, ui, storage);"
       },
       {
-        "lineNumber": 107,
+        "lineNumber": 26,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                            case \"find\":"
+        "content": "                isExit \u003d c.isExit();"
       },
       {
-        "lineNumber": 108,
+        "lineNumber": 27,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                if(splitted.length\u003d\u003d2){"
+        "content": "            } catch (DukeException e) {"
       },
       {
-        "lineNumber": 109,
+        "lineNumber": 28,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                    StringBuilder sb\u003d new StringBuilder();"
+        "content": "                ui.showError(e.getMessage());"
       },
       {
-        "lineNumber": 110,
+        "lineNumber": 29,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                    int i\u003d1;"
+        "content": "            } finally {"
       },
       {
-        "lineNumber": 111,
+        "lineNumber": 30,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                                for( Task task : tasks){"
+        "content": "                ui.showLine();"
       },
       {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    if(task.getDescription().contains(splitted[1])){"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        sb.append(i++).append(\".\").append(task.toString());"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        sb.append(System.lineSeparator());"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    }"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                }if(sb.length()\u003d\u003d0){"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(\"No matching tasks found! \");"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    }else"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(\"\\t Here are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                sb.setLength(sb.length()-1);// to remove the last new line"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    System.out.println(sb.toString());"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                } else throw new DukeException(\"Need a word to find! \");"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                break;"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            case \"delete\":"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                if(splitted.length\u003d\u003d2) {"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    int taskNb \u003d Integer.parseInt(splitted[1]);"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    if (taskNb \u003c\u003d tasks.size() \u0026\u0026 taskNb \u003e 0) {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                Task removed\u003dtasks.remove(taskNb-1);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        List\u003cString\u003e fileContent \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        fileContent.remove(taskNb-1); // changing the file content"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        Files.write(path, fileContent, StandardCharsets.UTF_8);"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(\"\\t Noted. I\u0027ve removed this task:\");"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(\"\\t \" + removed.toString());"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        System.out.println(tasks.size() \u003d\u003d 1 ? \"\\t Now you have \" + tasks.size() + \" task in the list.\" : \"\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                    } else"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                        throw new DukeException(\"Enter a valid task number after done, between 1 and \" + tasks.size());"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                }else throw new DukeException(\"Need a task number after done!\");"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                break;"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            default:"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                                throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        if (newTask !\u003d null) {"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            tasks.add(newTask);"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            System.out.println(\"\\t Got it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            System.out.println(\"\\t \" + newTask.toString());"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            System.out.println(tasks.size() \u003d\u003d 1 ? \"\\t Now you have \" + tasks.size() + \" task in the list.\" : \"\\t Now you have \" + tasks.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            writer.write(newTask.printInFile());"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                            writer.newLine();"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        writer.close();"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                        System.out.println(\"IO problems, can not open file:\" + e.getMessage());"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                } catch (Exception e) {"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    System.out.println(\"exception caught: \"+ e.getMessage());"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                    e.printStackTrace();"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 158,
+        "lineNumber": 31,
         "author": {
           "gitId": "saradj"
         },
         "content": "            }"
       },
       {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            System.out.println(\"\\t\" + line);"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "            input \u003d scanner.nextLine();  // Read next user input"
-      },
-      {
-        "lineNumber": 161,
+        "lineNumber": 32,
         "author": {
           "gitId": "saradj"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 162,
+        "lineNumber": 33,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        System.out.println(\"\\t\" + line);"
+        "content": "    }"
       },
       {
-        "lineNumber": 163,
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 35,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        System.out.println(\"\\t Bye. Hope to see you again soon!\");"
+        "content": "        new Duke(\"data/tasks.txt\").run();"
       },
       {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "saradj"
-        },
-        "content": "        System.out.println(\"\\t\" + line);"
-      },
-      {
-        "lineNumber": 165,
+        "lineNumber": 36,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 166,
+        "lineNumber": 37,
         "author": {
           "gitId": "-"
         },
         "content": "}"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
       }
     ],
     "authorContributionMap": {
-      "saradj": 158,
-      "-": 8
+      "saradj": 34,
+      "-": 4
     }
   },
   {
@@ -1483,7 +1120,7 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "        super(\"☹ OOPS!!! \" + message);"
+        "content": "        super(\"\\t ☹ OOPS!!! \" + message);"
       },
       {
         "lineNumber": 5,
@@ -1555,14 +1192,14 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected String at;"
+        "content": "    private String at;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected Date date;"
+        "content": "    private Date date;"
       },
       {
         "lineNumber": 9,
@@ -1597,7 +1234,7 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "        this.date\u003dgetDate(at);"
+        "content": "        this.date \u003d getDate(at);"
       },
       {
         "lineNumber": 14,
@@ -1660,7 +1297,7 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return this.isDone ? \"E|1|\" + getDescription()+ \"|\" + this.getDateString(date)  : \"E|0|\" + this.getDescription() + \"|\" + getDateString(date);"
+        "content": "        return this.isDone() ? \"E|1|\" + getDescription() + \"|\" + this.getDateString(date) : \"E|0|\" + this.getDescription() + \"|\" + getDateString(date);"
       },
       {
         "lineNumber": 23,
@@ -1674,59 +1311,66 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    private String getDateString(Date date) {"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        if(date\u003d\u003dnull)"
+        "content": "    private String getDateString(Date date) {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            return at;"
+        "content": "        if (date \u003d\u003d null)"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        LocalDate localDate \u003d date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();"
+        "content": "            return at;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        String pattern \u003d at.length() \u003e 11 ? \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy, ha \" : \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy\";"
+        "content": "        LocalDate localDate \u003d date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(pattern);"
+        "content": "        String pattern \u003d at.length() \u003e 11 ? \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy, ha \" : \"d\u0027\" + getDaySuffix(localDate.getDayOfMonth()) + \"\u0027 \u0027of\u0027 MMMM yyyy\";"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return formatter.format(date);"
+        "content": "        SimpleDateFormat formatter \u003d new SimpleDateFormat(pattern);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        return formatter.format(date);"
       },
       {
         "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
         "author": {
           "gitId": "saradj"
         },
@@ -1734,7 +1378,1326 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 32
+      "saradj": 33
+    }
+  },
+  {
+    "path": "src/main/java/ExitCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class ExitCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return true;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 11
+    }
+  },
+  {
+    "path": "src/main/java/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private String toFind;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public FindCommand(String toFind) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.toFind \u003d toFind;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        StringBuilder sb \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        int i \u003d 1;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        for (Task task : taskList.getAllTasks()) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            if (task.getDescription().contains(toFind)) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                sb.append(\"\\t \").append(i++).append(\".\").append(task.toString());"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                sb.append(System.lineSeparator());"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if (sb.length() \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            System.out.println(\"No matching tasks found! \");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } else"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            System.out.println(\"\\t Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        sb.setLength(sb.length() - 1);// to remove the last new line"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(sb.toString());"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 26
+    }
+  },
+  {
+    "path": "src/main/java/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        if (taskList.size() \u003d\u003d 0)"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            throw new DukeException(\"No tasks yet!\");"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        else {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            System.out.println(\"\\t Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            for (int i \u003d 1; i \u003c\u003d taskList.size(); i++) { // looping to print all the saved tasks"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                ui.showTask(\"\\t \" + i + \".\" + taskList.getTask(i - 1).toString());"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 14
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public static Command parse(String fullCommand) throws DukeException {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        String[] splitted \u003d fullCommand.split(\" \", 2);// splitted contains the keyword and the rest (description or task number)"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        switch (splitted[0]) { // switching on the keyword"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (splitted.length \u003d\u003d 2)"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"Did you mean just list?\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                else"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    return new ListCommand();"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (splitted.length \u003d\u003d 2)"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"Did you mean just bye?\");"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                else"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    return new ExitCommand();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (splitted.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    int taskNb \u003d Integer.parseInt(splitted[1]);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    return new DoneCommand(taskNb - 1);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                } else throw new DukeException(\"Need a task number after done!\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if ((splitted.length \u003d\u003d 1) || splitted[1].isBlank())"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return new AddCommand(new Todo(splitted[1]));"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if ((splitted.length \u003d\u003d 1) || splitted[1].isBlank())"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                String[] getBy \u003d splitted[1].split(\"/by \", 2);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (getBy.length \u003c 2)"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"The description of a deadline must contain /by date!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return new AddCommand(new Deadline(getBy[0], getBy[1]));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if ((splitted.length \u003d\u003d 1) || splitted[1].isBlank())"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"The description of an event cannot be empty, and it must contain /at\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                String[] getAt \u003d splitted[1].split(\"/at \", 2);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (getAt.length \u003c 2)"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    throw new DukeException(\"The description of a deadline must contain /at data and time from-to!\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                return new AddCommand(new Event(getAt[0], getAt[1]));"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (splitted.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    return new FindCommand(splitted[1]);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                } else throw new DukeException(\"Need a word to find! \");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                if (splitted.length \u003d\u003d 2) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    int taskNb \u003d Integer.parseInt(splitted[1]);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    return new DeleteCommand(taskNb - 1);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                } else throw new DukeException(\"Need a task number after done!\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                throw new DukeException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 52
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.nio.charset.StandardCharsets;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.nio.file.Files;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.nio.file.Path;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.nio.file.Paths;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private Path path;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private List\u003cString\u003e contentSoFar;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private List\u003cTask\u003e tasks;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Storage(String filePath) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        path \u003d Paths.get(filePath);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        tasks \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public List\u003cTask\u003e load() throws DukeException {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            contentSoFar \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));// getting the data from the hard disk until now"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            File file \u003d new File(\"data\\\\tasks.txt\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                File folder \u003d new File(\"data\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                folder.mkdir();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                file.createNewFile();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                contentSoFar \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            } catch (IOException ex) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                throw new DukeException(\"Could not create a tasks.txt file in the specified directory\");"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        for (String next : contentSoFar) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            String[] words \u003d next.split(\"\\\\|\");// splitting each line to extract the task type - words[0], done or not words-[1], description- words[2] and possibly due date words[3]"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            switch (words[0]) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                case \"T\":"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    tasks.add(new Todo(words[2]));"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    if (words[1].equals(\"1\"))"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        tasks.get(tasks.size() - 1).markAsDone();"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                case \"D\":"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    tasks.add(new Deadline(words[2], words[3]));"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    if (words[1].equals(\"1\"))"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        tasks.get(tasks.size() - 1).markAsDone();"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                default:"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    tasks.add(new Event(words[2], words[3]));"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    if (words[1].equals(\"1\"))"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                        tasks.get(tasks.size() - 1).markAsDone();"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return tasks;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Path getPath() {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return path;"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void changeContent(int taskNb) throws DukeException {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            contentSoFar \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            contentSoFar.set(taskNb, tasks.get(taskNb).printInFile()); // changing the file content"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            Files.write(path, contentSoFar, StandardCharsets.UTF_8);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            throw new DukeException(\"Error while reading/writing in the duke.txt file\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void addCommandInFile(String task) throws IOException {"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        contentSoFar \u003d new ArrayList\u003c\u003e(Files.readAllLines(path, StandardCharsets.UTF_8));"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        contentSoFar.add(task);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        Files.write(path, contentSoFar, StandardCharsets.UTF_8);"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 79
     }
   },
   {
@@ -1788,14 +2751,14 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected String description;"
+        "content": "    private String description;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    protected boolean isDone;"
+        "content": "    private boolean isDone;"
       },
       {
         "lineNumber": 9,
@@ -1991,178 +2954,213 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    static String getDaySuffix(int n) {"
+        "content": "    public boolean isDone() {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        if (n \u003e\u003d 11 \u0026\u0026 n \u003c\u003d 13) {"
+        "content": "        return isDone;"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            return \"th\";"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        }"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        switch (n % 10) {"
+        "content": "    static String getDaySuffix(int n) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            case 1:"
+        "content": "        if (n \u003e\u003d 11 \u0026\u0026 n \u003c\u003d 13) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                return \"st\";"
+        "content": "            return \"th\";"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            case 2:"
+        "content": "        }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                return \"nd\";"
+        "content": "        switch (n % 10) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            case 3:"
+        "content": "            case 1:"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                return \"rd\";"
+        "content": "                return \"st\";"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            default:"
+        "content": "            case 2:"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "saradj"
         },
-        "content": "                return \"th\";"
+        "content": "                return \"nd\";"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        }"
+        "content": "            case 3:"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "                return \"rd\";"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    static Date getDate(String date) {"
+        "content": "            default:"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        DateFormat dateFormat \u003d (date.length() \u003e 11) ? new SimpleDateFormat(\"dd/MM/yyyy hhmm\") : new SimpleDateFormat(\"dd/MM/yyyy\");"
+        "content": "                return \"th\";"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            Date d \u003d dateFormat.parse(date);"
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            return d;"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        } catch (ParseException e) {"
+        "content": "    static Date getDate(String date) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "saradj"
         },
-        "content": "            //case the date was not valid!"
+        "content": "        DateFormat dateFormat \u003d (date.length() \u003e 11) ? new SimpleDateFormat(\"dd/MM/yyyy hhmm\") : new SimpleDateFormat(\"dd/MM/yyyy\");"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return null;"
+        "content": "             dateFormat.parse(date);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "            return dateFormat.parse(date);"
       },
       {
         "lineNumber": 61,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "            //case the date was not valid!"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "saradj"
         },
@@ -2170,7 +3168,303 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 61
+      "saradj": 66
+    }
+  },
+  {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private List\u003cTask\u003e taskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        taskList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public TaskList(List\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        this.taskList \u003d taskList;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void addTask(Task task) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public int size() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return taskList.size();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void markTaskDone(int taskNb) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        taskList.get(taskNb).markAsDone();"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Task getTask(int taskNb) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return taskList.get(taskNb);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public List\u003cTask\u003e getAllTasks() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return taskList;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Task removeTask(int taskNb) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return taskList.remove(taskNb);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 41
     }
   },
   {
@@ -2189,87 +3483,94 @@
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public Todo(String description) {"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        super(description);"
+        "content": "    public Todo(String description) {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        super(description);"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String toString() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return \"[T]\" + super.toString();"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        return \"[T]\" + super.toString();"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "saradj"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    public String printInFile() {"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "saradj"
         },
-        "content": "        return this.isDone ? \"T|1|\" + this.getDescription() : \"T|0|\" + this.getDescription();"
+        "content": "    public String printInFile() {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "saradj"
         },
-        "content": "    }"
+        "content": "        return this.isDone() ? \"T|1|\" + this.getDescription() : \"T|0|\" + this.getDescription();"
       },
       {
         "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
         "author": {
           "gitId": "saradj"
         },
@@ -2277,7 +3578,429 @@
       }
     ],
     "authorContributionMap": {
-      "saradj": 14
+      "saradj": 15
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private Scanner scanner;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private static final String line \u003d \"____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    private String input;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public Ui() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        scanner \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showWelcome() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t\" + line);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t Hello! I\u0027m Duke\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t What can I do for you?\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t\" + line);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public String readCommand() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        input \u003d scanner.nextLine();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        return input;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showLine() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t \" + line);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showLoadingError() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t ☹ OOPS!!! Error while loading the list from the hard disc\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showError(String e) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(e);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showTask(String task) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(task);"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showMarkDone(String doneTask) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t \" + doneTask);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showAddCommand(String command, int size) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t Got it. I\u0027ve added this task: \");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t \" + command);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(size \u003d\u003d 1 ? \"\\t Now you have 1 task in the list.\" : \"\\t Now you have \" + size + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    public void showRemovedTask(String removed, int size) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t Noted. I\u0027ve removed this task:\");"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(\"\\t \" + removed);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "        System.out.println(size \u003d\u003d 1 ? \"\\t Now you have \" + size + \" task in the list.\" : \"\\t Now you have \" + size + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "saradj"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "saradj": 59
     }
   }
 ]

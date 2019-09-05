@@ -115,577 +115,962 @@
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "import java.nio.charset.StandardCharsets;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": ""
+        "content": "import java.nio.file.Files;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "-"
+          "gitId": "TianchangLiao"
         },
-        "content": "public class Duke {"
+        "content": "import java.nio.file.Path;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": ""
+        "content": "import java.nio.file.Paths;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "    private static ArrayList\u003cTask\u003e tasks \u003d new ArrayList\u003cTask\u003e();"
+        "content": "import java.util.Arrays;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": ""
+        "content": "import java.util.List;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "    static void addToList(String input) throws DukeException {"
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        String[] input2 \u003d input.split(\" \", 2);"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        String first \u003d input2[0];"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
-          "gitId": "TianchangLiao"
+          "gitId": "-"
         },
-        "content": "        String second \u003d null;"
+        "content": "public class Duke {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        try {"
+        "content": ""
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            second \u003d input2[1];"
+        "content": "    private static ArrayList\u003cTask\u003e tasks \u003d new ArrayList\u003cTask\u003e();"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        } catch (Exception e) {"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            throw new DukeException(input);"
+        "content": "    private static void writeToFile() throws IOException {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        }"
+        "content": "        int l \u003d tasks.size();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        try {"
+        "content": "        String[] text \u003d new String[l];"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            if (first.equals(\"todo\")) {"
+        "content": "        for (int i \u003d 0; i \u003c l; i++) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                ToDo temp \u003d new ToDo(second);"
+        "content": "            text[i] \u003d tasks.get(i).toString();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                tasks.add(temp);"
+        "content": "        }"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                System.out.println(\"Got it. I\u0027ve added this task:\\n\""
+        "content": "        Path file \u003d Paths.get(\"data/duke.txt\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                        + temp.toString() + \"\\nNow you have \" + tasks.size()"
+        "content": "        List\u003cString\u003e lines \u003d Arrays.asList(text);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                        + \" in the list.\");"
+        "content": "        Files.write(file, lines, StandardCharsets.UTF_8);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            } else if (first.equals(\"done\")) {"
+        "content": "    }"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                int temp \u003d Integer.parseInt(second) - 1;"
+        "content": ""
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                tasks.get(temp).markAsDone();"
+        "content": "    private static void readFile() throws IOException {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                System.out.println(\"Nice! I\u0027ve marked this task as done:\\n\""
+        "content": "        File file \u003d new File(\"data/duke.txt\");"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                        + tasks.get(temp).toString());"
+        "content": "        BufferedReader br \u003d new BufferedReader(new FileReader(file));"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            } else {"
+        "content": "        String line, description;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                String[] input3 \u003d second.split(\"/\", 2);"
+        "content": "        while ((line \u003d br.readLine()) !\u003d null) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                String task \u003d input3[0];"
+        "content": "            int startindex \u003d line.lastIndexOf(\"]\") + 2;"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                String date \u003d input3[1].substring(3);"
+        "content": "            int endindex \u003d line.lastIndexOf(\"(\") - 1;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                if (first.equals(\"deadline\")) {"
+        "content": "            Task temp \u003d null;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    Deadline deadline \u003d new Deadline(task, date);"
+        "content": "            if (line.contains(\"[T]\")) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    tasks.add(deadline);"
+        "content": "                description \u003d line.substring(startindex);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\\n\""
+        "content": "                temp \u003d new ToDo(description);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                            + deadline.toString() + \"\\nNow you have \" + tasks.size()"
+        "content": "            } else if (line.contains(\"[D]\")) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                            + \" in the list.\");"
+        "content": "                description \u003d line.substring(startindex, endindex);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                } else if (first.equals(\"event\")) {"
+        "content": "                String by \u003d line.substring(line.lastIndexOf(\"(by:\") + 5, line.lastIndexOf(\")\"));"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    Event event \u003d new Event(task, date);"
+        "content": "                temp \u003d new Deadline(description, by);"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    tasks.add(event);"
+        "content": "            } else if (line.contains(\"[E]\")) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\\n\""
+        "content": "                description \u003d line.substring(startindex, endindex);"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                            + event.toString() + \"\\nNow you have \" + tasks.size()"
+        "content": "                String at \u003d line.substring(line.lastIndexOf(\"(at:\") + 5, line.lastIndexOf(\")\"));"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                            + \" in the list.\");"
+        "content": "                temp \u003d new Event(description, at);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                }"
+        "content": "            }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            }"
+        "content": "            if (temp !\u003d null \u0026\u0026 line.contains(\"\\u2713\")) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        } catch (Exception e) {"
+        "content": "                temp.markAsDone();"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            throw new DukeException(input);"
+        "content": "            }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        }"
+        "content": "            tasks.add(temp);"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "    public static void receiveInputs() {"
+        "content": ""
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        while (true) {"
+        "content": "    private static void addToList(String input) throws DukeException {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            try {"
+        "content": "        String[] input2 \u003d input.split(\" \", 2);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                Scanner sc \u003d new Scanner(System.in);"
+        "content": "        String first \u003d input2[0];"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                String input \u003d sc.nextLine();"
+        "content": "        String second \u003d null;"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                if (input.equals(\"bye\")) {"
+        "content": "        try {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    System.out.println(\"Bye. Hope to see you again soon!\");"
+        "content": "            second \u003d input2[1];"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    break;"
+        "content": "        } catch (Exception e) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                } else if (input.equals(\"list\")) {"
+        "content": "            throw new DukeException(input);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    for (int i \u003d 0; i \u003c tasks.size(); i++) {"
+        "content": "        }"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                        System.out.println(i + 1 + \".\" + tasks.get(i).toString());"
+        "content": "        try {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    }"
+        "content": "            if (first.equals(\"todo\")) {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                } else {"
+        "content": "                ToDo temp \u003d new ToDo(second);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    addToList(input);"
+        "content": "                tasks.add(temp);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                }"
+        "content": "                System.out.println(\"Got it. I\u0027ve added this task:\\n\""
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            } catch (DukeException e) {"
+        "content": "                        + temp.toString() + \"\\nNow you have \" + tasks.size()"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                System.out.println(e.getMessage());"
+        "content": "                        + \" in the list.\");"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "            }"
+        "content": "            } else if (first.equals(\"done\")) {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        }"
+        "content": "                int temp \u003d Integer.parseInt(second) - 1;"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "    }"
+        "content": "                tasks.get(temp).markAsDone();"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": ""
+        "content": "                System.out.println(\"Nice! I\u0027ve marked this task as done:\\n\""
       },
       {
         "lineNumber": 73,
         "author": {
-          "gitId": "-"
+          "gitId": "TianchangLiao"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "                        + tasks.get(temp).toString());"
       },
       {
         "lineNumber": 74,
         "author": {
-          "gitId": "-"
+          "gitId": "TianchangLiao"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": "            } else {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "                String[] input3 \u003d second.split(\"/\", 2);"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "                String task \u003d input3[0].trim();"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "                String date \u003d input3[1].substring(3);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "                    + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "                if (first.equals(\"deadline\")) {"
       },
       {
         "lineNumber": 79,
         "author": {
-          "gitId": "-"
+          "gitId": "TianchangLiao"
         },
-        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+        "content": "                    Deadline deadline \u003d new Deadline(task, date);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
+        "content": "                    tasks.add(deadline);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "TianchangLiao"
         },
-        "content": "        receiveInputs();"
+        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\\n\""
       },
       {
         "lineNumber": 82,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                            + deadline.toString() + \"\\nNow you have \" + tasks.size()"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                            + \" in the list.\");"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                } else if (first.equals(\"event\")) {"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    Event event \u003d new Event(task, date);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    tasks.add(event);"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    System.out.println(\"Got it. I\u0027ve added this task:\\n\""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                            + event.toString() + \"\\nNow you have \" + tasks.size()"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                            + \" in the list.\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            throw new DukeException(input);"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "    private static void receiveInputs() {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            readFile();"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            System.out.println(\"\\nOOPS!!! No save file found. One will be created after you go!\");"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            e.printStackTrace();"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        while (true) {"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                Scanner sc \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                String input \u003d sc.nextLine();"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                if (input.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    writeToFile();"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                } else if (input.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    for (int i \u003d 0; i \u003c tasks.size(); i++) {"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                        System.out.println(i + 1 + \".\" + tasks.get(i).toString());"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                } else {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    addToList(input);"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            } catch (DukeException | IOException e) {"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "                    + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "TianchangLiao"
+        },
+        "content": "        receiveInputs();"
+      },
+      {
+        "lineNumber": 137,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 83,
+        "lineNumber": 138,
         "author": {
           "gitId": "-"
         },
@@ -693,7 +1078,7 @@
       }
     ],
     "authorContributionMap": {
-      "TianchangLiao": 77,
+      "TianchangLiao": 132,
       "-": 6
     }
   },
