@@ -1,5 +1,973 @@
 [
   {
+    "path": "src/main/java/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "import java.time.DateTimeException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "public class Command {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private String type;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private String date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private boolean isExit \u003d false;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public Command (String type, String description, String date) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        this.type \u003d type;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        this.date \u003d date;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public void execute (TaskList tasks, Ui ui, Storage storage) throws DukeException{"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        switch (type) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                isExit \u003d true;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                System.out.println(\"    Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"list\":"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                ui.showList(tasks);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                CreateTodo(description, tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                CreateDeadline(description, date, tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                CreateEvent(description, date, tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"done\":"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                MarkDone(description, tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"delete\":"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                DeleteTask(description, tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                ui.showFind(tasks.find(description));"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                throw new DukeException(\"    OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private void CreateTodo(String description, TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            tasks.addTodo(description.trim());"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            storage.write(tasks);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            ui.showCreateTask(tasks.get(Task.totalItems-1), Task.totalItems);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (NullPointerException e) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Error in writing to file.\");"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private void CreateDeadline(String description, String date, TaskList tasks, Ui ui, Storage storage)"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throws DukeException{"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            LocalDateTime dateTime \u003d Parser.convertDate(date.substring(4));"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            tasks.addDeadline(description, dateTime);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            storage.write(tasks);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            ui.showCreateTask(tasks.get(Task.totalItems - 1), Task.totalItems);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (DateTimeException e) {"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Please enter date and time in the format: dd/mm/yyyy HHmm.\");"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (NullPointerException e) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! The description/date of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Error in writing to file.\");"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throw new DukeException(\"Unknown error\");"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private void CreateEvent(String description, String date, TaskList tasks, Ui ui, Storage storage)"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throws DukeException {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            LocalDateTime dateTime \u003d Parser.convertDate(date.substring(4));"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            tasks.addEvent(description, dateTime);"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            storage.write(tasks);"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            ui.showCreateTask(tasks.get(Task.totalItems - 1), Task.totalItems);"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (DateTimeException e) {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Please enter date \u0026 time in the format: dd/mm/yyyy HHmm.\");"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (NullPointerException e) {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! The description/date of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Error in writing to file.\");"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throw new DukeException(\"Unknown error\");"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private void MarkDone(String description, TaskList tasks, Ui ui, Storage storage)"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throws DukeException {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            int item \u003d Parser.convertInt(description);"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            tasks.markDone(item-1);"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            storage.write(tasks);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            ui.showDone(tasks.getDescription(item-1));"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (NullPointerException | NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! Please enter an item number.\");"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! Item not found.\");"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Error. File not found.\");"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throw new DukeException(\"Unknown error\");"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    private void DeleteTask(String description, TaskList tasks, Ui ui, Storage storage)"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throws DukeException {"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            int item \u003d Parser.convertInt(description)-1;"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            String task \u003d tasks.get(item);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            tasks.removeTask(item);"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            storage.write(tasks);"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            ui.showDelete(task, tasks.getSize());"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (NullPointerException | NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! Please enter an item number.\");"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    OOPS!!! Item not found.\");"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    Error. File not found.\");"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 130,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throw new DukeException(\"Unknown error\");"
+      },
+      {
+        "lineNumber": 131,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 132,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 133,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 134,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 135,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        return isExit;"
+      },
+      {
+        "lineNumber": 136,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 137,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "limryan": 137
+    }
+  },
+  {
     "path": "src/main/java/Deadline.java",
     "fileType": "java",
     "lines": [
@@ -220,1060 +1188,290 @@
         "author": {
           "gitId": "limryan"
         },
-        "content": "import javax.swing.*;"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.io.*;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.time.DateTimeException;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.time.LocalDateTime;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.time.format.DateTimeFormatter;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.time.format.DateTimeParseException;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.util.Scanner;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "import java.util.StringTokenizer;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "limryan"
-        },
         "content": ""
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 3,
         "author": {
           "gitId": "-"
         },
         "content": "public class Duke {"
       },
       {
-        "lineNumber": 12,
+        "lineNumber": 4,
         "author": {
           "gitId": "limryan"
         },
         "content": "    private Ui ui;"
       },
       {
-        "lineNumber": 13,
+        "lineNumber": 5,
         "author": {
           "gitId": "limryan"
         },
         "content": "    private Storage storage;"
       },
       {
-        "lineNumber": 14,
+        "lineNumber": 6,
         "author": {
           "gitId": "limryan"
         },
         "content": "    private TaskList tasks;"
       },
       {
-        "lineNumber": 15,
+        "lineNumber": 7,
         "author": {
           "gitId": "limryan"
         },
         "content": ""
       },
       {
-        "lineNumber": 16,
+        "lineNumber": 8,
         "author": {
           "gitId": "-"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 9,
         "author": {
           "gitId": "limryan"
         },
         "content": "        new Duke(\"C:\\\\Users\\\\ryana\\\\Desktop\\\\2113_Project\\\\data\\\\duke.txt\").run();"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 10,
         "author": {
-          "gitId": "limryan"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 11,
         "author": {
           "gitId": "limryan"
         },
         "content": ""
       },
       {
-        "lineNumber": 20,
+        "lineNumber": 12,
         "author": {
           "gitId": "limryan"
         },
         "content": "    public Duke (String filePath) {"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 13,
         "author": {
           "gitId": "limryan"
         },
         "content": "        ui \u003d new Ui();"
       },
       {
-        "lineNumber": 22,
+        "lineNumber": 14,
         "author": {
           "gitId": "limryan"
         },
         "content": "        storage \u003d new Storage(filePath);"
       },
       {
-        "lineNumber": 23,
+        "lineNumber": 15,
         "author": {
           "gitId": "limryan"
         },
         "content": "        try {"
       },
       {
-        "lineNumber": 24,
+        "lineNumber": 16,
         "author": {
           "gitId": "limryan"
         },
         "content": "            tasks \u003d new TaskList(storage.load());"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 17,
         "author": {
           "gitId": "limryan"
         },
         "content": "        } catch (IOException e) {"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 18,
         "author": {
           "gitId": "limryan"
         },
         "content": "            e.printStackTrace();"
       },
       {
-        "lineNumber": 27,
+        "lineNumber": 19,
         "author": {
           "gitId": "limryan"
         },
         "content": "            tasks \u003d new TaskList();"
       },
       {
-        "lineNumber": 28,
+        "lineNumber": 20,
         "author": {
           "gitId": "limryan"
         },
         "content": "        }"
       },
       {
-        "lineNumber": 29,
+        "lineNumber": 21,
         "author": {
           "gitId": "limryan"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 30,
+        "lineNumber": 22,
         "author": {
           "gitId": "limryan"
         },
         "content": ""
       },
       {
-        "lineNumber": 31,
+        "lineNumber": 23,
         "author": {
           "gitId": "limryan"
         },
         "content": "    private void run() {"
       },
       {
-        "lineNumber": 32,
+        "lineNumber": 24,
         "author": {
           "gitId": "limryan"
         },
         "content": "        ui.showWelcome();"
       },
       {
-        "lineNumber": 33,
+        "lineNumber": 25,
         "author": {
           "gitId": "limryan"
         },
         "content": "        ui.showLine();"
       },
       {
-        "lineNumber": 34,
+        "lineNumber": 26,
         "author": {
           "gitId": "limryan"
         },
         "content": "        boolean isExit \u003d false;"
       },
       {
-        "lineNumber": 35,
+        "lineNumber": 27,
         "author": {
           "gitId": "limryan"
         },
         "content": ""
       },
       {
-        "lineNumber": 36,
+        "lineNumber": 28,
         "author": {
           "gitId": "limryan"
         },
         "content": "        while (!isExit) {"
       },
       {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                String fullCommand \u003d ui.read();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                ui.showLine();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                Command command \u003d Parser.parse(fullCommand);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                command.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                isExit \u003d command.isExit();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "                System.out.println(e.getMessage());"
+      },
+      {
         "lineNumber": 37,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            String fullCommand \u003d ui.read();"
+        "content": "            } finally {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            StringTokenizer tokenizer \u003d new StringTokenizer(fullCommand);"
+        "content": "                ui.showLine();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            String command \u003d tokenizer.nextToken();"
+        "content": "            }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            String description \u003d null;"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            String date \u003d null;"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            if (tokenizer.hasMoreTokens()) description \u003d tokenizer.nextToken(\"/\\n\");"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            if (tokenizer.hasMoreTokens()) date \u003d tokenizer.nextToken(\"\\n\");"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showLine();"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            switch (command) {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"bye\":"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    isExit \u003d true;"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    System.out.println(\"    Bye. Hope to see you again soon!\");"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"list\":"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    ui.showList(tasks);"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"todo\":"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    CreateTodo(description);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"deadline\":"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    CreateDeadline(description, date);"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"event\":"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    CreateEvent(description, date);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"done\":"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    MarkDone(description);"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"delete\":"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    DeleteTask(description);"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                case \"find\":"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    ui.showFind(tasks.find(description));"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                default:"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "                    System.out.println(\"    OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showLine();"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    private void CreateTodo(String description) {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            tasks.addTodo(description.trim());"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            storage.write(tasks);"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showCreateTask(tasks.get(Task.totalItems-1), Task.totalItems);"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (NullPointerException e) {"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Error in writing to file.\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    private void CreateDeadline(String description, String date) {"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            LocalDateTime dateTime \u003d Parser.convertDate(date.substring(4));"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            tasks.addDeadline(description, dateTime);"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            storage.write(tasks);"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showCreateTask(tasks.get(Task.totalItems - 1), Task.totalItems);"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (DateTimeException e) {"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Please enter date and time in the format: dd/mm/yyyy HHmm.\");"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (NullPointerException e) {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! The description/date of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Error in writing to file.\");"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    private void CreateEvent(String description, String date) {"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            LocalDateTime dateTime \u003d Parser.convertDate(date.substring(4));"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            tasks.addEvent(description, dateTime);"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            storage.write(tasks);"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showCreateTask(tasks.get(Task.totalItems - 1), Task.totalItems);"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (DateTimeException e) {"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Please enter date \u0026 time in the format: dd/mm/yyyy HHmm.\");"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (NullPointerException e) {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! The description/date of an event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Error in writing to file.\");"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    private void MarkDone(String description) {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            int item \u003d Parser.convertInt(description);"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            tasks.markDone(item-1);"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            storage.write(tasks);"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showDone(tasks.getDescription(item-1));"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (NullPointerException | NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! Please enter an item number.\");"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! Item not found.\");"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Error. File not found.\");"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    private void DeleteTask(String description) {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            int item \u003d Parser.convertInt(description);"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            String task \u003d tasks.get(item-1);"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            tasks.removeTask(item-1);"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            Task.totalItems--;"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            storage.write(tasks);"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            ui.showDelete(task, tasks.getSize());"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (NullPointerException | NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! Please enter an item number.\");"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    OOPS!!! Item not found.\");"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "            System.out.println(\"    Error. File not found.\");"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "limryan"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 152,
         "author": {
           "gitId": "-"
         },
@@ -1281,8 +1479,8 @@
       }
     ],
     "authorContributionMap": {
-      "limryan": 149,
-      "-": 3
+      "limryan": 38,
+      "-": 4
     }
   },
   {
@@ -1294,14 +1492,14 @@
         "author": {
           "gitId": "limryan"
         },
-        "content": "public class DukeException  extends Exception{"
+        "content": "public class DukeException extends Exception{"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public DukeException(String errorMessage){"
+        "content": "    public DukeException(String errorMessage) {"
       },
       {
         "lineNumber": 3,
@@ -1536,101 +1734,206 @@
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.time.DateTimeException;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import java.time.format.DateTimeFormatter;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.time.format.DateTimeFormatter;"
+        "content": "import java.util.NoSuchElementException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "import java.util.StringTokenizer;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "limryan"
         },
-        "content": "public class Parser {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "public class Parser {"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public static LocalDateTime convertDate(String string) {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\");"
+        "content": "    public static Command parse(String string) throws DukeException {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return LocalDateTime.parse(string.trim(), formatter);"
+        "content": "        try {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "            StringTokenizer tokenizer \u003d new StringTokenizer(string);"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "            String type \u003d tokenizer.nextToken();"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public static int convertInt(String string) throws NumberFormatException{"
+        "content": "            String description \u003d null;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return Integer.parseInt(string.trim());"
+        "content": "            String date \u003d null;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "            if (tokenizer.hasMoreTokens()) description \u003d tokenizer.nextToken(\"/\\n\");"
       },
       {
         "lineNumber": 15,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            if (tokenizer.hasMoreTokens()) date \u003d tokenizer.nextToken(\"\\n\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            return new Command(type, description, date);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        } catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            throw new DukeException(\"    Please key in a command.\");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public static LocalDateTime convertDate(String string) throws NumberFormatException{"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        return LocalDateTime.parse(string.trim(), formatter);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public static int convertInt(String string) throws NumberFormatException{"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        return Integer.parseInt(string.trim());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 30,
         "author": {
           "gitId": "limryan"
         },
@@ -1638,7 +1941,7 @@
       }
     ],
     "authorContributionMap": {
-      "limryan": 15
+      "limryan": 30
     }
   },
   {
@@ -2312,406 +2615,406 @@
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.lang.reflect.Array;"
+        "content": "import java.time.LocalDateTime;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.util.ArrayList;"
+        "content": ""
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "public class TaskList {"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "limryan"
         },
-        "content": "public class TaskList {"
+        "content": ""
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    private ArrayList\u003cTask\u003e taskList;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    private ArrayList\u003cTask\u003e taskList;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public TaskList() {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public TaskList() {"
+        "content": "        this.taskList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        this.taskList \u003d new ArrayList\u003c\u003e();"
+        "content": "    }"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public TaskList(ArrayList\u003cTask\u003e taskList) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public TaskList(ArrayList\u003cTask\u003e taskList) {"
+        "content": "        this.taskList \u003d taskList;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        this.taskList \u003d taskList;"
+        "content": "    }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public String get(int itemNumber) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public String get(int itemNumber) {"
+        "content": "        return taskList.get(itemNumber).toString();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return taskList.get(itemNumber).toString();"
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public int getSize() {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public int getSize() {"
+        "content": "        return taskList.size();"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return taskList.size();"
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public String getType(int itemNumber) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public String getType(int itemNumber) {"
+        "content": "        return taskList.get(itemNumber).getType();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return taskList.get(itemNumber).getType();"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public String getStatusIcon(int itemNumber) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public String getStatusIcon(int itemNumber) {"
+        "content": "        return taskList.get(itemNumber).getStatusIcon();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return taskList.get(itemNumber).getStatusIcon();"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public String getDescription(int itemNumber) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public String getDescription(int itemNumber) {"
+        "content": "        return taskList.get(itemNumber).description;"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return taskList.get(itemNumber).description;"
+        "content": "    }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public String getDate(int itemNumber) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public String getDate(int itemNumber) {"
+        "content": "        return taskList.get(itemNumber).date();"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return taskList.get(itemNumber).date();"
+        "content": "    }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public ArrayList\u003cString\u003e find(String keyword) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public ArrayList\u003cString\u003e find(String keyword) {"
+        "content": "        int j \u003d 1;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        int j \u003d 1;"
+        "content": "        ArrayList\u003cString\u003e results \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        ArrayList\u003cString\u003e results \u003d new ArrayList\u003c\u003e();"
+        "content": "        for (Task task : taskList) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        for (Task task : taskList) {"
+        "content": "            if (task.description.contains(keyword.trim())) {"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            if (task.description.contains(keyword.trim())) {"
+        "content": "                results.add(j + \". \" + task.toString());"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                results.add(j + \". \" + task.toString());"
+        "content": "                j++;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                j++;"
+        "content": "            }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        }"
+        "content": "        return results;"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return results;"
+        "content": "    }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public void markDone(int itemNumber) {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void markDone(int itemNumber) {"
+        "content": "        taskList.get(itemNumber).markAsDone();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        taskList.get(itemNumber).markAsDone();"
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    public void removeTask(int itemNumber) {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void removeTask(int itemNumber) {"
+        "content": "        taskList.remove(itemNumber);"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        taskList.remove(itemNumber);"
+        "content": "        Task.totalItems--;"
       },
       {
         "lineNumber": 59,
@@ -2918,395 +3221,444 @@
         "author": {
           "gitId": "limryan"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.util.NoSuchElementException;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "limryan"
         },
-        "content": "public class Ui {"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "public class Ui {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showWelcome() {"
+        "content": "    private Scanner scanner;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": "//    private PrintStream printer;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "    public Ui() {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "        this.scanner \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "//        this.printer \u003d  new PrintStream(System.out, true, StandardCharsets.UTF_8);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+        "content": "    }"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"What can I do for you?\");"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "    public void showWelcome() {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "        String logo \u003d \" ____        _        \\n\""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showLine() {"
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"________________________________________\");"
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showCreateTask(String task, int totalItems) {"
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"    Got it. I\u0027ve added this task:\\n\" + \"      \""
+        "content": "        System.out.println(\"What can I do for you?\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                + task + \"\\n\""
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                + \"    Now you have \" + totalItems + \" task(s) in the list.\");"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "    public void showLine() {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "        System.out.println(\"________________________________________\");"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showList(TaskList tasks) {"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"    Here are the tasks in your list:\");"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        for (int i \u003d 0; i \u003c Task.totalItems; i++) {"
+        "content": "    public void showCreateTask(String task, int totalItems) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            System.out.println(\"    \" + (i+1) + \". \" + tasks.get(i));"
+        "content": "        System.out.println(\"    Got it. I\u0027ve added this task:\\n\" + \"      \""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        }"
+        "content": "                + task + \"\\n\""
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "                + \"    Now you have \" + totalItems + \" task(s) in the list.\");"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showDelete(String task, int totalItems) {"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"    Noted. I\u0027ve removed this task:\\n\" + \"    \" + task);"
+        "content": "    public void showList(TaskList tasks) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"    Now you have \" + totalItems + \" item(s) in your list.\");"
+        "content": "        System.out.println(\"    Here are the tasks in your list:\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "        for (int i \u003d 0; i \u003c Task.totalItems; i++) {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "            System.out.println(\"    \" + (i+1) + \". \" + tasks.get(i));"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showDone(String task) {"
+        "content": "        }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"    Nice! I\u0027ve marked this task as done:\");"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        System.out.println(\"      [\\u2713] \" + task);"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "    public void showDelete(String task, int totalItems) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "        System.out.println(\"    Noted. I\u0027ve removed this task:\\n\" + \"    \" + task);"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public void showFind(ArrayList\u003cString\u003e results) {"
+        "content": "        System.out.println(\"    Now you have \" + totalItems + \" item(s) in your list.\");"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        try {"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            System.out.println(\"    Here are the matching tasks in your list:\");"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            for (String string : results) {"
+        "content": "    public void showDone(String task) {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "limryan"
         },
-        "content": "                System.out.println(string);"
+        "content": "        System.out.println(\"    Nice! I\u0027ve marked this task as done:\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            }"
+        "content": "        System.out.println(\"      [\\u2713] \" + task);"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        } catch (NullPointerException e) {"
+        "content": "    }"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "limryan"
         },
-        "content": "            System.out.println(\"    No results found. Try another keyword.\");"
+        "content": ""
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        }"
+        "content": "    public void showFind(ArrayList\u003cString\u003e results) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "limryan"
         },
-        "content": ""
+        "content": "            System.out.println(\"    Here are the matching tasks in your list:\");"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    public String read() {"
+        "content": "            for (String string : results) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        Scanner scanner \u003d new Scanner(System.in);"
+        "content": "                System.out.println(\"    \" + string);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "limryan"
         },
-        "content": "        return scanner.nextLine();"
+        "content": "            }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "limryan"
         },
-        "content": "    }"
+        "content": "        } catch (NullPointerException e) {"
       },
       {
         "lineNumber": 58,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            System.out.println(\"    No results found. Try another keyword.\");"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    public String read() {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "            return scanner.nextLine();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "limryan"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
         "author": {
           "gitId": "limryan"
         },
@@ -3314,7 +3666,7 @@
       }
     ],
     "authorContributionMap": {
-      "limryan": 58
+      "limryan": 65
     }
   }
 ]

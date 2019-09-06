@@ -197,7 +197,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    mainClassName \u003d \"Duke\""
+        "content": "    mainClassName \u003d \"Duke.Duke\""
       },
       {
         "lineNumber": 29,
@@ -269,7 +269,7 @@
     }
   },
   {
-    "path": "src/main/java/Command.java",
+    "path": "src/main/java/Duke/Commands/AddCommand.java",
     "fileType": "java",
     "lines": [
       {
@@ -277,7 +277,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "package Duke.Commands;"
       },
       {
         "lineNumber": 2,
@@ -291,2251 +291,1720 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "class Command {"
+        "content": "import Duke.DukeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    CmdType type;"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    String input;"
+        "content": "import Duke.Storage;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "import Duke.TaskList;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    enum CmdType {"
+        "content": "import Duke.Ui;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        EXIT, LIST, FIND, DONE, DELETE, TODO, DEADLINE, EVENT"
+        "content": "import Duke.Parser;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "public class AddCommand extends Command {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    Command () {"
+        "content": "    public AddCommand(CmdType cmdType, String str) throws DukeException {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        type \u003d CmdType.EXIT;"
+        "content": "        input \u003d str;"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        input \u003d \"\";"
+        "content": "        if (cmdType \u003d\u003d CmdType.TODO) {"
       },
       {
         "lineNumber": 14,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        switch (this.type) {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case EXIT:"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                ui.showMessage(\"\\nBye. Hope to see you again soon!\\n\");"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case LIST:"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                int idx \u003d 1;"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                if (tasks.data.size() \u003e 0) {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    System.out.println(\"Here are the tasks in your list:\");"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    for (Task task : tasks.data) {"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        System.out.print(\"    \" + idx++ + \".\");"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        String before \u003d task.toString().substring(0, 3);"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        String after \u003d task.toString().substring(3);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        System.out.print(before);"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        System.out.print(\"[\" + task.getStatusIcon() + \"] \");"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        System.out.print(after + \"\\n\");"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } else {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    ui.showError(\"Empty List!\");"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case FIND:"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                input \u003d input.substring(5);"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                if (tasks.data.size() \u003e 0) {"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    System.out.println(\"Here are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    for (int i \u003d 0; i \u003c tasks.data.size(); ++i) {"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        if (tasks.data.get(i).toString().contains(input)) {"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            int temp \u003d i + 1;"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.print(temp + \".\");"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.print(tasks.data.get(i).toString().substring(0,3));"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.print(\"[\" + tasks.data.get(i).getStatusIcon() + \"] \");"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.println(tasks.data.get(i).toString().substring(3));"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } else {"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    ui.showError(\"Empty List! Nothing to find.\");"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case DONE:"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                input \u003d input.substring(5);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    int num \u003d Integer.parseInt(input);"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    --num;"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    boolean isInsideData \u003d false;"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    for (int i \u003d 0; i \u003c tasks.data.size(); ++i) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        if (i \u003d\u003d num) {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            if (tasks.data.get(i).isDone) {"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                                System.out.println(tasks.data.get(i).toString().substring(3) + \" is already done!\");"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                                isInsideData \u003d true;"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                                continue;"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            tasks.data.get(i).markAsDone();"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            storage.write(tasks.data);"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.println(\"Nice! I\u0027ve marked this task as done: \");"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.println(\"    [✓] \" + tasks.data.get(i).toString().substring(3));"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            isInsideData \u003d true;"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            break;"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    if (!isInsideData) {"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        ui.showError(\"Task number is out of bounds! [Done]\");"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } catch (NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    throw new DukeException(\"Not a valid Task Number!\");"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case DELETE:"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                input \u003d input.substring(7);"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    int num \u003d Integer.parseInt(input);"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    --num;"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    for (int i \u003d 0; i \u003c tasks.data.size(); ++i) {"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        if (i \u003d\u003d num) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.println(\"Noted. I\u0027ve removed this task: \");"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.print(\"  \" + tasks.data.get(i).toString().substring(0, 3));"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.print(\"[\" + tasks.data.get(i).getStatusIcon() + \"] \");"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.println(tasks.data.get(i).toString().substring(3));"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            tasks.data.remove(i);"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            storage.write(tasks.data);"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            System.out.println(\"Now you have \" + tasks.data.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                            break;"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                } catch (NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                    throw new DukeException(\"Task number is out of bounds or invalid! [Delete]\");"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case TODO:"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                runTodo(tasks.data, input, 0);"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                storage.write(tasks.data);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case DEADLINE:"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                runDeadline(tasks.data, input, 0);"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                storage.write(tasks.data);"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            case EVENT:"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                runEvent(tasks.data, input, 0);"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                storage.write(tasks.data);"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            default:"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                throw new DukeException(\"Invalid Command Type\");"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    boolean isExit() {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return this.type \u003d\u003d CmdType.EXIT;"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    static void runTodo(ArrayList\u003cTask\u003e data, String input, int state) {"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        input \u003d input.substring(5);"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        Task tempTask \u003d new ToDo(input);"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (state \u003d\u003d 2)"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            tempTask.markAsDone();"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        data.add(tempTask);"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (state \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"Got it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"    [T][\" + tempTask.getStatusIcon() + \"] \" + input);"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"Now you have \" + data.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    static void runDeadline(ArrayList\u003cTask\u003e data, String input, int state) {"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        input \u003d input.substring(9);"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        int startOfBy \u003d input.indexOf(\"/\");"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        String tt1 \u003d input.substring(0, startOfBy - 1);"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        String tt2 \u003d input.substring(startOfBy + 4);"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        Task tempTask \u003d new Deadline(tt1, tt2);"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (state \u003d\u003d 2)"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            tempTask.markAsDone();"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        data.add(tempTask);"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (state \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"Got it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"    [D][\" + tempTask.getStatusIcon() + \"] \" + tt1 + \" (by: \" + tt2 + \")\");"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"Now you have \" + data.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    static void runEvent(ArrayList\u003cTask\u003e data, String input, int state) {"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        input \u003d input.substring(6);"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        int startOfAt \u003d input.indexOf(\"/\");"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        String tt1 \u003d input.substring(0, startOfAt - 1);"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        String tt2 \u003d input.substring(startOfAt + 4);"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        Task tempTask \u003d new Event(tt1, tt2);"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (state \u003d\u003d 2)"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            tempTask.markAsDone();"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        data.add(tempTask);"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (state \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"Got it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"    [E][\" + tempTask.getStatusIcon() + \"] \" + tt1 + \" (at: \" + tt2 + \")\");"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            System.out.println(\"Now you have \" + data.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "RusdiHaizim": 167
-    }
-  },
-  {
-    "path": "src/main/java/Deadline.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "import java.text.ParseException;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "import java.text.SimpleDateFormat;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "import java.util.Date;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "public class Deadline extends Task {"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private String by;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private Date dateNow;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    Deadline(String description, String by) {"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        super(description);"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        this.by \u003d by;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        sdf.setLenient(false);"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            dateNow \u003d sdf.parse(by);"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            //throw new DukeException(\"Task does not have dd/MM/yyyy HHmm date-time format!\");"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return \"[D]\" + this.description + \" (by: \" + by + \")\";"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String getDateTime() {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return dateNow.toString();"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String getExtra() {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return this.by;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "RusdiHaizim": 37
-    }
-  },
-  {
-    "path": "src/main/java/Duke.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "public class Duke {"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private static Ui ui;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private static Storage storage;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private static TaskList tasks;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private Duke(String filePath) {"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        ui \u003d new Ui();"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            storage \u003d new Storage(filePath);"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            tasks \u003d new TaskList(storage.load());"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } catch (DukeException e) {"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            ui.showLoadingError();"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            tasks \u003d new TaskList();"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private void run() {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        ui.showWelcome();"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        boolean isExit \u003d false;"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        while (!isExit) {"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                String fullCommand \u003d ui.readCommand();"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                ui.showLine();"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                Command c \u003d Parser.parse(fullCommand);"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                c.execute(tasks, ui, storage);"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                isExit \u003d c.isExit();"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            } catch (DukeException e) {"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                ui.showError(e.getMessage());"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            } finally {"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "                ui.showLine();"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "     * Program starts here."
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public static void main(String[] args) {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        new Duke(\"./data/saved_data.txt\").run();"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "RusdiHaizim": 40,
-      "-": 2
-    }
-  },
-  {
-    "path": "src/main/java/DukeException.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "public class DukeException extends Exception {"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public DukeException(String message) {"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        super(message);"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "RusdiHaizim": 5
-    }
-  },
-  {
-    "path": "src/main/java/Event.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "import java.text.ParseException;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "import java.text.SimpleDateFormat;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "import java.util.Date;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "public class Event extends Task {"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private String at;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    private Date dateNow;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    Event(String description, String at) {"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        super(description);"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        this.at \u003d at;"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        sdf.setLenient(false);"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            dateNow \u003d sdf.parse(at);"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } catch (ParseException e) {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            //throw new DukeException(\"Task does not have dd/MM/yyyy HHmm date-time format!\");"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return \"[E]\" + this.description + \" (at: \" + at + \")\";"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String getDateTime() {"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return dateNow.toString();"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String getExtra() {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return this.at;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "RusdiHaizim": 36
-    }
-  },
-  {
-    "path": "src/main/java/Parser.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "class Parser {"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    static Command parse(String input) throws DukeException {"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        Command command \u003d new Command();"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        command.input \u003d input;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        if (input.equals(\"bye\")) {"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.EXIT;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.equals(\"list\")) {"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.LIST;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.length() \u003e 4 \u0026\u0026 input.substring(0, 4).equals(\"find\")) {"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.FIND;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.length() \u003e 4 \u0026\u0026 input.substring(0, 4).equals(\"done\")) {"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.DONE;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.length() \u003e 6 \u0026\u0026 input.substring(0,6).equals(\"delete\")) {"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.DELETE;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.length() \u003e\u003d 4 \u0026\u0026 input.substring(0, 4).equals(\"todo\")){"
-      },
-      {
-        "lineNumber": 16,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "            if (input.length() \u003d\u003d 4)"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 15,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "                throw new DukeException(\"     ☹ OOPS!!! The description of a todo cannot be empty.\");"
       },
       {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            type \u003d cmdType;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (cmdType \u003d\u003d CmdType.EVENT) {"
+      },
+      {
         "lineNumber": 18,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.TODO;"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.length() \u003e\u003d 5 \u0026\u0026 input.substring(0, 5).equals(\"event\")) {"
-      },
-      {
-        "lineNumber": 20,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "            if (input.length() \u003d\u003d 5)"
       },
       {
-        "lineNumber": 21,
+        "lineNumber": 19,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "                throw new DukeException(\"     ☹ OOPS!!! The description of a event cannot be empty.\");"
       },
       {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            type \u003d cmdType;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (cmdType \u003d\u003d CmdType.DEADLINE) {"
+      },
+      {
         "lineNumber": 22,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            command.type \u003d Command.CmdType.EVENT;"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else if (input.length() \u003e\u003d 8 \u0026\u0026 input.substring(0, 8).equals(\"deadline\")) {"
-      },
-      {
-        "lineNumber": 24,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "            if (input.length() \u003d\u003d 8)"
       },
       {
-        "lineNumber": 25,
+        "lineNumber": 23,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "                throw new DukeException(\"     ☹ OOPS!!! The description of a deadline cannot be empty.\");"
       },
       {
-        "lineNumber": 26,
+        "lineNumber": 24,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            command.type \u003d Command.CmdType.DEADLINE;"
+        "content": "            type \u003d cmdType;"
       },
       {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "            throw new DukeException(\"     ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-( || Unknown COMMAND TYPE\");"
-      },
-      {
-        "lineNumber": 29,
+        "lineNumber": 25,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "        }"
       },
       {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
         "lineNumber": 30,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        return command;"
+        "content": "        switch (type) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            case TODO:"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showMessage(Parser.runTodo(tasks.data, input, 0));"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                storage.write(tasks.data);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            case DEADLINE:"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showMessage(Parser.runDeadline(tasks.data, input, 0));"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                storage.write(tasks.data);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            case EVENT:"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showMessage(Parser.runEvent(tasks.data, input, 0));"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                storage.write(tasks.data);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                throw new DukeException(\"     [Unknown COMMAND TYPE]\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 47
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Commands/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public CmdType type;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String input;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public enum CmdType {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        EXIT, LIST, FIND, DONE, DELETE, TODO, DEADLINE, EVENT"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return this.type \u003d\u003d CmdType.EXIT;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 21
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Commands/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public DeleteCommand (String str) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        type \u003d CmdType.DELETE;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d str;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d input.substring(7);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            int num \u003d Integer.parseInt(input);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            --num;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            boolean isWithinData \u003d false;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            for (int i \u003d 0; i \u003c tasks.data.size(); ++i) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                if (i \u003d\u003d num) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    String stringBuilder \u003d \"Noted. I\u0027ve removed this task: \" + \"\\n\" +"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                            \"  \" + tasks.data.get(i).toString().substring(0, 3) +"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                            \"[\" + tasks.data.get(i).getStatusIcon() + \"] \" +"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                            tasks.data.get(i).toString().substring(3);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    tasks.data.remove(i);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    storage.write(tasks.data);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    ui.showMessage(stringBuilder);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    ui.showMessage(\"Now you have \" + tasks.data.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    isWithinData \u003d true;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            if (!isWithinData) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                throw new DukeException(\"Task number is out of bounds [Delete]\");"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            throw new DukeException(\"Task number is invalid! [Delete]\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 42
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Commands/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public DoneCommand(String str) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        type \u003d CmdType.DONE;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d str;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d input.substring(5);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            int num \u003d Integer.parseInt(input);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            --num;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            boolean isInsideData \u003d false;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            for (int i \u003d 0; i \u003c tasks.data.size(); ++i) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                if (i \u003d\u003d num) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    if (tasks.data.get(i).isDone()) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                        ui.showMessage(tasks.data.get(i).toString().substring(3) + \" is already done!\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                        isInsideData \u003d true;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                        continue;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    tasks.data.get(i).markAsDone();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    storage.write(tasks.data);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    ui.showMessage(\"Nice! I\u0027ve marked this task as done: \");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    ui.showMessage(\"    [✓] \" + tasks.data.get(i).toString().substring(3));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    isInsideData \u003d true;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            if (!isInsideData) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showError(\"Task number is out of bounds! [Done]\");"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            throw new DukeException(\"Not a valid Task Number!\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 43
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Commands/ExitCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class ExitCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public ExitCommand() {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        type \u003d CmdType.EXIT;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        ui.showMessage(\"\\nBye. Hope to see you again soon!\\n\");"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 16
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Commands/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public FindCommand (String str) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        type \u003d CmdType.FIND;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d str;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d input.substring(5);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (tasks.data.size() \u003e 0) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            boolean isInside \u003d false;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            boolean isStarting \u003d true;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            for (int i \u003d 0; i \u003c tasks.data.size(); ++i) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                if (tasks.data.get(i).toString().contains(input)) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    if (isStarting) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                        isStarting \u003d false;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                        ui.showMessage(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    int temp \u003d i + 1;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    String stringBuilder \u003d temp + \".\" +"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                            tasks.data.get(i).toString().substring(0, 3) +"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                            \"[\" + tasks.data.get(i).getStatusIcon() + \"] \" +"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                            tasks.data.get(i).toString().substring(3);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    ui.showMessage(stringBuilder);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                    isInside \u003d true;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            if (!isInside) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showError(\"Keyword not in List\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            ui.showError(\"Empty List!\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 41
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Commands/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Commands;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.TaskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Tasks.Task;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public ListCommand() {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        type \u003d CmdType.LIST;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        int idx \u003d 1;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (tasks.data.size() \u003e 0) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            ui.showMessage(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            for (Task task : tasks.data) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                StringBuilder stringBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                stringBuilder.append(\"    \").append(idx++).append(\".\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                String before \u003d task.toString().substring(0, 3);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                String after \u003d task.toString().substring(3);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                stringBuilder.append(before);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                stringBuilder.append(\"[\").append(task.getStatusIcon()).append(\"] \");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                stringBuilder.append(after);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showMessage(stringBuilder.toString());"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            ui.showError(\"Empty List!\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 31,
@@ -2557,7 +2026,7 @@
     }
   },
   {
-    "path": "src/main/java/Storage.java",
+    "path": "src/main/java/Duke/Duke.java",
     "fileType": "java",
     "lines": [
       {
@@ -2565,21 +2034,994 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "import java.io.*;"
+        "content": "package Duke;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "import java.util.ArrayList;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "import java.util.StringTokenizer;"
+        "content": "import Duke.Commands.Command;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private static Ui ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private static Storage storage;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private static TaskList tasks;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private Duke(String filePath) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            storage \u003d new Storage(filePath);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            tasks \u003d new TaskList(storage.load());"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            ui.showLoadingError();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            tasks \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private void run() {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        ui.showWelcome();"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        boolean isExit \u003d false;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        while (!isExit) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                String fullCommand \u003d ui.readCommand();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showLine();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                c.execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                isExit \u003d c.isExit();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showError(e.getMessage());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            } finally {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "                ui.showLine();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "     * Program starts here."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        new Duke(\"./data/saved_data.txt\").run();"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 44,
+      "-": 2
+    }
+  },
+  {
+    "path": "src/main/java/Duke/DukeException.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class DukeException extends Exception {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public DukeException(String message) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        super(message);"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 7
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Commands.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Tasks.Deadline;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Tasks.Event;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Tasks.Task;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Tasks.ToDo;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class Parser{"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public static Command parse(String input) throws DukeException {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (input.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new ExitCommand();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new ListCommand();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.length() \u003e 4 \u0026\u0026 input.substring(0, 4).equals(\"find\")) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new FindCommand(input);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.length() \u003e 4 \u0026\u0026 input.substring(0, 4).equals(\"done\")) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new DoneCommand(input);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.length() \u003e 6 \u0026\u0026 input.substring(0,6).equals(\"delete\")) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new DeleteCommand(input);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.length() \u003e\u003d 4 \u0026\u0026 input.substring(0, 4).equals(\"todo\")) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new AddCommand(Command.CmdType.TODO, input);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.length() \u003e\u003d 5 \u0026\u0026 input.substring(0, 5).equals(\"event\")) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new AddCommand(Command.CmdType.EVENT, input);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else if (input.length() \u003e\u003d 8 \u0026\u0026 input.substring(0, 8).equals(\"deadline\")) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            return new AddCommand(Command.CmdType.DEADLINE, input);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            throw new DukeException(\"     ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-( [Unknown COMMAND TYPE]\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public static String runTodo(ArrayList\u003cTask\u003e data, String input, int state) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d input.substring(5);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        Task tempTask \u003d new ToDo(input);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (state \u003d\u003d 2)"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            tempTask.markAsDone();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        data.add(tempTask);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (state \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"Got it. I\u0027ve added this task: \").append(\"\\n\");"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"    [T][\").append(tempTask.getStatusIcon()).append(\"] \").append(input).append(\"\\n\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"Now you have \").append(data.size()).append(\" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return stringBuilder.toString();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public static String runDeadline(ArrayList\u003cTask\u003e data, String input, int state) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d input.substring(9);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        int startOfBy \u003d input.indexOf(\"/\");"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        String tt1 \u003d input.substring(0, startOfBy - 1);"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        String tt2 \u003d input.substring(startOfBy + 4);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        Task tempTask \u003d new Deadline(tt1, tt2);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (state \u003d\u003d 2)"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            tempTask.markAsDone();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        data.add(tempTask);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (state \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"Got it. I\u0027ve added this task: \").append(\"\\n\");"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"    [D][\").append(tempTask.getStatusIcon()).append(\"] \").append(tt1).append(\" (by: \").append(tt2).append(\")\").append(\"\\n\");"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"Now you have \").append(data.size()).append(\" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return stringBuilder.toString();"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public static String runEvent(ArrayList\u003cTask\u003e data, String input, int state) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        StringBuilder stringBuilder \u003d new StringBuilder();"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        input \u003d input.substring(6);"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        int startOfAt \u003d input.indexOf(\"/\");"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        String tt1 \u003d input.substring(0, startOfAt - 1);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        String tt2 \u003d input.substring(startOfAt + 4);"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        Task tempTask \u003d new Event(tt1, tt2);"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (state \u003d\u003d 2)"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            tempTask.markAsDone();"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        data.add(tempTask);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        if (state \u003d\u003d 0) {"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"Got it. I\u0027ve added this task: \").append(\"\\n\");"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"    [E][\").append(tempTask.getStatusIcon()).append(\"] \").append(tt1).append(\" (at: \").append(tt2).append(\")\").append(\"\\n\");"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            stringBuilder.append(\"Now you have \").append(data.size()).append(\" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return stringBuilder.toString();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 82
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import Duke.Tasks.Task;"
       },
       {
         "lineNumber": 4,
@@ -2593,182 +3035,182 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "class Storage {"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    private static ArrayList\u003cTask\u003e data \u003d new ArrayList\u003c\u003e();"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "import java.util.StringTokenizer;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    Storage (String filepath) throws DukeException {"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        try {"
+        "content": "public class Storage {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            BufferedReader reader \u003d new BufferedReader(new FileReader(filepath));"
+        "content": "    private static ArrayList\u003cTask\u003e data \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            String line;"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            while ((line \u003d reader.readLine()) !\u003d null) {"
+        "content": "    public Storage (String filepath) throws DukeException {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                StringTokenizer stringTokenizer \u003d new StringTokenizer(line, \"|\");"
+        "content": "        try {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                int count \u003d 1;"
+        "content": "            BufferedReader reader \u003d new BufferedReader(new FileReader(filepath));"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                StringBuilder finalOutput \u003d new StringBuilder();"
+        "content": "            String line;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                String currStr;"
+        "content": "            while ((line \u003d reader.readLine()) !\u003d null) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                boolean isChecked \u003d false;"
+        "content": "                StringTokenizer stringTokenizer \u003d new StringTokenizer(line, \"|\");"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                int cmdState \u003d 0;"
+        "content": "                int count \u003d 1;"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "                StringBuilder finalOutput \u003d new StringBuilder();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                while (stringTokenizer.hasMoreTokens()) {"
+        "content": "                String currStr;"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    currStr \u003d stringTokenizer.nextToken();"
+        "content": "                boolean isChecked \u003d false;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    if (count \u003d\u003d 1) {"
+        "content": "                int cmdState \u003d 0;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        switch (currStr) {"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            case \"T\":"
+        "content": "                while (stringTokenizer.hasMoreTokens()) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                finalOutput \u003d new StringBuilder(\"todo \");"
+        "content": "                    currStr \u003d stringTokenizer.nextToken();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                cmdState \u003d 1;"
+        "content": "                    if (count \u003d\u003d 1) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                break;"
+        "content": "                        switch (currStr) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            case \"D\":"
+        "content": "                            case \"T\":"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                finalOutput \u003d new StringBuilder(\"deadline \");"
+        "content": "                                finalOutput \u003d new StringBuilder(\"todo \");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                cmdState \u003d 2;"
+        "content": "                                cmdState \u003d 1;"
       },
       {
         "lineNumber": 31,
@@ -2782,21 +3224,21 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            case \"E\":"
+        "content": "                            case \"D\":"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                finalOutput \u003d new StringBuilder(\"event \");"
+        "content": "                                finalOutput \u003d new StringBuilder(\"deadline \");"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                cmdState \u003d 3;"
+        "content": "                                cmdState \u003d 2;"
       },
       {
         "lineNumber": 35,
@@ -2810,28 +3252,28 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        }"
+        "content": "                            case \"E\":"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    } else if (count \u003d\u003d 2) {"
+        "content": "                                finalOutput \u003d new StringBuilder(\"event \");"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        if (currStr.equals(\"✓\")) {"
+        "content": "                                cmdState \u003d 3;"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            isChecked \u003d true;"
+        "content": "                                break;"
       },
       {
         "lineNumber": 40,
@@ -2845,329 +3287,329 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    } else if (count \u003d\u003d 3) {"
+        "content": "                    } else if (count \u003d\u003d 2) {"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        finalOutput.append(currStr);"
+        "content": "                        if (currStr.equals(\"✓\")) {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    } else if (count \u003d\u003d 4) {"
+        "content": "                            isChecked \u003d true;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        switch (cmdState) {"
+        "content": "                        }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            case 2:"
+        "content": "                    } else if (count \u003d\u003d 3) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                finalOutput.append(\" /by \").append(currStr);"
+        "content": "                        finalOutput.append(currStr);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                break;"
+        "content": "                    } else if (count \u003d\u003d 4) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            case 3:"
+        "content": "                        switch (cmdState) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                finalOutput.append(\" /at \").append(currStr);"
+        "content": "                            case 2:"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                                break;"
+        "content": "                                finalOutput.append(\" /by \").append(currStr);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        }"
+        "content": "                                break;"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    }"
+        "content": "                            case 3:"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    count++;"
+        "content": "                                finalOutput.append(\" /at \").append(currStr);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                }"
+        "content": "                                break;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                switch (cmdState) {"
+        "content": "                        }"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    case 1:"
+        "content": "                    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        if (!isChecked)"
+        "content": "                    count++;"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            Command.runTodo(data, finalOutput.toString(), 1);"
+        "content": "                }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        else"
+        "content": "                switch (cmdState) {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            Command.runTodo(data, finalOutput.toString(), 2);"
+        "content": "                    case 1:"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        break;"
+        "content": "                        if (!isChecked)"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    case 2:"
+        "content": "                            Parser.runTodo(data, finalOutput.toString(), 1);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        if (!isChecked)"
+        "content": "                        else"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            Command.runDeadline(data, finalOutput.toString(), 1);"
+        "content": "                            Parser.runTodo(data, finalOutput.toString(), 2);"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        else"
+        "content": "                        break;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            Command.runDeadline(data, finalOutput.toString(), 2);"
+        "content": "                    case 2:"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        break;"
+        "content": "                        if (!isChecked)"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    case 3:"
+        "content": "                            Parser.runDeadline(data, finalOutput.toString(), 1);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        if (!isChecked)"
+        "content": "                        else"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            Command.runEvent(data, finalOutput.toString(), 1);"
+        "content": "                            Parser.runDeadline(data, finalOutput.toString(), 2);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        else"
+        "content": "                        break;"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                            Command.runEvent(data, finalOutput.toString(), 2);"
+        "content": "                    case 3:"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                        break;"
+        "content": "                        if (!isChecked)"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                }"
+        "content": "                            Parser.runEvent(data, finalOutput.toString(), 1);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            }"
+        "content": "                        else"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            reader.close();"
+        "content": "                            Parser.runEvent(data, finalOutput.toString(), 2);"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        } catch (FileNotFoundException e) {"
+        "content": "                        break;"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            throw new DukeException(\"File not found!\");"
+        "content": "                }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "            }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            throw new DukeException(\"Failed to close reader\");"
+        "content": "            reader.close();"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        }"
+        "content": "        } catch (FileNotFoundException e) {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\"File not found!\");"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "            throw new DukeException(\"Failed to close reader\");"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    ArrayList\u003cTask\u003e load() {"
+        "content": "        }"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        return data;"
+        "content": "    }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 88,
@@ -3181,227 +3623,255 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    void write(ArrayList\u003cTask\u003e tasks) throws DukeException {"
+        "content": "    public ArrayList\u003cTask\u003e load() {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        try {"
+        "content": "        return data;"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            PrintWriter out \u003d new PrintWriter(\"./data/saved_data.txt\");"
+        "content": "    }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            for (Task task : tasks) {"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                StringBuilder str \u003d new StringBuilder();"
+        "content": "    public void write(ArrayList\u003cTask\u003e tasks) throws DukeException {"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                String st1, st2, st3, st4 \u003d null;"
+        "content": "        try {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                st1 \u003d task.toString().substring(1, 2);"
+        "content": "            PrintWriter out \u003d new PrintWriter(\"./data/saved_data.txt\");"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                if (st1.equals(\"D\") || st1.equals(\"E\")) {"
+        "content": "            for (Task task : tasks) {"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    st4 \u003d task.getExtra();"
+        "content": "                StringBuilder str \u003d new StringBuilder();"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                }"
+        "content": "                String st1, st2, st3, st4 \u003d null;"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                st2 \u003d task.getStatusIcon();"
+        "content": "                st1 \u003d task.toString().substring(1, 2);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                st3 \u003d task.toString().substring(3);"
+        "content": "                if (st1.equals(\"D\") || st1.equals(\"E\")) {"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                if (st4 !\u003d null \u0026\u0026 st3.contains(st4)) {"
+        "content": "                    st4 \u003d task.getExtra();"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    st3 \u003d st3.replace(st4, \"\");"
+        "content": "                }"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    st3 \u003d st3.substring(0, st3.length() - 7);"
+        "content": "                st2 \u003d task.getStatusIcon();"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                }"
+        "content": "                st3 \u003d task.toString().substring(3);"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                str.append(st1);"
+        "content": "                if (st4 !\u003d null \u0026\u0026 st3.contains(st4)) {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                str.append(\"|\");"
+        "content": "                    st3 \u003d st3.replace(st4, \"\");"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                str.append(st2);"
+        "content": "                    st3 \u003d st3.substring(0, st3.length() - 7);"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                str.append(\"|\");"
+        "content": "                }"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                str.append(st3);"
+        "content": "                str.append(st1);"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                if (st4 !\u003d null) {"
+        "content": "                str.append(\"|\");"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    str.append(\"|\");"
+        "content": "                str.append(st2);"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                    str.append(st4);"
+        "content": "                str.append(\"|\");"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                }"
+        "content": "                str.append(st3);"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                out.println(str.toString());"
+        "content": "                if (st4 !\u003d null) {"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            }"
+        "content": "                    str.append(\"|\");"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            out.close();"
+        "content": "                    str.append(st4);"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        } catch (FileNotFoundException e) {"
+        "content": "                }"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "            throw new DukeException(\"No file found\");"
+        "content": "                out.println(str.toString());"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "            out.close();"
       },
       {
         "lineNumber": 121,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } catch (FileNotFoundException e) {"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            throw new DukeException(\"No file found\");"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 125,
         "author": {
           "gitId": "RusdiHaizim"
         },
@@ -3409,11 +3879,11 @@
       }
     ],
     "authorContributionMap": {
-      "RusdiHaizim": 121
+      "RusdiHaizim": 125
     }
   },
   {
-    "path": "src/main/java/Task.java",
+    "path": "src/main/java/Duke/TaskList.java",
     "fileType": "java",
     "lines": [
       {
@@ -3421,21 +3891,21 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "public class Task {"
+        "content": "package Duke;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    protected String description;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    protected boolean isDone;"
+        "content": ""
       },
       {
         "lineNumber": 4,
@@ -3449,63 +3919,205 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    public Task(String description) {"
+        "content": "import Duke.Tasks.Task;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        this.description \u003d description;"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        this.isDone \u003d false;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "public class TaskList{"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    //\"\\u2713\" : \"\\u2718\""
+        "content": "    public ArrayList\u003cTask\u003e data;"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    public String getStatusIcon() {"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        return (isDone ? \"✓\" : \"✗\"); //return tick or X symbols"
+        "content": "    public TaskList(ArrayList\u003cTask\u003e taskList) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "RusdiHaizim"
         },
+        "content": "        data \u003d new ArrayList\u003c\u003e(taskList);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
         "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        this.data \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 19
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Tasks/Deadline.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private String by;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private Date dateNow;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public Deadline(String description, String by) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        this.by \u003d by;"
       },
       {
         "lineNumber": 14,
@@ -3519,80 +4131,171 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    public void markAsDone() {"
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        this.isDone \u003d true;"
+        "content": "        sdf.setLenient(false);"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "            dateNow \u003d sdf.parse(by);"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    public String getDateTime() {"
+        "content": "        } catch (ParseException e) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        return null;"
+        "content": "            //throw new DukeException(\"Tasks.Task does not have dd/MM/yyyy HHmm date-time format!\");"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    public String getExtra() {"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        return null;"
+        "content": "    @Override"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "    public String toString() {"
       },
       {
         "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return \"[D]\" + this.description + \" (by: \" + by + \")\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getDateTime() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return dateNow.toString();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getExtra() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return this.by;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
         "author": {
           "gitId": "RusdiHaizim"
         },
@@ -3600,11 +4303,11 @@
       }
     ],
     "authorContributionMap": {
-      "RusdiHaizim": 26
+      "RusdiHaizim": 39
     }
   },
   {
-    "path": "src/main/java/TaskList.java",
+    "path": "src/main/java/Duke/Tasks/Event.java",
     "fileType": "java",
     "lines": [
       {
@@ -3612,7 +4315,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "import java.util.ArrayList;"
+        "content": "package Duke.Tasks;"
       },
       {
         "lineNumber": 2,
@@ -3626,63 +4329,578 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "class TaskList{"
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    ArrayList\u003cTask\u003e data;"
+        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "import java.util.Date;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    TaskList(ArrayList\u003cTask\u003e taskList) {"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        data \u003d new ArrayList\u003c\u003e(taskList);"
+        "content": "public class Event extends Task {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "    private String at;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "    private Date dateNow;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    TaskList() {"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        this.data \u003d new ArrayList\u003c\u003e();"
+        "content": "    public Event(String description, String at) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        this.at \u003d at;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        SimpleDateFormat sdf \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        sdf.setLenient(false);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            dateNow \u003d sdf.parse(at);"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "            //throw new DukeException(\"Tasks.Task does not have dd/MM/yyyy HHmm date-time format!\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return \"[E]\" + this.description + \" (at: \" + at + \")\";"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getDateTime() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return dateNow.toString();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getExtra() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return this.at;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 38
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Tasks/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    String description;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    private boolean isDone;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public Task(String description) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        this.isDone \u003d false;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    //\"\\u2713\" : \"\\u2718\""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getStatusIcon() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return (isDone ? \"✓\" : \"✗\"); //return tick or X symbols"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public boolean isDone() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return isDone;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void markAsDone() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        this.isDone \u003d true;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getDateTime() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String getExtra() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return null;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "RusdiHaizim": 33
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Tasks/ToDo.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "package Duke.Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "public class ToDo extends Task {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public ToDo(String description) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        super(description);"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        return \"[T]\" + this.description;"
       },
       {
         "lineNumber": 12,
@@ -3704,7 +4922,7 @@
     }
   },
   {
-    "path": "src/main/java/ToDo.java",
+    "path": "src/main/java/Duke/Ui.java",
     "fileType": "java",
     "lines": [
       {
@@ -3712,7 +4930,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "public class ToDo extends Task {"
+        "content": "package Duke;"
       },
       {
         "lineNumber": 2,
@@ -3723,117 +4941,31 @@
       },
       {
         "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public ToDo(String description) {"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        super(description);"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    @Override"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    public String toString() {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "        return \"[T]\" + this.description;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "RusdiHaizim": 11
-    }
-  },
-  {
-    "path": "src/main/java/Ui.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
         "author": {
           "gitId": "RusdiHaizim"
         },
         "content": "import java.util.Scanner;"
       },
       {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "RusdiHaizim"
-        },
-        "content": "class Ui {"
-      },
-      {
         "lineNumber": 4,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    private static String border \u003d \"____________________________________________________________\";"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "public class Ui {"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    Ui () {"
+        "content": "    private static String border \u003d \"____________________________________________________________\";"
       },
       {
         "lineNumber": 7,
@@ -3847,7 +4979,7 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "    public Ui () {"
       },
       {
         "lineNumber": 9,
@@ -3861,227 +4993,248 @@
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    void showWelcome() {"
+        "content": "    }"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(border);"
+        "content": ""
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(\"Hello! I\u0027m Duke\");"
+        "content": "    public void showWelcome() {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        String logo \u003d \" ____        _        \\n\""
+        "content": "        System.out.println(border);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
+        "content": "        System.out.println(\"Hello! I\u0027m Duke\");"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
+        "content": "        String logo \u003d \" ____        _        \\n\""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
+        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(logo);"
+        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(\"What can I do for you?\");"
+        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "        System.out.println(logo);"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "        System.out.println(\"What can I do for you?\");"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    void showLine() {"
+        "content": "        System.out.println(border);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(border);"
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "    public void showLine() {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    String readCommand() {"
+        "content": "        System.out.println(border);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        Scanner sc \u003d new Scanner(System.in);"
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        return sc.nextLine();"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": "    public String readCommand() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "        Scanner sc \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    void showLoadingError() {"
+        "content": "        return sc.nextLine();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(\"No saved files detected.\");"
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "    public void showLoadingError() {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    void showError(String e) {"
+        "content": "        System.out.println(\"No saved files detected.\");"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(e);"
+        "content": "    }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": ""
+        "content": "    public void showError(String e) {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    void showMessage(String m) {"
+        "content": "        System.out.println(e);"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "        System.out.println(m);"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "RusdiHaizim"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 42,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    public void showMessage(String m) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "        System.out.println(m);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "RusdiHaizim"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
         "author": {
           "gitId": "RusdiHaizim"
         },
@@ -4089,7 +5242,7 @@
       }
     ],
     "authorContributionMap": {
-      "RusdiHaizim": 42
+      "RusdiHaizim": 45
     }
   },
   {
