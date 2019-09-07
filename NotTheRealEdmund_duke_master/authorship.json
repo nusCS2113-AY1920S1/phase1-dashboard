@@ -382,7 +382,7 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 8,
@@ -396,14 +396,14 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        tasks.addTask(task);"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.addTask(tasks, task);"
+        "content": "        tasks.addTask(task);"
       },
       {
         "lineNumber": 11,
@@ -417,17 +417,31 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        message \u003d ui.showAddTask(tasks, task);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        return message;"
       },
       {
         "lineNumber": 14,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -435,7 +449,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 14
+      "NotTheRealEdmund": 16
     }
   },
   {
@@ -552,7 +566,7 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;"
+        "content": "    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;"
       },
       {
         "lineNumber": 17,
@@ -969,52 +983,87 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.deleteTask(tasks, pos);"
+        "content": "            String message \u003d \"\";"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        tasks.deleteTask(pos);"
+        "content": "            String temp \u003d tasks.getTaskList().get(pos).toString();"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        storage.save(tasks.getTaskList());"
+        "content": "            tasks.deleteTask(pos);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "            storage.save(tasks.getTaskList());"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "            message \u003d ui.showDeleteTask(tasks, temp);"
       },
       {
         "lineNumber": 14,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            return message;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            throw new DukeException(\" ☹ OOPS!!! Please input an integer that is within the list.\");"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -1022,7 +1071,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 14
+      "NotTheRealEdmund": 19
     }
   },
   {
@@ -1498,52 +1547,80 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        try {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        tasks.markTask(pos);"
+        "content": "            String message \u003d \"\";"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.doneTask(tasks, pos);"
+        "content": "            tasks.markTask(pos);"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        storage.save(tasks.getTaskList());"
+        "content": "            storage.save(tasks.getTaskList());"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "            message \u003d ui.showDoneTask(tasks, pos);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "            return message;"
       },
       {
         "lineNumber": 14,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            throw new DukeException(\" ☹ OOPS!!! Please input an integer that is within the list.\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -1551,7 +1628,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 14
+      "NotTheRealEdmund": 18
     }
   },
   {
@@ -1605,7 +1682,7 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public Duke() {               //necessary for creating a GUI for Duke using FXML later"
+        "content": "    public Duke() {"
       },
       {
         "lineNumber": 8,
@@ -1871,24 +1948,59 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        String response \u003d \"Duke heard: \" + input;"
+        "content": "        String response \u003d \"\";"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        return response;"
+        "content": "        try {"
       },
       {
         "lineNumber": 47,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            response \u003d Parser.parse(input).execute(tasks, ui, storage);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            response \u003d e.getMessage();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        return response;"
+      },
+      {
+        "lineNumber": 52,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 53,
         "author": {
           "gitId": "-"
         },
@@ -1896,7 +2008,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 45,
+      "NotTheRealEdmund": 50,
       "-": 3
     }
   },
@@ -2508,38 +2620,115 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.showBye();"
+        "content": "        if (tasks \u003d\u003d null) {"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        makeExitTrue();"
+        "content": "            throw new DukeException(\"tasks is null\");"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        if (ui \u003d\u003d null) {"
       },
       {
         "lineNumber": 8,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            throw new DukeException(\"ui is null\");"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        if (storage \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "            throw new DukeException(\"storage is null\");"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        String message \u003d \"\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        makeExitTrue();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message \u003d ui.showBye();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        return message;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -2547,7 +2736,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 8
+      "NotTheRealEdmund": 19
     }
   },
   {
@@ -2601,31 +2790,45 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.showFind(tasks, description);"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        message \u003d ui.showFind(tasks, description);"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        return message;"
       },
       {
         "lineNumber": 11,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -2633,7 +2836,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 11
+      "NotTheRealEdmund": 13
     }
   },
   {
@@ -2659,31 +2862,45 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.invalidTask();"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        message \u003d ui.showInvalidTask();"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        return message;"
       },
       {
         "lineNumber": 7,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -2691,7 +2908,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 7
+      "NotTheRealEdmund": 9
     }
   },
   {
@@ -2752,24 +2969,17 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        //Application.launch(Duke.class, args);"
+        "content": "        Application.launch(Main.class, args);"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        Application.launch(Main.class, args);"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 11,
+        "lineNumber": 10,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -2777,7 +2987,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 11
+      "NotTheRealEdmund": 10
     }
   },
   {
@@ -2803,31 +3013,45 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void execute(TaskList tasks, Ui ui, Storage storage) {"
+        "content": "    public String execute(TaskList tasks, Ui ui, Storage storage) {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        ui.showList(tasks);"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        message \u003d ui.showList(tasks);"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        return message;"
       },
       {
         "lineNumber": 7,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -2835,7 +3059,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 7
+      "NotTheRealEdmund": 9
     }
   },
   {
@@ -3439,7 +3663,7 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        Command c \u003d null;"
+        "content": "        Command c;"
       },
       {
         "lineNumber": 7,
@@ -4943,42 +5167,42 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void deleteTask(int pos) throws DukeException {     //pos is already accounted for 0 indexing"
+        "content": "    public void deleteTask(int pos) {     //pos is already accounted for 0 indexing"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        try {"
+        "content": "        list.remove(pos);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            list.remove(pos);"
+        "content": "    }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": ""
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            throw new DukeException(\" ☹ OOPS!!! Please input an integer that is within the list.\");"
+        "content": "    public void markTask(int pos) {     //pos is already accounted for 0 indexing"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        }"
+        "content": "        list.get(pos).markAsDone();"
       },
       {
         "lineNumber": 29,
@@ -4992,67 +5216,11 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "    public void markTask(int pos) throws DukeException {     //pos is already accounted for 0 indexing"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "            list.get(pos).markAsDone();"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "            throw new DukeException(\" ☹ OOPS!!! Please input an integer that is within the list.\");"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "NotTheRealEdmund"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 38
+      "NotTheRealEdmund": 30
     }
   },
   {
@@ -5458,374 +5626,591 @@
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void showBye() {"
+        "content": "    public String showBye() {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        message +\u003d \"Bye. Hope to see you again soon!\\n\";"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void showList(TaskList tasks) {"
+        "content": "        return message;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        for (int i \u003d 0; i \u003c tasks.getTaskList().size(); i++) {"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            System.out.print(i + 1);"
+        "content": "    public String showList(TaskList tasks) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            System.out.print(\".\");"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            System.out.println(tasks.getTaskList().get(i).toString());"
+        "content": "        System.out.println(\"Here are the tasks in your list:\");"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        }"
+        "content": "        message +\u003d \"Here are the tasks in your list:\\n\";"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        for (int i \u003d 0; i \u003c tasks.getTaskList().size(); i++) {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "            System.out.print(i + 1);"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void showFind(TaskList tasks, String str) {"
+        "content": "            message +\u003d (i + 1);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        int num \u003d 1;"
+        "content": "            System.out.print(\".\");"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        boolean matching \u003d false;"
+        "content": "            message +\u003d \".\";"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        String echo \u003d \"\";"
+        "content": "            System.out.println(tasks.getTaskList().get(i).toString());"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        for (int i \u003d 0; i \u003c tasks.getTaskList().size(); i++) {"
+        "content": "            message +\u003d tasks.getTaskList().get(i).toString() + \"\\n\";"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            if (tasks.getTaskList().get(i).getDescription().contains(str)) {"
+        "content": "        }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "                matching \u003d true;"
+        "content": "        return message;"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "                echo +\u003d num + \".\" + tasks.getTaskList().get(i).toString() + \"\\n\";"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "                num++;"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            }"
+        "content": "    public String showFind(TaskList tasks, String str) {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        }"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        if (!matching) {"
+        "content": "        int num \u003d 1;"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            System.out.println(\" ☹ OOPS!!! There are no matching tasks.\");"
+        "content": "        boolean matching \u003d false;"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        } else {"
+        "content": "        String echo \u003d \"\";"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            System.out.println(\"Here are the matching tasks in your list:\");"
+        "content": "        for (int i \u003d 0; i \u003c tasks.getTaskList().size(); i++) {"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "            System.out.print(echo);"
+        "content": "            if (tasks.getTaskList().get(i).getDescription().contains(str)) {"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        }"
+        "content": "                matching \u003d true;"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "                echo +\u003d num + \".\" + tasks.getTaskList().get(i).toString() + \"\\n\";"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "                num++;"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void deleteTask(TaskList tasks, int num) {"
+        "content": "            }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Noted. I\u0027ve removed this task:\");"
+        "content": "        }"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"  \" + tasks.getTaskList().get(num).toString());"
+        "content": "        if (!matching) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Now you have \" + (tasks.getTaskList().size() - 1) + \" tasks in the list.\");"
+        "content": "            System.out.println(\" ☹ OOPS!!! There are no matching tasks.\");"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "            message +\u003d \" ☹ OOPS!!! There are no matching tasks.\\n\";"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        } else {"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void addTask(TaskList tasks, Task task) {"
+        "content": "            System.out.println(\"Here are the matching tasks in your list:\");"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\");"
+        "content": "            message +\u003d \"Here are the matching tasks in your list:\\n\";"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"  \" + task.toString());"
+        "content": "            System.out.print(echo);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Now you have \" + tasks.getTaskList().size() + \" tasks in the list.\");"
+        "content": "            message +\u003d echo;"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        return message;"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void doneTask(TaskList tasks, int num) {"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+        "content": ""
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\"  \" + tasks.getTaskList().get(num).toString());"
+        "content": "    public String showDeleteTask(TaskList tasks, String temp) {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        String message \u003d \"\";"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        System.out.println(\"Noted. I\u0027ve removed this task:\");"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    public void invalidTask() {"
+        "content": "        message +\u003d \"Noted. I\u0027ve removed this task:\\n\";"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "        System.out.println(\" ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "        System.out.println(\"  \" + temp);"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": "    }"
+        "content": "        message +\u003d \"  \" + temp + \"\\n\";"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
-        "content": ""
+        "content": "        System.out.println(\"Now you have \" + tasks.getTaskList().size() + \" tasks in the list.\");"
       },
       {
         "lineNumber": 93,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \"Now you have \" + tasks.getTaskList().size() + \" tasks in the list.\\n\";"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        return message;"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    public String showAddTask(TaskList tasks, Task task) {"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        String message \u003d \"\";"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task:\");"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \"Got it. I\u0027ve added this task:\\n\";"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        System.out.println(\"  \" + task.toString());"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \"  \" + task.toString() + \"\\n\";"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        System.out.println(\"Now you have \" + tasks.getTaskList().size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \"Now you have \" + tasks.getTaskList().size() + \" tasks in the list.\\n\";"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        return message;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    public String showDoneTask(TaskList tasks, int num) {"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        String message \u003d \"\";"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \"Nice! I\u0027ve marked this task as done:\\n\";"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        System.out.println(\"  \" + tasks.getTaskList().get(num).toString());"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \"  \" + tasks.getTaskList().get(num).toString() + \"\\n\";"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        return message;"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    public String showInvalidTask() {"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        String message \u003d \"\";"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        System.out.println(\" ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        message +\u003d \" ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\\n\";"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "        return message;"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "NotTheRealEdmund"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 124,
         "author": {
           "gitId": "NotTheRealEdmund"
         },
@@ -5833,7 +6218,7 @@
       }
     ],
     "authorContributionMap": {
-      "NotTheRealEdmund": 93
+      "NotTheRealEdmund": 124
     }
   },
   {

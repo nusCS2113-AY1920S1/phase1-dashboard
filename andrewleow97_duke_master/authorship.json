@@ -433,7 +433,7 @@
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        return \"D | \" + getDoneInt() + \" | \" + this.description + \" | \" + this.date + \"\\n\";"
+        "content": "        return \"D | \" + getDoneInt() + \" | \" + this.description + \" | \" + this.by + \"\\n\";"
       },
       {
         "lineNumber": 22,
@@ -3895,7 +3895,7 @@
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        return \"E | \" + getDoneInt() + \" | \" + this.description + \" | \" + this.date + \"\\n\";"
+        "content": "        return \"E | \" + getDoneInt() + \" | \" + this.description + \" | \" + this.time + \"\\n\";"
       },
       {
         "lineNumber": 21,
@@ -5164,374 +5164,318 @@
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        Ui ui \u003d new Ui();"
+        "content": "    }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        /*if (!file.exists()) {"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            ui.showError(\"☹ OOPS!!! There is no save file found, creating one for you @ src/main/java/data/duke.txt\");"
+        "content": "    public ArrayList\u003cTask\u003e loadFile() throws FileNotFoundException, DukeException, ParseException {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            try {"
+        "content": "            Scanner fileScan \u003d new Scanner(file);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                file.createNewFile();"
+        "content": "            ArrayList\u003cTask\u003e fileList \u003d new ArrayList\u003c\u003e();"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            } catch (IOException e) {"
+        "content": "            while (fileScan.hasNextLine()) {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                ui.showError(\"☹ OOPS!!! An error occurred creating your file.\");"
+        "content": "                String temp \u003d fileScan.nextLine();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            }"
+        "content": "                String[] tempArray \u003d temp.split(\" \\\\| \", 4);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        }*/"
+        "content": "                Task t \u003d null;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "                switch (tempArray[0]) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "                    case \"T\":"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    public ArrayList\u003cTask\u003e loadFile() throws FileNotFoundException, DukeException, ParseException {"
+        "content": "                        t \u003d new ToDo(tempArray[2]);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            Scanner fileScan \u003d new Scanner(file);"
+        "content": "                        break;"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            ArrayList\u003cTask\u003e fileList \u003d new ArrayList\u003c\u003e();"
+        "content": "                    case \"D\":"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            while (fileScan.hasNextLine()) {"
+        "content": "                        t \u003d new Deadline(tempArray[2], tempArray[3]);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                String temp \u003d fileScan.nextLine();"
+        "content": "                        break;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                String[] tempArray \u003d temp.split(\" \\\\| \");"
+        "content": "                    case \"E\":"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                Task t \u003d null;"
+        "content": "                        t \u003d new Event(tempArray[2], tempArray[3]);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                switch (tempArray[0]) {"
+        "content": "                        break;"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                    case \"T\":"
+        "content": "                }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                        t \u003d new ToDo(tempArray[2]);"
+        "content": "                if (tempArray[1].contains(\"1\")) {"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                        break;"
+        "content": "                    t.markasDone();"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                    case \"D\":"
+        "content": "                }"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                        t \u003d new Deadline(tempArray[2], tempArray[3]);"
+        "content": "                fileList.add(t);"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                        break;"
+        "content": "            }"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                    case \"E\":"
+        "content": "//            for (Task t : fileList) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                        t \u003d new Event(tempArray[2], tempArray[3]);"
+        "content": "//                System.out.println(t.toString());"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                        break;"
+        "content": "//            }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                }"
+        "content": "            return fileList;"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                if (tempArray[1] \u003d\u003d \"1\") {"
+        "content": "    }"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                    t.markasDone();"
+        "content": ""
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                }"
+        "content": "    public void saveFile(ArrayList\u003cTask\u003e taskList) {"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                fileList.add(t);"
+        "content": "        Ui ui \u003d new Ui();"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            }"
+        "content": "        try {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            fileScan.close();"
+        "content": "            FileWriter fileWriter \u003d new FileWriter(\"src/main/java/data/duke.txt\");"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            return fileList;"
+        "content": "            String save \u003d \"\";"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "            for (Task t: taskList) {"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "                save +\u003d t.writeToFile();"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    public void saveFile(ArrayList\u003cTask\u003e taskList) {"
+        "content": "            }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        Ui ui \u003d new Ui();"
+        "content": "            fileWriter.write(save);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        try {"
+        "content": "            fileWriter.close();"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            FileWriter fileWriter \u003d new FileWriter(\"src/main/java/data/duke.txt\");"
+        "content": "        } catch (IOException e) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            String save \u003d \"\";"
+        "content": "            ui.showError(\"☹ OOPS!!! An error occurred in writing to your save file\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            for (Task t: taskList) {"
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "                save +\u003d t.writeToFile();"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "            fileWriter.write(save);"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "            fileWriter.close();"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "        } catch (IOException e) {"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "            ui.showIndent();"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "            ui.showError(\"☹ OOPS!!! An error occurred in writing to your save file\");"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "andrewleow97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "andrewleow97"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 67,
+        "lineNumber": 59,
         "author": {
           "gitId": "andrewleow97"
         },
@@ -5539,7 +5483,7 @@
       }
     ],
     "authorContributionMap": {
-      "andrewleow97": 67
+      "andrewleow97": 59
     }
   },
   {
@@ -5798,143 +5742,150 @@
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "        this.taskList \u003d new ArrayList\u003cTask\u003e(100);"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    public TaskList(ArrayList\u003cTask\u003e List) {"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        for (Task t: List) {"
+        "content": "    public TaskList(ArrayList\u003cTask\u003e List) {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "            addToList(t);"
+        "content": "        for (Task t: List) {"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        }"
+        "content": "            addToList(t);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    public int getSize() {"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        return taskList.size();"
+        "content": "    public int getSize() {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "        return taskList.size();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    public void addToList(Task input) {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        taskList.add(input);"
+        "content": "    public void addToList(Task input) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "        taskList.add(input);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    public void removeFromList(int i) throws ArrayIndexOutOfBoundsException{"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "        taskList.remove(i);"
+        "content": "    public void removeFromList(int i) throws ArrayIndexOutOfBoundsException{"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": "    }"
+        "content": "        taskList.remove(i);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "andrewleow97"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 27,
+        "author": {
+          "gitId": "andrewleow97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
         "author": {
           "gitId": "andrewleow97"
         },
@@ -5942,7 +5893,7 @@
       }
     ],
     "authorContributionMap": {
-      "andrewleow97": 27
+      "andrewleow97": 28
     }
   },
   {
