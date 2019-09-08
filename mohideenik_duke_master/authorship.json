@@ -712,7 +712,7 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "abstract public class Command {"
+        "content": "abstract class Command {"
       },
       {
         "lineNumber": 2,
@@ -761,7 +761,7 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    abstract public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;"
+        "content": "    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException;"
       },
       {
         "lineNumber": 9,
@@ -812,35 +812,35 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private int day, month, year, hour, minute;"
+        "content": "    private int day;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private int month;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public DateTime(List\u003cString\u003e tokens) throws DukeException {"
+        "content": "    private int year;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": "    private int hour;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            String[] date \u003d tokens.get(0).split(\"/\");"
+        "content": "    private int minute;"
       },
       {
         "lineNumber": 10,
@@ -854,112 +854,112 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.day \u003d Integer.parseInt(date[0]);"
+        "content": "    /**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.month \u003d Integer.parseInt(date[1]);"
+        "content": "     * Create a DateTime object from user input."
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.year \u003d Integer.parseInt(date[2]);"
+        "content": "     *"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * @param tokens tokenized user input"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.hour \u003d Integer.parseInt(tokens.get(1)) / 100;"
+        "content": "     * @throws DukeException error if user input is invalid"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.minute \u003d Integer.parseInt(tokens.get(1)) % 100;"
+        "content": "     */"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public DateTime(List\u003cString\u003e tokens) throws DukeException {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            if (this.day \u003c 0 || this.month \u003c 0 || this.year \u003c 0 ||"
+        "content": "        try {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                this.day \u003e 31 || this.month \u003e 12 || this.hour \u003c 0 ||"
+        "content": "            String[] date \u003d tokens.get(0).split(\"/\");"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                this.minute \u003c 0 || this.hour \u003e 23 || this.minute \u003e 59 || this.year \u003c 1000) {"
+        "content": ""
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                throw new DukeException(\"Invalid datetime. Correct format: dd/mm/yyyy hhmm\");"
+        "content": "            this.day \u003d Integer.parseInt(date[0]);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "            this.month \u003d Integer.parseInt(date[1]);"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (NumberFormatException | IndexOutOfBoundsException e) {"
+        "content": "            this.year \u003d Integer.parseInt(date[2]);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"Invalid datetime. Correct format: dd/mm/yyyy hhmm\");"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "            this.hour \u003d Integer.parseInt(tokens.get(1)) / 100;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            this.minute \u003d Integer.parseInt(tokens.get(1)) % 100;"
       },
       {
         "lineNumber": 27,
@@ -973,31 +973,101 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "            if (this.day \u003c 0 || this.month \u003c 0 || this.year \u003c 0"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String toString() {"
+        "content": "                    || this.day \u003e 31 || this.month \u003e 12 || this.hour \u003c 0"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return String.format(\"%02d/%02d/%04d %02d%02d\", this.day, this.month, this.year, this.hour, this.minute);"
+        "content": "                    || this.minute \u003c 0 || this.hour \u003e 23 || this.minute \u003e 59 || this.year \u003c 1000) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "                throw new DukeException(\"Invalid datetime. Correct format: dd/mm/yyyy hhmm\");"
       },
       {
         "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } catch (NumberFormatException | IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            throw new DukeException(\"Invalid datetime. Correct format: dd/mm/yyyy hhmm\");"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return String.format(\"%02d/%02d/%04d %02d%02d\", this.day, this.month, this.year, this.hour, this.minute);"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
@@ -1005,7 +1075,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 32
+      "mohideenik": 42
     }
   },
   {
@@ -1059,129 +1129,171 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Deadline(List\u003cString\u003e input) throws DukeException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        int separatorIndex \u003d input.indexOf(\"/by\");"
+        "content": "     * Creates a deadline task from user input."
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (input.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
+        "content": "     *"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"Format for deadline: deadline \u003ctask\u003e /by \u003cdeadline\u003e\");"
+        "content": "     * @param input tokenized user input"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "     * @throws DukeException an error if user input is invalid"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.description \u003d String.join(\" \", input.subList(0, separatorIndex));"
+        "content": "     */"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.deadline \u003d new DateTime(input.subList(separatorIndex + 1, input.size()));"
+        "content": "    public Deadline(List\u003cString\u003e input) throws DukeException {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        int separatorIndex \u003d input.indexOf(\"/by\");"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        if (input.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "            throw new DukeException(\"Format for deadline: deadline \u003ctask\u003e /by \u003cdeadline\u003e\");"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean containsKeyword(String keyword) {"
+        "content": "        }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.description.contains(keyword);"
+        "content": "        this.description \u003d String.join(\" \", input.subList(0, separatorIndex));"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        this.deadline \u003d new DateTime(input.subList(separatorIndex + 1, input.size()));"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String toString() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return String.format(\"[D]%s %s (by: %s)\", super.toString(), this.description, this.deadline);"
+        "content": "    public boolean containsKeyword(String keyword) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        return this.description.contains(keyword);"
       },
       {
         "lineNumber": 25,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return String.format(\"[D]%s %s (by: %s)\", super.toString(), this.description, this.deadline);"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
@@ -1189,7 +1301,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 25
+      "mohideenik": 31
     }
   },
   {
@@ -1604,241 +1716,297 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Duke(String filePath) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        ui \u003d new Ui();"
+        "content": "     * Creates an instant of Duke to be executed."
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        storage \u003d new Storage(filePath);"
+        "content": "     *"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * @param filePath name of file to store tasks"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": "     */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            tasks \u003d storage.load();"
+        "content": "    public Duke(String filePath) {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (DukeException e) {"
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            ui.showError(e.getMessage());"
+        "content": "        storage \u003d new Storage(filePath);"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            tasks \u003d new TaskList();"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "        try {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            tasks \u003d storage.load();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void run() {"
+        "content": "            ui.showError(e.getMessage());"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        ui.showWelcome();"
+        "content": "            tasks \u003d new TaskList();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        boolean isExit \u003d false;"
+        "content": "        }"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        while (!isExit) {"
+        "content": "    }"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            try {"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                String fullCommand \u003d ui.readCommand();"
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                ui.beginBlock();"
+        "content": "     * Begins the execution of Duke."
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                Command c \u003d Parser.parse(fullCommand);"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                c.execute(tasks, ui, storage);"
+        "content": "    public void run() {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                isExit \u003d c.isExit();"
+        "content": "        ui.showWelcome();"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            } catch (DukeException e) {"
+        "content": "        boolean isExit \u003d false;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                ui.showError(e.getMessage());"
+        "content": "        while (!isExit) {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            } finally {"
+        "content": "            try {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                ui.endBlock();"
+        "content": "                String fullCommand \u003d ui.readCommand();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            }"
+        "content": "                ui.beginBlock();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "                c.execute(tasks, ui, storage);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "                isExit \u003d c.isExit();"
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "-"
+          "gitId": "mohideenik"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "            } catch (DukeException e) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        new Duke(\"tasks.dat\").run();"
+        "content": "                ui.showError(e.getMessage());"
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "-"
+          "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            } finally {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "                ui.endBlock();"
       },
       {
         "lineNumber": 41,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void main(String[] args) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        new Duke(\"tasks.dat\").run();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
         "author": {
           "gitId": "-"
         },
@@ -1846,7 +2014,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 37,
+      "mohideenik": 45,
       "-": 4
     }
   },
@@ -1931,91 +2099,91 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private DateTime start, end;"
+        "content": "    private DateTime end;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    private DateTime start;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Event(List\u003cString\u003e input) throws DukeException {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        int separatorIndex \u003d input.indexOf(\"/at\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (input.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
+        "content": "     * Create an event task from user input."
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"Format for event: event \u003cevent\u003e /at \u003cstart datetime\u003e to \u003cend\u003e datetime\");"
+        "content": "     *"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "     * @param input tokenized user input"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": "     * @throws DukeException error if user input is invalid"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.description \u003d String.join(\" \", input.subList(0, separatorIndex));"
+        "content": "     */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.start \u003d new DateTime(input.subList(separatorIndex + 1, separatorIndex + 3));"
+        "content": "    public Event(List\u003cString\u003e input) throws DukeException {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            this.end \u003d new DateTime(input.subList(separatorIndex + 4, separatorIndex + 6));"
+        "content": "        int separatorIndex \u003d input.indexOf(\"/at\");"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
+        "content": "        if (input.size() \u003d\u003d 0 || separatorIndex \u003c\u003d 0) {"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"Format for event: event \u003cevent\u003e /at \u003cstart datetime\u003e to \u003cend datetime\u003e\");"
+        "content": "            throw new DukeException(\"Format for event: event \u003cevent\u003e /at \u003cstart datetime\u003e to \u003cend\u003e datetime\");"
       },
       {
         "lineNumber": 18,
@@ -2029,80 +2197,129 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        try {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "            this.description \u003d String.join(\" \", input.subList(0, separatorIndex));"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "            this.start \u003d new DateTime(input.subList(separatorIndex + 1, separatorIndex + 3));"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean containsKeyword(String keyword) {"
+        "content": "            this.end \u003d new DateTime(input.subList(separatorIndex + 4, separatorIndex + 6));"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.description.contains(keyword);"
+        "content": "        } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            throw new DukeException(\"Format for event: event \u003cevent\u003e /at \u003cstart datetime\u003e to \u003cend datetime\u003e\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String toString() {"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return String.format(\"[E]%s %s (at: %s to %s)\", super.toString(), this.description, this.start, this.end);"
+        "content": "    @Override"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public boolean containsKeyword(String keyword) {"
       },
       {
         "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return this.description.contains(keyword);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return String.format(\"[E]%s %s (at: %s to %s)\", super.toString(), this.description, this.start, this.end);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
@@ -2110,7 +2327,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 30
+      "mohideenik": 37
     }
   },
   {
@@ -2399,192 +2616,241 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "public class Parser {"
+        "content": "class Parser {"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public static Command parse(String input) throws DukeException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        List\u003cString\u003e words \u003d Arrays.asList(input.split(\" \"));"
+        "content": "     * Returns the command to execute after parsing user input."
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        String keyword \u003d words.get(0);"
+        "content": "     *"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        List\u003cString\u003e arguments \u003d words.subList(1, words.size());"
+        "content": "     * @param input the user input"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * @return the command to execute"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        switch (keyword) {"
+        "content": "     * @throws DukeException the exception if user input is invalid"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"list\":"
+        "content": "     */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new ListCommand();"
+        "content": "    public static Command parse(String input) throws DukeException {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"find\":"
+        "content": "        List\u003cString\u003e words \u003d Arrays.asList(input.split(\" \"));"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new FindCommand(arguments);"
+        "content": "        String keyword \u003d words.get(0);"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"delete\":"
+        "content": "        List\u003cString\u003e arguments \u003d words.subList(1, words.size());"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new DeleteCommand(arguments);"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"done\":"
+        "content": "        switch (keyword) {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new DoneCommand(arguments);"
+        "content": "            case \"list\":"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"todo\":"
+        "content": "                return new ListCommand();"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddTodoCommand(arguments);"
+        "content": "            case \"find\":"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"deadline\":"
+        "content": "                return new FindCommand(arguments);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddDeadlineCommand(arguments);"
+        "content": "            case \"delete\":"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"event\":"
+        "content": "                return new DeleteCommand(arguments);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new AddEventCommand(arguments);"
+        "content": "            case \"done\":"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            case \"bye\":"
+        "content": "                return new DoneCommand(arguments);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                return new ByeCommand();"
+        "content": "            case \"todo\":"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            default:"
+        "content": "                return new AddTodoCommand(arguments);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                throw new DukeException(\"Please enter a valid command.\");"
+        "content": "            case \"deadline\":"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "                return new AddDeadlineCommand(arguments);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            case \"event\":"
       },
       {
         "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                return new AddEventCommand(arguments);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            case \"bye\":"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                return new ByeCommand();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                throw new DukeException(\"Please enter a valid command.\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
@@ -2592,7 +2858,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 31
+      "mohideenik": 38
     }
   },
   {
@@ -2709,164 +2975,234 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @SuppressWarnings(\"unchecked\")"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public TaskList load() throws DukeException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": "     * Returns the tasklist loaded from file."
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            FileInputStream fileStream \u003d new FileInputStream(this.fileName);"
+        "content": "     */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            ObjectInputStream objectStream \u003d new ObjectInputStream(fileStream);"
+        "content": "    @SuppressWarnings(\"unchecked\")"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            TaskList taskList \u003d (TaskList) objectStream.readObject();"
+        "content": "    public TaskList load() throws DukeException {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            objectStream.close();"
+        "content": "        try {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            return taskList;"
+        "content": "            FileInputStream fileStream \u003d new FileInputStream(this.fileName);"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (IOException | ClassNotFoundException | ClassCastException e) {"
+        "content": "            ObjectInputStream objectStream \u003d new ObjectInputStream(fileStream);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"Unable to read file, continuing with empty list.\");"
+        "content": "            TaskList taskList \u003d (TaskList) objectStream.readObject();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "            objectStream.close();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "            return taskList;"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        } catch (IOException | ClassNotFoundException | ClassCastException e) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void save(TaskList taskList) throws DukeException {"
+        "content": "            throw new DukeException(\"Unable to read file, continuing with empty list.\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            FileOutputStream fileStream \u003d new FileOutputStream(this.fileName);"
+        "content": "    }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            ObjectOutputStream objectStream \u003d new ObjectOutputStream(fileStream);"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            objectStream.writeObject(taskList);"
+        "content": "    /**"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            objectStream.close();"
+        "content": "     * Saves the given tasklist to file."
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        } catch (IOException e) {"
+        "content": "     *"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"An unexpected error occurred when writing to the file. \" + e);"
+        "content": "     * @param taskList the tasklist to be saved"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "     * @throws DukeException an error if unable to write to file"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 39,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public void save(TaskList taskList) throws DukeException {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            FileOutputStream fileStream \u003d new FileOutputStream(this.fileName);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            ObjectOutputStream objectStream \u003d new ObjectOutputStream(fileStream);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            objectStream.writeObject(taskList);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            objectStream.close();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            throw new DukeException(\"An unexpected error occurred when writing to the file. \" + e);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
         "author": {
           "gitId": "mohideenik"
         },
@@ -2874,7 +3210,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 39
+      "mohideenik": 49
     }
   },
   {
@@ -2977,7 +3313,7 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    abstract public boolean containsKeyword(String keyword);"
+        "content": "    public abstract boolean containsKeyword(String keyword);"
       },
       {
         "lineNumber": 15,
@@ -3005,7 +3341,7 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return \"[\" + (this.isDone ? \"\\u2713\" : \"\\u2718\") + \"]\";"
+        "content": "        return \"[\" + (this.isDone ? \"✓\" : \"✘\") + \"]\";"
       },
       {
         "lineNumber": 19,
@@ -3296,115 +3632,157 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public Todo(List\u003cString\u003e input) throws DukeException {"
+        "content": "    /**"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        this.description \u003d String.join(\" \", input);"
+        "content": "     * Creates a todo task from given user input."
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        if (input.size() \u003d\u003d 0) {"
+        "content": "     *"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            throw new DukeException(\"Format for todo: todo \u003ctask\u003e\");"
+        "content": "     * @param input tokenized user input"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "     * @throws DukeException the error if user input is invalid"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public Todo(List\u003cString\u003e input) throws DukeException {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": "        this.description \u003d String.join(\" \", input);"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public boolean containsKeyword(String keyword) {"
+        "content": "        if (input.size() \u003d\u003d 0) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return this.description.contains(keyword);"
+        "content": "            throw new DukeException(\"Format for todo: todo \u003ctask\u003e\");"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    @Override"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String toString() {"
+        "content": "    @Override"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return String.format(\"[T]%s %s\", super.toString(), this.description);"
+        "content": "    public boolean containsKeyword(String keyword) {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        return this.description.contains(keyword);"
       },
       {
         "lineNumber": 22,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return String.format(\"[T]%s %s\", super.toString(), this.description);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
@@ -3412,7 +3790,7 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 22
+      "mohideenik": 28
     }
   },
   {
@@ -3550,385 +3928,385 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showWelcome() {"
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        beginBlock();"
+        "content": "     * Prints welcome message."
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Hello! I\u0027m Duke\");"
+        "content": "     */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"What can I do for you?\");"
+        "content": "    public void showWelcome() {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        endBlock();"
+        "content": "        beginBlock();"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        printIndented(\"Hello! I\u0027m Duke\");"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        printIndented(\"What can I do for you?\");"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showBye() {"
+        "content": "        endBlock();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Bye. Hope to see you again soon!\");"
+        "content": "    }"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public void showBye() {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showError(String message) {"
+        "content": "        printIndented(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(message);"
+        "content": "    }"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public void showError(String message) {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showTaskAdded(List\u003cTask\u003e tasks, Task task) {"
+        "content": "        printIndented(message);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Got it . I\u0027ve added this task:\");"
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"  \" + task);"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        showNumTasks(tasks);"
+        "content": "    /**"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     * Prints the task that was added."
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     *"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showTaskList(List\u003cTask\u003e tasks) {"
+        "content": "     * @param tasks list of all tasks"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Here are the tasks in your list:\");"
+        "content": "     * @param task  the task that was added"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        showTasks(tasks);"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public void showTaskAdded(List\u003cTask\u003e tasks, Task task) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        printIndented(\"Got it . I\u0027ve added this task:\");"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showSearchResult(List\u003cTask\u003e tasks) {"
+        "content": "        printIndented(\"  \" + task);"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Here are the matching tasks in your list:\");"
+        "content": "        showNumTasks(tasks);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        showTasks(tasks);"
+        "content": "    }"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    public void showTaskList(List\u003cTask\u003e tasks) {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showDeletedTask(List\u003cTask\u003e tasks, Task task) {"
+        "content": "        printIndented(\"Here are the tasks in your list:\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Noted. I\u0027ve removed this task:\");"
+        "content": "        showTasks(tasks);"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"  \" + task);"
+        "content": "    }"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        showNumTasks(tasks);"
+        "content": ""
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    public void showSearchResult(List\u003cTask\u003e tasks) {"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        printIndented(\"Here are the matching tasks in your list:\");"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public void showDoneTask(Task task) {"
+        "content": "        showTasks(tasks);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Nice! I\u0027ve marked this task as done:\");"
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"  \" + task);"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     * Shows the task that was just deleted."
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    public String readCommand() {"
+        "content": "     *"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        return sc.nextLine();"
+        "content": "     * @param tasks list of all tasks"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "     * @param task the task that was just deleted"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private void printIndented(String line) {"
+        "content": "    public void showDeletedTask(List\u003cTask\u003e tasks, Task task) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        System.out.println(\"    \" + line);"
+        "content": "        printIndented(\"Noted. I\u0027ve removed this task:\");"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        printIndented(\"  \" + task);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "        showNumTasks(tasks);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private void showNumTasks(List\u003cTask\u003e tasks) {"
+        "content": "    }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"Now you have \""
+        "content": ""
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                + tasks.size()"
+        "content": "    public void showDoneTask(Task task) {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                + (tasks.size() \u003e 1 ? \" tasks\" : \" task\")"
+        "content": "        printIndented(\"Nice! I\u0027ve marked this task as done:\");"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "                + \" in the list.\");"
+        "content": "        printIndented(\"  \" + task);"
       },
       {
         "lineNumber": 74,
@@ -3949,73 +4327,178 @@
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private void showTasks(List\u003cTask\u003e tasks) {"
+        "content": "    public String readCommand() {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        int counter \u003d 1;"
+        "content": "        return sc.nextLine();"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        for (Task task : tasks) {"
+        "content": "    }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "            printIndented(counter++ + \". \" + task);"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        }"
+        "content": "    private void printIndented(String line) {"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        System.out.println(\"    \" + line);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    private void printHR() {"
+        "content": ""
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "        printIndented(\"____________________________________________________________\");"
+        "content": "    private void showNumTasks(List\u003cTask\u003e tasks) {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "mohideenik"
         },
-        "content": "    }"
+        "content": "        printIndented(\"Now you have \""
       },
       {
         "lineNumber": 86,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                + tasks.size()"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                + (tasks.size() \u003e 1 ? \" tasks\" : \" task\")"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                + \" in the list.\");"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private void showTasks(List\u003cTask\u003e tasks) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        int counter \u003d 1;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        for (Task task : tasks) {"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            printIndented(counter++ + \". \" + task);"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    private void printHR() {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        printIndented(\"____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
         "author": {
           "gitId": "mohideenik"
         },
@@ -4023,7 +4506,720 @@
       }
     ],
     "authorContributionMap": {
-      "mohideenik": 86
+      "mohideenik": 101
+    }
+  },
+  {
+    "path": "src/test/java/DeadlineTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "public class DeadlineTest {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    List\u003cString\u003e getList(String input) {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        return List.of(input.split(\" \"));"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void constructor_invalidString_exceptionThrown() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        List.of("
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                \"invalid string\","
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                \"invalid string /at 20/12/2019 1243\","
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                \"invalid string /by 20/12/2019 12:43\","
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                \"invalid string /by 20/12/2019 1293\""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        ).forEach(str -\u003e {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            assertThrows(DukeException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                List\u003cString\u003e invalidList \u003d getList(str);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                new Deadline(invalidList);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            });"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void toString_formatted_correctly() throws DukeException {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        List\u003cString\u003e list \u003d getList(\"do something /by 20/12/2019 1243\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertEquals(new Deadline(list).toString(), \"[D][✘] do something (by: 20/12/2019 1243)\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "mohideenik": 33
+    }
+  },
+  {
+    "path": "src/test/java/TaskListTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertThrows;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "public class TaskListTest {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void add_works_correctly() throws DukeException {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Task task \u003d new Todo(List.of(\"read book\".split(\" \")));"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertEquals(task, taskList.get(0));"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void get_throws_outOfBounds_exception() throws DukeException {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Task task \u003d new Todo(List.of(\"read book\".split(\" \")));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertThrows(IndexOutOfBoundsException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            taskList.get(1);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void delete_works_correctly() throws DukeException {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Task task \u003d new Todo(List.of(\"read book\".split(\" \")));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        taskList.delete(0);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertThrows(IndexOutOfBoundsException.class, () -\u003e {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "            taskList.get(0);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        });"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void getTasks_works_correctly() throws DukeException {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Task task \u003d new Todo(List.of(\"read book\".split(\" \")));"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(taskList.getTasks().size() \u003d\u003d 1);"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertEquals(taskList.getTasks().get(0), task);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "mohideenik": 47
+    }
+  },
+  {
+    "path": "src/test/java/TaskTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import java.util.List;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertTrue;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "public class TaskTest {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    void maskAsDone_works() throws DukeException {"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        Deadline deadline \u003d new Deadline("
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "                List.of(\"return book /by 12/12/2020 1200\".split(\" \"))"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        );"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(deadline.toString().contains(\"✘\"));"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        deadline.markAsDone();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "        assertTrue(deadline.toString().contains(\"✓\"));"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "mohideenik"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "mohideenik": 18
     }
   }
 ]
