@@ -1,5 +1,1145 @@
 [
   {
+    "path": "src/main/java/AddCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.time.format.DateTimeParseException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public abstract class AddCommand extends Command{"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    protected String taskDescription; // The input line after the command"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    protected LocalDateTime time;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    protected String dateTrigger;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public String MissingDescriptionString \u003d \"Please specify the task you want to add!\";"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public AddCommand(String taskDescription) {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        this.taskDescription \u003d taskDescription;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    // If an error occurs while splitting the array, return false."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public boolean splitDescTime() {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        String[] data \u003d taskDescription.split(dateTrigger + \" \"); // data[0] os description, data[1] is the time"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            time \u003d Time.readTime(data[1]);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            taskDescription \u003d data[0];"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            return true;"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        } catch(ArrayIndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Please add \u0027\" + dateTrigger + \" \u003cdate\u003e\u0027 after your task to specify the event date.\" );"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }  catch(DateTimeParseException e) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Please use the format \u0027DD/MM/YYYY HHmm\u0027!\" );"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            return false;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 35
+    }
+  },
+  {
+    "path": "src/main/java/AddDeadlineCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class AddDeadlineCommand extends AddCommand {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public AddDeadlineCommand(String taskDescription) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        super(taskDescription); // taskDescription includes the task info and date"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        time \u003d null;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        dateTrigger \u003d \"/by\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        if (!splitDescTime()) return; // If error occurs, stop the method!"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Task newTask \u003d new Deadline(taskDescription, time);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        tasks.add(newTask);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Ui.echoAdd(newTask, tasks.size());"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 17
+    }
+  },
+  {
+    "path": "src/main/java/AddEventCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class AddEventCommand extends AddCommand {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public AddEventCommand(String taskDescription) {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        super(taskDescription); // taskDescription includes the task info and date"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        time \u003d null;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        dateTrigger \u003d \"/at\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        if (!splitDescTime()) return; // If error occurs, stop the method!"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Task newTask \u003d new Event(taskDescription, time);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        tasks.add(newTask);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Ui.echoAdd(newTask, tasks.size());"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 16
+    }
+  },
+  {
+    "path": "src/main/java/AddTodoCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.Arrays;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class AddTodoCommand extends AddCommand {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "   public AddTodoCommand(String taskDescription) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        super(taskDescription);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        if (taskDescription.length() \u003d\u003d 0) { // TODO: Exception handling?"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    MissingDescriptionString"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ));"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Task newTask \u003d new ToDo(taskDescription);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        tasks.add(newTask);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Ui.echoAdd(newTask, tasks.size());"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 25
+    }
+  },
+  {
+    "path": "src/main/java/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public abstract void execute(TaskList task) throws Exception;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public int stringToInt(String str) {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        int newInt \u003d 0;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            newInt \u003d Integer.parseInt(str);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(str + \" is not a number. Please use a number instead!\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        return newInt;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void extractDesc(String inputLine) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 25
+    }
+  },
+  {
+    "path": "src/main/java/CompleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class CompleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    protected String taskNumStr;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public CompleteCommand(String taskNumStr) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        this.taskNumStr \u003d taskNumStr;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) throws Exception {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        int taskNumInt \u003d stringToInt(taskNumStr);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (taskNumInt \u003d\u003d 0) return; // don\u0027t do anything if task number is invalid"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Task currTask;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            currTask \u003d tasks.getFromList(taskNumInt-1);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            msg.add(taskNumInt + \" is not associated to any task number.\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            msg.add(\"Use \u0027list\u0027 to check the tasks that are here first!\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            throw new Exception(\"Task number not in list\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        if (currTask.isDone \u003d\u003d true) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            msg.add(\"Task \" + taskNumInt + \" is already completed! :)\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            currTask.markAsDone();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            msg.add(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            msg.add(\"  \" + currTask.getTask());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 2,
+      "-": 35
+    }
+  },
+  {
     "path": "src/main/java/Deadline.java",
     "fileType": "java",
     "lines": [
@@ -297,91 +1437,91 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public void run() {"
+        "content": "    public void run() throws Exception {"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "//        Ui.showWelcome(); // inside Storage"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//        Ui.showWelcome(); // inside Storage"
+        "content": "        boolean isExit \u003d false;"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        boolean isExit \u003d false;"
+        "content": "        Scanner input \u003d new Scanner(System.in); // TODO: Add to Ui instead?"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        Scanner input \u003d new Scanner(System.in); // TODO: Add to Ui instead?"
+        "content": "        while (isExit \u003d\u003d false) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        while (isExit \u003d\u003d false) {"
+        "content": "            if (input.hasNextLine()) {"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            if (input.hasNextLine()) {"
+        "content": "                String inputLine \u003d input.nextLine();"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                String inputLine \u003d input.nextLine();"
+        "content": "                if (inputLine.equals(\"bye\")) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                if (inputLine.equals(\"bye\")) {"
+        "content": "                    isExit \u003d true;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                    isExit \u003d true;"
+        "content": "                    Parser.exit();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                    Parser.exit();"
+        "content": "                } else {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                } else {"
+        "content": "                    Command c \u003d Parser.handleInput(inputLine, tasks);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                    Parser.handleInput(inputLine, tasks);"
+        "content": "                    c.execute(tasks);"
       },
       {
         "lineNumber": 30,
@@ -428,9 +1568,9 @@
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "-"
+          "gitId": "omupenguin"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "    public static void main(String[] args) throws Exception { // Exception needs to be handled?"
       },
       {
         "lineNumber": 37,
@@ -455,8 +1595,66 @@
       }
     ],
     "authorContributionMap": {
-      "omupenguin": 35,
-      "-": 4
+      "omupenguin": 36,
+      "-": 3
+    }
+  },
+  {
+    "path": "src/main/java/ErrorCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class ErrorCommand extends Command {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        return; // Don\u0027t do anything"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 7
     }
   },
   {
@@ -637,6 +1835,358 @@
     }
   },
   {
+    "path": "src/main/java/FindStringCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class FindStringCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    protected String inputLine;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    protected String commandName;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public FindStringCommand(String inputLine) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        this.inputLine \u003d inputLine;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        this.commandName \u003d \"find\";"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        String searchStr \u003d \"\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            searchStr \u003d inputLine.substring(commandName.length()+1);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Please use the format \u0027find \u003cstring\u003e\u0027\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        // Find tasks that match the searchStr and add into itemsFound"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        ArrayList\u003cString\u003e itemsFound \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        for (Task currTask : tasks.list) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            String taskStr \u003d currTask.getTask();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            if (taskStr.indexOf(searchStr) !\u003d -1) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                itemsFound.add(taskStr);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        if (itemsFound.isEmpty()) {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"There are no matching tasks in your list :(\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        } else {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            for (int i \u003d 0; i \u003c itemsFound.size(); i++) {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                msg.add( (i+1) + \".\"  + itemsFound.get(i) );"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 49
+    }
+  },
+  {
     "path": "src/main/java/Parser.java",
     "fileType": "java",
     "lines": [
@@ -687,7 +2237,7 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public static void handleInput(String inputLine, TaskList tasks) {"
+        "content": "    public static Command handleInput(String inputLine, TaskList tasks) {"
       },
       {
         "lineNumber": 8,
@@ -729,112 +2279,668 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                showList(tasks);"
+        "content": "                return new ShowListCommand();"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                break;"
+        "content": "            case \"done\":"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "            case \"done\":"
+        "content": "                try {"
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "                completeTask(inputArray[1], tasks);"
+        "content": "                    return new CompleteCommand(inputArray[1]);"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "                break;"
+        "content": "                } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "            case \"remove\":"
+        "content": "                    ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "                removeTask(inputArray[1], tasks);"
+        "content": "                            \"Please use the format \u0027done \u003cnumber\u003e\u0027!\""
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "                break;"
+        "content": "                    ));"
       },
       {
         "lineNumber": 21,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "            case \"find\":"
+        "content": "                    Ui.printMsg(msg);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                findString(command, inputLine, tasks);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 23,
         "author": {
-          "gitId": "omupenguin"
+          "gitId": "-"
         },
-        "content": "                break;"
+        "content": "                }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            default:"
+        "content": "            case \"remove\":"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                addToList(command, inputLine, tasks);"
+        "content": "                try {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "                break;"
+        "content": "                    return new RemoveCommand(inputArray[1]);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        }"
+        "content": "                } catch (IndexOutOfBoundsException e) {"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "omupenguin"
         },
+        "content": "                    ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                            \"Please use the format \u0027remove \u003cnumber\u003e\u0027!\""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    ));"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            case \"find\":"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                return new FindStringCommand(inputLine);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                return addToList(command, inputLine);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        return new ErrorCommand();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "omupenguin"
+        },
         "content": "    }"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public static Command addToList(String command, String inputLine) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        String taskDescription;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Command commandToRun \u003d new ErrorCommand();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            taskDescription \u003d inputLine.substring(command.length()+1);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            switch (command) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                case \"todo\":"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    commandToRun \u003d new AddTodoCommand(taskDescription);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                case \"event\":"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    commandToRun \u003d new AddEventCommand(taskDescription);"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                case \"deadline\":"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    commandToRun \u003d new AddDeadlineCommand(taskDescription);"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                    \"Invalid command given!\""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ));"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        return commandToRun;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public static void exit() {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                \"Bye. Hope to see you again soon!\""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        ));"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        //Storage.save(tasks); // Don\u0027t need to save since any previous commands are already saved"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 67,
+      "-": 11
+    }
+  },
+  {
+    "path": "src/main/java/RemoveCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class RemoveCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    protected String taskNumStr;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public RemoveCommand(String taskNumStr) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        this.taskNumStr \u003d taskNumStr;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        int taskNumInt \u003d stringToInt(taskNumStr);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        if (taskNumInt \u003d\u003d 0) return; // don\u0027t do anything if task number is invalid"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            tasks.getFromList(taskNumInt-1); // Check if the task exists first"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Noted. I\u0027ve removed this task: \");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"  \" + tasks.getFromList(taskNumInt-1).getTask());"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            tasks.removeFromList(taskNumInt-1);"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Now you have \" + tasks.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(taskNumInt + \" is not associated to any task number.\");"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Use \u0027list\u0027 to check the tasks that are here first!\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            return;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
       },
       {
         "lineNumber": 29,
@@ -848,1410 +2954,24 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public static void addToList(String command, String inputLine, TaskList tasks) {"
+        "content": "        Ui.printMsg(msg);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//        String taskDescription \u003d inputLine.length() !\u003d command.length()  // If there are no characters after command,"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//                ? inputLine.substring(command.length()+1) : \"\";          // then description is empty"
+        "content": "    }"
       },
       {
         "lineNumber": 33,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        String taskDescription;"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            taskDescription \u003d inputLine.substring(command.length()+1);"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            switch (command) {"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                case \"todo\":"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    addTodo(taskDescription, tasks);"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                case \"event\":"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    addEvent(taskDescription, tasks);"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                case \"deadline\":"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    addDeadline(taskDescription, tasks);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    \"Invalid command given!\""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            ));"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void exit() {"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                \"Bye. Hope to see you again soon!\""
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ));"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        //Storage.save(tasks); // Don\u0027t need to save since any previous commands are already saved"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void addTodo(String taskDescription, TaskList tasks) {"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        if (taskDescription.length() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e(Arrays.asList("
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                    \"Please specify the task you want to add!\""
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            ));"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Task newTask \u003d new ToDo(taskDescription);"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        tasks.add(newTask);"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Ui.echoAdd(newTask, tasks.size());"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void addEvent(String taskDescription, TaskList tasks) {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        String dateTrigger \u003d \"/at\";"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        int dateIndex \u003d taskDescription.indexOf(dateTrigger);"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        String[] data \u003d taskDescription.split(dateTrigger + \" \");"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        LocalDateTime time \u003d (data.length !\u003d 1) ? Time.readTime(data[1]) : null;"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        // Error Checking"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        boolean encounteredError \u003d (taskDescription.length() \u003d\u003d 0 || dateIndex \u003d\u003d -1 || data.length \u003c 2 || time \u003d\u003d null);"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        if (encounteredError) {"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            if (taskDescription.length() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add(\"Please specify the task you want to add!\");"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            } else if (dateIndex \u003d\u003d -1) {"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add(\"Please add \u0027/at \u003cdate\u003e\u0027 after your task to specify the event date.\" );"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add(\"Please use the format \u0027DD/MM/YYYY HHmm\u0027!\");"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Task newTask \u003d new Event(data[0], time);"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            tasks.add(newTask);"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.echoAdd(newTask, tasks.size());"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void addDeadline(String taskDescription, TaskList tasks) {"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        String dateTrigger \u003d \"/by\";"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        int dateIndex \u003d taskDescription.indexOf(dateTrigger);"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        String[] data \u003d taskDescription.split(dateTrigger + \" \");"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        LocalDateTime time \u003d (data.length !\u003d 1) ? Time.readTime(data[1]) : null;"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        // Error Checking"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        boolean encounteredError \u003d (taskDescription.length() \u003d\u003d 0 || dateIndex \u003d\u003d -1 || data.length \u003c 2 || time \u003d\u003d null);"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        if (encounteredError) {"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            if (taskDescription.length() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add(\"Please specify the task you want to add!\");"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            } else if (dateIndex \u003d\u003d -1) {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add(\"Please add \u0027/by \u003cdate\u003e\u0027 after your task to specify the deadline date.\" );"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add(\"Please use the format \u0027DD/MM/YYYY HHmm\u0027!\");"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Task newTask \u003d new Deadline(data[0], time);"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            tasks.add(newTask);"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.echoAdd(newTask, tasks.size());"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void removeTask(String taskNum, TaskList tasks) {"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        // Duplicate code with completeTask"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        // Can make a class called \"parseInt\" or something :D"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        int taskNumInt \u003d 0;"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            taskNumInt \u003d Integer.parseInt(taskNum);"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        catch (NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(taskNum + \" is not a number. Please use a number instead!\");"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            tasks.getFromList(taskNumInt-1); // Check if the task exists first"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Noted. I\u0027ve removed this task: \");"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"  \" + tasks.getFromList(taskNumInt-1).getTask());"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            tasks.removeFromList(taskNumInt-1);"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Now you have \" + tasks.size() + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        catch (IndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(taskNum + \" is not associated to any task number.\");"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Use \u0027list\u0027 to check the tasks that are here first!\");"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void showList(TaskList tasks) {"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        msg.add(\"Here are the tasks in your list:\");"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        for (int i \u003d 0; i \u003c tasks.size(); i++) {"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Task currTask \u003d tasks.getFromList(i);"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add( (i+1) + \".\"  + currTask.getTask() );"
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void findString (String command, String inputLine, TaskList tasks) {"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        String searchStr \u003d inputLine.length() !\u003d command.length()  // If there are no characters after command,"
-      },
-      {
-        "lineNumber": 177,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                ? inputLine.substring(command.length()+1) : \"\";          // then description is empty"
-      },
-      {
-        "lineNumber": 178,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ArrayList\u003cString\u003e itemsFound \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 179,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 180,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        for (Task currTask : tasks.list) {"
-      },
-      {
-        "lineNumber": 181,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            String taskStr \u003d currTask.getTask();"
-      },
-      {
-        "lineNumber": 182,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            if (taskStr.indexOf(searchStr) !\u003d -1) {"
-      },
-      {
-        "lineNumber": 183,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                itemsFound.add(taskStr);"
-      },
-      {
-        "lineNumber": 184,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 185,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 186,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 187,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        if (itemsFound.isEmpty()) {"
-      },
-      {
-        "lineNumber": 188,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"There are no matching tasks in your list :(\");"
-      },
-      {
-        "lineNumber": 189,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 190,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Here are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 191,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            for (int i \u003d 0; i \u003c itemsFound.size(); i++) {"
-      },
-      {
-        "lineNumber": 192,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "                msg.add( (i+1) + \".\"  + itemsFound.get(i) );"
-      },
-      {
-        "lineNumber": 193,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 194,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 195,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 196,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 197,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 198,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 199,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    public static void completeTask(String completedNum, TaskList tasks) {"
-      },
-      {
-        "lineNumber": 200,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        int listNum \u003d 0;"
-      },
-      {
-        "lineNumber": 201,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
-      },
-      {
-        "lineNumber": 202,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 203,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 204,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            listNum \u003d Integer.parseInt(completedNum);"
-      },
-      {
-        "lineNumber": 205,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 206,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        catch (NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 207,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(completedNum + \" is not a number. Please use a number instead!\");"
-      },
-      {
-        "lineNumber": 208,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 209,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 210,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 211,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 212,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Task currTask \u003d new Task(\"\");"
-      },
-      {
-        "lineNumber": 213,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 214,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            currTask \u003d tasks.getFromList(listNum-1);"
-      },
-      {
-        "lineNumber": 215,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } catch (IndexOutOfBoundsException e) {"
-      },
-      {
-        "lineNumber": 216,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(completedNum + \" is not associated to any task number.\");"
-      },
-      {
-        "lineNumber": 217,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Use \u0027list\u0027 to check the tasks that are here first!\");"
-      },
-      {
-        "lineNumber": 218,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 219,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            return;"
-      },
-      {
-        "lineNumber": 220,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 221,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 222,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        if (currTask.isDone \u003d\u003d true) {"
-      },
-      {
-        "lineNumber": 223,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Task \" + listNum + \" is already completed! :)\");"
-      },
-      {
-        "lineNumber": 224,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 225,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            currTask.markAsDone();"
-      },
-      {
-        "lineNumber": 226,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"Nice! I\u0027ve marked this task as done:\");"
-      },
-      {
-        "lineNumber": 227,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "            msg.add(\"  \" + currTask.getTask());"
-      },
-      {
-        "lineNumber": 228,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 229,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        Ui.printMsg(msg);"
-      },
-      {
-        "lineNumber": 230,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 231,
         "author": {
           "gitId": "omupenguin"
         },
@@ -2259,7 +2979,135 @@
       }
     ],
     "authorContributionMap": {
-      "omupenguin": 231
+      "omupenguin": 33
+    }
+  },
+  {
+    "path": "src/main/java/ShowListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class ShowListCommand extends Command {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute(TaskList tasks) {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            ArrayList\u003cString\u003e msg \u003d new ArrayList\u003cString\u003e();"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            msg.add(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            for (int i \u003d 0; i \u003c tasks.size(); i++) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                Task currTask \u003d tasks.getFromList(i);"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "                msg.add( (i+1) + \".\"  + currTask.getTask() );"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            Ui.printMsg(msg);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 17
     }
   },
   {
@@ -3257,101 +4105,87 @@
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "import java.util.Locale;"
+        "content": "import java.util.ArrayList;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": ""
+        "content": "import java.util.Locale;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "public class Time {"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "    public static LocalDateTime readTime(String timeStr) {"
+        "content": "public class Time {"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        try {"
+        "content": "    public static LocalDateTime readTime(String timeStr) {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            LocalDateTime time \u003d LocalDateTime.parse(timeStr, formatter);"
+        "content": "            DateTimeFormatter formatter \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\", Locale.ENGLISH);"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//            System.out.println(time);"
+        "content": "            LocalDateTime time \u003d LocalDateTime.parse(timeStr, formatter);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            return time;"
+        "content": "//            System.out.println(time);"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "        } catch(DateTimeParseException e) {"
+        "content": "            return time;"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "//            System.out.println(\"This format is not okay!\");"
+        "content": ""
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "omupenguin"
         },
-        "content": "            return null;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "omupenguin"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "omupenguin"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 16,
         "author": {
           "gitId": "omupenguin"
         },
@@ -3359,7 +4193,7 @@
       }
     ],
     "authorContributionMap": {
-      "omupenguin": 18
+      "omupenguin": 16
     }
   },
   {
@@ -3707,6 +4541,218 @@
     ],
     "authorContributionMap": {
       "omupenguin": 39
+    }
+  },
+  {
+    "path": "src/test/java/CompleteCommandTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.fail;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "public class CompleteCommandTest {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute_indexInBounds_success() throws Exception {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        TaskList tasks \u003d new TaskList(new ArrayList\u003cTask\u003e());"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        Task sampleTodo \u003d new ToDo(\"Sample Task\");"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        tasks.add(sampleTodo);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        new CompleteCommand(\"1\").execute(tasks);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        assertEquals(true, tasks.getFromList(0).isDone);"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    public void execute_indexOutOfBounds_exceptionThrown() {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            TaskList tasks \u003d new TaskList(new ArrayList\u003cTask\u003e());"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            new CompleteCommand(\"1\").execute(tasks);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            fail();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "            assertEquals(\"Task number not in list\", e.getMessage());"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "omupenguin"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "omupenguin": 29
     }
   }
 ]

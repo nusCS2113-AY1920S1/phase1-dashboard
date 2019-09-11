@@ -673,140 +673,140 @@
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "import java.io.File;"
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "import java.io.FileNotFoundException;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "import java.io.FileWriter;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "import java.io.IOException;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "import java.sql.SQLOutput;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "import java.util.Scanner;"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "eugenelim97"
-        },
         "content": ""
       },
       {
-        "lineNumber": 9,
+        "lineNumber": 3,
         "author": {
           "gitId": "-"
         },
         "content": "public class Duke {"
       },
       {
-        "lineNumber": 10,
+        "lineNumber": 4,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "    public static void main(String[] args) throws DukeException {"
+        "content": "    private Storage storage;"
       },
       {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        String logo \u003d \" ____        _        \\n\""
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"|  _ \\\\ _   _| | _____ \\n\""
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"| | | | | | | |/ / _ \\\\\\n\""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"| |_| | |_| |   \u003c  __/\\n\""
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "        System.out.println(\"Hello from\\n\" + logo);"
-      },
-      {
-        "lineNumber": 17,
+        "lineNumber": 5,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        System.out.println(\"Hello! I\u0027m Duke\");"
+        "content": "    private TaskList tasks;"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 6,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        System.out.println(\"What can I do for you?\");"
+        "content": "    private Ui ui;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 7,
         "author": {
           "gitId": "eugenelim97"
         },
         "content": ""
       },
       {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public Duke(String filePath) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        storage \u003d new Storage(filePath);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            tasks \u003d new TaskList(storage.load());"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            ui.printLoadingError();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            tasks \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void run() throws Exception {"
+      },
+      {
         "lineNumber": 20,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        String filepath \u003d \"data/tasks.txt\";"
+        "content": "        ui.printWelcome();"
       },
       {
         "lineNumber": 21,
@@ -820,1041 +820,110 @@
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003cTask\u003e();"
+        "content": "        String command \u003d scanner.nextLine();"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        try {"
+        "content": "        while (!\"bye\".equals(command)) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "            readFromFile(filepath, taskList);"
+        "content": "            Parser.execute(command, tasks, ui, storage);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        } catch(FileNotFoundException e) {"
+        "content": "            command \u003d scanner.nextLine();"
       },
       {
         "lineNumber": 26,
         "author": {
-          "gitId": "eugenelim97"
+          "gitId": "-"
         },
-        "content": "            System.out.println(e.getMessage());"
+        "content": "        }"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        }"
+        "content": "        ui.printExit();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        String command \u003d scanner.next();"
+        "content": "    }"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        while (!\"bye\".equals(command)) {"
+        "content": ""
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "            try {"
+        "content": "    public static void main(String[] args) throws Exception {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "                switch (command) {"
+        "content": "        new Duke(\"data/tasks.txt\").run();"
       },
       {
         "lineNumber": 32,
         "author": {
-          "gitId": "eugenelim97"
+          "gitId": "-"
         },
-        "content": "                    case \"list\":"
+        "content": "    }"
       },
       {
         "lineNumber": 33,
         "author": {
-          "gitId": "eugenelim97"
+          "gitId": "-"
         },
-        "content": "                        int i \u003d 0;"
+        "content": "}"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "                        System.out.println(\"Here are the tasks in your list:\");"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "                        for (Task task : taskList) {"
+        "content": ""
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "                            System.out.println(++i + \".\" + task.toString());"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"done\":"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        Task t \u003d taskList.get(scanner.nextInt() - 1);"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        printDone(t);"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"delete\":"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        int index \u003d scanner.nextInt() - 1;"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        Task deleted \u003d taskList.get(index);"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        taskList.remove(index);"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        printDelete(deleted, taskList.size());"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"todo\":"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        String todoInput \u003d scanner.nextLine();"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        if (\"\".equals(todoInput)) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        } else {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            Todo todo \u003d new Todo(todoInput.trim());"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            taskList.add(todo);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            printAdd(todo, taskList.size());"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"deadline\":"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        String deadlineInput \u003d scanner.nextLine();"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        if (\"\".equals(deadlineInput)) {"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        } else {"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            String[] d \u003d deadlineInput.split(\"/by\", 2);"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            try {"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                DateTime dateTime \u003d new DateTime(d[1].trim());"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                Deadline deadline \u003d new Deadline(d[0].trim(), dateTime.toString());"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                taskList.add(deadline);"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                printAdd(deadline, taskList.size());"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            } catch (Exception e1) {"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                throw new DukeException(\"Please input deadline in correct format \\\"DD/MM/YYYY HHmm\\\"\");"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"event\":"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        String eventInput \u003d scanner.nextLine();"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        if (\"\".equals(eventInput)) {"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            throw new DukeException(\"☹ OOPS!!! The description of an event cannot be empty.\");"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        } else {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            String[] e \u003d eventInput.split(\"/at\", 2);"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            try {"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                DateTime dateTime \u003d new DateTime(e[1].trim());"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                Event event \u003d new Event(e[0].trim(), dateTime.toString());"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                taskList.add(event);"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                printAdd(event, taskList.size());"
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            } catch(Exception e2) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                throw new DukeException(\"Please input event in correct format \\\"DD/MM/YYYY HHmm\\\"\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"find\":"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        String keyword \u003d scanner.next();"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        int j \u003d 0;"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        System.out.println(\"Here are the matching tasks in your list:\");"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        for (Task task : taskList) {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            if (task.getDescription().contains(keyword)) {"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                                System.out.println(++j + \".\" + task.toString());"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    default:"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        scanner.nextLine();"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                writeToFile(filepath, taskList);"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                command \u003d scanner.next();"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "            } catch (DukeException | IOException e) {"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                System.out.println(e.getMessage());"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                command \u003d scanner.next();"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "eugenelim97"
-        },
         "content": ""
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    public static void printAdd(Task task, int num) {"
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \");"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"  \" + task.toString());"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"Now you have \" + num + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    public static void printDone(Task t) {"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        t.markAsDone();"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"  \" + t.toString());"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    public static void printDelete(Task t, int num) {"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"Noted. I\u0027ve removed this task:\");"
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"  \" + t.toString());"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        System.out.println(\"Now you have \" + num + \" tasks in the list.\");"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    private static void writeToFile(String filePath, ArrayList\u003cTask\u003e taskList) throws IOException {"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        FileWriter fw \u003d new FileWriter(filePath);"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        for (Task t : taskList) {"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "            fw.write(t.toTextFile() + System.lineSeparator());"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        fw.close();"
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    private static void readFromFile(String filePath, ArrayList\u003cTask\u003e taskList) throws FileNotFoundException, DukeException {"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        File f \u003d new File(filePath); // create a File for the given file path"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        Scanner s \u003d new Scanner(f); // create a Scanner using the File as the source"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        while (s.hasNextLine()) {"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "            try {"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                String[] Tasks \u003d s.nextLine().split(\" \\\\| \");"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                switch (Tasks[0]) {"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"T\":"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        Todo t \u003d new Todo(Tasks[2], \"+\".equals(Tasks[1]));"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        taskList.add(t);"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"D\":"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        Deadline d \u003d new Deadline(Tasks[2], Tasks[3], \"+\".equals(Tasks[1]));"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        taskList.add(d);"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    case \"E\":"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        Event e \u003d new Event(Tasks[2], Tasks[3], \"+\".equals(Tasks[1]));"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        taskList.add(e);"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                    default:"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                        throw new DukeException(\"Something went wrong in reading file\");"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "            } catch(DukeException e) {"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "                System.out.println(e.getMessage());"
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "eugenelim97"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
       }
     ],
     "authorContributionMap": {
-      "eugenelim97": 159,
-      "-": 10
+      "eugenelim97": 32,
+      "-": 4
     }
   },
   {
@@ -1873,24 +942,31 @@
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "    public DukeException(String message) {"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "        super(message);"
+        "content": "    public DukeException(String message) {"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "eugenelim97"
         },
-        "content": "    }"
+        "content": "        super(message);"
       },
       {
         "lineNumber": 5,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 6,
         "author": {
           "gitId": "eugenelim97"
         },
@@ -1898,7 +974,7 @@
       }
     ],
     "authorContributionMap": {
-      "eugenelim97": 5
+      "eugenelim97": 6
     }
   },
   {
@@ -2069,6 +1145,976 @@
     ],
     "authorContributionMap": {
       "eugenelim97": 23
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public static void execute(String command, TaskList tasks, Ui ui, Storage storage) throws DukeException, Exception {"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        String[] tokens \u003d command.split(\" \");"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            switch (tokens[0]) {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"list\":"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    ui.printList(tasks);"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"done\":"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        int i \u003d Integer.parseInt(tokens[1]) - 1;"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Task t \u003d tasks.get(i);"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        t.markAsDone();"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        ui.printDone(t);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        throw new DukeException(\"Please enter a valid index.\");"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"delete\":"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        int i \u003d Integer.parseInt(tokens[1]) - 1;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Task t \u003d tasks.get(i);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        tasks.remove(i);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        ui.printDelete(t, tasks);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        throw new DukeException(\"Please enter a valid index.\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"todo\":"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    if (!command.substring(4).isBlank()) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Todo todo \u003d new Todo(command.substring(5).trim());"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        tasks.add(todo);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        ui.printAdd(todo, tasks);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    } else {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"deadline\":"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        String[] d \u003d command.substring(9).split(\"/by\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        DateTime dateTime \u003d new DateTime(d[1].trim());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Deadline deadline \u003d new Deadline(d[0].trim(), dateTime.toString());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        tasks.add(deadline);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        ui.printAdd(deadline, tasks);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        throw new DukeException(\"Please input deadline in correct format \\\"DD/MM/YYYY HHmm\\\"\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"event\":"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        String[] e \u003d command.substring(6).split(\"/at\");"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        DateTime dateTime \u003d new DateTime(e[1].trim());"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Event event \u003d new Event(e[0].trim(), dateTime.toString());"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        tasks.add(event);"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        ui.printAdd(event, tasks);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        throw new DukeException(\"Please input deadline in correct format \\\"DD/MM/YYYY HHmm\\\"\");"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                case \"find\":"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    try {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        String keyword \u003d command.substring(5);"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        ui.printMatch(keyword, tasks);"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    } catch (Exception e) {"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        throw new DukeException(\"Keyword cannot be empty.\");"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                default:"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    throw new DukeException(\"☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            storage.save(tasks);"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        } catch(DukeException err) {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            ui.printError(err.getMessage());"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "eugenelim97": 83
+    }
+  },
+  {
+    "path": "src/main/java/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "import java.io.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    private String filePath;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public Storage(String filePath) {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        this.filePath \u003d filePath;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public ArrayList\u003cTask\u003e load() throws DukeException {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        ArrayList\u003cTask\u003e taskList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            File f \u003d new File(filePath); // create a File for the given file path"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            Scanner s \u003d new Scanner(f); // create a Scanner using the File as the source"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            while (s.hasNextLine()) {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                String[] Tasks \u003d s.nextLine().split(\" \\\\| \");"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                switch (Tasks[0]) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    case \"T\":"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Todo t \u003d new Todo(Tasks[2], \"+\".equals(Tasks[1]));"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        taskList.add(t);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    case \"D\":"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Deadline d \u003d new Deadline(Tasks[2], Tasks[3], \"+\".equals(Tasks[1]));"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        taskList.add(d);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                    case \"E\":"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        Event e \u003d new Event(Tasks[2], Tasks[3], \"+\".equals(Tasks[1]));"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        taskList.add(e);"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                        break;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            return taskList;"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        } catch(Exception e) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            throw new DukeException(e.getMessage());"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void save(TaskList taskList) throws DukeException {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(filePath);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            BufferedWriter bw \u003d new BufferedWriter(fw);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                bw.write(taskList.get(i).toTextFile());"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                bw.newLine();"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            bw.close();"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        } catch (IOException e) {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            throw new DukeException(\"Error encountered in saving file.\");"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "eugenelim97": 53
     }
   },
   {
@@ -2298,6 +2344,218 @@
     }
   },
   {
+    "path": "src/main/java/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        taskList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e taskList) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        this.taskList \u003d taskList;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public int size() {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        return taskList.size();"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public Task get(int i) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        return taskList.get(i);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void remove(int i) {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        taskList.remove(i);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void add(Task t) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        taskList.add(t);"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "eugenelim97": 29
+    }
+  },
+  {
     "path": "src/main/java/Todo.java",
     "fileType": "java",
     "lines": [
@@ -2444,6 +2702,484 @@
     ],
     "authorContributionMap": {
       "eugenelim97": 20
+    }
+  },
+  {
+    "path": "src/main/java/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    String logo \u003d \" ____        _        \\n\""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    String line \u003d \"____________________________________________________________\";"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public Ui() {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printWelcome() {"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Hello from\\n\" + logo);"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"What can I do for you?\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printExit() {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Bye. Hope to see you again soon!\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printLine() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"\\t\" + line);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printAdd(Task t, TaskList taskList) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Got it. I\u0027ve added this task: \");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"  \" + t.toString());"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printDelete(Task t, TaskList taskList) {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Noted. I\u0027ve removed this task:\");"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"  \" + t.toString());"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Now you have \" + taskList.size() + \" tasks in the list.\");"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printDone(Task t) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Nice! I\u0027ve marked this task as done:\");"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"  \" + t.toString());"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printList(TaskList taskList) {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Here are the tasks in your list:\");"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            System.out.println(i+1 + \".\" + taskList.get(i).toString());"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printMatch(String keyword, TaskList taskList) {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        int num \u003d 0;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Here are the matching tasks in your list:\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            if (taskList.get(i).getDescription().contains(keyword)) {"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "                System.out.println(++num + \".\" + taskList.get(i).toString());"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printLoadingError() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(\"Error encountered in loading file.\");"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    public void printError(String err) {"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "        System.out.println(err);"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "eugenelim97"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "eugenelim97": 67
     }
   }
 ]
