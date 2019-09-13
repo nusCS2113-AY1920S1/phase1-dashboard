@@ -1315,299 +1315,299 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    /*"
+        "content": "    "
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    * Ui: deals with interactions with the user"
+        "content": "    private Storage storage;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    * Storage: deals with loading tasks from the file and saving tasks in the file"
+        "content": "    private TaskList tasks;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    * Parser: deals with making sense of the user command"
+        "content": "    private Ui ui;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    * TaskList: contains the task list e.g., it has operations to add/delete tasks in the list"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    */"
+        "content": "    public Duke(String filePath) {"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    private Storage storage;"
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    private TaskList tasks;"
+        "content": "        storage \u003d new Storage(filePath);"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    private Ui ui;"
+        "content": "        try {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "            tasks \u003d new TaskList(storage.load());"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public Duke(String filePath) {"
+        "content": "        } catch (DukeException e) {"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        ui \u003d new Ui();"
+        "content": "            ui.showLoadingError();"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        storage \u003d new Storage(filePath);"
+        "content": "            tasks \u003d new TaskList();"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        try {"
+        "content": "        }"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            tasks \u003d new TaskList(storage.load());"
+        "content": "    }"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        } catch (DukeException e) {"
+        "content": ""
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            ui.showLoadingError();"
+        "content": "    public void run() {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            tasks \u003d new TaskList();"
+        "content": "        ui.showWelcome();"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        }"
+        "content": "        boolean isExit \u003d false;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    }"
+        "content": "        while (!isExit) {"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
+        "content": "            try {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "    public void run() {"
+        "content": "                String fullCommand \u003d ui.readCommand();"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        ui.showWelcome();"
+        "content": "                ui.showLine();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        boolean isExit \u003d false;"
+        "content": "                Command c \u003d Parser.parse(fullCommand);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        while (!isExit) {"
+        "content": "                c.execute(tasks, ui, storage);"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            try {"
+        "content": "                isExit \u003d c.isExit();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                String fullCommand \u003d ui.readCommand();"
+        "content": "                try {"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                ui.showLine();"
+        "content": "                    storage.writeToFile(tasks);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                Command c \u003d Parser.parse(fullCommand);"
+        "content": "                } catch (IOException e) {"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                c.execute(tasks, ui, storage);"
+        "content": "                    System.out.println(\"Failed writing to file.\");"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                isExit \u003d c.isExit();"
+        "content": "                }"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                try {"
+        "content": "            } catch (DukeException e) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                    storage.writeToFile(tasks);"
+        "content": "                ui.showError(e.getMessage());"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                } catch (IOException e) {"
+        "content": "            } finally {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                    System.out.println(\"Failed writing to file.\");"
+        "content": "                ui.showLine();"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                }"
+        "content": "            }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            } catch (DukeException e) {"
+        "content": "        }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "                ui.showError(e.getMessage());"
+        "content": "    }"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            } finally {"
+        "content": ""
       },
       {
         "lineNumber": 43,
         "author": {
-          "gitId": "chekjun"
+          "gitId": "-"
         },
-        "content": "                ui.showLine();"
+        "content": "    public static void main(String[] args) {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "            }"
+        "content": "        // Duke(\"C:/Users/Chek Jun/Google Drive/1920S1/CS2113T/duke/src/main/java/data.txt\").run(); // desktop path"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "chekjun"
         },
-        "content": "        }"
+        "content": "        new Duke(\"C:/Users/Lim Chek Jun/Google Drive/1920S1/CS2113T/duke/text-ui-test/data.txt\").run(); // laptop path"
       },
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "chekjun"
+          "gitId": "-"
         },
         "content": "    }"
       },
@@ -1616,46 +1616,11 @@
         "author": {
           "gitId": "chekjun"
         },
-        "content": ""
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    public static void main(String[] args) {"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "chekjun"
-        },
-        "content": "        // Duke(\"C:/Users/Chek Jun/Google Drive/1920S1/CS2113T/duke/src/main/java/data.txt\").run(); // desktop path"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "chekjun"
-        },
-        "content": "        new Duke(\"C:/Users/Lim Chek Jun/Google Drive/1920S1/CS2113T/duke/text-ui-test/data.txt\").run(); // laptop path"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "chekjun"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "chekjun": 49,
+      "chekjun": 44,
       "-": 3
     }
   },

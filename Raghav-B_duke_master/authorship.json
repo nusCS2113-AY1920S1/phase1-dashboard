@@ -1,42 +1,556 @@
 [
   {
-    "path": "src/main/java/Duke.java",
+    "path": "src/main/java/Duke/Storage.java",
     "fileType": "java",
     "lines": [
       {
         "lineNumber": 1,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "import java.time.LocalDateTime;"
+        "content": "package Duke;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "-"
         },
-        "content": "import java.util.Arrays;"
+        "content": "import DukeException.*;"
       },
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "import java.util.Scanner;"
+        "content": "import java.io.*;"
       },
       {
         "lineNumber": 4,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "import DukeException.*;"
+        "content": "import java.time.DateTimeException;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "Raghav-B"
         },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "import java.util.*;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    private static String defaultSavePath \u003d \"task_list.txt\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Saves the user\u0027s current task list into a text file."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param listToSave TaskList object to be saved."
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws IOException When file cannot be written to."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static void saveList(TaskList listToSave) throws IOException {"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        FileWriter fw \u003d new FileWriter(defaultSavePath);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        String stringToWrite \u003d \"\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        for (int i \u003d 0; i \u003c listToSave.getListLength(); i++) {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            stringToWrite +\u003d (listToSave.getListItem(i).getTaskType() + \" | \" + listToSave.getListItem(i).getStatus() + \" | \" +"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    listToSave.getListItem(i).getDescription() + \" /by \" + listToSave.getListItem(i).getDateTimeSaveString() + \"\\n\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        fw.write(stringToWrite);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        fw.close();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Loads a new task list from a previously saved text file."
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return TaskList object containing tasks from text file."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws IOException When file cannot be loaded from/written to."
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws IncompleteListEntryException When text format inside save file is corrupt/unrecognizable."
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @throws UnknownDateTimeFormatException When text format inside save file is corrupt/unrecognizable."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    public static TaskList loadList() throws IOException, IncompleteListEntryException,"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "            UnknownDateTimeFormatException  {"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        TaskList readTaskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            File f \u003d new File(defaultSavePath);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            BufferedReader b \u003d new BufferedReader(new FileReader(f));"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            while (true) {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                String readLine \u003d b.readLine();"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                if (readLine \u003d\u003d null) {"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    break;"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                String[] readLineArr \u003d readLine.split(\".\\\\|.| \", 0);"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                String itemType \u003d \"\";"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                String itemStatus \u003d readLineArr[1];"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                String description \u003d Parser.descriptionParse(Arrays.copyOfRange(readLineArr, 2, readLineArr.length));"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                LocalDateTime dateTime \u003d Parser.dateTimeParse(Arrays.copyOfRange(readLineArr, 2, readLineArr.length));"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                if (readLineArr[0].equals(\"[T]\")) {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    itemType \u003d \"todo\";"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                } else if (readLineArr[0].equals(\"[D]\")) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    itemType \u003d \"deadline\";"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                } else if (readLineArr[0].equals((\"[E]\"))) {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    itemType \u003d \"event\";"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                readTaskList.addListItem(itemType, itemStatus, description, dateTime);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "        } catch(IOException e) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            FileWriter fw \u003d new FileWriter(defaultSavePath);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            fw.close();"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        return readTaskList;"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Raghav-B": 52,
+      "-": 20
+    }
+  },
+  {
+    "path": "src/main/java/Duke/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Raghav-B"
+        },
         "content": "import Task.*;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "import java.time.LocalDateTime;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "import java.util.*;"
       },
       {
         "lineNumber": 6,
@@ -48,114 +562,114 @@
       {
         "lineNumber": 7,
         "author": {
-          "gitId": "-"
+          "gitId": "Raghav-B"
         },
-        "content": "public class Duke {"
+        "content": "public class TaskList {"
       },
       {
         "lineNumber": 8,
         "author": {
-          "gitId": "-"
+          "gitId": "Raghav-B"
         },
-        "content": "    public static void main(String[] args) {"
+        "content": "    private ArrayList\u003cTask\u003e taskListInternal;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "        System.out.print(Ui.logo + \"\\n\");"
+        "content": ""
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "        Ui.printOutput(\"Greetings, I am Duke!\\nHow may I be of assistance?\\n\");"
+        "content": "    public TaskList() {"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": ""
+        "content": "        taskListInternal \u003d new ArrayList\u003cTask\u003e();"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "        mainLoop();"
+        "content": "    }"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "    private static void mainLoop() {"
+        "content": "     * Adds a new Task to the internal ArrayList."
       },
       {
         "lineNumber": 16,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "        Scanner myScanner \u003d new Scanner(System.in);"
+        "content": "     * @param itemType Type of item, i.e. \u0027todo\u0027, \u0027deadline\u0027, \u0027event\u0027"
       },
       {
         "lineNumber": 17,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "        TaskList curList \u003d new TaskList();"
+        "content": "     * @param itemStatus Tick or cross string to represent task completion status."
       },
       {
         "lineNumber": 18,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "        try {"
+        "content": "     * @param description Description of task."
       },
       {
         "lineNumber": 19,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "            curList \u003d Storage.loadList();"
+        "content": "     * @param dateTime LocalDateTime object with information on deadline of task."
       },
       {
         "lineNumber": 20,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "        } catch(Exception e) {"
+        "content": "     */"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "            Ui.printOutput(e.getMessage());"
+        "content": "    public void addListItem(String itemType, String itemStatus, String description, LocalDateTime dateTime) {"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "        }"
+        "content": "        Task curTask \u003d new Task(itemStatus, description, dateTime);"
       },
       {
         "lineNumber": 23,
@@ -169,49 +683,49 @@
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "        while (true) {"
+        "content": "        if (itemType.equals(\"todo\")) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "            try {"
+        "content": "            curTask \u003d new ToDo(itemStatus, description, dateTime);"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                String input \u003d myScanner.nextLine();"
+        "content": "        } else if (itemType.equals(\"deadline\")) {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                if (input.toLowerCase().equals(\"bye\")) {"
+        "content": "            curTask \u003d new Deadline(itemStatus, description, dateTime);"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                    Ui.quitFunc();"
+        "content": "        } else if (itemType.equals((\"event\"))) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                    break;"
+        "content": "            curTask \u003d new Event(itemStatus, description, dateTime);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                }"
+        "content": "        }"
       },
       {
         "lineNumber": 31,
@@ -225,91 +739,857 @@
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                String[] inputArr \u003d input.split(\" \", 0);"
+        "content": "        taskListInternal.add(curTask);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                switch (inputArr[0].toLowerCase()) {"
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                    case \"todo\":"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                    case \"deadline\":"
+        "content": "    /**"
       },
       {
         "lineNumber": 36,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                    case \"event\": {"
+        "content": "     * Returns Task object at desired index."
       },
       {
         "lineNumber": 37,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                        Parser.incompleteCommandCheck(inputArr);"
+        "content": "     * @param itemIndex 0-based index of Task to get."
       },
       {
         "lineNumber": 38,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                        String itemType \u003d inputArr[0].toLowerCase();"
+        "content": "     * @return Requested Task object."
       },
       {
         "lineNumber": 39,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                        String itemStatus \u003d \"[✗]\";"
+        "content": "     */"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                        String description \u003d Parser.descriptionParse(Arrays.copyOfRange(inputArr, 1, inputArr.length));"
+        "content": "    public Task getListItem(int itemIndex) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                        LocalDateTime dateTime \u003d Parser.dateTimeParse(Arrays.copyOfRange(inputArr, 1, inputArr.length));"
+        "content": "        return taskListInternal.get(itemIndex);"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                        curList.addListItem(itemType, itemStatus, description, dateTime);"
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Gets length of internal ArrayList."
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return Length of internal ArrayList."
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public int getListLength() {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        return taskListInternal.size();"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Empties internal ArrayList."
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public void clearList() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        taskListInternal.clear();"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Marks Task at input index as complete."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param listItemNumber 1-based index of Task to mark complete."
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public void markItemComplete(int listItemNumber) {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        listItemNumber -\u003d 1;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        taskListInternal.get(listItemNumber).setStatus(\"[✓]\");"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Searches through internal ArrayList and returns a new TaskList object with all Tasks"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * that match a query String."
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param query String to search for in internal ArrayList."
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return TaskList containing matching Tasks from original ArrayList."
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public TaskList search(String query) {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        TaskList searchList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        for (int i \u003d 0; i \u003c getListLength(); i++) {"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            if (getListItem(i).getDescription().contains(query)) {"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                try {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    String tempTaskType \u003d \"\";"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    if (getListItem(i).getTaskType().equals(\"[T]\")) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                        tempTaskType \u003d \"todo\";"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    } else if (getListItem(i).getTaskType().equals(\"[D]\")) {"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                        tempTaskType \u003d \"deadline\";"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    } else if (getListItem(i).getTaskType().equals(\"[E]\")) {"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                        tempTaskType \u003d \"event\";"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    }"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    searchList.addListItem(tempTaskType, getListItem(i).getStatus(),"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                            getListItem(i).getDescription(), getListItem(i).getDateTime());"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                } catch(Exception e) {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                    System.out.println(\"Unhandled exception oops\");"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        return searchList;"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Deletes Task from particular index from internal ArrayList."
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param listItemNumber 1-based index of Task to delete."
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public void deleteItem(int listItemNumber) {"
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        listItemNumber -\u003d 1;"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        taskListInternal.remove(listItemNumber);"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "Raghav-B": 73,
+      "-": 35
+    }
+  },
+  {
+    "path": "src/main/java/Duke/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "package Duke;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public static String logo \u003d \"____        _        \\n\""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            + \"|  _ \\\\ _   _| | _____ \\n\""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            + \"| | | | | | | |/ / _ \\\\\\n\""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            + \"| |_| | |_| |   \u003c  __/\\n\""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Simple print function that handles indentation and divider lines while printing desired output."
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param stringToOutput String to print in UI."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public static void printOutput(String stringToOutput) {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        System.out.println(addIndent() + \"____________________________________________________________\");"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        String[] linesToPrint \u003d stringToOutput.split(\"\\n\", 0);"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        for (int i \u003d 0; i \u003c linesToPrint.length; i++) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            System.out.println(addIndent() + linesToPrint[i]);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        System.out.println(addIndent() + \"____________________________________________________________\\n\");"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns an 8 character indent string."
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return Empty indented String."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public static String addIndent() {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        return \"        \";"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "-"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Returns a custom indent character string."
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @param indentSize Size of indentation."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * @return Empty indented String."
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "    public static String addIndent(int indentSize) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        String indent \u003d \"\";"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        for (int i \u003d 0; i \u003c indentSize; i++) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "            indent +\u003d \" \";"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "Raghav-B"
+        },
+        "content": "        return indent;"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                        Storage.saveList(curList);"
+        "content": "    }"
       },
       {
         "lineNumber": 45,
@@ -321,924 +1601,119 @@
       {
         "lineNumber": 46,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                        Ui.printOutput(\"Understood. I have added the following task to the list:\\n\" +"
+        "content": "    /**"
       },
       {
         "lineNumber": 47,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                                Ui.addIndent(4) + curList.getListItem(curList.getListLength() - 1).getTaskType() +"
+        "content": "     * Simple quit output function."
       },
       {
         "lineNumber": 48,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                                curList.getListItem(curList.getListLength() - 1).getStatus() + \" \" +"
+        "content": "     */"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                                curList.getListItem(curList.getListLength() - 1).getDescription() +"
+        "content": "    public static void quitFunc() {"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                                \" by \" + curList.getListItem(curList.getListLength() - 1).getDateTimeString() + \"\\n\" +"
+        "content": "        printOutput(\"Farewell. I do hope to see you again.\\n\");"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                                \"Now you have \" + curList.getListLength() + \" task(s) in your list.\\n\");"
+        "content": "    }"
       },
       {
         "lineNumber": 52,
         "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
         "content": ""
       },
       {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "     * Quit output function with custom message."
+      },
+      {
         "lineNumber": 55,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                    case \"list\": {"
+        "content": "     * @param optionalOutput Custom message to output."
       },
       {
         "lineNumber": 56,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "                        if (curList.getListLength() \u003d\u003d 0) {"
+        "content": "     */"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                            Ui.printOutput(\"Your task list is currently empty.\\n\");"
+        "content": "    public static void quitFunc(String optionalOutput) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                        } else {"
+        "content": "        printOutput(optionalOutput);"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                            String tempString \u003d \"Now listing items in your task list:\\n\";"
+        "content": "        printOutput(\"Farewell. I do hope to see you again.\");"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                            for (int i \u003d 1; i \u003c curList.getListLength() + 1; i++) {"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "Raghav-B"
         },
-        "content": "                                tempString +\u003d (i + \". \" + curList.getListItem(i - 1).getTaskType() +"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        curList.getListItem(i - 1).getStatus() +"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        \" \" + curList.getListItem(i - 1).getDescription() +"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        \" by \" + curList.getListItem(i - 1).getDateTimeString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            Ui.printOutput(tempString);"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    case \"clear\": {"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        int tempListLength \u003d curList.getListLength();"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        curList.clearList();"
-      },
-      {
-        "lineNumber": 74,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        Ui.printOutput(\"I have cleared your task list of \" +"
-      },
-      {
-        "lineNumber": 75,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                tempListLength + \" items.\\n\");"
-      },
-      {
-        "lineNumber": 76,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 77,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 78,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    case \"done\": {"
-      },
-      {
-        "lineNumber": 80,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        if (inputArr.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 81,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            Ui.printOutput(\"Please input a task number to mark as complete.\\n\");"
-      },
-      {
-        "lineNumber": 82,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        } else {"
-      },
-      {
-        "lineNumber": 83,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            try {"
-      },
-      {
-        "lineNumber": 84,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                int listNumCompleted \u003d Integer.parseInt(inputArr[1]);"
-      },
-      {
-        "lineNumber": 85,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 86,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                if (curList.getListLength() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 87,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Ui.printOutput(\"There are no tasks to complete.\\n\");"
-      },
-      {
-        "lineNumber": 88,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                } else if (listNumCompleted \u003e curList.getListLength()) {"
-      },
-      {
-        "lineNumber": 89,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Ui.printOutput(\"My apologies. There is no task numbered \" + listNumCompleted +"
-      },
-      {
-        "lineNumber": 90,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            \" in your task list.\\n\");"
-      },
-      {
-        "lineNumber": 91,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                } else {"
-      },
-      {
-        "lineNumber": 92,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    curList.markItemComplete(listNumCompleted);"
-      },
-      {
-        "lineNumber": 93,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    try {"
-      },
-      {
-        "lineNumber": 94,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        Storage.saveList(curList);"
-      },
-      {
-        "lineNumber": 95,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    } catch(Exception e) {"
-      },
-      {
-        "lineNumber": 96,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        Ui.printOutput(e.getMessage());"
-      },
-      {
-        "lineNumber": 97,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    }"
-      },
-      {
-        "lineNumber": 98,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Ui.printOutput(\"Splendid. I have marked the following task as completed:\\n\" +"
-      },
-      {
-        "lineNumber": 99,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            Ui.addIndent(4) + curList.getListItem(listNumCompleted - 1).getTaskType() +"
-      },
-      {
-        "lineNumber": 100,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            curList.getListItem(listNumCompleted - 1).getStatus() +"
-      },
-      {
-        "lineNumber": 101,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            \" \" + curList.getListItem(listNumCompleted - 1).getDescription() +"
-      },
-      {
-        "lineNumber": 102,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            \" by \" + curList.getListItem(listNumCompleted - 1).getDateTimeString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 103,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                }"
-      },
-      {
-        "lineNumber": 104,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            } catch(NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 105,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                throw new NumberFormatException(\"\u0027done\u0027 command\u0027s argument must be a numerical value.\");"
-      },
-      {
-        "lineNumber": 106,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 107,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 108,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 109,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 110,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 111,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                    case \"find\": {"
-      },
-      {
-        "lineNumber": 112,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        Parser.incompleteCommandCheck(inputArr);"
-      },
-      {
-        "lineNumber": 113,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        TaskList searchList \u003d curList.search(String.join(\" \","
-      },
-      {
-        "lineNumber": 114,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                                Arrays.copyOfRange(inputArr, 1, inputArr.length)));"
-      },
-      {
-        "lineNumber": 115,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 116,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                        if (searchList.getListLength() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 117,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            Ui.printOutput(\"I have found no matching tasks in your list.\\n\");"
-      },
-      {
-        "lineNumber": 118,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                        } else {"
-      },
-      {
-        "lineNumber": 119,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                            String tempString \u003d \"I have found \" + searchList.getListLength() + \" matching tasks in your list.\\n\";"
-      },
-      {
-        "lineNumber": 120,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                            for (int i \u003d 0; i \u003c searchList.getListLength(); i++) {"
-      },
-      {
-        "lineNumber": 121,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                                tempString +\u003d ((i + 1) + \". \" + searchList.getListItem(i).getTaskType() +"
-      },
-      {
-        "lineNumber": 122,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                                        searchList.getListItem(i).getStatus() +"
-      },
-      {
-        "lineNumber": 123,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        \" \" + searchList.getListItem(i).getDescription() +"
-      },
-      {
-        "lineNumber": 124,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        \" by \" + searchList.getListItem(i).getDateTimeString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 125,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 126,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            Ui.printOutput(tempString);"
-      },
-      {
-        "lineNumber": 127,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 128,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 129,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 130,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 131,
-        "author": {
-          "gitId": "-"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 132,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    case \"delete\": {"
-      },
-      {
-        "lineNumber": 133,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        if (inputArr.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 134,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            Ui.printOutput(\"Please input a task number to delete.\\n\");"
-      },
-      {
-        "lineNumber": 135,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        } else {"
-      },
-      {
-        "lineNumber": 136,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            try {"
-      },
-      {
-        "lineNumber": 137,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                int listNumToDelete \u003d Integer.parseInt(inputArr[1]);"
-      },
-      {
-        "lineNumber": 138,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 139,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                if (curList.getListLength() \u003d\u003d 0) {"
-      },
-      {
-        "lineNumber": 140,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Ui.printOutput(\"There are no tasks to delete.\\n\");"
-      },
-      {
-        "lineNumber": 141,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                } else if (listNumToDelete \u003e curList.getListLength()) {"
-      },
-      {
-        "lineNumber": 142,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Ui.printOutput(\"My apologies. There is no task numbered \" + listNumToDelete +"
-      },
-      {
-        "lineNumber": 143,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            \" in your task list.\\n\");"
-      },
-      {
-        "lineNumber": 144,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                } else {"
-      },
-      {
-        "lineNumber": 145,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Task itemToDelete \u003d curList.getListItem(listNumToDelete - 1);"
-      },
-      {
-        "lineNumber": 146,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    curList.deleteItem(listNumToDelete);"
-      },
-      {
-        "lineNumber": 147,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    Ui.printOutput(\"As requested, I have deleted the following task:\\n\" +"
-      },
-      {
-        "lineNumber": 148,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            Ui.addIndent(4) + itemToDelete.getTaskType() +"
-      },
-      {
-        "lineNumber": 149,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            itemToDelete.getStatus() +"
-      },
-      {
-        "lineNumber": 150,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            \" \" + itemToDelete.getDescription() + \" by \" + itemToDelete.getDateTimeString() + \"\\n\" +"
-      },
-      {
-        "lineNumber": 151,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                            \"Now you have \" + curList.getListLength() + \" task(s) in your list.\\n\");"
-      },
-      {
-        "lineNumber": 152,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    try {"
-      },
-      {
-        "lineNumber": 153,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        Storage.saveList(curList);"
-      },
-      {
-        "lineNumber": 154,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    } catch(Exception e) {"
-      },
-      {
-        "lineNumber": 155,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                        Ui.printOutput(e.getMessage());"
-      },
-      {
-        "lineNumber": 156,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                    }"
-      },
-      {
-        "lineNumber": 157,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                }"
-      },
-      {
-        "lineNumber": 158,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            } catch(NumberFormatException e) {"
-      },
-      {
-        "lineNumber": 159,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                                throw new NumberFormatException(\"\u0027delete\u0027 command\u0027s argument must be a numerical value.\");"
-      },
-      {
-        "lineNumber": 160,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            }"
-      },
-      {
-        "lineNumber": 161,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        }"
-      },
-      {
-        "lineNumber": 162,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 163,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 164,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 165,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    default: {"
-      },
-      {
-        "lineNumber": 166,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        Parser.unknownInput(input);"
-      },
-      {
-        "lineNumber": 167,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        break;"
-      },
-      {
-        "lineNumber": 168,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 169,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 170,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 171,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            } catch(Exception e) {"
-      },
-      {
-        "lineNumber": 172,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                Ui.printOutput(e.getMessage());"
-      },
-      {
-        "lineNumber": 173,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 174,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 175,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 176,
-        "author": {
-          "gitId": "-"
-        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "Raghav-B": 156,
-      "-": 20
+      "Raghav-B": 36,
+      "-": 25
     }
   },
   {
@@ -1262,9 +1737,9 @@
       {
         "lineNumber": 3,
         "author": {
-          "gitId": "Raghav-B"
+          "gitId": "-"
         },
-        "content": "public class DukeException extends Exception {"
+        "content": "public abstract class DukeException extends Exception {"
       },
       {
         "lineNumber": 4,
@@ -1296,7 +1771,8 @@
       }
     ],
     "authorContributionMap": {
-      "Raghav-B": 7
+      "Raghav-B": 6,
+      "-": 1
     }
   },
   {
@@ -1529,948 +2005,6 @@
     ],
     "authorContributionMap": {
       "Raghav-B": 7
-    }
-  },
-  {
-    "path": "src/main/java/Parser.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import DukeException.*;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.time.LocalDateTime;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.time.format.DateTimeFormatter;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "public class Parser {"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static DateTimeFormatter dukeDateTimeFormat \u003d DateTimeFormatter.ofPattern(\"dd/MM/yyyy HHmm\");"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static void incompleteCommandCheck(String[] inputArr) throws IncompleteCommandException {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        if (inputArr.length \u003d\u003d 1) {"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            throw new IncompleteCommandException(\"\u0027\" + inputArr[0].toLowerCase() +"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    \"\u0027 command requires 1 or more arguments.\");"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static void unknownInput(String input) throws UnknownCommandException {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        throw new UnknownCommandException(\"Apologies, but \u0027\" + input + \"\u0027 is an invalid input\");"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static String descriptionParse(String[] inputArr) throws IncompleteListEntryException {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        String description \u003d \"\";"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        int index \u003d 0;"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        while (!inputArr[index].equals(\"/by\")) {"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            if (index !\u003d 0) {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                description +\u003d \" \";"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            description +\u003d inputArr[index];"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            index++;"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            if (index \u003e\u003d inputArr.length) {"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                throw new IncompleteListEntryException(\"Incomplete list entry. Entry should be of format \u003ctask\u003e /by \" +"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        \"dd/mm/yyyy hhmm\");"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return description;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static LocalDateTime dateTimeParse(String[] inputArr) throws UnknownDateTimeFormatException,"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            IncompleteListEntryException {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        LocalDateTime dateTime;"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        boolean dateTimeFound \u003d false;"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        int index \u003d 0;"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        for (index \u003d 0; index \u003c inputArr.length; index++) {"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            if (inputArr[index].equals(\"/by\")) {"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                index++;"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                dateTimeFound \u003d true;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                break;"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        if (dateTimeFound) {"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            if (inputArr.length - index \u003d\u003d 2) {"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    dateTime \u003d LocalDateTime.parse(inputArr[index] + \" \" + inputArr[index + 1],"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            dukeDateTimeFormat);"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                } catch(Exception e) {"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    throw new UnknownDateTimeFormatException(\"Unknown DateTime parameters entered. Please ensure they \" +"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            \"follow this format: \u0027dd/mm/yyyy hhmm\u0027\");"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            } else {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                throw new UnknownDateTimeFormatException(\"Unknown DateTime parameters entered. Please ensure they \" +"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        \"follow this format: \u0027dd/mm/yyyy hhmm\u0027\");"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        } else {"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            throw new IncompleteListEntryException(\"Incomplete list entry. Entry should be of format \u003ctask\u003e /by \" +"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    \"dd/mm/yyyy hhmm\");"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return dateTime;"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "Raghav-B": 73
-    }
-  },
-  {
-    "path": "src/main/java/Storage.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.io.BufferedReader;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.io.FileReader;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.time.LocalDateTime;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.util.*;"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.io.File;"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.io.FileWriter;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "public class Storage {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    private static String defaultSavePath \u003d \"task_list.txt\";"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static void saveList(TaskList listToSave) throws Exception {"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        FileWriter fw \u003d new FileWriter(defaultSavePath);"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        String stringToWrite \u003d \"\";"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        for (int i \u003d 0; i \u003c listToSave.getListLength(); i++) {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            stringToWrite +\u003d (listToSave.getListItem(i).getTaskType() + \" | \" + listToSave.getListItem(i).getStatus() + \" | \" +"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    listToSave.getListItem(i).getDescription() + \" /by \" + listToSave.getListItem(i).getDateTimeSaveString() + \"\\n\");"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        fw.write(stringToWrite);"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        fw.close();"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static TaskList loadList() throws Exception {"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        TaskList readTaskList \u003d new TaskList();"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        try {"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            File f \u003d new File(defaultSavePath);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            BufferedReader b \u003d new BufferedReader(new FileReader(f));"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            while (true) {"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                String readLine \u003d b.readLine();"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                if (readLine \u003d\u003d null) {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                String[] readLineArr \u003d readLine.split(\".\\\\|.| \", 0);"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                String itemType \u003d \"\";"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                String itemStatus \u003d readLineArr[1];"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                String description \u003d Parser.descriptionParse(Arrays.copyOfRange(readLineArr, 2, readLineArr.length));"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                LocalDateTime dateTime \u003d Parser.dateTimeParse(Arrays.copyOfRange(readLineArr, 2, readLineArr.length));"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                if (readLineArr[0].equals(\"[T]\")) {"
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    itemType \u003d \"todo\";"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                } else if (readLineArr[0].equals(\"[D]\")) {"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    itemType \u003d \"deadline\";"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                } else if (readLineArr[0].equals((\"[E]\"))) {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    itemType \u003d \"event\";"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                readTaskList.addListItem(itemType, itemStatus, description, dateTime);"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        } catch(Exception e) {"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            FileWriter fw \u003d new FileWriter(defaultSavePath);"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            fw.close();"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return readTaskList;"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "Raghav-B": 59
     }
   },
   {
@@ -3263,787 +2797,6 @@
     ],
     "authorContributionMap": {
       "Raghav-B": 15
-    }
-  },
-  {
-    "path": "src/main/java/TaskList.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import Task.*;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.time.LocalDateTime;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "import java.util.*;"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "public class TaskList {"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    private ArrayList\u003cTask\u003e taskListInternal;"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public TaskList() {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        taskListInternal \u003d new ArrayList\u003cTask\u003e();"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public void addListItem(String itemType, String itemStatus, String description, LocalDateTime dateTime) {"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        Task curTask \u003d new Task(itemStatus, description, dateTime);"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        if (itemType.equals(\"todo\")) {"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            curTask \u003d new ToDo(itemStatus, description, dateTime);"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        } else if (itemType.equals(\"deadline\")) {"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            curTask \u003d new Deadline(itemStatus, description, dateTime);"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        } else if (itemType.equals((\"event\"))) {"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            curTask \u003d new Event(itemStatus, description, dateTime);"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        taskListInternal.add(curTask);"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public Task getListItem(int itemIndex) {"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return taskListInternal.get(itemIndex);"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public int getListLength() {"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return taskListInternal.size();"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public void clearList() {"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        taskListInternal.clear();"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public void markItemComplete(int listItemNumber) {"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        listItemNumber -\u003d 1;"
-      },
-      {
-        "lineNumber": 40,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        taskListInternal.get(listItemNumber).setStatus(\"[✓]\");"
-      },
-      {
-        "lineNumber": 41,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 42,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public TaskList search(String query) {"
-      },
-      {
-        "lineNumber": 44,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        TaskList searchList \u003d new TaskList();"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        for (int i \u003d 0; i \u003c getListLength(); i++) {"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            if (getListItem(i).getDescription().contains(query)) {"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                try {"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    String tempTaskType \u003d \"\";"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    if (getListItem(i).getTaskType().equals(\"[T]\")) {"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        tempTaskType \u003d \"todo\";"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    } else if (getListItem(i).getTaskType().equals(\"[D]\")) {"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        tempTaskType \u003d \"deadline\";"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    } else if (getListItem(i).getTaskType().equals(\"[E]\")) {"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                        tempTaskType \u003d \"event\";"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    }"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    searchList.addListItem(tempTaskType, getListItem(i).getStatus(),"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                            getListItem(i).getDescription(), getListItem(i).getDateTime());"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                } catch(Exception e) {"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                    System.out.println(\"Unhandled exception oops\");"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "                }"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return searchList;"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public void deleteItem(int listItemNumber) {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        listItemNumber -\u003d 1;"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        taskListInternal.remove(listItemNumber);"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 73,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "Raghav-B": 73
-    }
-  },
-  {
-    "path": "src/main/java/Ui.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "public class Ui {"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static String logo \u003d \"____        _        \\n\""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            + \"|  _ \\\\ _   _| | _____ \\n\""
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            + \"| | | | | | | |/ / _ \\\\\\n\""
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            + \"| |_| | |_| |   \u003c  __/\\n\""
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static void printOutput(String stringToOutput) {"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        System.out.println(addIndent() + \"____________________________________________________________\");"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        String[] linesToPrint \u003d stringToOutput.split(\"\\n\", 0);"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        for (int i \u003d 0; i \u003c linesToPrint.length; i++) {"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            System.out.println(addIndent() + linesToPrint[i]);"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        System.out.println(addIndent() + \"____________________________________________________________\\n\");"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static String addIndent() {"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return \"        \";"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static String addIndent(int indentSize) {"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        String indent \u003d \"\";"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        for (int i \u003d 0; i \u003c indentSize; i++) {"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "            indent +\u003d \" \";"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        return indent;"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static void quitFunc() {"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        printOutput(\"Farewell. I do hope to see you again.\\n\");"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    public static void quitFunc(String optionalOutput) {"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        printOutput(optionalOutput);"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "        printOutput(\"Farewell. I do hope to see you again.\");"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "Raghav-B"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "Raghav-B": 36
     }
   }
 ]

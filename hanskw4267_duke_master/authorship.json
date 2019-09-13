@@ -1,6 +1,6 @@
 [
   {
-    "path": "src/main/java/Command.java",
+    "path": "src/main/java/Duke.java",
     "fileType": "java",
     "lines": [
       {
@@ -8,519 +8,324 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import java.text.ParseException;"
+        "content": "import storage.Storage;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "import task.TaskList;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "/**"
+        "content": "import ui.Ui;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * Command is the class that stores and executes the user command input"
+        "content": "import command.Command;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": "import command.CommandParser;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class Command"
+        "content": " * This is the main class we use to interacting with Duke"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": " * "
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private Commandtype type;"
+        "content": " * @author Hans Kurnia"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private String cmd;"
+        "content": " */"
       },
       {
         "lineNumber": 12,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "public class Duke"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "{   "
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private Storage storage;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private TaskList myTaskList;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private Ui ui;"
+      },
+      {
+        "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "    "
       },
       {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    public Command(Commandtype type, String cmd)"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    {"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        this.type \u003d type;"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        this.cmd \u003d cmd;"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    } "
-      },
-      {
         "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "    public Duke()"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "    {"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to execute a given input command"
+        "content": "        storage \u003d new Storage();"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "        myTaskList \u003d new TaskList(storage.loadList());"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param storage the configuration for storing task list "
+        "content": "        ui \u003d new Ui();"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param taskList the task list containing current loaded list"
+        "content": "    }"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param ui the current user interface"
+        "content": ""
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "    public void run()"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void executeCmd(Storage storage, TaskList taskList, Ui ui)"
+        "content": "    {"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "        String Input \u003d \"\";"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        String output \u003d \"\";"
+        "content": "        Command cmd;"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        try"
+        "content": "        ui.showWelcome();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "        Input \u003d ui.readInput();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            switch(type)"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "        while(!Input.equals(\"bye\"))"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                case LISTTASKS :"
+        "content": "        {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    output \u003d taskList.printList();"
+        "content": "            cmd \u003d CommandParser.parseCommand(Input);"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    break;"
+        "content": "            cmd.executeCmd(storage, myTaskList, ui);"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                case FINDTASK :"
+        "content": "            Input \u003d ui.readInput();"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    output \u003d taskList.findTask(cmd);"
+        "content": "        }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    break;"
+        "content": "        ui.showGoodbye(storage, myTaskList);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                case DELETETASK :"
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    output \u003d taskList.deleteTask(cmd);"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    storage.saveList(taskList.getList());"
+        "content": "    public static void main(String[] args)"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    break;"
+        "content": "    {"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                case MARKDONE :"
+        "content": "        new Duke().run();"
       },
       {
         "lineNumber": 44,
         "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    output \u003d taskList.doneTask(cmd);"
-      },
-      {
-        "lineNumber": 45,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    storage.saveList(taskList.getList());"
-      },
-      {
-        "lineNumber": 46,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 47,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                case ADDDEADLINE :"
-      },
-      {
-        "lineNumber": 48,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    output \u003d taskList.addDeadline(cmd.substring(8, cmd.indexOf(\"/by\")), cmd.substring(cmd.indexOf(\"/by\")+3));"
-      },
-      {
-        "lineNumber": 49,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    storage.saveList(taskList.getList());"
-      },
-      {
-        "lineNumber": 50,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 51,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                case ADDEVENT :"
-      },
-      {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    output \u003d taskList.addEvent(cmd.substring(5, cmd.indexOf(\"/at\")), cmd.substring(cmd.indexOf(\"/at\")+3));"
-      },
-      {
-        "lineNumber": 53,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    storage.saveList(taskList.getList());"
-      },
-      {
-        "lineNumber": 54,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 55,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                case ADDTODO :"
-      },
-      {
-        "lineNumber": 56,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    output \u003d taskList.addTodo(cmd);"
-      },
-      {
-        "lineNumber": 57,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    storage.saveList(taskList.getList());"
-      },
-      {
-        "lineNumber": 58,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    break;"
-      },
-      {
-        "lineNumber": 59,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                case UNKNOWN :"
-      },
-      {
-        "lineNumber": 60,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "                    output \u003d \"        ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\";"
-      },
-      {
-        "lineNumber": 61,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            }"
-      },
-      {
-        "lineNumber": 62,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            ui.showOutput(output);"
-      },
-      {
-        "lineNumber": 63,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 64,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        catch(ParseException e)"
-      },
-      {
-        "lineNumber": 65,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 66,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            System.out.println(\"        Invalid Date/Time, Please enter valid date in format of dd/MM/yyy HHmm\");"
-      },
-      {
-        "lineNumber": 67,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 68,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        catch(TaskException e)"
-      },
-      {
-        "lineNumber": 69,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 70,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            System.out.println(e.getMessage());"
-      },
-      {
-        "lineNumber": 71,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 72,
-        "author": {
-          "gitId": "hanskw4267"
+          "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 73,
+        "lineNumber": 45,
         "author": {
-          "gitId": "hanskw4267"
+          "gitId": "-"
         },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 73
+      "hanskw4267": 43,
+      "-": 2
     }
   },
   {
-    "path": "src/main/java/CommandParser.java",
+    "path": "src/main/java/command/Command.java",
     "fileType": "java",
     "lines": [
       {
@@ -528,161 +333,161 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "/**"
+        "content": "package command;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * This method class is used to make sense of user input commands"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": "import java.text.ParseException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": "import storage.Storage;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " */"
+        "content": "import task.TaskList;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class CommandParser"
+        "content": "import exception.TaskException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": "import ui.Ui;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method attempts to make sense of a given input"
+        "content": "/**"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": " * Command is the class that stores and executes the user command input"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param Input raw user input command"
+        "content": " * "
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return the processed command "
+        "content": " * @author Hans kurnia"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @see Command"
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "public class Command"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public static Command parseCommand(String Input)"
+        "content": "{"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "    private Commandtype type;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        Command cmd \u003d new Command(Commandtype.UNKNOWN, Input);"
+        "content": "    private String cmd;"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        try"
+        "content": "    "
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "    public Command(Commandtype type, String cmd)"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            if(Input.trim().equals(\"list\"))"
+        "content": "    {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "        this.type \u003d type;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                cmd \u003d new Command(Commandtype.LISTTASKS, \"list\");"
+        "content": "        this.cmd \u003d cmd;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "    } "
       },
       {
         "lineNumber": 24,
@@ -696,294 +501,294 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else if(Input.trim().matches(\"done \\\\d+\"))"
+        "content": "    /**"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "     * method to execute a given input command"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                cmd \u003d new Command(Commandtype.MARKDONE, Input.replaceFirst(\"done\\\\s*\", \"\"));"
+        "content": "     * "
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "     * @param storage the configuration for storing task list "
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            "
+        "content": "     * @param taskList the task list containing current loaded list"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else if(Input.matches(\"find(.*)\"))"
+        "content": "     * @param ui the current user interface"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "     */"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                cmd \u003d new Command(Commandtype.FINDTASK, Input.replaceFirst(\"find\\\\s*\", \"\"));"
+        "content": "    public void executeCmd(Storage storage, TaskList taskList, Ui ui)"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "    {"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "        String output \u003d \"\";"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else if(Input.trim().matches(\"delete \\\\d+\"))"
+        "content": "        try"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "        {"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                cmd \u003d new Command(Commandtype.DELETETASK, Input.replaceFirst(\"delete\\\\s*\", \"\"));"
+        "content": "            switch(type)"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "            {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "                case LISTTASKS :"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else if(Input.trim().matches(\"deadline(.*)\"))"
+        "content": "                    output \u003d taskList.printList();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "                    break;"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                if(Input.matches(\"deadline.*/by.*\"))"
+        "content": "                case FINDTASK :"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                {"
+        "content": "                    output \u003d taskList.findTask(cmd);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    cmd \u003d new Command(Commandtype.ADDDEADLINE, Input);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                }"
+        "content": "                case DELETETASK :"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                else"
+        "content": "                    output \u003d taskList.deleteTask(cmd);"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                {"
+        "content": "                    storage.saveList(taskList.getList());"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    throw new TaskException(\"\t☹ OOPS!!! Invalid Input. Proper format is (deadline \u003cdescription\u003e /by \u003ctime in dd/MM/yyyy HH/mm\u003e)\");"
+        "content": "                    break;"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                }"
+        "content": "                case MARKDONE :"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "                    output \u003d taskList.doneTask(cmd);"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "                    storage.saveList(taskList.getList());"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else if(Input.trim().matches(\"event(.*)\"))"
+        "content": "                    break;"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "                case ADDDEADLINE :"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                if(Input.matches(\"event.*/at.*\"))"
+        "content": "                    output \u003d taskList.addDeadline(cmd.substring(8, cmd.indexOf(\"/by\")), cmd.substring(cmd.indexOf(\"/by\")+3));"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                {"
+        "content": "                    storage.saveList(taskList.getList());"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    cmd \u003d new Command(Commandtype.ADDEVENT, Input);"
+        "content": "                    break;"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                }"
+        "content": "                case ADDEVENT :"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                else"
+        "content": "                    output \u003d taskList.addEvent(cmd.substring(5, cmd.indexOf(\"/at\")), cmd.substring(cmd.indexOf(\"/at\")+3));"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                {"
+        "content": "                    storage.saveList(taskList.getList());"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                    throw new TaskException(\"\t☹ OOPS!!! Invalid Input. Proper format is (event \u003cdescription\u003e /at \u003ctime in dd/MM/yyyy HH/mm\u003e)\");"
+        "content": "                    break;"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                }"
+        "content": "                case ADDTODO :"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "                    output \u003d taskList.addTodo(cmd);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "                    storage.saveList(taskList.getList());"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else if(Input.trim().matches(\"todo(.*)\"))"
+        "content": "                    break;"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "                case UNKNOWN :"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                cmd \u003d new Command(Commandtype.ADDTODO, Input.substring(4));"
+        "content": "                    output \u003d \"        ☹ OOPS!!! I\u0027m sorry, but I don\u0027t know what that means :-(\";"
       },
       {
         "lineNumber": 67,
@@ -997,35 +802,35 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            ui.showOutput(output);"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            else"
+        "content": "        }"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "        catch(ParseException e)"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                cmd \u003d new Command(Commandtype.UNKNOWN, Input);"
+        "content": "        {"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "            System.out.println(\"        Invalid Date/Time, Please enter valid date in format of dd/MM/yyy HHmm\");"
       },
       {
         "lineNumber": 73,
@@ -1039,7 +844,7 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        catch (TaskException e)"
+        "content": "        catch(TaskException e)"
       },
       {
         "lineNumber": 75,
@@ -1067,17 +872,10 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return cmd;"
-      },
-      {
-        "lineNumber": 79,
-        "author": {
-          "gitId": "hanskw4267"
-        },
         "content": "    }"
       },
       {
-        "lineNumber": 80,
+        "lineNumber": 79,
         "author": {
           "gitId": "hanskw4267"
         },
@@ -1085,11 +883,11 @@
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 80
+      "hanskw4267": 79
     }
   },
   {
-    "path": "src/main/java/Commandtype.java",
+    "path": "src/main/java/command/CommandParser.java",
     "fileType": "java",
     "lines": [
       {
@@ -1097,112 +895,844 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "/**"
+        "content": "package command;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * This Enum class contains the definitions for different command types"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": "import exception.TaskException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": " * This method class is used to make sense of user input commands"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public enum Commandtype"
+        "content": " * "
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": " * @author Hans kurnia"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    ADDTODO,"
+        "content": " */"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    ADDDEADLINE,"
+        "content": "public class CommandParser"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    ADDEVENT,"
+        "content": "{"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    FINDTASK,"
+        "content": "    /**"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    DELETETASK,"
+        "content": "     * method attempts to make sense of a given input"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    MARKDONE,"
+        "content": "     * "
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    LISTTASKS,"
+        "content": "     * @param Input raw user input command"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
+        "content": "     * @return the processed command "
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * @see Command"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    public static Command parseCommand(String Input)"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        Command cmd \u003d new Command(Commandtype.UNKNOWN, Input);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        try"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            if(Input.trim().equals(\"list\"))"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                cmd \u003d new Command(Commandtype.LISTTASKS, \"list\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else if(Input.trim().matches(\"done \\\\d+\"))"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                cmd \u003d new Command(Commandtype.MARKDONE, Input.replaceFirst(\"done\\\\s*\", \"\"));"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            "
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else if(Input.matches(\"find(.*)\"))"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                cmd \u003d new Command(Commandtype.FINDTASK, Input.replaceFirst(\"find\\\\s*\", \"\"));"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else if(Input.trim().matches(\"delete \\\\d+\"))"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                cmd \u003d new Command(Commandtype.DELETETASK, Input.replaceFirst(\"delete\\\\s*\", \"\"));"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else if(Input.trim().matches(\"deadline(.*)\"))"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                if(Input.matches(\"deadline.*/by.*\"))"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                    cmd \u003d new Command(Commandtype.ADDDEADLINE, Input);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                else"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                    throw new TaskException(\"\t☹ OOPS!!! Invalid Input. Proper format is (deadline \u003cdescription\u003e /by \u003ctime in dd/MM/yyyy HH/mm\u003e)\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else if(Input.trim().matches(\"event(.*)\"))"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                if(Input.matches(\"event.*/at.*\"))"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                {"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                    cmd \u003d new Command(Commandtype.ADDEVENT, Input);"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                else"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                    throw new TaskException(\"\t☹ OOPS!!! Invalid Input. Proper format is (event \u003cdescription\u003e /at \u003ctime in dd/MM/yyyy HH/mm\u003e)\");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else if(Input.trim().matches(\"todo(.*)\"))"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                cmd \u003d new Command(Commandtype.ADDTODO, Input.substring(4));"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            else"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            {"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "                cmd \u003d new Command(Commandtype.UNKNOWN, Input);"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        catch (TaskException e)"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        {"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "            System.out.println(e.getMessage());"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return cmd;"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hanskw4267": 84
+    }
+  },
+  {
+    "path": "src/main/java/command/Commandtype.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "package command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * This Enum class contains the definitions for different command types"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * "
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @author Hans kurnia"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "public enum Commandtype"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "{"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    ADDTODO,"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    ADDDEADLINE,"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    ADDEVENT,"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    FINDTASK,"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    DELETETASK,"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    MARKDONE,"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    LISTTASKS,"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hanskw4267"
+        },
         "content": "    UNKNOWN"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hanskw4267": 18
+    }
+  },
+  {
+    "path": "src/main/java/exception/TaskException.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "package exception;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * This is the custom exception used by Duke"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * "
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @author Hans kurnia"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @see Exception"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "public class TaskException extends Exception"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "{"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tprivate static final long serialVersionUID \u003d 1L;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tpublic TaskException(String Msg)"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t{"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\tsuper(Msg);"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
       },
       {
         "lineNumber": 17,
@@ -1217,7 +1747,7 @@
     }
   },
   {
-    "path": "src/main/java/Deadline.java",
+    "path": "src/main/java/storage/Storage.java",
     "fileType": "java",
     "lines": [
       {
@@ -1225,994 +1755,259 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import java.io.Serializable;"
+        "content": "package storage;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import java.util.Date;"
+        "content": ""
       },
       {
         "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * This class defines the \"Deadline\" type task"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * "
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @author Hans kurnia"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @see Task"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "public class Deadline extends Task implements Serializable"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "{"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    private Date doneBy;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    "
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * method to create a new Deadline object"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * "
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * @param name the decription of the deadline task"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * @param doneBy the deadline of the task"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic Deadline(String name, Date doneBy)"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tsuper(name);"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tthis.doneBy \u003d doneBy;"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t@Override"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic String toString()"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\treturn \"[D]\" + super.toString() + \" (by: \" + doneBy + \")\";"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "hanskw4267": 31
-    }
-  },
-  {
-    "path": "src/main/java/Duke.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * This is the main class we use to interacting with Duke"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * "
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @author Hans Kurnia"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "public class Duke"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "{   "
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    private Storage storage;"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    private TaskList myTaskList;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    private Ui ui;"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    "
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    public Duke()"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    {"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        storage \u003d new Storage();"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        myTaskList \u003d new TaskList(storage.loadList());"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        ui \u003d new Ui();"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    public void run()"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    {"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        String Input \u003d \"\";"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        Command cmd;"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        ui.showWelcome();"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        Input \u003d ui.readInput();"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        while(!Input.equals(\"bye\"))"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        {"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            cmd \u003d CommandParser.parseCommand(Input);"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            cmd.executeCmd(storage, myTaskList, ui);"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "            Input \u003d ui.readInput();"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        }"
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        ui.showGoodbye(storage, myTaskList);"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    public static void main(String[] args)"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    {"
-      },
-      {
-        "lineNumber": 37,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        new Duke().run();"
-      },
-      {
-        "lineNumber": 38,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 39,
-        "author": {
-          "gitId": "-"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "hanskw4267": 37,
-      "-": 2
-    }
-  },
-  {
-    "path": "src/main/java/Event.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "import java.io.Serializable;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "import java.util.Date;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * This class defines the \"Event\" type Task"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * "
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @author Hans kurnia"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @see Task"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "public class Event extends Task implements Serializable"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "{"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    private Date DoneAt;"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    "
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * method to create a new event object"
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * "
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * @param name the description of the event"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * @param doneAt the date of the event"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic Event(String name, Date doneAt)"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tsuper(name);"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tthis.DoneAt \u003d doneAt;"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t@Override"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic String toString()"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\treturn \"[E]\" + super.toString() + \" (at: \" + DoneAt + \")\";"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "hanskw4267": 31
-    }
-  },
-  {
-    "path": "src/main/java/Storage.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "import java.io.*;"
       },
       {
-        "lineNumber": 2,
+        "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "import java.util.ArrayList;"
       },
       {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * This class is used to load and store the current needed tasks list"
+        "content": "import task.Task;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * from memory"
+        "content": ""
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": "/**"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": " * This class is used to load and store the current needed tasks list"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": " * from memory"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " */"
+        "content": " * "
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class Storage"
+        "content": " * @author Hans kurnia"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": " * "
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private File listFile \u003d new File(\"./Tasks_List\");"
+        "content": " */"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private ArrayList\u003cTask\u003e myList \u003d new ArrayList\u003cTask\u003e();"
+        "content": "public class Storage"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "{"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "    private File listFile \u003d new File(\"./Tasks_List\");"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * this method attempts to load a exiting list from memory, "
+        "content": "    private ArrayList\u003cTask\u003e myList \u003d new ArrayList\u003cTask\u003e();"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * failing which it creates a new one"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return the loaded list of tasks"
+        "content": "     * this method attempts to load a exiting list from memory, "
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * failing which it creates a new one"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public ArrayList\u003cTask\u003e loadList()"
+        "content": "     * "
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t{"
+        "content": "     * @return the loaded list of tasks"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\ttry"
+        "content": "     */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t{"
+        "content": "    public ArrayList\u003cTask\u003e loadList()"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tFileInputStream fIS \u003d new FileInputStream(listFile);"
+        "content": "\t{"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tObjectInputStream oIS \u003d new ObjectInputStream(fIS);"
+        "content": "\t\ttry"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tthis.myList \u003d (ArrayList\u003cTask\u003e) oIS.readObject();"
+        "content": "\t\t{"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tfIS.close();"
+        "content": "\t\t\tFileInputStream fIS \u003d new FileInputStream(listFile);"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            oIS.close();"
+        "content": "\t\t\tObjectInputStream oIS \u003d new ObjectInputStream(fIS);"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t}"
+        "content": "\t\t\tthis.myList \u003d (ArrayList\u003cTask\u003e) oIS.readObject();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\tcatch (FileNotFoundException e)"
+        "content": "\t\t\tfIS.close();"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t{"
+        "content": "            oIS.close();"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tthis.listFile \u003d new File(\"./Tasks_List\");"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t}"
+        "content": "\t\tcatch (FileNotFoundException e)"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\tcatch (IOException e) {"
+        "content": "\t\t{"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\te.printStackTrace();"
+        "content": "\t\t\tthis.listFile \u003d new File(\"./Tasks_List\");"
       },
       {
         "lineNumber": 38,
@@ -2226,615 +2021,261 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\tcatch (ClassNotFoundException e) "
+        "content": "\t\tcatch (IOException e) {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t{"
+        "content": "\t\t\te.printStackTrace();"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\te.printStackTrace();"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t}"
+        "content": "\t\tcatch (ClassNotFoundException e) "
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return myList;"
+        "content": "\t\t{"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t}"
+        "content": "\t\t\te.printStackTrace();"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "\t\t}"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "        return myList;"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * This method attempts to save a given tasks list to memory"
+        "content": "\t}"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": ""
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param list the current loaded task list"
+        "content": "    /**"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return the file that list was saved to"
+        "content": "     * This method attempts to save a given tasks list to memory"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * "
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public File saveList(ArrayList\u003cTask\u003e list)"
+        "content": "     * @param list the current loaded task list"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * @return the file that list was saved to"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        try"
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "    public File saveList(ArrayList\u003cTask\u003e list)"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            FileOutputStream fOS \u003d new FileOutputStream(listFile);"
+        "content": "    {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            ObjectOutputStream oOS \u003d new ObjectOutputStream(fOS);"
+        "content": "        try"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            oOS.writeObject(list);"
+        "content": "        {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            oOS.close();"
+        "content": "            FileOutputStream fOS \u003d new FileOutputStream(listFile);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            fOS.close();"
+        "content": "            ObjectOutputStream oOS \u003d new ObjectOutputStream(fOS);"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "            oOS.writeObject(list);"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        catch (IOException e)"
+        "content": "            oOS.close();"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "            fOS.close();"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            e.printStackTrace();"
+        "content": "        }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "        catch (IOException e)"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return listFile;"
+        "content": "        {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "            e.printStackTrace();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "hanskw4267"
         },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return listFile;"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "hanskw4267"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 68
+      "hanskw4267": 71
     }
   },
   {
-    "path": "src/main/java/Task.java",
+    "path": "src/main/java/task/Deadline.java",
     "fileType": "java",
     "lines": [
       {
         "lineNumber": 1,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "import java.io.Serializable;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * This class is the super abstract class to store tasks"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * "
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @author Hans kurnia"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "public abstract class Task implements Serializable"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "{"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    /**"
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     *  The description and status of a given task"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     */"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tprivate String name;"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tprivate String isDone;"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 16,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic Task(String name)"
-      },
-      {
-        "lineNumber": 17,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 18,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tthis.name \u003d name;"
-      },
-      {
-        "lineNumber": 19,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tthis.isDone \u003d \"[\" + \"\\u2718\" + \"] \";"
-      },
-      {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 21,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 22,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic String toString()"
-      },
-      {
-        "lineNumber": 23,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 24,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\treturn isDone + name;"
-      },
-      {
-        "lineNumber": 25,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 26,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t"
-      },
-      {
-        "lineNumber": 27,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic void markDone()"
-      },
-      {
-        "lineNumber": 28,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 29,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tthis.isDone \u003d \"[\" + \"\\u2713\" + \"] \";"
-      },
-      {
-        "lineNumber": 30,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 31,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    "
-      },
-      {
-        "lineNumber": 32,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    public String getName()"
-      },
-      {
-        "lineNumber": 33,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    {"
-      },
-      {
-        "lineNumber": 34,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        return name;"
-      },
-      {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "hanskw4267": 36
-    }
-  },
-  {
-    "path": "src/main/java/TaskException.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * This is the custom exception used by Duke"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * "
-      },
-      {
-        "lineNumber": 4,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @author Hans kurnia"
-      },
-      {
-        "lineNumber": 5,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " * @see Exception"
-      },
-      {
-        "lineNumber": 6,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": " */"
-      },
-      {
-        "lineNumber": 7,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "class TaskException extends Exception"
-      },
-      {
-        "lineNumber": 8,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "{"
-      },
-      {
-        "lineNumber": 9,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tprivate static final long serialVersionUID \u003d 1L;"
-      },
-      {
-        "lineNumber": 10,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 11,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\tpublic TaskException(String Msg)"
-      },
-      {
-        "lineNumber": 12,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t{"
-      },
-      {
-        "lineNumber": 13,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t\tsuper(Msg);"
-      },
-      {
-        "lineNumber": 14,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "\t}"
-      },
-      {
-        "lineNumber": 15,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "}"
-      }
-    ],
-    "authorContributionMap": {
-      "hanskw4267": 15
-    }
-  },
-  {
-    "path": "src/main/java/TaskList.java",
-    "fileType": "java",
-    "lines": [
-      {
-        "lineNumber": 1,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "import java.text.ParseException;"
-      },
-      {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "import java.util.ArrayList;"
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "import java.text.SimpleDateFormat;"
       },
       {
         "lineNumber": 4,
@@ -2862,28 +2303,28 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * This class stores the current loaded tasks list and is the primary way to "
+        "content": " * This class defines the \"Deadline\" type task"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * modify and interact with that list"
+        "content": " * "
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": " * @author Hans kurnia"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": " * @see Task"
       },
       {
         "lineNumber": 11,
@@ -2897,7 +2338,7 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class TaskList"
+        "content": "public class Deadline extends Task implements Serializable"
       },
       {
         "lineNumber": 13,
@@ -2911,301 +2352,1056 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private ArrayList\u003cTask\u003e myList \u003d new ArrayList\u003cTask\u003e();"
+        "content": "    private Date doneBy;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private int NumOfTasks \u003d 0;"
+        "content": "    "
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private SimpleDateFormat dateFormatter\u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+        "content": "    /**"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private String output \u003d \"\";"
+        "content": "     * method to create a new Deadline object"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    "
+        "content": "     * "
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "     * @param name the decription of the deadline task"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * constructor to create a new TaskList object"
+        "content": "     * @param doneBy the deadline of the task"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param list the list of tasks loaded from memory"
+        "content": "     */"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "\tpublic Deadline(String name, Date doneBy)"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public TaskList(ArrayList\u003cTask\u003e list)"
+        "content": "\t{"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "\t\tsuper(name);"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.myList \u003d list;"
+        "content": "\t\tthis.doneBy \u003d doneBy;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        this.NumOfTasks \u003d list.size();"
+        "content": "\t}"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": ""
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "\t@Override"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "\tpublic String toString()"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method used to get current loaded list"
+        "content": "\t{"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return current loaded list"
+        "content": "\t\treturn \"[D]\" + super.toString() + \" (by: \" + doneBy + \")\";"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "\t}"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public ArrayList\u003cTask\u003e getList()"
-      },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hanskw4267": 33
+    }
+  },
+  {
+    "path": "src/main/java/task/Event.java",
+    "fileType": "java",
+    "lines": [
       {
-        "lineNumber": 34,
+        "lineNumber": 1,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "package task;"
       },
       {
-        "lineNumber": 35,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "        return myList;"
-      },
-      {
-        "lineNumber": 36,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "    }"
-      },
-      {
-        "lineNumber": 37,
+        "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": ""
       },
       {
-        "lineNumber": 38,
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.io.Serializable;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * This class defines the \"Event\" type Task"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * "
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @author Hans kurnia"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @see Task"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "public class Event extends Task implements Serializable"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "{"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private Date DoneAt;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "    /**"
       },
       {
-        "lineNumber": 39,
+        "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to add a new Todo task to the current list"
+        "content": "     * method to create a new event object"
       },
       {
-        "lineNumber": 40,
+        "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     * "
       },
       {
-        "lineNumber": 41,
+        "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param name description of the task"
+        "content": "     * @param name the description of the event"
       },
       {
-        "lineNumber": 42,
+        "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": "     * @param doneAt the date of the event"
       },
       {
-        "lineNumber": 43,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "     * @throws TaskException when description is blank"
-      },
-      {
-        "lineNumber": 44,
+        "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "     */"
       },
       {
-        "lineNumber": 45,
+        "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String addTodo(String name) throws TaskException"
+        "content": "\tpublic Event(String name, Date doneAt)"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 23,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t{"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\tsuper(name);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\tthis.DoneAt \u003d doneAt;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t@Override"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tpublic String toString()"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t{"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\treturn \"[E]\" + super.toString() + \" (at: \" + DoneAt + \")\";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hanskw4267": 33
+    }
+  },
+  {
+    "path": "src/main/java/task/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.io.Serializable;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * This class is the super abstract class to store tasks"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * "
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @author Hans kurnia"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "public abstract class Task implements Serializable"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "{"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     *  The description and status of a given task"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tprivate String name;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tprivate String isDone;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tpublic Task(String name)"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t{"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\tthis.name \u003d name;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\tthis.isDone \u003d \"[\" + \"\\u2718\" + \"] \";"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tpublic String toString()"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t{"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\treturn isDone + name;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\tpublic void markDone()"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t{"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\tthis.isDone \u003d \"[\" + \"\\u2713\" + \"] \";"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    public String getName()"
+      },
+      {
+        "lineNumber": 35,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "    {"
       },
       {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "hanskw4267": 38
+    }
+  },
+  {
+    "path": "src/main/java/task/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import exception.TaskException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "import task.TaskList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * This class stores the current loaded tasks list and is the primary way to "
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * modify and interact with that list"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * "
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " * @author Hans kurnia"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "public class TaskList"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "{"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private ArrayList\u003cTask\u003e myList \u003d new ArrayList\u003cTask\u003e();"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private int NumOfTasks \u003d 0;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private SimpleDateFormat dateFormatter\u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    private String output \u003d \"\";"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    "
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * constructor to create a new TaskList object"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * @param list the list of tasks loaded from memory"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    public TaskList(ArrayList\u003cTask\u003e list)"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        this.myList \u003d list;"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        this.NumOfTasks \u003d list.size();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * method used to get current loaded list"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * @return current loaded list"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    public ArrayList\u003cTask\u003e getList()"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return myList;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * method to add a new Todo task to the current list"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * "
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "     * @param name description of the task"
+      },
+      {
         "lineNumber": 47,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if(!name.isBlank())"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "     * @throws TaskException when description is blank"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            myList.add(new Todo(name));"
+        "content": "     */"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            NumOfTasks++;"
+        "content": "    public String addTodo(String name) throws TaskException"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\tGot it. I\u0027ve added this task:\\n \t\" + myList.get(NumOfTasks-1).toString() + \"\\n \tNow you have \" + NumOfTasks + \" tasks in the list\";"
+        "content": "    {"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "        if(!name.isBlank())"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        else"
+        "content": "        {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "            myList.add(new Todo(name));"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\";"
+        "content": "            NumOfTasks++;"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            throw new TaskException(\"\tOOPS!!! The description of a todo cannot be empty.\");"
+        "content": "            output \u003d \"\tGot it. I\u0027ve added this task:\\n \t\" + myList.get(NumOfTasks-1).toString() + \"\\n \tNow you have \" + NumOfTasks + \" tasks in the list\";"
       },
       {
         "lineNumber": 57,
@@ -3219,182 +3415,182 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "        else"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        {"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            output \u003d \"\";"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "            throw new TaskException(\"\tOOPS!!! The description of a todo cannot be empty.\");"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to add new Event task to the current list"
+        "content": "        }"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "        return output;"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param name description of the task"
+        "content": "    }"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param doneAt the timing of the task"
+        "content": ""
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": "    /**"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @throws TaskException when input is in incorrect format"
+        "content": "     * method to add new Event task to the current list"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @throws ParseException when datetime format is incorrect"
+        "content": "     * "
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * @param name description of the task"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String addEvent(String name, String doneAt) throws TaskException, ParseException"
+        "content": "     * @param doneAt the timing of the task"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if(!name.isBlank() \u0026\u0026 !doneAt.isBlank())"
+        "content": "     * @throws TaskException when input is in incorrect format"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "     * @throws ParseException when datetime format is incorrect"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            dateFormatter.setLenient(false);"
+        "content": "     */"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            Date doneAtDate \u003d dateFormatter.parse(doneAt);"
+        "content": "    public String addEvent(String name, String doneAt) throws TaskException, ParseException"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            myList.add(new Event(name, doneAtDate));"
+        "content": "    {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            NumOfTasks++;"
+        "content": "        if(!name.isBlank() \u0026\u0026 !doneAt.isBlank())"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\tGot it. I\u0027ve added this task:\\n \t\" + myList.get(NumOfTasks-1).toString() + \"\\n \tNow you have \" + NumOfTasks + \" tasks in the list\";"
+        "content": "        {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "            dateFormatter.setLenient(false);"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        else"
+        "content": "            Date doneAtDate \u003d dateFormatter.parse(doneAt);"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "            myList.add(new Event(name, doneAtDate));"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\";"
+        "content": "            NumOfTasks++;"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            throw new TaskException(\"\tOOPS!!! The description and/or time of a event cannot be empty.\");"
+        "content": "            output \u003d \"\tGot it. I\u0027ve added this task:\\n \t\" + myList.get(NumOfTasks-1).toString() + \"\\n \tNow you have \" + NumOfTasks + \" tasks in the list\";"
       },
       {
         "lineNumber": 84,
@@ -3408,182 +3604,182 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "        else"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        {"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            output \u003d \"\";"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "            throw new TaskException(\"\tOOPS!!! The description and/or time of a event cannot be empty.\");"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to add new Deadline task to the current list"
+        "content": "        }"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "        return output;"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param name description of the task"
+        "content": "    }"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param doneBy the deadline of the task"
+        "content": ""
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": "    /**"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @throws TaskException when input is in incorrect format"
+        "content": "     * method to add new Deadline task to the current list"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @throws ParseException when datetime format is incorrect"
+        "content": "     * "
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * @param name description of the task"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String addDeadline(String name, String doneBy) throws TaskException, ParseException"
+        "content": "     * @param doneBy the deadline of the task"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if(!name.isBlank() \u0026\u0026 !doneBy.isBlank())"
+        "content": "     * @throws TaskException when input is in incorrect format"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "     * @throws ParseException when datetime format is incorrect"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            dateFormatter.setLenient(false);"
+        "content": "     */"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            Date doneByDate \u003d dateFormatter.parse(doneBy);"
+        "content": "    public String addDeadline(String name, String doneBy) throws TaskException, ParseException"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            myList.add(new Deadline(name, doneByDate));"
+        "content": "    {"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            NumOfTasks++;"
+        "content": "        if(!name.isBlank() \u0026\u0026 !doneBy.isBlank())"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\tGot it. I\u0027ve added this task:\\n \t\" + myList.get(NumOfTasks-1).toString() + \"\\n \tNow you have \" + NumOfTasks + \" tasks in the list\";"
+        "content": "        {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "            dateFormatter.setLenient(false);"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        else"
+        "content": "            Date doneByDate \u003d dateFormatter.parse(doneBy);"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "            myList.add(new Deadline(name, doneByDate));"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\";"
+        "content": "            NumOfTasks++;"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            throw new TaskException(\"\tOOPS!!! The description and/or time of a deadline cannot be empty.\");"
+        "content": "            output \u003d \"\tGot it. I\u0027ve added this task:\\n \t\" + myList.get(NumOfTasks-1).toString() + \"\\n \tNow you have \" + NumOfTasks + \" tasks in the list\";"
       },
       {
         "lineNumber": 111,
@@ -3597,133 +3793,133 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "        else"
       },
       {
         "lineNumber": 113,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        {"
       },
       {
         "lineNumber": 114,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            output \u003d \"\";"
       },
       {
         "lineNumber": 115,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "            throw new TaskException(\"\tOOPS!!! The description and/or time of a deadline cannot be empty.\");"
       },
       {
         "lineNumber": 116,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * this method prints the current loaded list"
+        "content": "        }"
       },
       {
         "lineNumber": 117,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "        return output;"
       },
       {
         "lineNumber": 118,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": "    }"
       },
       {
         "lineNumber": 119,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 120,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String printList()"
+        "content": "    /**"
       },
       {
         "lineNumber": 121,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * this method prints the current loaded list"
       },
       {
         "lineNumber": 122,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        output \u003d \"        Here are the tasks in your list:\\n\";"
+        "content": "     * "
       },
       {
         "lineNumber": 123,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if(NumOfTasks \u003d\u003d 0)"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 124,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "     */"
       },
       {
         "lineNumber": 125,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output +\u003d \" \tNothing here mate\\n\";"
+        "content": "    public String printList()"
       },
       {
         "lineNumber": 126,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "    {"
       },
       {
         "lineNumber": 127,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        for(int i \u003d 0; i \u003c NumOfTasks; i++)"
+        "content": "        output \u003d \"        Here are the tasks in your list:\\n\";"
       },
       {
         "lineNumber": 128,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "        if(NumOfTasks \u003d\u003d 0)"
       },
       {
         "lineNumber": 129,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            int index \u003d i + 1;"
+        "content": "        {"
       },
       {
         "lineNumber": 130,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output +\u003d \" \t\" + index + \".\" + myList.get(i).toString() + \"\\n\";"
+        "content": "            output +\u003d \" \tNothing here mate\\n\";"
       },
       {
         "lineNumber": 131,
@@ -3737,161 +3933,161 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "        for(int i \u003d 0; i \u003c NumOfTasks; i++)"
       },
       {
         "lineNumber": 133,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        {"
       },
       {
         "lineNumber": 134,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            int index \u003d i + 1;"
       },
       {
         "lineNumber": 135,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "            output +\u003d \" \t\" + index + \".\" + myList.get(i).toString() + \"\\n\";"
       },
       {
         "lineNumber": 136,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to mark a given task as done"
+        "content": "        }"
       },
       {
         "lineNumber": 137,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "        return output;"
       },
       {
         "lineNumber": 138,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param Index task\u0027s index in the current list"
+        "content": "    }"
       },
       {
         "lineNumber": 139,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": ""
       },
       {
         "lineNumber": 140,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @throws TaskException when index given is out of range"
+        "content": "    /**"
       },
       {
         "lineNumber": 141,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * method to mark a given task as done"
       },
       {
         "lineNumber": 142,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String doneTask(String Index) throws TaskException"
+        "content": "     * "
       },
       {
         "lineNumber": 143,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * @param Index task\u0027s index in the current list"
       },
       {
         "lineNumber": 144,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        int ListIndex \u003d Integer.parseInt(Index) - 1;"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 145,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if(ListIndex \u003e\u003d 0 \u0026\u0026 ListIndex \u003c NumOfTasks)"
+        "content": "     * @throws TaskException when index given is out of range"
       },
       {
         "lineNumber": 146,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "     */"
       },
       {
         "lineNumber": 147,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            myList.get(ListIndex).markDone();"
+        "content": "    public String doneTask(String Index) throws TaskException"
       },
       {
         "lineNumber": 148,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\tNice! I have marked this task as done:\";"
+        "content": "    {"
       },
       {
         "lineNumber": 149,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output +\u003d \"\t\" + myList.get(ListIndex).toString();"
+        "content": "        int ListIndex \u003d Integer.parseInt(Index) - 1;"
       },
       {
         "lineNumber": 150,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "        if(ListIndex \u003e\u003d 0 \u0026\u0026 ListIndex \u003c NumOfTasks)"
       },
       {
         "lineNumber": 151,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        else"
+        "content": "        {"
       },
       {
         "lineNumber": 152,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "            myList.get(ListIndex).markDone();"
       },
       {
         "lineNumber": 153,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\";"
+        "content": "            output \u003d \"\tNice! I have marked this task as done:\";"
       },
       {
         "lineNumber": 154,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            throw new TaskException(\"\tInvalid Task number!!!!\");"
+        "content": "            output +\u003d \"\t\" + myList.get(ListIndex).toString();"
       },
       {
         "lineNumber": 155,
@@ -3905,572 +4101,621 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "        else"
       },
       {
         "lineNumber": 157,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        {"
       },
       {
         "lineNumber": 158,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "            output \u003d \"\";"
       },
       {
         "lineNumber": 159,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "            throw new TaskException(\"\tInvalid Task number!!!!\");"
       },
       {
         "lineNumber": 160,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to find tasks\u0027 descriptions in the current loaded list that"
+        "content": "        }"
       },
       {
         "lineNumber": 161,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * contains a given query"
+        "content": "        return output;"
       },
       {
         "lineNumber": 162,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "    }"
       },
       {
         "lineNumber": 163,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param query string to find in list"
+        "content": ""
       },
       {
         "lineNumber": 164,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": "    /**"
       },
       {
         "lineNumber": 165,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * method to find tasks\u0027 descriptions in the current loaded list that"
       },
       {
         "lineNumber": 166,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String findTask(String query)"
+        "content": "     * contains a given query"
       },
       {
         "lineNumber": 167,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * "
       },
       {
         "lineNumber": 168,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        output \u003d \"        Here are the matching tasks in your list:\\n\";"
+        "content": "     * @param query string to find in list"
       },
       {
         "lineNumber": 169,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        int i \u003d 0;"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 170,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        for (Task  item : myList)"
+        "content": "     */"
       },
       {
         "lineNumber": 171,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "    public String findTask(String query)"
       },
       {
         "lineNumber": 172,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            if(item.getName().contains(query))"
+        "content": "    {"
       },
       {
         "lineNumber": 173,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            {"
+        "content": "        output \u003d \"        Here are the matching tasks in your list:\\n\";"
       },
       {
         "lineNumber": 174,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                i \u003d myList.indexOf(item) + 1;"
+        "content": "        int i \u003d 0;"
       },
       {
         "lineNumber": 175,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "                output +\u003d \"        \" + i + \".\" +  item.toString() + \"\\n\";"
+        "content": "        for (Task  item : myList)"
       },
       {
         "lineNumber": 176,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            }"
+        "content": "        {"
       },
       {
         "lineNumber": 177,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "            if(item.getName().contains(query))"
       },
       {
         "lineNumber": 178,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        if(i \u003d\u003d 0)"
+        "content": "            {"
       },
       {
         "lineNumber": 179,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        {"
+        "content": "                i \u003d myList.indexOf(item) + 1;"
       },
       {
         "lineNumber": 180,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output +\u003d \"        No tasks matches your query\";"
+        "content": "                output +\u003d \"        \" + i + \".\" +  item.toString() + \"\\n\";"
       },
       {
         "lineNumber": 181,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 182,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "        }"
       },
       {
         "lineNumber": 183,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        if(i \u003d\u003d 0)"
       },
       {
         "lineNumber": 184,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "        {"
       },
       {
         "lineNumber": 185,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t/**"
+        "content": "            output +\u003d \"        No tasks matches your query\";"
       },
       {
         "lineNumber": 186,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to remove a task from the current loaded list"
+        "content": "        }"
       },
       {
         "lineNumber": 187,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "        return output;"
       },
       {
         "lineNumber": 188,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param Index task\u0027s index in the current list"
+        "content": "    }"
       },
       {
         "lineNumber": 189,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return output to be displayed to user from ui"
+        "content": ""
       },
       {
         "lineNumber": 190,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @throws TaskException when index given is out of range"
+        "content": "\t/**"
       },
       {
         "lineNumber": 191,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * method to remove a task from the current loaded list"
       },
       {
         "lineNumber": 192,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\tpublic String deleteTask(String Index) throws TaskException"
+        "content": "     * "
       },
       {
         "lineNumber": 193,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t{"
+        "content": "     * @param Index task\u0027s index in the current list"
       },
       {
         "lineNumber": 194,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\tint listIndex \u003d Integer.parseInt(Index) - 1;"
+        "content": "     * @return output to be displayed to user from ui"
       },
       {
         "lineNumber": 195,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\tif(listIndex \u003e\u003d 0 \u0026\u0026 listIndex \u003c NumOfTasks)"
+        "content": "     * @throws TaskException when index given is out of range"
       },
       {
         "lineNumber": 196,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t{"
+        "content": "     */"
       },
       {
         "lineNumber": 197,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tString msg \u003d myList.get(listIndex).toString();"
+        "content": "\tpublic String deleteTask(String Index) throws TaskException"
       },
       {
         "lineNumber": 198,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tmyList.remove(listIndex);"
+        "content": "\t{"
       },
       {
         "lineNumber": 199,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\toutput \u003d \"\tNice! I have removed this task:\";"
+        "content": "\t\tint listIndex \u003d Integer.parseInt(Index) - 1;"
       },
       {
         "lineNumber": 200,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\toutput +\u003d\"\t\" + msg  + \"\\n \tNow you have \" + --NumOfTasks + \" tasks in the list\";"
+        "content": "\t\tif(listIndex \u003e\u003d 0 \u0026\u0026 listIndex \u003c NumOfTasks)"
       },
       {
         "lineNumber": 201,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t}"
+        "content": "\t\t{"
       },
       {
         "lineNumber": 202,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\telse"
+        "content": "\t\t\tString msg \u003d myList.get(listIndex).toString();"
       },
       {
         "lineNumber": 203,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t{"
+        "content": "\t\t\tmyList.remove(listIndex);"
       },
       {
         "lineNumber": 204,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "            output \u003d \"\";"
+        "content": "\t\t\toutput \u003d \"\tNice! I have removed this task:\";"
       },
       {
         "lineNumber": 205,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\t\tthrow new TaskException(\"\tInvalid Task number!!!!\");"
+        "content": "\t\t\toutput +\u003d\"\t\" + msg  + \"\\n \tNow you have \" + --NumOfTasks + \" tasks in the list\";"
       },
       {
         "lineNumber": 206,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        }"
+        "content": "\t\t}"
       },
       {
         "lineNumber": 207,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return output;"
+        "content": "\t\telse"
       },
       {
         "lineNumber": 208,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t}"
+        "content": "\t\t{"
       },
       {
         "lineNumber": 209,
         "author": {
           "gitId": "hanskw4267"
         },
+        "content": "            output \u003d \"\";"
+      },
+      {
+        "lineNumber": 210,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\t\tthrow new TaskException(\"\tInvalid Task number!!!!\");"
+      },
+      {
+        "lineNumber": 211,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 212,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return output;"
+      },
+      {
+        "lineNumber": 213,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 214,
+        "author": {
+          "gitId": "hanskw4267"
+        },
         "content": "}"
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 209
+      "hanskw4267": 214
     }
   },
   {
-    "path": "src/main/java/Todo.java",
+    "path": "src/main/java/task/Todo.java",
     "fileType": "java",
     "lines": [
       {
         "lineNumber": 1,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "package task;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
         "content": "import java.io.Serializable;"
       },
       {
-        "lineNumber": 2,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": ""
-      },
-      {
-        "lineNumber": 3,
-        "author": {
-          "gitId": "hanskw4267"
-        },
-        "content": "/**"
-      },
-      {
         "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * This class defines the \"Event\" type Task"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": "/**"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": " * This class defines the \"Event\" type Task"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @see Task"
+        "content": " * "
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " */"
+        "content": " * @author Hans kurnia"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class Todo extends Task implements Serializable"
+        "content": " * @see Task"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": " */"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "public class Todo extends Task implements Serializable"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "{"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to create a new Todo task object"
+        "content": ""
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "    /**"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param name decription of task"
+        "content": "     * method to create a new Todo task object"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * "
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\tpublic Todo(String name)"
+        "content": "     * @param name decription of task"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t{"
+        "content": "     */"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\tsuper(name);"
+        "content": "\tpublic Todo(String name)"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t}"
+        "content": "\t{"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "\t\tsuper(name);"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t@Override"
+        "content": "\t}"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\tpublic String toString()"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t{"
+        "content": "\t@Override"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t\treturn \"[T]\" + super.toString();"
+        "content": "\tpublic String toString()"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "\t}"
+        "content": "\t{"
       },
       {
         "lineNumber": 27,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t\treturn \"[T]\" + super.toString();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "\t}"
+      },
+      {
+        "lineNumber": 29,
         "author": {
           "gitId": "hanskw4267"
         },
@@ -4478,11 +4723,11 @@
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 27
+      "hanskw4267": 29
     }
   },
   {
-    "path": "src/main/java/Ui.java",
+    "path": "src/main/java/ui/Ui.java",
     "fileType": "java",
     "lines": [
       {
@@ -4490,451 +4735,479 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import java.util.Scanner;"
+        "content": "package ui;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import java.io.File;"
+        "content": ""
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "/**"
+        "content": "import java.io.File;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * This class displays the prompts and outputs needed to the user"
+        "content": "import storage.Storage;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * "
+        "content": "import task.TaskList;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " * @author Hans kurnia"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": " */"
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class Ui"
+        "content": " * This class displays the prompts and outputs needed to the user"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": " * "
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private String logo \u003d \"          ____        _        \\n\""
+        "content": " * @author Hans kurnia"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    + \"         |  _ \\\\ _   _| | _____ \\n\""
+        "content": " */"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    + \"         | | | | | | | |/ / _ \\\\\\n\""
+        "content": "public class Ui"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    + \"         | |_| | |_| |   \u003c  __/\\n\""
+        "content": "{"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    + \"         |____/ \\\\__,_|_|\\\\_\\\\___|\\n\\n\";"
+        "content": "    private String logo \u003d \"          ____        _        \\n\""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private String lineBreak \u003d \"\t_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\";"
+        "content": "    + \"         |  _ \\\\ _   _| | _____ \\n\""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private String Input \u003d \"\";"
+        "content": "    + \"         | | | | | | | |/ / _ \\\\\\n\""
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    private Scanner  in  \u003d new Scanner(System.in);;"
+        "content": "    + \"         | |_| | |_| |   \u003c  __/\\n\""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "    + \"         |____/ \\\\__,_|_|\\\\_\\\\___|\\n\\n\";"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "    private String lineBreak \u003d \"\t_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _\";"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to display the welcome message to the user"
+        "content": "    private String Input \u003d \"\";"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "    private Scanner  in  \u003d new Scanner(System.in);;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void showWelcome()"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "    /**"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(logo + \"         Hello!\\n         I\u0027m Duke\\n         What can i do for you?\\n\" + lineBreak + \"\\n\");"
+        "content": "     * method to display the welcome message to the user"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "    public void showWelcome()"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "    {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to show the goodbye message to the user and saves the lists"
+        "content": "        System.out.println(logo + \"         Hello!\\n         I\u0027m Duke\\n         What can i do for you?\\n\" + lineBreak + \"\\n\");"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param storage configuration of storage"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param myTaskList holding the current tasks list"
+        "content": "    /**"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "     * method to show the goodbye message to the user and saves the lists"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void showGoodbye(Storage storage, TaskList myTaskList)"
+        "content": "     * "
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * @param storage configuration of storage"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        "
+        "content": "     * @param myTaskList holding the current tasks list"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        File listFile \u003d storage.saveList(myTaskList.getList());"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(\"\\n \tSaved to file \" + listFile.getName() + \"\\n\");"
+        "content": "    public void showGoodbye(Storage storage, TaskList myTaskList)"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(\"\tBye. Hope to see you again soon!\"+ \"\\n\");"
+        "content": "    {"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        "
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "        File listFile \u003d storage.saveList(myTaskList.getList());"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "        System.out.println(\"\\n \tSaved to file \" + listFile.getName() + \"\\n\");"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to show the output from the different methods to the user"
+        "content": "        System.out.println(\"\tBye. Hope to see you again soon!\"+ \"\\n\");"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "    }"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @param output message output to be printed out"
+        "content": ""
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void showOutput(String output)"
+        "content": "     * method to show the output from the different methods to the user"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * "
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(lineBreak);"
+        "content": "     * @param output message output to be printed out"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(output);"
+        "content": "     */"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        System.out.println(lineBreak);"
+        "content": "    public void showOutput(String output)"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "    {"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "        System.out.println(lineBreak);"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    /**"
+        "content": "        System.out.println(output);"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * method to read the next command input from user"
+        "content": "        System.out.println(lineBreak);"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * "
+        "content": "    }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     * @return command input from user"
+        "content": ""
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public String readInput()"
+        "content": "     * method to read the next command input from user"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "     * "
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        Input \u003d in.nextLine();"
+        "content": "     * @return command input from user"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        return Input;"
+        "content": "     */"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "    public String readInput()"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": ""
+        "content": "    {"
       },
       {
         "lineNumber": 65,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        Input \u003d in.nextLine();"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        return Input;"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
         "author": {
           "gitId": "hanskw4267"
         },
@@ -4942,7 +5215,7 @@
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 65
+      "hanskw4267": 69
     }
   },
   {
@@ -4954,66 +5227,80 @@
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import org.junit.jupiter.api.Test;"
+        "content": "import command.*;"
       },
       {
         "lineNumber": 2,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+        "content": "import org.junit.jupiter.api.Test;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "public class DukeTest"
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "{"
+        "content": "public class DukeTest"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    @Test"
+        "content": "{"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    public void dummyTest()"
+        "content": "    @Test"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    {"
+        "content": "    public void test_todo()"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "        assertEquals(2,2);"
+        "content": "    {"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "hanskw4267"
         },
-        "content": "    }"
+        "content": "        Command cmd \u003d new Command(Commandtype.LISTTASK, \"list\");"
       },
       {
         "lineNumber": 10,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "        assertEquals(cmd, CommandParser(\"list\"));"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "hanskw4267"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 12,
         "author": {
           "gitId": "hanskw4267"
         },
@@ -5021,7 +5308,7 @@
       }
     ],
     "authorContributionMap": {
-      "hanskw4267": 10
+      "hanskw4267": 12
     }
   }
 ]
