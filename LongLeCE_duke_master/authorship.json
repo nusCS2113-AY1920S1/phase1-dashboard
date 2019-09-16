@@ -12413,598 +12413,675 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import command.TaskCommand;"
+        "content": "import command.Command;"
       },
       {
         "lineNumber": 3,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import command.UICommand;"
+        "content": "import command.Parser;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import exception.DukeException;"
+        "content": "import command.TaskCommand;"
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "import command.UICommand;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import java.io.ByteArrayOutputStream;"
+        "content": "import exception.DukeException;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import java.io.PrintStream;"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import java.util.*;"
+        "content": "import java.io.ByteArrayOutputStream;"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "import java.io.PrintStream;"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * \u003ch1\u003eDuke\u003c/h1\u003e"
+        "content": "/**"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * CS2113T AY19/20 project"
+        "content": " * \u003ch1\u003eDuke\u003c/h1\u003e"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " *"
+        "content": " * CS2113T AY19/20 project"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * @author  Le Hong Long"
+        "content": " *"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " */"
+        "content": " * @author  Le Hong Long"
       },
       {
         "lineNumber": 16,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 17,
         "author": {
           "gitId": "-"
         },
         "content": "public class Duke {"
       },
       {
-        "lineNumber": 17,
+        "lineNumber": 18,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "    private static String savePath \u003d \"data/duke.txt\";"
       },
       {
-        "lineNumber": 18,
+        "lineNumber": 19,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "    private Storage storage;"
       },
       {
-        "lineNumber": 19,
+        "lineNumber": 20,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "    private TaskCommand taskCommand;"
       },
       {
-        "lineNumber": 20,
-        "author": {
-          "gitId": "LongLeCE"
-        },
-        "content": "    private boolean isExit;"
-      },
-      {
         "lineNumber": 21,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private ByteArrayOutputStream output;"
+        "content": "    private transient boolean isExit;"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "    private transient ByteArrayOutputStream output;"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public Duke(boolean main) {"
+        "content": ""
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.isExit \u003d false;"
+        "content": "    public Duke(boolean redirectOutput) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.storage \u003d new Storage(savePath);"
+        "content": "        this.isExit \u003d false;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.taskCommand \u003d new TaskCommand(storage.readSavedTasks());"
+        "content": "        this.storage \u003d new Storage(savePath);"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (!main) {"
+        "content": "        this.taskCommand \u003d new TaskCommand(storage.readSavedTasks());"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            this.output \u003d new ByteArrayOutputStream();"
+        "content": "        if (redirectOutput) {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            System.setOut(new PrintStream(this.output));"
+        "content": "            this.output \u003d new ByteArrayOutputStream();"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.toggleLine(false);"
+        "content": "            System.setOut(new PrintStream(this.output));"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.toggleFormattedMessage(false);"
+        "content": "            UICommand.toggleLine(false);"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            UICommand.toggleFormattedMessage(false);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        UICommand.greet();"
+        "content": "        }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        UICommand.greet();"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public Duke() {"
+        "content": ""
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this(false);"
+        "content": "    public Duke() {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        this(true);"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Duke\u0027s main method"
+        "content": "    /**"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param args unused"
+        "content": "     * Duke\u0027s main method"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "     * @param args unused"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 45,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 46,
         "author": {
           "gitId": "-"
         },
         "content": "    public static void main(String[] args) {"
       },
       {
-        "lineNumber": 46,
+        "lineNumber": 47,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "//        String logo \u003d \" ____        _        \\n\""
       },
       {
-        "lineNumber": 47,
+        "lineNumber": 48,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "//                + \"|  _ \\\\ _   _| | _____ \\n\""
       },
       {
-        "lineNumber": 48,
+        "lineNumber": 49,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "//                + \"| | | | | | | |/ / _ \\\\\\n\""
       },
       {
-        "lineNumber": 49,
+        "lineNumber": 50,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "//                + \"| |_| | |_| |   \u003c  __/\\n\""
       },
       {
-        "lineNumber": 50,
+        "lineNumber": 51,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "//                + \"|____/ \\\\__,_|_|\\\\_\\\\___|\\n\";"
       },
       {
-        "lineNumber": 51,
+        "lineNumber": 52,
         "author": {
           "gitId": "LongLeCE"
         },
         "content": "//        System.out.println(\"Hello from\\n\" + logo);"
       },
       {
-        "lineNumber": 52,
-        "author": {
-          "gitId": "LongLeCE"
-        },
-        "content": "        Duke duke \u003d new Duke(true);"
-      },
-      {
         "lineNumber": 53,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        Scanner stdin \u003d new Scanner(System.in);"
+        "content": "        new Duke(false).run();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        while (!duke.isExit()) {"
+        "content": "    }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            duke.processResponse(stdin.nextLine());"
+        "content": ""
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "    public void run() {"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        while (!this.isExit()) {"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "            this.handleInput(UICommand.readUserInput());"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private void processResponse(String rawInput) {"
+        "content": "        }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        String input \u003d rawInput.trim();"
+        "content": "    }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (input.equals(\"bye\")) {"
+        "content": ""
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            this.storage.writeTasks(this.taskCommand.getTaskHistory());"
+        "content": "    private void handleInput(String input) {"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.goodbye();"
+        "content": "        try {"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            this.isExit \u003d true;"
+        "content": "            Command parsedCommand \u003d new Command(Parser.parseAll(input));"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            if (UICommand.isExitCommand(parsedCommand)) {"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        else {"
+        "content": "                this.saveTasks();"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            try {"
+        "content": "                this.exit();"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                this.taskCommand.execute(input);"
+        "content": "            }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "            else {"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            catch (DukeException ex) {"
+        "content": "                this.taskCommand.execute(parsedCommand);"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                UICommand.talk(\"☹ OOPS!!! \" + ex.getMessage());"
+        "content": "            }"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "        catch (DukeException ex) {"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "            UICommand.talkException(ex);"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        }"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public String getResponse(String rawInput) {"
+        "content": "    }"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (rawInput !\u003d null) {"
+        "content": ""
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            this.output.reset();"
+        "content": "    public String getResponse(String input) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            this.processResponse(rawInput);"
+        "content": "        if (input !\u003d null) {"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            this.output.reset();"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return this.output.toString();"
+        "content": "            this.handleInput(input);"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        return this.output.toString();"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public boolean isExit() {"
+        "content": "    }"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return this.isExit;"
+        "content": ""
       },
       {
         "lineNumber": 86,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.isExit;"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private void exit() {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        UICommand.goodbye();"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.isExit \u003d true;"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private void saveTasks() {"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        this.storage.writeTasks(this.taskCommand.getTaskHistory());"
+      },
+      {
+        "lineNumber": 97,
         "author": {
           "gitId": "-"
         },
         "content": "    }"
       },
       {
-        "lineNumber": 87,
+        "lineNumber": 98,
         "author": {
           "gitId": "-"
         },
@@ -13012,7 +13089,7 @@
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 83,
+      "LongLeCE": 94,
       "-": 4
     }
   },
@@ -16710,59 +16787,66 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        try {"
+        "content": "        Runtime currRuntime \u003d Runtime.getRuntime();"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            Thread.sleep(1500);"
+        "content": "        try {"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            Thread.sleep(1500);"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        catch (InterruptedException ex) {"
+        "content": "        }"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            System.exit(1);"
+        "content": "        catch (InterruptedException ex) {"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            currRuntime.exit(1);"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        System.exit(0);"
+        "content": "        }"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        currRuntime.exit(0);"
       },
       {
         "lineNumber": 65,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
         "author": {
           "gitId": "LongLeCE"
         },
@@ -16770,7 +16854,7 @@
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 65
+      "LongLeCE": 66
     }
   },
   {
@@ -16875,112 +16959,112 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "import java.util.Map;"
+        "content": "import java.util.HashMap;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "import java.util.Map;"
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "/**"
+        "content": ""
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * \u003ch1\u003eCommand Parent Class\u003c/h1\u003e"
+        "content": "/**"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * All command handlers should extend this class"
+        "content": " * \u003ch1\u003eCommand Parent Class\u003c/h1\u003e"
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " */"
+        "content": " * All command handlers should extend this class"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "public class Command {"
+        "content": " */"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private String fullCommand;"
+        "content": "public class Command extends HashMap\u003cString, String\u003e {"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    String command;"
+        "content": "    private String fullCommand;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    Map\u003cString, String\u003e args;"
+        "content": ""
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "    /**"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "     * Default constructor"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Default constructor"
+        "content": "     * @return Command object"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return Command object"
+        "content": "     */"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    public Command() {"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public Command() {"
+        "content": "        super();"
       },
       {
         "lineNumber": 22,
@@ -17050,577 +17134,689 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.setCommand(command);"
+        "content": "        super();"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        this.setCommand(command);"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "    }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": ""
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Get command"
+        "content": "    public Command(Map\u003cString, String\u003e args) {"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return command in string literal"
+        "content": "        super(args);"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public String getCommand() {"
+        "content": ""
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return this.fullCommand;"
+        "content": "    /**"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     * Get command"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     * @return command in string literal"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "     */"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Set command"
+        "content": "    public String getFullCommand() {"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command input command"
+        "content": "        return this.fullCommand;"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "    }"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on command parsing failure or empty command"
+        "content": ""
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public void setCommand(String command) throws DukeException {"
+        "content": "     * Set command"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.fullCommand \u003d command;"
+        "content": "     * @param command input command"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (this.fullCommand.isBlank()) {"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            throw new EmptyCommandException(\"I can\u0027t help you with an empty command...\");"
+        "content": "     * @throws DukeException on command parsing failure or empty command"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "     */"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.command \u003d Parser.parseCommand(this.fullCommand).get(\"command\");"
+        "content": "    public void setCommand(String command) throws DukeException {"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.args \u003d Parser.parseArgs(command);"
+        "content": "        this.fullCommand \u003d command;"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        if (this.fullCommand.isBlank()) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "            throw new EmptyCommandException(\"I can\u0027t help you with an empty command...\");"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Execute command"
+        "content": "        this.putAll(Parser.parseAll(command));"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return return of function"
+        "content": "    }"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on command execution failure"
+        "content": ""
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    /**"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public Object execute() throws DukeException {"
+        "content": "     * Execute command"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return this.execute(this.command, this.args);"
+        "content": "     * @return return of function"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     * @throws DukeException on command execution failure"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    public Object execute() throws DukeException {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Execute command"
+        "content": "        return this.execute(this.getCommand(), this);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command command to execute"
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return return of function"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on command execution failure"
+        "content": "    /**"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * Execute command"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public Object execute(String command) throws DukeException {"
+        "content": "     * @param command command to execute"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        this.setCommand(command);"
+        "content": "     * @return return of function"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return this.execute(this.command, this.args);"
+        "content": "     * @throws DukeException on command execution failure"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     */"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "    public Object execute(String command) throws DukeException {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "        this.setCommand(command);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Execute command"
+        "content": "        return this.execute(this.getCommand(), this);"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command type of command to execute"
+        "content": "    }"
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param arguments a dictionary containing all parsed arguments"
+        "content": ""
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return return of function"
+        "content": "    /**"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on command execution failure"
+        "content": "     * Execute command"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * @param command type of command to execute"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public Object execute(String command, Map\u003cString, String\u003e arguments) throws DukeException {"
+        "content": "     * @param args a dictionary containing all parsed arguments"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        try {"
+        "content": "     * @return return of function"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            if (arguments.isEmpty()) {"
+        "content": "     * @throws DukeException on command execution failure"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                try {"
+        "content": "     */"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                    return this.getClass().getDeclaredMethod(command).invoke(this);"
+        "content": "    public Object execute(String command, Map\u003cString, String\u003e args) throws DukeException {"
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                }"
+        "content": "        try {"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                catch (Throwable ex) {"
+        "content": "            if (Command.hasNoArgs(args)) {"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                    return this.getClass().getDeclaredMethod(command, Map.class).invoke(this, arguments);"
+        "content": "                try {"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                }"
+        "content": "                    return this.getClass().getDeclaredMethod(command).invoke(this);"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            else {"
+        "content": "                catch (Throwable ex) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                return this.getClass().getDeclaredMethod(command, Map.class).invoke(this, arguments);"
+        "content": "                    return this.getClass().getDeclaredMethod(command, Map.class).invoke(this, args);"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "                }"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        catch (NoSuchMethodException ex) {"
+        "content": "            else {"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            throw new UnknownCommandException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+        "content": "                return this.getClass().getDeclaredMethod(command, Map.class).invoke(this, args);"
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        catch (InvocationTargetException ex) {"
+        "content": "        }"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            try {"
+        "content": "        catch (NoSuchMethodException ex) {"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                throw (DukeException) ex.getCause();"
+        "content": "            throw new UnknownCommandException(\"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "        }"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            catch (Throwable ex0) {"
+        "content": "        catch (InvocationTargetException ex) {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                throw new UnknownException(ex.getCause(), false);"
+        "content": "            try {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "                throw (DukeException) ex.getCause();"
       },
       {
         "lineNumber": 108,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 109,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        catch (Throwable ex) {"
+        "content": "            catch (Throwable ex0) {"
       },
       {
         "lineNumber": 110,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            throw new UnknownException(ex, false);"
+        "content": "                throw new UnknownException(ex.getCause(), false);"
       },
       {
         "lineNumber": 111,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 112,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 113,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        catch (Throwable ex) {"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            throw new UnknownException(ex, false);"
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public Object execute(Map\u003cString, String\u003e args) throws DukeException {"
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.execute(args.get(\"command\"), args);"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public String getCommand() {"
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return this.get(\"command\");"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    private static boolean hasNoArgs(Map\u003cString, String\u003e args) {"
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return args.isEmpty() || args.size() \u003d\u003d 1 \u0026\u0026 args.containsKey(\"command\");"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 129,
         "author": {
           "gitId": "LongLeCE"
         },
@@ -17628,7 +17824,7 @@
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 113
+      "LongLeCE": 129
     }
   },
   {
@@ -17738,507 +17934,633 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    private static final String defaultDelimiter \u003d \"/\";"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Parse command"
+        "content": ""
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command command to be parsed"
+        "content": "    /**"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param includeCommand whether to return command type"
+        "content": "     * Parse command"
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param includeArgs whether to return arguments"
+        "content": "     * @param command command to be parsed"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return a dictionary containing command extracted infos"
+        "content": "     * @param includeCommand whether to return command type"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
+        "content": "     * @param includeArgs whether to return arguments"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * @return a dictionary containing command extracted infos"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static Map\u003cString, String\u003e parse(String command, boolean includeCommand, boolean includeArgs) throws DukeException {"
+        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        Map\u003cString, String\u003e ret \u003d new HashMap\u003c\u003e();"
+        "content": "     */"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        String commandClean \u003d command.strip();"
+        "content": "    public static Map\u003cString, String\u003e parse(String command, boolean includeCommand, boolean includeArgs, String delimiter) throws DukeException {"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        int endCommandIndex \u003d commandClean.indexOf(\" \");"
+        "content": "        Map\u003cString, String\u003e ret \u003d new HashMap\u003c\u003e();"
       },
       {
         "lineNumber": 27,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (endCommandIndex \u003d\u003d -1) {"
+        "content": "        String commandClean \u003d command.strip();"
       },
       {
         "lineNumber": 28,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            endCommandIndex \u003d commandClean.length();"
+        "content": "        int endCommandIndex \u003d commandClean.indexOf(\" \");"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            if (includeCommand) {"
+        "content": "        if (endCommandIndex \u003d\u003d -1) {"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                ret.put(\"command\", commandClean.substring(0, endCommandIndex));"
+        "content": "            endCommandIndex \u003d commandClean.length();"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "            if (includeCommand) {"
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            return ret;"
+        "content": "                ret.put(\"command\", commandClean.substring(0, endCommandIndex));"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "//        String[] commandComponents \u003d command.split(\" +\");"
+        "content": "            return ret;"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (includeCommand) {"
+        "content": "        }"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            ret.put(\"command\", commandClean.substring(0, endCommandIndex++));"
+        "content": "//        String[] commandComponents \u003d command.split(\" +\");"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "        if (includeCommand) {"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (includeArgs) {"
+        "content": "            ret.put(\"command\", commandClean.substring(0, endCommandIndex++));"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            commandClean \u003d commandClean.substring(endCommandIndex).strip();"
+        "content": "        }"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            String regex \u003d \" ?/[a-zA-Z]+ ?\";"
+        "content": "        if (includeArgs) {"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            Pattern pattern \u003d Pattern.compile(regex);"
+        "content": "            commandClean \u003d commandClean.substring(endCommandIndex).strip();"
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            Matcher matcher \u003d pattern.matcher(commandClean);"
+        "content": "            String regex \u003d \" ?\" + delimiter + \"[a-zA-Z]+ ?\";"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            int currIndex \u003d 0;"
+        "content": "            Pattern pattern \u003d Pattern.compile(regex);"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            String currArgument \u003d \"description\";"
+        "content": "            Matcher matcher \u003d pattern.matcher(commandClean);"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            while (matcher.find()) {"
+        "content": "            int currIndex \u003d 0;"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                if (ret.containsKey(currArgument)) {"
+        "content": "            String currArgument \u003d \"description\";"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                    throw DukeException.getFormattedException(MultipleValuesForSameArgumentException.class, DukeException.generateFormatMap(currArgument));"
+        "content": "            while (matcher.find()) {"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                }"
+        "content": "                if (ret.containsKey(currArgument)) {"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                ret.put(currArgument, commandClean.substring(currIndex, matcher.start()).strip());"
+        "content": "                    throw DukeException.getFormattedException(MultipleValuesForSameArgumentException.class, DukeException.generateFormatMap(currArgument));"
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                currArgument \u003d matcher.group().strip();"
+        "content": "                }"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                currIndex \u003d matcher.end();"
+        "content": "                ret.put(currArgument, commandClean.substring(currIndex, matcher.start()).strip());"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "                currArgument \u003d matcher.group().strip();"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            ret.put(currArgument, commandClean.substring(currIndex));"
+        "content": "                currIndex \u003d matcher.end();"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            }"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return ret;"
+        "content": "            ret.put(currArgument, commandClean.substring(currIndex));"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        }"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        return ret;"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Parse command type and arguments"
+        "content": ""
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command command to be parsed"
+        "content": "    /**"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return a dictionary containing command extracted infos"
+        "content": "     * Parse command type and arguments"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
+        "content": "     * @param command command to be parsed"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * @return a dictionary containing command extracted infos"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static Map\u003cString, String\u003e parseAll(String command) throws DukeException {"
+        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return Parser.parse(command, true, true);"
+        "content": "     */"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "    public static Map\u003cString, String\u003e parseAll(String command, String delimiter) throws DukeException {"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        return Parser.parse(command, true, true, delimiter);"
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Parse arguments only"
+        "content": ""
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command command to be parsed"
+        "content": "    /**"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return a dictionary containing command extracted infos"
+        "content": "     * Parse arguments only"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
+        "content": "     * @param command command to be parsed"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * @return a dictionary containing command extracted infos"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static Map\u003cString, String\u003e parseArgs(String command) throws DukeException {"
+        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return Parser.parse(command, false, true);"
+        "content": "     */"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "    public static Map\u003cString, String\u003e parseArgs(String command, String delimiter) throws DukeException {"
       },
       {
         "lineNumber": 77,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        return Parser.parse(command, false, true, delimiter);"
       },
       {
         "lineNumber": 78,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    }"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Parse command type only"
+        "content": ""
       },
       {
         "lineNumber": 80,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param command command to be parsed"
+        "content": "    /**"
       },
       {
         "lineNumber": 81,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return a dictionary containing command extracted infos"
+        "content": "     * Parse command type only"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
+        "content": "     * @param command command to be parsed"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "     * @return a dictionary containing command extracted infos"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static Map\u003cString, String\u003e parseCommand(String command) throws DukeException {"
+        "content": "     * @throws DukeException on parsing failure or invalid/empty command"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        return Parser.parse(command, true, false);"
+        "content": "     */"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "    public static Map\u003cString, String\u003e parseCommand(String command, String delimiter) throws DukeException {"
       },
       {
         "lineNumber": 87,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return Parser.parse(command, true, false, delimiter);"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static Map\u003cString, String\u003e parse(String command, boolean includeCommand, boolean includeArgs) throws DukeException {"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return Parser.parse(command, includeCommand, includeArgs, Parser.defaultDelimiter);"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static Map\u003cString, String\u003e parseAll(String command) throws DukeException {"
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return Parser.parseAll(command, Parser.defaultDelimiter);"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static Map\u003cString, String\u003e parseArgs(String command) throws DukeException {"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return Parser.parseArgs(command, Parser.defaultDelimiter);"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static Map\u003cString, String\u003e parseCommand(String command) throws DukeException {"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return Parser.parseCommand(command, Parser.defaultDelimiter);"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 105,
         "author": {
           "gitId": "LongLeCE"
         },
@@ -18246,7 +18568,7 @@
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 87
+      "LongLeCE": 105
     }
   },
   {
@@ -18888,7 +19210,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                UICommand.talkNoLine(\" \" + ++i + \".\" + task);"
+        "content": "                UICommand.talkNoLine(\"  \" + ++i + \".\" + task);"
       },
       {
         "lineNumber": 92,
@@ -19119,7 +19441,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talk(\"Nice! I\u0027ve marked this task as done:\\n \" + finishedTask);"
+        "content": "            UICommand.talk(\"Nice! I\u0027ve marked this task as done:\\n  \" + finishedTask);"
       },
       {
         "lineNumber": 125,
@@ -19420,7 +19742,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        UICommand.talk(\"Got it. I\u0027ve added this task:\\n \" + task +"
+        "content": "        UICommand.talk(\"Got it. I\u0027ve added this task:\\n  \" + task +"
       },
       {
         "lineNumber": 168,
@@ -19693,7 +20015,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talk(\"Got it. I\u0027ve added this task:\\n \" + task +"
+        "content": "            UICommand.talk(\"Got it. I\u0027ve added this task:\\n  \" + task +"
       },
       {
         "lineNumber": 207,
@@ -20071,7 +20393,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talk(\"Got it. I\u0027ve added this task:\\n \" + task +"
+        "content": "            UICommand.talk(\"Got it. I\u0027ve added this task:\\n  \" + task +"
       },
       {
         "lineNumber": 261,
@@ -20400,7 +20722,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talk(\"Noted. I\u0027ve removed this task:\\n \" + removedTask +"
+        "content": "            UICommand.talk(\"Noted. I\u0027ve removed this task:\\n  \" + removedTask +"
       },
       {
         "lineNumber": 308,
@@ -20820,7 +21142,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                UICommand.talkNoLine(\" \" + ++i + \".\" + task);"
+        "content": "                UICommand.talkNoLine(\"  \" + ++i + \".\" + task);"
       },
       {
         "lineNumber": 368,
@@ -20906,168 +21228,168 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "/**"
+        "content": "import exception.DukeException;"
       },
       {
         "lineNumber": 4,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * \u003ch1\u003eUI commands\u003c/h1\u003e"
+        "content": ""
       },
       {
         "lineNumber": 5,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " * Command subclass, implements all UI-related commands."
+        "content": "import java.util.Map;"
       },
       {
         "lineNumber": 6,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": " */"
+        "content": "import java.util.Scanner;"
       },
       {
         "lineNumber": 7,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "public class UICommand extends Command {"
+        "content": ""
       },
       {
         "lineNumber": 8,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static String horizontalLine \u003d \"____________________________________________________________\";"
+        "content": "/**"
       },
       {
         "lineNumber": 9,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static boolean enableTalk \u003d true;"
+        "content": " * \u003ch1\u003eUI commands\u003c/h1\u003e"
       },
       {
         "lineNumber": 10,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static boolean enableLine \u003d true;"
+        "content": " * Command subclass, implements all UI-related commands."
       },
       {
         "lineNumber": 11,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    private static boolean enableFormattedMessage \u003d true;"
+        "content": " */"
       },
       {
         "lineNumber": 12,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "public class UICommand extends Command {"
       },
       {
         "lineNumber": 13,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    private static final String horizontalLine \u003d \"____________________________________________________________\";"
       },
       {
         "lineNumber": 14,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Toggle output on/off"
+        "content": "    private static boolean enableTalk \u003d true;"
       },
       {
         "lineNumber": 15,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param status desired state"
+        "content": "    private static boolean enableLine \u003d true;"
       },
       {
         "lineNumber": 16,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "    private static boolean enableFormattedMessage \u003d true;"
       },
       {
         "lineNumber": 17,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    private static Scanner scanner \u003d new Scanner(System.in);"
       },
       {
         "lineNumber": 18,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void toggleTalk(boolean status) {"
+        "content": ""
       },
       {
         "lineNumber": 19,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        UICommand.enableTalk \u003d status;"
+        "content": "    /**"
       },
       {
         "lineNumber": 20,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     * Toggle output on/off"
       },
       {
         "lineNumber": 21,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     * @param status desired state"
       },
       {
         "lineNumber": 22,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void toggleLine(boolean status)  {"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 23,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        UICommand.enableLine \u003d status;"
+        "content": "     */"
       },
       {
         "lineNumber": 24,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "    public static void toggleTalk(boolean status) {"
       },
       {
         "lineNumber": 25,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "        UICommand.enableTalk \u003d status;"
       },
       {
         "lineNumber": 26,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void toggleFormattedMessage(boolean status) {UICommand.enableFormattedMessage \u003d status;}"
+        "content": "    }"
       },
       {
         "lineNumber": 27,
@@ -21081,343 +21403,343 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    public static void toggleLine(boolean status)  {"
       },
       {
         "lineNumber": 29,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Greet user"
+        "content": "        UICommand.enableLine \u003d status;"
       },
       {
         "lineNumber": 30,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "    }"
       },
       {
         "lineNumber": 31,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 32,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void greet() {"
+        "content": "    public static void toggleFormattedMessage(boolean status) {UICommand.enableFormattedMessage \u003d status;}"
       },
       {
         "lineNumber": 33,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talk(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
+        "content": ""
       },
       {
         "lineNumber": 34,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 35,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     * Greet user"
       },
       {
         "lineNumber": 36,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 37,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Goodbye user"
+        "content": "     */"
       },
       {
         "lineNumber": 38,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "    public static void greet() {"
       },
       {
         "lineNumber": 39,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "        talk(\"Hello! I\u0027m Duke\\nWhat can I do for you?\");"
       },
       {
         "lineNumber": 40,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void goodbye() {"
+        "content": "    }"
       },
       {
         "lineNumber": 41,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talk(\"Bye. Hope to see you again soon!\");"
+        "content": ""
       },
       {
         "lineNumber": 42,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "    /**"
       },
       {
         "lineNumber": 43,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     * Goodbye user"
       },
       {
         "lineNumber": 44,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 45,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Output formatted message"
+        "content": "     */"
       },
       {
         "lineNumber": 46,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param text message"
+        "content": "    public static void goodbye() {"
       },
       {
         "lineNumber": 47,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "        talk(\"Bye. Hope to see you again soon!\");"
       },
       {
         "lineNumber": 48,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 49,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void talk(String text) {"
+        "content": ""
       },
       {
         "lineNumber": 50,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talkOptional(text, true);"
+        "content": "    /**"
       },
       {
         "lineNumber": 51,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     * Output formatted message"
       },
       {
         "lineNumber": 52,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     * @param text message"
       },
       {
         "lineNumber": 53,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 54,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Output formatted message without lines"
+        "content": "     */"
       },
       {
         "lineNumber": 55,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param text message"
+        "content": "    public static void talk(String text) {"
       },
       {
         "lineNumber": 56,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "        talkOptional(text, true);"
       },
       {
         "lineNumber": 57,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 58,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void talkNoLine(String text) {"
+        "content": ""
       },
       {
         "lineNumber": 59,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        talkOptional(text, false);"
+        "content": "    /**"
       },
       {
         "lineNumber": 60,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     * Output formatted message without lines"
       },
       {
         "lineNumber": 61,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     * @param text message"
       },
       {
         "lineNumber": 62,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 63,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Output formatted message"
+        "content": "     */"
       },
       {
         "lineNumber": 64,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param text message"
+        "content": "    public static void talkNoLine(String text) {"
       },
       {
         "lineNumber": 65,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param line Whether to output lines"
+        "content": "        talkOptional(text, false);"
       },
       {
         "lineNumber": 66,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "    }"
       },
       {
         "lineNumber": 67,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": ""
       },
       {
         "lineNumber": 68,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void talkOptional(String text, boolean line) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 69,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (line) {"
+        "content": "     * Output formatted message"
       },
       {
         "lineNumber": 70,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talkLine();"
+        "content": "     * @param text message"
       },
       {
         "lineNumber": 71,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "     * @param line Whether to output lines"
       },
       {
         "lineNumber": 72,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (UICommand.enableFormattedMessage) {"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 73,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talkNormal(\"     \" + text.replace(\"\\n\", \"\\n     \"));"
+        "content": "     */"
       },
       {
         "lineNumber": 74,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "    public static void talkOptional(String text, boolean line) {"
       },
       {
         "lineNumber": 75,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        else {"
+        "content": "        if (line) {"
       },
       {
         "lineNumber": 76,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talkNormal(text);"
+        "content": "            UICommand.talkLine();"
       },
       {
         "lineNumber": 77,
@@ -21431,14 +21753,14 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (line) {"
+        "content": "        if (UICommand.enableFormattedMessage) {"
       },
       {
         "lineNumber": 79,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            UICommand.talkLine();"
+        "content": "            UICommand.talkNormal(\"     \" + text.replace(\"\\n\", \"\\n     \"));"
       },
       {
         "lineNumber": 80,
@@ -21452,192 +21774,346 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "        else {"
       },
       {
         "lineNumber": 82,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "            UICommand.talkNormal(text);"
       },
       {
         "lineNumber": 83,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "        }"
       },
       {
         "lineNumber": 84,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Output message"
+        "content": "        if (line) {"
       },
       {
         "lineNumber": 85,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @param message message"
+        "content": "            UICommand.talkLine();"
       },
       {
         "lineNumber": 86,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "        }"
       },
       {
         "lineNumber": 87,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "    }"
       },
       {
         "lineNumber": 88,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void talkNormal(Object message) {"
+        "content": ""
       },
       {
         "lineNumber": 89,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (UICommand.enableTalk) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 90,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            System.out.println(message);"
+        "content": "     * Output message"
       },
       {
         "lineNumber": 91,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "     * @param message message"
       },
       {
         "lineNumber": 92,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 93,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": ""
+        "content": "     */"
       },
       {
         "lineNumber": 94,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    /**"
+        "content": "    public static void talkNormal(Object message) {"
       },
       {
         "lineNumber": 95,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * Output a formatted line"
+        "content": "        if (UICommand.enableTalk) {"
       },
       {
         "lineNumber": 96,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     * @return null"
+        "content": "            System.out.println(message);"
       },
       {
         "lineNumber": 97,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "     */"
+        "content": "        }"
       },
       {
         "lineNumber": 98,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    public static void talkLine() {"
+        "content": "    }"
       },
       {
         "lineNumber": 99,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        if (UICommand.enableLine) {"
+        "content": ""
       },
       {
         "lineNumber": 100,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            if (UICommand.enableFormattedMessage) {"
+        "content": "    /**"
       },
       {
         "lineNumber": 101,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                UICommand.talkNormal(\"    \" + UICommand.horizontalLine);"
+        "content": "     * Output a formatted line"
       },
       {
         "lineNumber": 102,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "     * @return null"
       },
       {
         "lineNumber": 103,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            else {"
+        "content": "     */"
       },
       {
         "lineNumber": 104,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                UICommand.talkNormal(UICommand.horizontalLine);"
+        "content": "    public static void talkLine() {"
       },
       {
         "lineNumber": 105,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "            }"
+        "content": "        if (UICommand.enableLine) {"
       },
       {
         "lineNumber": 106,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "        }"
+        "content": "            if (UICommand.enableFormattedMessage) {"
       },
       {
         "lineNumber": 107,
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "    }"
+        "content": "                UICommand.talkNormal(\"    \" + UICommand.horizontalLine);"
       },
       {
         "lineNumber": 108,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            else {"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "                UICommand.talkNormal(UICommand.horizontalLine);"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 115,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static String readUserInput() {"
+      },
+      {
+        "lineNumber": 116,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return UICommand.scanner.nextLine().trim();"
+      },
+      {
+        "lineNumber": 117,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 118,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 119,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static boolean isExitCommand(String command) throws DukeException {"
+      },
+      {
+        "lineNumber": 120,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return UICommand.isExitCommand(Parser.parseCommand(command));"
+      },
+      {
+        "lineNumber": 121,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 122,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 123,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static boolean isExitCommand(Map\u003cString, String\u003e command) {"
+      },
+      {
+        "lineNumber": 124,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        return command.get(\"command\").equals(\"bye\");"
+      },
+      {
+        "lineNumber": 125,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 126,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 127,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    public static void talkException(Throwable ex) {"
+      },
+      {
+        "lineNumber": 128,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "        UICommand.talk(\"☹ OOPS!!! \" + ex.getMessage());"
+      },
+      {
+        "lineNumber": 129,
+        "author": {
+          "gitId": "LongLeCE"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 130,
         "author": {
           "gitId": "LongLeCE"
         },
@@ -21645,7 +22121,7 @@
       }
     ],
     "authorContributionMap": {
-      "LongLeCE": 108
+      "LongLeCE": 130
     }
   },
   {
@@ -27609,7 +28085,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                \"\\n\\nI\u0027ve added this task:\\n \" + format.get(\"task\") +"
+        "content": "                \"\\n\\nI\u0027ve added this task:\\n  \" + format.get(\"task\") +"
       },
       {
         "lineNumber": 13,
@@ -28058,7 +28534,7 @@
         "author": {
           "gitId": "LongLeCE"
         },
-        "content": "                \"\\n\\nI\u0027ve added this task:\\n \" + format.get(\"task\") +"
+        "content": "                \"\\n\\nI\u0027ve added this task:\\n  \" + format.get(\"task\") +"
       },
       {
         "lineNumber": 17,
