@@ -1,0 +1,8086 @@
+[
+  {
+    "path": "src/main/java/Command/AddCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.*;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * An AddCommand means adding some task in a TaskList"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class AddCommand extends Command {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    Task tbAdd;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    Scanner sc;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    String line;"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for AddCommand."
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The line to be parsed to task"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public AddCommand (String line) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        sc \u003d new Scanner(line);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        this.line \u003d line;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Parse the string to a task, and then create a new \u003ccode\u003eTask\u003c/code\u003e object accordingly"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container where the Task object is to be added"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage The Storage to print message into"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to create new task or write list into storage"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If fail to find the file"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, FileNotFoundException {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        String taskType \u003d sc.next();"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        switch (taskType) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            case \"todo\":"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                tbAdd \u003d new Todo(line);"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            case \"deadline\":"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                tbAdd \u003d new Deadline(line);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            case \"event\":"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                tbAdd \u003d new Event(line);"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                break;"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            default:"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                System.exit(1);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        taskList.add(tbAdd);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showMessageLn(Message.getAdd(tbAdd.toString()));"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        writeList(taskList, storage);"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 57
+    }
+  },
+  {
+    "path": "src/main/java/Command/Command.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.Task;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Abstract class representing some commands to be execute."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * \u003cp\u003e"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Include 6 child classes:"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * \u003cul\u003e"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " *     \u003cli\u003eAddCommand\u003c/li\u003e"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " *     \u003cli\u003eDeleteCommand\u003c/li\u003e"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " *     \u003cli\u003eDoneCommand\u003c/li\u003e"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " *     \u003cli\u003eExitCommand\u003c/li\u003e"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " *     \u003cli\u003eFindCommand\u003c/li\u003e"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " *     \u003cli\u003eListCommand\u003c/li\u003e"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * \u003c/ul\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public abstract class Command {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private boolean exit \u003d false;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * To be implemented in Child classes"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container for task"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage Storage to print message into"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to create new task or write list into storage"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If fail to find the file"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public abstract void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, FileNotFoundException;"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Write a list into the Storage file"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The \u003ccode\u003eTaskList\u003c/code\u003e to be printed"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage The storage to accept the TaskList"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If fail to find the file"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected void writeList (TaskList taskList, Storage storage) throws FileNotFoundException {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        storage.openPW();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            Task thisTask \u003d taskList.get(i);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            storage.print(thisTask.getOnlyTaskTypeIcon() + \" | \" + thisTask.getOnlyStatusIcon() + \" | \" + thisTask.getName());"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            if (thisTask.getOnlyTaskTypeIcon().equals(\"T\"))"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                storage.println(\"\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            else"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                storage.println(\" | \"  + thisTask.getDue());"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        storage.closePW();"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Exit status"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return Exit status"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public boolean isExit() {"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return exit;"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Set exit to true"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected void setExit() {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        exit \u003d true;"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 70
+    }
+  },
+  {
+    "path": "src/main/java/Command/DeleteCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.Task;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * The DeleteCommand delete a task from the TaskLit"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class DeleteCommand extends Command {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for DeleteCommand"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The line to be parsed to the index of the task"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to input format is incorrect"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public DeleteCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            index \u003d Integer.parseInt(line.substring(7))-1;"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (StringIndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"The description of a delete cannot be empty.\");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"The description of a delete needs to be a integer!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     *"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container for task"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param file The file to write message"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If input integer is not in range or fail to write list"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If fail to find the file"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage file) throws DukeException, FileNotFoundException {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Task task;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            task \u003d taskList.get(index);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            taskList.remove(index);"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"Please enter a integer that is in range!\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showMessageLn(Message.getDelete1() + task);"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showMessageLn(Message.getDelete2(index));"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        writeList(taskList, file);"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 55
+    }
+  },
+  {
+    "path": "src/main/java/Command/DoneCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Set a task as done"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class DoneCommand extends Command {"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private int index;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for DoneCommand"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string to be parsed"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the input format is incorrect"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public DoneCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            index \u003d Integer.parseInt(line.substring(5))-1;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (StringIndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"The description of a done cannot be empty.\");"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (NumberFormatException e) {"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"The description of a done needs to be a integer!\");"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Set a task to done"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container for task"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage Storage to print message into"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the integer is not in range"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If fail to find the file"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) throws DukeException, FileNotFoundException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            taskList.get(index).setDone();"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (IndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"Please enter a integer that is in range!\");"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showMessageLn(Message.getDone() + taskList.get(index));"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        writeList(taskList, storage);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 51
+    }
+  },
+  {
+    "path": "src/main/java/Command/ExitCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Exit the programme"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class ExitCommand extends Command {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for ExitCommand"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The line containing \"bye\""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the description of the command is not empty"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public ExitCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        if (!line.equals(\"bye\")) {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a bye need to be empty\");"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Print the exit message and exit the programme"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container for task"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage Storage to print message into"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        setExit();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showExit();"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 34
+    }
+  },
+  {
+    "path": "src/main/java/Command/FindCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Find a task in the TaskList"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class FindCommand extends Command {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private String toFind;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor in FindCommand"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string to be parsed"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the find body is empty"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public FindCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            toFind \u003d line.substring(5);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (StringIndexOutOfBoundsException e) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"The description of a find cannot be empty.\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Find and show the task"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container for task"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage Storage to print message into"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showMessageLn(Message.getFind());"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            if (taskList.get(i).getName().contains(toFind))"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                ui.showMessageLn((i+1) + \". \" + taskList.get(i));"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 43
+    }
+  },
+  {
+    "path": "src/main/java/Command/ListCommand.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * List all the tasks in the TaskList"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class ListCommand extends Command {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for ListCommand"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string containing \"list\""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the body of list is not empty"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public ListCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        if (!line.equals(\"list\")) {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a list need to be empty.\");"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * List all tasks to user"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param taskList The container for task"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param ui UI dealing with user IO"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param storage Storage to print message into"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void execute(TaskList taskList, Ui ui, Storage storage) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showMessageLn(Message.getList());"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        for (int i \u003d 0; i \u003c taskList.size(); i++) {"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            ui.showMessageLn((i+1) + \". \" + taskList.get(i));"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 37
+    }
+  },
+  {
+    "path": "src/main/java/Duke.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Command.Command;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Storage;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Ui;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.TaskList;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * A class including main method"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "public class Duke {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Main method"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param args The arguments to be passed in the main method"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws IOException If fail to create the file"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static void main(String[] args) throws IOException {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Ui ui \u003d new Ui();"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        ui.showWelcome();"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Storage file \u003d new Storage(\"./data/tasks.txt\");"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        file.createNewFile();"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        TaskList taskList \u003d new TaskList();"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        boolean isExit \u003d false;"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        while (!isExit) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            try {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                String line \u003d ui.readLine();"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                Command command \u003d Parser.parse(line);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                command.execute(taskList, ui,file);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                isExit \u003d command.isExit();"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            } catch (DukeException e) {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                ui.showException(e);"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "-"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "-": 3,
+      "SalonetheGreat": 37
+    }
+  },
+  {
+    "path": "src/main/java/General/DukeException.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package General;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class DukeException extends Exception {"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private String description;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for DukeException."
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param description The string to be assigned to description of the \u003ccode\u003eDukeException\u003c/code\u003e object"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public DukeException(String description) {"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        this.description \u003d description;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Description of the DukeException"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of description"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return description;"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 22
+    }
+  },
+  {
+    "path": "src/main/java/General/Message.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package General;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * The class Message stores commonly used strings in Duke"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public final class Message {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String hello \u003d \"Hello! I\u0027m Duke\\nWhat can I do for you?\";"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String exit \u003d \"Bye! Hope to see you again soon!\";"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String list \u003d \"Here are the tasks in your list:\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String done \u003d \"Nice! I\u0027ve marked this task as done:\\n\";"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String add \u003d \"Got it. I\u0027ve added this task:\\n\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String oops \u003d \"☹ OOPS!!! \";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String delete1 \u003d \"Noted. I\u0027ve removed this task: \\n\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String delete2Front \u003d \"Now you have \";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String delete2Back \u003d \" tasks in the list.\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String find \u003d \"Here are the matching tasks in your list: \";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Hello message."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return String of Hello message"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getHello() {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return hello;"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Exit message."
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return String of Exit message"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getExit() {"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return exit;"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Add message given the task to be added."
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param s The string of the task to be added"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of Add message"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getAdd(String s) {"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return add + s;"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get List message."
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of List message"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getList() {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return list;"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Done message."
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of Done message"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getDone() {"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return done;"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Oops message, which is used in DukeExceptions."
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of Oops message"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getOops() {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return oops;"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Delete message after deleting a Task."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of Delete1 message"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getDelete1() {"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return delete1;"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Delete message 2."
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param index # of elements left in the TaskList"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of Delete2 message"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getDelete2(int index) {"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return delete2Front + (index+1) + delete2Back;"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get Find message."
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of Find message"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static String getFind() {"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return find;"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 91
+    }
+  },
+  {
+    "path": "src/main/java/General/Storage.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package General;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.File;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.FileNotFoundException;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.IOException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.io.PrintWriter;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class Storage {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private File file;"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private PrintWriter pw;"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for class \u003ccode\u003eStorage\u003c/code\u003e."
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param pathname The pathway to the file"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If the pathway did\u0027t point to any file"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public Storage (String pathname) throws FileNotFoundException {"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        file \u003d new File(pathname);"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get File of the Storage."
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return The \u003ccode\u003eFile\u003c/code\u003e object of the Storage"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public File getFile() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return file;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Create a new file."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws IOException If fail to create new file"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void createNewFile() throws IOException {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        file.createNewFile();"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Open a Printwriter at file."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws FileNotFoundException If file doesn\u0027t exist"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void openPW() throws FileNotFoundException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        pw \u003d new PrintWriter(file);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Close Printwriter."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void closePW() {"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        pw.close();"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Print to Printwriter"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param str The string to be printed"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void print(String str) {"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        pw.print(str);"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Print to Printwriter with a new line."
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param str The string to be printed"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void println(String str) {"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        pw.println(str);"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 68
+    }
+  },
+  {
+    "path": "src/main/java/General/Ui.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package General;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class Ui {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Read a line from input"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a string of the line of input"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String readLine() {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Scanner sc \u003d new Scanner(System.in);"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return sc.nextLine();"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Show welcome message"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void showWelcome() {"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        System.out.println(Message.getHello());"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Show exit message"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void showExit() {"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        System.out.println(Message.getExit());"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Show Exception"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param e The exception to be shown"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void showException (Exception e) {"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        System.out.println(e);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Show message with a new line"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param str The message to be printed out"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void showMessageLn (String str) {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        System.out.println(str);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 45
+    }
+  },
+  {
+    "path": "src/main/java/Parser.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Command.*;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.NoSuchElementException;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Parse the string of command into different types of commands"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class Parser {"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String BYE \u003d \"bye\";"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String LIST \u003d \"list\";"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String DONE \u003d \"done\";"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String DELETE \u003d \"delete\";"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String TODO \u003d \"todo\";"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String DEADLINE \u003d \"deadline\";"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String EVENT \u003d \"event\";"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static final String FIND \u003d \"find\";"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Parse the string to a \u003ccode\u003eCommand\u003c/code\u003e object"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string to be parsed"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return One of the child command in class \u003ccode\u003eCommand\u003c/code\u003e"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the user enters an empty line or unrecognizable command"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public static Command parse (String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Scanner input \u003d new Scanner(line);"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            String command \u003d input.next();"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            switch (command) {"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case BYE:"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    return getExitCommand(line);"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case LIST:"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    return getListCommand(line);"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case DONE:"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    return getDoneCommand(line);"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case DELETE:"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    return getDeleteCommand(line);"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case TODO:"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case DEADLINE:"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case EVENT:"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    return getAddCommand(line);"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case FIND:"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    return getFindCommand(line);"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                case \"fuck\":"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    throw new DukeException(\"You cannot talk dirty! :)\");"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                default:"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "                    throw new DukeException(Message.getOops() + \"I\u0027m sorry, but I don\u0027t know what that means :-(\");"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"You cannot enter a empty line!\");"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get an Exit command using a string"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string used for creating an Exit Command"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return An \u003ccode\u003eExitCommand\u003c/code\u003e Object"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to construct"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static Command getExitCommand (String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return new ExitCommand(line);"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get an List Command using a string"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string used for creating a List Command"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return An \u003ccode\u003eListCommand\u003c/code\u003e Object"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to construct"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static Command getListCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return new ListCommand(line);"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get an Add Command"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string used for creating an Add command"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return An \u003ccode\u003eAddCommand\u003c/code\u003e Object"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static Command getAddCommand(String line) {"
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return new AddCommand(line);"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get a Done Command"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string used for creating a Done Command"
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A \u003ccode\u003eDoneCommand\u003c/code\u003e Object"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to construct"
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static Command getDoneCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return new DoneCommand(line);"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 95,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 96,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get a Delete Command"
+      },
+      {
+        "lineNumber": 97,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string used for creating a delete command"
+      },
+      {
+        "lineNumber": 98,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A \u003ccode\u003eDeleteCommand\u003c/code\u003e object"
+      },
+      {
+        "lineNumber": 99,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to construct"
+      },
+      {
+        "lineNumber": 100,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 101,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static Command getDeleteCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 102,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return new DeleteCommand(line);"
+      },
+      {
+        "lineNumber": 103,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 104,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 105,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 106,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Get a Find command"
+      },
+      {
+        "lineNumber": 107,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The string used for creating a find command"
+      },
+      {
+        "lineNumber": 108,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A \u003ccode\u003eFindCommand\u003c/code\u003e object"
+      },
+      {
+        "lineNumber": 109,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If fail to construct"
+      },
+      {
+        "lineNumber": 110,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 111,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private static Command getFindCommand(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 112,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return new FindCommand(line);"
+      },
+      {
+        "lineNumber": 113,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 114,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 114
+    }
+  },
+  {
+    "path": "src/main/java/Tasks/Deadline.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.NoSuchElementException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Represents a deadline task."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * A \u003ccode\u003eDeadline\u003c/code\u003e object includes name, done status, and due"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class Deadline extends Task {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for \u003ccode\u003eDeadline\u003c/code\u003e."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line A string to be parsed as name and due for deadline."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the input is not in correct format."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public Deadline(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        super(line);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            info \u003d lineOfInput.nextLine().substring(1);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a deadline cannot be empty.\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        int splitPoint \u003d info.indexOf(\"/by \");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        if (splitPoint \u003d\u003d -1){"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"There is no \\\"/by \\\" in your input!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        name \u003d info.substring(0, splitPoint);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        setDue(info.substring(splitPoint+4));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Parse a string to \u003ccode\u003eDate\u003c/code\u003e object and set it as the due of the deadline task."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param dueString The string to be parsed."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the dueString is not in the format of \"dd/MM/yyyy HHmm\"."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void setDue(String dueString) throws DukeException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        SimpleDateFormat simpleDateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Date date;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            date \u003d simpleDateFormat.parse(dueString);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"Please input deadline due as \\\"dd/MM/yyyy HHmm\\\"\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        due \u003d date;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Return a string of task type"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a string of task type"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getTaskTypeIcon() {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"[D]\";"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Return a letter of task type"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a letter of task type"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getOnlyTaskTypeIcon() {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"D\";"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns a string of a \u003ccode\u003eDeadline\u003c/code\u003e object."
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a string of \u003ccode\u003eDeadline\u003c/code\u003e object"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return getTaskTypeIcon() + getStatusIcon() + name + \"(by: \" + due + \")\";"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 79
+    }
+  },
+  {
+    "path": "src/main/java/Tasks/Event.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.text.ParseException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.text.SimpleDateFormat;"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.NoSuchElementException;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Represents a event task."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * A \u003ccode\u003eEvent\u003c/code\u003e object includes name, done status, and time"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class Event extends Task {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for \u003ccode\u003eEvent\u003c/code\u003e."
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param info A string to be parsed as name and time for event."
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the input is not in correct format."
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public Event(String info) throws DukeException {"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        super(info);"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            info \u003d lineOfInput.nextLine().substring(1);"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of an event cannot be empty.\");"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        int splitPoint \u003d info.indexOf(\"/at \");"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        if (splitPoint \u003d\u003d -1) {"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"There is no \\\"/at \\\" in your input!\");"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        name \u003d info.substring(0, splitPoint);"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        setDue(info.substring(splitPoint+4));"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Parse a string to \u003ccode\u003eDate\u003c/code\u003e object and set it as the time of the event task."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param dueString The string to be parsed."
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the dueString is not in the format of \"dd/MM/yyyy HHmm\"."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void setDue(String dueString) throws DukeException {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        SimpleDateFormat simpleDateFormat \u003d new SimpleDateFormat(\"dd/MM/yyyy HHmm\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Date date;"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            date \u003d simpleDateFormat.parse(dueString);"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (ParseException e) {"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(Message.getOops() + \"Please input event time as \\\"dd/MM/yyyy HHmm\\\"\");"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        due \u003d date;"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Return a string of task type"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a string of task type"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getTaskTypeIcon() {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"[E]\";"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Return a letter of task type"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a letter of task type"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getOnlyTaskTypeIcon() {"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"E\";"
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns a string of a \u003ccode\u003eDeadline\u003c/code\u003e object."
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a string of \u003ccode\u003eDeadline\u003c/code\u003e object"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return getTaskTypeIcon() + getStatusIcon() + name + \"(at: \" + due + \")\";"
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 79
+    }
+  },
+  {
+    "path": "src/main/java/Tasks/Task.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Date;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.Scanner;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * An abstract class to be implemented as Todo, Deadline, and Event."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Represents a task that needs to be done."
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public abstract class Task {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected String name;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected boolean isDone;"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected Scanner lineOfInput;"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected Date due;"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected String info;"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The common constructor for all 3 child classes."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line The input line to be parsed to task type, task name, and time"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException If the line of input is not in correct format"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public Task(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        isDone \u003d false;"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        lineOfInput \u003d new Scanner(line);"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        lineOfInput.next();"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns the status icon of either done or notDone."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of \"[isDone_icon]\""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    protected final String getStatusIcon(){"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"[\" + (isDone ? \"\\u2713\" : \"\\u2718\") + \"]\";"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns the status icon in either 1 or 0."
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return \"1\" if done, or \"0\" if not done"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public final String getOnlyStatusIcon() {"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return (isDone ? \"1\" : \"0\");"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Name of the task."
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return String of name of the task"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getName() {"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Due for the task."
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of due for the task"
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getDue() {"
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return due.toString();"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Set due for the task."
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line the line to be parsed to the due of the task"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public abstract void setDue(String line) throws DukeException;"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Set isDone to be true."
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public final void setDone() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        isDone \u003d true;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 76,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 77,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns the task type icon."
+      },
+      {
+        "lineNumber": 78,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of the task type icon"
+      },
+      {
+        "lineNumber": 79,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 80,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public abstract String getTaskTypeIcon();"
+      },
+      {
+        "lineNumber": 81,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 82,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 83,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns the task type icon with 1 letter."
+      },
+      {
+        "lineNumber": 84,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A letter of task type"
+      },
+      {
+        "lineNumber": 85,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 86,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public abstract String getOnlyTaskTypeIcon();"
+      },
+      {
+        "lineNumber": 87,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 88,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 89,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns string of the task including info on name, done status, type, (and due)."
+      },
+      {
+        "lineNumber": 90,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return A string of the task"
+      },
+      {
+        "lineNumber": 91,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 92,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 93,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public abstract String toString();"
+      },
+      {
+        "lineNumber": 94,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 94
+    }
+  },
+  {
+    "path": "src/main/java/Tasks/TaskList.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.ArrayList;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * A collection of \u003ccode\u003eTask\u003c/code\u003e objects using ArrayList"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class TaskList {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private ArrayList\u003cTask\u003e taskList;"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * The only constructor for TaskList."
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Create a empty ArrayList"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public TaskList() {"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        taskList \u003d new ArrayList\u003c\u003e();"
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns a \u003ccode\u003eTask\u003c/code\u003e object at the index \u003ci\u003ei\u003c/i\u003e of the TaskList."
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param index the index of the task in the task list"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a \u003ccode\u003eTask\u003c/code\u003e at index \u003ci\u003ei\u003c/i\u003e"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public Task get(int index) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return taskList.get(index);"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * # of tasks in a TaskList"
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return size of the TaskList"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public int size() {"
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return taskList.size();"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Add a \u003ccode\u003eTask\u003c/code\u003e object to the end of the \u003ccode\u003eTaskList\u003c/code\u003e."
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param task The \u003ccode\u003eTask\u003c/code\u003e object to be added"
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void add (Task task) {"
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        taskList.add(task);"
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Remove the \u003ccode\u003eTask\u003c/code\u003e object at index \u003ci\u003ei\u003c/i\u003e"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param index the index where the task will be deleted"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void remove (int index) {"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        taskList.remove(index);"
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 51
+    }
+  },
+  {
+    "path": "src/main/java/Tasks/Todo.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "package Tasks;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.Message;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import java.util.NoSuchElementException;"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "/**"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * Represents a task without deadline."
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " * A \u003ccode\u003eTodo\u003c/code\u003e object contains information of name and isDone"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": " */"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class Todo extends Task {"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    private String name;"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 15,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 16,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * A constructor for class Todo."
+      },
+      {
+        "lineNumber": 17,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line the input line to be parsed as name"
+      },
+      {
+        "lineNumber": 18,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException"
+      },
+      {
+        "lineNumber": 19,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 20,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public Todo(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 21,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        super(line);"
+      },
+      {
+        "lineNumber": 22,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        try {"
+      },
+      {
+        "lineNumber": 23,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            info \u003d lineOfInput.nextLine().substring(1);"
+      },
+      {
+        "lineNumber": 24,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        } catch (NoSuchElementException e) {"
+      },
+      {
+        "lineNumber": 25,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "            throw new DukeException(\"☹ OOPS!!! The description of a todo cannot be empty.\");"
+      },
+      {
+        "lineNumber": 26,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        }"
+      },
+      {
+        "lineNumber": 27,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        name \u003d info;"
+      },
+      {
+        "lineNumber": 28,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 29,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 30,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 31,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * This function gets the function type in a String."
+      },
+      {
+        "lineNumber": 32,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return the task type in the form of \"[T]\""
+      },
+      {
+        "lineNumber": 33,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 34,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 35,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getTaskTypeIcon() {"
+      },
+      {
+        "lineNumber": 36,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"[T]\";"
+      },
+      {
+        "lineNumber": 37,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 38,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 39,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 40,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns the task type icon with only 1 letter."
+      },
+      {
+        "lineNumber": 41,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return a string: \"T\""
+      },
+      {
+        "lineNumber": 42,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 43,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 44,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getOnlyTaskTypeIcon() {"
+      },
+      {
+        "lineNumber": 45,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return \"T\";"
+      },
+      {
+        "lineNumber": 46,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 47,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 48,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 49,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns the name of this task."
+      },
+      {
+        "lineNumber": 50,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return name: string of the task name"
+      },
+      {
+        "lineNumber": 51,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 52,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 53,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String getName() {"
+      },
+      {
+        "lineNumber": 54,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return name;"
+      },
+      {
+        "lineNumber": 55,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 56,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 57,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 58,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * NULL method, just for implementation."
+      },
+      {
+        "lineNumber": 59,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @param line: the input due"
+      },
+      {
+        "lineNumber": 60,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @throws DukeException: cannot set due for a todo"
+      },
+      {
+        "lineNumber": 61,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 62,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 63,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void setDue(String line) throws DukeException {"
+      },
+      {
+        "lineNumber": 64,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        throw new DukeException(Message.getOops() + \"You cannot set due for a todo task.\");"
+      },
+      {
+        "lineNumber": 65,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 66,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 67,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    /**"
+      },
+      {
+        "lineNumber": 68,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * Returns a string including task type, status, and name of the todo task."
+      },
+      {
+        "lineNumber": 69,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     * @return the string of the todo task"
+      },
+      {
+        "lineNumber": 70,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "     */"
+      },
+      {
+        "lineNumber": 71,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Override"
+      },
+      {
+        "lineNumber": 72,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public String toString() {"
+      },
+      {
+        "lineNumber": 73,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        return getTaskTypeIcon() + getStatusIcon() + name;"
+      },
+      {
+        "lineNumber": 74,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 75,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 75
+    }
+  },
+  {
+    "path": "src/test/java/DukeTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": ""
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class DukeTest {"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void dummyTest() {"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        assertEquals(2, 2);"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 10
+    }
+  },
+  {
+    "path": "src/test/java/TaskTest.java",
+    "fileType": "java",
+    "lines": [
+      {
+        "lineNumber": 1,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import General.DukeException;"
+      },
+      {
+        "lineNumber": 2,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.Task;"
+      },
+      {
+        "lineNumber": 3,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import Tasks.Todo;"
+      },
+      {
+        "lineNumber": 4,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import org.junit.jupiter.api.Test;"
+      },
+      {
+        "lineNumber": 5,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "import static org.junit.jupiter.api.Assertions.assertEquals;"
+      },
+      {
+        "lineNumber": 6,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "public class TaskTest {"
+      },
+      {
+        "lineNumber": 7,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    @Test"
+      },
+      {
+        "lineNumber": 8,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    public void TodoTest() throws DukeException {"
+      },
+      {
+        "lineNumber": 9,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        String input \u003d \"todo tmr getup\";"
+      },
+      {
+        "lineNumber": 10,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        Task task \u003d new Todo(input);"
+      },
+      {
+        "lineNumber": 11,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        String expectedToString \u003d \"[T][\\u2718]tmr getup\";"
+      },
+      {
+        "lineNumber": 12,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "        assertEquals(expectedToString, task.toString());"
+      },
+      {
+        "lineNumber": 13,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "    }"
+      },
+      {
+        "lineNumber": 14,
+        "author": {
+          "gitId": "SalonetheGreat"
+        },
+        "content": "}"
+      }
+    ],
+    "authorContributionMap": {
+      "SalonetheGreat": 14
+    }
+  }
+]
